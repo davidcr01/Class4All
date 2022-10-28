@@ -7,9 +7,37 @@ const {Schema, model} = require('mongoose');
 const UsuarioSchema = Schema({
     nombre: {
         type: String,
-        required: true
+        required: true,
     },
-    edad: String,
+    apellido1:{
+        type: String,
+        required: true,
+    },
+    apellido2:{
+        type: String,
+        required: true,
+    },
+    rol:{  //alumno, profesor o administrador
+        type: String,
+        required: true,
+        enum: ['Alumno', 'Profesor', 'Administrador'],
+    },
+    foto:{ 
+        type: String,
+        required: true,
+    },
+    clase:{ 
+        type: String,
+        required: true,
+    },
+
+    //ALUMNOS
+    preferencias: Number,
+    edad: Number,
+    tareasAsignadas: [Number],  //Array de IDs
+
+    //ADMINISTRADORES
+    //PROFESORES
     correo:  String
 });
 
