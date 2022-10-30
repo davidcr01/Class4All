@@ -3,14 +3,14 @@ import React from 'react'
 import Header from '../Layout/Header.js';
 import Footer from '../Layout/Footer.js';
 import Body from '../Layout/Body.js';
-
-const Inicio = () => {
+import PantallasGestion from '../Layout/PantallasGestion';
+const Gestion = () => {
   return (
     <>
-    <Header titulo="Inicio"/>
-    <Body/>
+    <Header titulo="Gestión del centro"/>
+    <PantallasGestion/>
     <Footer/>
   </>)
 };
 
-export default Inicio;
+export default Gestion;
