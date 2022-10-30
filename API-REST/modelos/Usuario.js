@@ -48,5 +48,4 @@ module.exports = model('Usuario', UsuarioSchema);
     . "..." es el nombre de la colección de la base de datos
         . Por defecto se coge el nombre del modelo en minuscula y se pluraliza : Usuario => usuarios
         . Se puede especificar otro pero seguiremos esta convención
-
 */
