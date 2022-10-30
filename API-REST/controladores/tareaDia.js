@@ -80,7 +80,8 @@ const asignarTarea = (req, res) => {
     Tarea.updateOne({_id : idTarea}, 
                     {$set:{                             //Para actualizar valores concretos se debe usar set
                         estado : 'asignada',
-                        usuarioAsignado : idAlumno
+                        usuarioAsignado : idAlumno,
+                        fechaAsignacion : Date.now()
                         }
                     }, 
                     (error, tareaActualizada) => {
@@ -141,7 +142,8 @@ const desasignarTarea = (req, res) => {
         Tarea.updateOne({_id : idTarea},
             {$set:{
                 estado : 'sinAsignar',
-                usuarioAsignado : null
+                usuarioAsignado : null,
+                fechaAsignacion : null
                 }
             },
             (error, tareaActualizada) => {
