@@ -23,6 +23,8 @@ const datosEmpresa = (req, res) => {
     });
 }
 
+//const listaUsuarios = null;
+
 const crear = (req, res) => {
     
     //Recoger parametros por post
@@ -57,8 +59,28 @@ const crear = (req, res) => {
 
 }
 
+
+const listar = (req, res) => {
+
+    let listaUser = Usuario.find({}).exec((error, usuarios) => {
+        if (error || !usuarios){
+            return res.status(404).json({
+                status:"error",
+                mensaje:"No hay usuarios que listar"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            usuarios: usuarios
+        });
+    });  
+};
+
+
+
 module.exports = {
     prueba,
     datosEmpresa,
-    crear
+    crear,
+    listar
 }

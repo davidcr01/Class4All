@@ -6,5 +6,6 @@ const UsuarioController = require('../controladores/usuario.js');
 router.get("/ruta-de-prueba" , UsuarioController.prueba);
 router.get("/datos-empresa" , UsuarioController.datosEmpresa);
 router.post("/crear-usuario" , UsuarioController.crear);
+router.get("/listar-usuarios", UsuarioController.listar);
 
 module.exports = router;
