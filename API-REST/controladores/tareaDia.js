@@ -73,6 +73,9 @@ const asignarTarea = (req, res) => {
     let idTarea = req.params.idTarea;
     let idAlumno = req.params.idAlumno;
 
+    let usuarioActualizado;
+    let tareaActualizada;
+
     //validacion de datos
     
     /* let usuario = Usuario.findById({_id : idAlumno}, (error, usuario) => {
@@ -121,6 +124,7 @@ const asignarTarea = (req, res) => {
                             mensaje: "La tarea no se ha actualizado"
                             });
                         }
+                        tareaActualizada = tareaActualizada;
         
                     });
 
@@ -130,6 +134,7 @@ const asignarTarea = (req, res) => {
                         tareasAsignadas : idTarea
                         }
                     },
+                    {new: true},
                     (error, usuarioActualizado) => {
                         if (error || !usuarioActualizado) {
                             return res.status(404).json({
@@ -137,6 +142,7 @@ const asignarTarea = (req, res) => {
                             mensaje: "El usuario no se ha actualizado"
                             });
                         }
+                        usuarioActualizado = usuarioActualizado;
                     });
     
     return res.status(200).json({
@@ -153,19 +159,64 @@ const desasignarTarea = (req, res) => {
     let idTarea = req.params.idTarea;
     
     //obtener id del usuario
-    let idAlumno = Tarea.findById({_id : idTarea}, (error, tarea) => {
+     
+    Tarea.findById({_id : idTarea}, (error, tarea) => {
         if (error || !tarea) {
             return res.status(404).json({
                 status: "error",
                 mensaje: "La tarea no existe"
             });
         }
-        return tarea.usuarioAsignado;
+        
+        let idAlumno = tarea.usuarioAsignado.toString();
+        
+
+        Tarea.updateOne({_id : idTarea},
+            {$set:{
+                estado : 'sinAsignar',
+                usuarioAsignado : null
+                }
+            },
+            (error, tareaActualizada) => {
+                if (error || !tareaActualizada) {
+                    return res.status(404).json({
+                    status: "error",
+                    mensaje: "La tarea no se ha actualizado"
+                    });
+                }
+            });
+        Usuario.updateOne({_id : idAlumno},
+            {$pull:{
+                tareasAsignadas : idTarea
+                }
+            },
+            {new: true},
+            (error, usuarioActualizado) => {
+                if (error || !usuarioActualizado) {
+                    return res.status(404).json({
+                    status: "error",
+                    mensaje: "El usuario no se ha actualizado"
+                    });
+                }
+                return res.status(200).json({
+                    status: "success",
+                        mensaje: "Todo se ha modificado correctamete",
+                });
+            });
+            /* return res.status(200).json({
+                status: "success",
+                    mensaje: "Todo se ha modificado correctamete",
+                    ida: idAlumno
+                    //usuario : usuarioActualizado,
+                    //tarea : tareaActualizada
+            }); */
+                
     });
 
-
+    //console.log(idAlumno);
     //Actualizar tarea
-    Tarea.updateOne({_id : idTarea},
+
+    /* Tarea.updateOne({_id : idTarea},
                     {$set:{
                         estado : 'sinAsignar',
                         usuarioAsignado : null
@@ -183,7 +234,7 @@ const desasignarTarea = (req, res) => {
     //Actualizar usuario
     Usuario.updateOne({_id : idAlumno},
                     {$pull:{
-                        tareasAsignadas : idTarea
+                        tareasAsignadas : [idTarea]
                         }
                     },
                     (error, usuarioActualizado) => {
@@ -193,14 +244,9 @@ const desasignarTarea = (req, res) => {
                             mensaje: "El usuario no se ha actualizado"
                             });
                         }
-                    });
+                    }); */
     
-    return res.status(200).json({
-        status: "success",
-            mensaje: "Todo se ha modificado correctamete",
-            usuario : usuarioActualizado,
-            tarea : tareaActualizada
-    });
+    
 
 
 
