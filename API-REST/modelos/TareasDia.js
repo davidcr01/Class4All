@@ -21,7 +21,7 @@ const TareaSchema = Schema({
         default: null
     },
 
-    /*******************datos generales */
+    //Datos generales de la tarea
     nombre: {
         type: String,
         required: true
