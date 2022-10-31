@@ -6,3 +6,11 @@ Header{
   text-align: center;
   
 }
+
+.breadcrumbs{
+  background-color: rgb(196, 196, 255);
+  padding-left: 1%;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+}

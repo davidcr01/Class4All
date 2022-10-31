@@ -4,15 +4,15 @@ import Header from '../Layout/Header.js';
 import Footer from '../Layout/Footer.js';
 import Body from '../Layout/Body.js';
 import { MuiBreadcrumbs } from '../muibreadcrumbs';
-import PantallasGestion from '../Layout/PantallasGestion';
-const Gestion = () => {
+import PantallasUsuario from '../Layout/PantallasUsuario';
+const PaginaPrincipal = () => {
   return (
     <>
-    <Header titulo="Gestión del centro"/>
-    <MuiBreadcrumbs />
-    <PantallasGestion/>
+    <Header titulo="Página Principal"/>
+    {/* <MuiBreadcrumbsPP /> */}
+    <PantallasUsuario/>
     <Footer/>
   </>)
 };
 
-export default Gestion;
+export default PaginaPrincipal;
