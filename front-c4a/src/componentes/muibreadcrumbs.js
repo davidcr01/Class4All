@@ -10,3 +10,13 @@ export const MuiBreadcrumbs = () => {
     </Box>
 }
 
+export const MuiBreadcrumbsGTS = () => {
+    return <Box m={2} className="breadcrumbs">
+        <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
+            <Link underline="hover" color="inherit" href="/">Inicio </Link>
+            <Link underline="hover" color="inherit" href="/">Gestion de tareas </Link>
+            <Typography color="text.primary">Sin asignar</Typography>
+        </Breadcrumbs>
+    </Box>
+}
+

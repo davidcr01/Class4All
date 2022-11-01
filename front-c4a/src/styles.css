@@ -14,3 +14,47 @@ Header{
   border-color: black;
   border-style: solid;
 }
+
+.checkbox{
+  text-align: center;
+  font-size: 18px;
+}
+
+.Filtros{
+  margin-top: 50px
+}
+
+.botones{
+  display:grid;
+  text-align: center;
+  grid-template-columns: 20% 20% 20% 20%;
+  justify-content: center;
+  margin-top: 50px;
+  grid-column-gap: 10px;
+
+}
+
+.boton{
+  background-color: rgb(196, 196, 255);
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  font-size: 18px;
+  height: 50px;
+  padding-top: 25px;
+}
+
+.tarea{
+  background-color: rgb(196, 196, 255);
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  font-size: 18px;
+  height: auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-top: 50px;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
+}
