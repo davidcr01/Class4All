@@ -5,7 +5,7 @@ import Footer from '../Layout/Footer.js';
 import Body from '../Layout/Body.js';
 import { MuiBreadcrumbs } from '../muibreadcrumbs';
 import PantallasGestion from '../Layout/PantallasGestion';
-const Gestion = () => {
+export const Gestion = () => {
   return (
     <>
     <Header titulo="Gestión del centro"/>
@@ -15,4 +15,4 @@ const Gestion = () => {
   </>)
 };
 
-export default Gestion;
+//export default Gestion;

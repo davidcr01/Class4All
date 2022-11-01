@@ -4,7 +4,7 @@ import Header from '../Layout/Header.js';
 import Footer from '../Layout/Footer.js';
 import Body from '../Layout/Body.js';
 
-const Inicio = () => {
+export const Inicio = () => {
   return (
     <>
     <Header titulo="Inicio"/>
@@ -13,4 +13,4 @@ const Inicio = () => {
   </>)
 };
 
-export default Inicio;
+//export default Inicio;
