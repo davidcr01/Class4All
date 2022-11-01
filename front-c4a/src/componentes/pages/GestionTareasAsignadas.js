@@ -4,9 +4,9 @@ import Header from '../Layout/Header.js';
 import Footer from '../Layout/Footer.js';
 import Body from '../Layout/Body.js';
 import { MuiBreadcrumbsGTS } from '../muibreadcrumbs';
-import PantallaGestionTareas from '../Layout/PantallaGestionTareasSinAsignar';
+import PantallaGestionTareas from '../Layout/PantallaGestionTareasAsignadas';
 
-export const GestionTareasSinAsignar = () => {
+export const GestionTareasAsignadas = () => {
   return (
     <>
     <Header titulo="Gestión de tareas"/>

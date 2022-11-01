@@ -1,6 +1,6 @@
 import React from 'react';
 import BuscarFiltros from './BuscarFiltros';
-import ListaTareas from './ListaTareas'; 
+import ListaTareas from './ListaTareasSinAsignar'; 
 const PantallaGestionTareas = (props) => {
     return(React.createElement(
         "div",
