@@ -5,7 +5,8 @@ import Footer from '../Layout/Footer.js';
 import Body from '../Layout/Body.js';
 import { MuiBreadcrumbs } from '../muibreadcrumbs';
 import PantallasUsuario from '../Layout/PantallasUsuario';
-const PaginaPrincipal = () => {
+
+export const PaginaPrincipal = () => {
   return (
     <>
     <Header titulo="Página Principal"/>
@@ -15,4 +16,4 @@ const PaginaPrincipal = () => {
   </>)
 };
 
-export default PaginaPrincipal;
+//export default PaginaPrincipal;
