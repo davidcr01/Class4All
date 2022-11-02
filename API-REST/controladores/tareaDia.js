@@ -91,7 +91,7 @@ const asignarTarea = (req, res) => {
                             mensaje: "La tarea no se ha actualizado"
                             });
                         }
-                        tareaActualizada = tareaActualizada;
+                        //tareaActualizada = tareaActualizada;
         
                     });
 
@@ -109,14 +109,14 @@ const asignarTarea = (req, res) => {
                             mensaje: "El usuario no se ha actualizado"
                             });
                         }
-                        usuarioActualizado = usuarioActualizado;
+                        //usuarioActualizado = usuarioActualizado;
                     });
     
     return res.status(200).json({
         status: "success",
             mensaje: "Todo se ha modificado correctamete",
-            usuario : usuarioActualizado,
-            tarea : tareaActualizada
+            //usuario : usuarioActualizado,
+            //tarea : tareaActualizada
     });
     
 };
