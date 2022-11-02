@@ -23,8 +23,8 @@ app.use(express.urlencoded({extended:true}));       //recibir datos con content-
 
 const rutas_usuario = require('./rutas/usuario');
 const rutas_tarea = require('./rutas/tareasDia');
-app.use("/api", rutas_usuario);
-app.use("/api", rutas_tarea);
+app.use("/api/usuarios", rutas_usuario);
+app.use("/api/tareas", rutas_tarea);
 
 
 
