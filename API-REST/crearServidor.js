@@ -5,7 +5,6 @@ const cors = require('cors');
 
 function crearSevidor(){
     const app = express();
-    const puerto = 3900;
 
     //Configurar cors middleware
     app.use(cors());
