@@ -6,8 +6,9 @@ const request = require('supertest');
 
 
 beforeEach((done) => {
-    conexionTest();
-    done();
+    //conexionTest();
+    //done();
+    mongoose.connect("mongodb+srv://test:test@c4a-test.97v4qpm.mongodb.net/?retryWrites=true&w=majority",()=>done());
 });
 
 afterEach((done) => {
