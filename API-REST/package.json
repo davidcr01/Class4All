@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --forceExit",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --forceExit --detectOpenHandles",
     "start": "nodemon index.js"
   },
   "author": "Javier",
