@@ -1,10 +1,11 @@
 import React from 'react';
-import Tarea from './TareaSinAsignar';
+import TareaSinAsignar from './TareaSinAsignar';
+import TareaAsignada from './TareaAsignada';
 class Tareas extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tareas: [],
+            tareas: [{}],
             status: ''
         }
     }
@@ -23,7 +24,30 @@ class Tareas extends React.Component {
     render(props) {
         return (
             <div className="Tareas">
+                {(() => {
+                    const arr = [];
+                    for (let i = 0; i < this.state.tareas.length; i++) {
+                        switch(this.state.tareas[i].estado) {
+                            case 'sinasignar':
+                                arr.push(<TareaSinAsignar key={i} className="tarea" tarea={this.state.tareas[i]} />);
+                                break;
+                            case 'asignada':
+                                arr.push(<TareaAsignada key={i} className="tarea" tarea={this.state.tareas[i]} />);
+                                break;
+                            case 'acabada':
+                                arr.push(<TareaAsignada key={i} className="tarea" tarea={this.state.tareas[i]} />);
+                                break;
+                            default:
+                                arr.push(<TareaAsignada key={i} className="tarea" tarea={this.state.tareas[i]} />);
+
+                        }}
+                        return arr;
+                        })()}
                 {this.state.status}
+                {this.state.tareas[0].nombre}
+
+                
+                
                 {/* {this.state.tareas} */}
             
                 {/* <tbody>
@@ -44,12 +68,12 @@ class Tareas extends React.Component {
                     })}</tbody> */}
                 {/* Get the type of one element of tareas */}
                 {/* {this.state.tareas} */}
+                {/* <Tarea className="tarea"></Tarea>
                 <Tarea className="tarea"></Tarea>
                 <Tarea className="tarea"></Tarea>
                 <Tarea className="tarea"></Tarea>
                 <Tarea className="tarea"></Tarea>
-                <Tarea className="tarea"></Tarea>
-                <Tarea className="tarea"></Tarea>
+                <Tarea className="tarea"></Tarea> */}
 
             </div>
         )

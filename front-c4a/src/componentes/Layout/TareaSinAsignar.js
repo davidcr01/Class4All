@@ -1,5 +1,5 @@
 import React from 'react';
-const Tarea = (props) => {
+const TareaSinAsignar = (props) => {
     return(React.createElement(
         "div",
         {className: "tarea"},
@@ -12,4 +12,4 @@ const Tarea = (props) => {
 
 }
 
-export default Tarea;
+export default TareaSinAsignar;
