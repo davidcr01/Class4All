@@ -4,16 +4,46 @@ class Tareas extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tareas: fetch('http://localhost:3000/lista-tareasDia')
+            tareas: []
         }
     }
 
+
+    async getTareas() {
+        const response = await fetch('http://localhost:3900/api/tareas/lista-tareasDia',
+            ).then(res => res.json()).then(result => {
+                this.setState({
+                    tareas: result
+                })
+            })
+
+        const record = await response.json();
+        return this.state.tareas;
+    }
+
     render(props) {
-        
+        this.state.tareas = this.getTareas();
         return (
             <div className="Tareas">
+                {this.state.tareas.length}
+                {/* <tbody>
+                    {this.state.tareas.map(tarea => {
+                    <tr key={tarea._id}>
+                        <td>{tarea.nombre}</td>
+                        <td>{tarea.descripcion}</td>
+                        <td>{tarea.tipoInstrucciones}</td>
+                        <td>{tarea.instruccionTexto}</td>
+                        <td>{tarea.instruccionesFotos}</td>
+                        <td>{tarea.urlVideo}</td>
+                        <td>{tarea.estado}</td>
+                        <td>{tarea.usuarioAsignado}</td>
+                        <td>{tarea.fechaAsignada}</td>
+                        <td>{tarea.fechaAcabadada}</td>
+                    </tr>
+
+                    })}</tbody> */}
                 {/* Get the type of one element of tareas */}
-                {this.state.tareas[0].type}
+                {/* {this.state.tareas} */}
                 <Tarea className="tarea"></Tarea>
                 <Tarea className="tarea"></Tarea>
                 <Tarea className="tarea"></Tarea>
