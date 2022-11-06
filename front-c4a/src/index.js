@@ -6,7 +6,7 @@ import App from './App';
 import Inicio from './componentes/pages/Inicio';
 import Gestion from './componentes/pages/Gestion';
 import PaginaPrincipal from './componentes/pages/PaginaPrincipal';
-import GestionTareasSinAsignar from './componentes/pages/GestionTareasSinAsignar';
+import GestionTareas from './componentes/pages/GestionTareas';
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);

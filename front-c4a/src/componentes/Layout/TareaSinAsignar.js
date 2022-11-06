@@ -1,15 +1,14 @@
 import React from 'react';
-const Tarea = (props) => {
-    return(React.createElement(
-        "div",
-        {className: "tarea"},
-        <> <div>Tarea: Poner microhondas</div>
-        <div>Fecha: 15/09/22</div>
-        <div>Usuario: <select/></div>
-        </>
-    )
+const TareaSinAsignar = (props) => {
+    return(
+        <div className= "tarea">
+            <> <div>Tarea: Poner microhondas</div>
+            <div>Fecha: 15/09/22</div>
+            <div>Usuario: <select/></div>
+            </>
+        </div>
     )
 
 }
 
-export default Tarea;
+export default TareaSinAsignar;

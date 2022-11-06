@@ -58,3 +58,63 @@ Header{
   margin-left: 20px;
   margin-right: 20px;
 }
+
+.PantallaGestionTareas{
+  justify-content: center;
+  width: auto;
+  grid-template-columns: 22% 76%;
+  grid-column-gap: 20px;
+  border-width: 3px;
+  display: grid;
+  margin-bottom: 2px;
+  font-size: 4vw;
+  text-align: center
+} 
+
+
+.ListaTareas{
+  width: auto;
+  background-color: #FFFFFF;
+  border-color: black;
+  border-style: solid;
+  display: grid;
+  border-width: 3px;
+  font-size: 20px;
+  text: center; 
+}
+
+.Tareas{
+  width: auto;
+  background-color: #FFFFFF;
+  border-color: black;
+  border-style: solid;
+  display: grid;
+  border-width: 3px;
+  font-size: 20px;
+  margin-top: 50px;
+  text-align: center
+
+}
+
+.botonesTareasReal{
+  display:grid;
+  text-align: center;
+  grid-template-columns: 20% 20% 20%;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  grid-column-gap: 10px;
+
+}
+
+.botonTareasReal{
+  background-color: rgb(196, 196, 255);
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  font-size: 18px;
+  height: 20px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
