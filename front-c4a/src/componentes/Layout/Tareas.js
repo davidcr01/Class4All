@@ -1,6 +1,7 @@
 import React from 'react';
 import TareaSinAsignar from './TareaSinAsignar';
 import TareaAsignada from './TareaAsignada';
+import TareaRealizada from './TareaRealizada';
 class Tareas extends React.Component {
     constructor(props) {
         super(props);
@@ -34,8 +35,8 @@ class Tareas extends React.Component {
                             case 'asignada':
                                 arr.push(<TareaAsignada key={i} className="tarea" tarea={this.state.tareas[i]} />);
                                 break;
-                            case 'acabada':
-                                arr.push(<TareaAsignada key={i} className="tarea" tarea={this.state.tareas[i]} />);
+                            case 'realizada':
+                                arr.push(<TareaRealizada key={i} className="tarea" tarea={this.state.tareas[i]} />);
                                 break;
                             default:
                                 arr.push(<TareaAsignada key={i} className="tarea" tarea={this.state.tareas[i]} />);
@@ -47,33 +48,6 @@ class Tareas extends React.Component {
                 {this.state.tareas[0].nombre}
 
                 
-                
-                {/* {this.state.tareas} */}
-            
-                {/* <tbody>
-                    {this.state.tareas.map(tarea => {
-                    <tr key={tarea._id}>
-                        <td>{tarea.nombre}</td>
-                        <td>{tarea.descripcion}</td>
-                        <td>{tarea.tipoInstrucciones}</td>
-                        <td>{tarea.instruccionTexto}</td>
-                        <td>{tarea.instruccionesFotos}</td>
-                        <td>{tarea.urlVideo}</td>
-                        <td>{tarea.estado}</td>
-                        <td>{tarea.usuarioAsignado}</td>
-                        <td>{tarea.fechaAsignada}</td>
-                        <td>{tarea.fechaAcabadada}</td>
-                    </tr>
-
-                    })}</tbody> */}
-                {/* Get the type of one element of tareas */}
-                {/* {this.state.tareas} */}
-                {/* <Tarea className="tarea"></Tarea>
-                <Tarea className="tarea"></Tarea>
-                <Tarea className="tarea"></Tarea>
-                <Tarea className="tarea"></Tarea>
-                <Tarea className="tarea"></Tarea>
-                <Tarea className="tarea"></Tarea> */}
 
             </div>
         )
