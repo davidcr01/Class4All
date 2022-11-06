@@ -1,26 +1,45 @@
 import React from 'react';
-const TareaAsignada = (props) => {
-    let user = null;
+class TareaAsignada extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            tarea: this.props.tarea,
+            status: '',
+            user: {}
+        }
+        fetch('http://localhost:3900/api/usuarios/user/' + this.state.tarea.usuarioAsignado,
+        ).then(res => res.json()).then(result => {
+            this.state.user = result.usuario;
+            this.state.status = result.status;
+        })
+    }
 
-    console.log(props.tarea.usuarioAsignado)
+    componentDidMount() {
+        //fetch para obtener el nombre del usuario
+        console.log(this.state.status)
+    }
 
-    fetch('http://localhost:3900/api/usuarios/user/'+props.tarea.usuarioAsignado,
-    ).then(res => res.json()).then(result => {
-        user = result.nombre;    
-        console.log("dsf" + result);
-    })
+    render(){
 
 
-    return(
+    // fetch('http://localhost:3900/api/usuarios/user/635ec987aacf23caed474c51',
+    // ).then(res => res.json()).then(result => {
+    //     user = result.usuario;    
+    //     estado = result.status;
+    //     console.log("dsf" + result.usuario);
+    // })
+
+    return (
         <div className="tarea">
-            <div>Tarea: {props.tarea.nombre}</div>
-            <div>Fecha: {props.tarea.fechaAsignada}</div>
-            <div>Usuario: {props.tarea.usuarioAsignado}</div>
+            <div>Tarea: {this.state.tarea.nombre}</div>
+            <div>Fecha: {this.state.tarea.fechaAsignada}</div>
+            <div>Usuario: {this.state.user.nombre}</div>
             <div>Realizado: No</div>
             <div>Confirmar <input type="checkbox"></input></div>
 
         </div>
     )
+    }
 }
 
 export default TareaAsignada;
