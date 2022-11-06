@@ -95,3 +95,26 @@ Header{
   text-align: center
 
 }
+
+.botonesTareasReal{
+  display:grid;
+  text-align: center;
+  grid-template-columns: 20% 20% 20%;
+  justify-content: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  grid-column-gap: 10px;
+
+}
+
+.botonTareasReal{
+  background-color: rgb(196, 196, 255);
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  font-size: 18px;
+  height: 20px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+
