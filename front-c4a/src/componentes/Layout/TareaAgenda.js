@@ -33,7 +33,7 @@ export const TareaAgenda = ({tarea}) => {
     }
     else{
         return (
-            <div>
+            <div className='tareaAgenda'>
                 
                 <Card sx={{ maxWidth: 345 }}>
                     <CardMedia 

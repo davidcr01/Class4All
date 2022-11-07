@@ -121,3 +121,18 @@ Header{
 #as{
   background-color: #70b67c
 }
+
+.PaginaAgenda{
+  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-flow: column wrap;
+}
+.tareaAgenda{
+  /* margin-top: 20px; */
+  margin: auto;
+  width: 345px;
+  height: 140px;
+  align-self: center;
+
+}

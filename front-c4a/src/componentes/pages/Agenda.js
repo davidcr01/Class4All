@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import {FlechasPaginacionAgenda} from '../flechasPaginacion'
 import Button from '@mui/material/Button';
 import { TareaAgenda } from '../Layout/TareaAgenda';
+import '../../styles.css'
 
 export const Agenda = () => {
 
@@ -38,7 +39,7 @@ export const Agenda = () => {
     }
     else{
         return (
-            <div>
+            <div className='PaginaAgenda'>
                 <h1>AGENDA</h1>
                 {/* Flechas -> currentTarea,setCurrentTarea,tareas*/}
                 <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
