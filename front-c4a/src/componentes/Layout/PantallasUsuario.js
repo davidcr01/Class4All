@@ -5,7 +5,8 @@ const PantallasUsuario = (props) => {
     let prueba=[];
     let apartados = ["Agenda", "Chat", "Retroalimentacion", "Consentimiento"]
     let pictogramas = [ require("../../img/agenda.png"), require("../../img/chat.png"), require("../../img/retroalimentacion.png"), require("../../img/firmar.png")]
-    for(let i=0; i< 4; i++){
+    
+    /*for(let i=0; i< 4; i++){
         prueba.push(
             React.createElement(
                         "div",
@@ -18,7 +19,41 @@ const PantallasUsuario = (props) => {
     }
     return (
         React.createElement("div", {style: {width:"100%", paddingTop:"15px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "35% 35%", gridTemplateRows:"20vw 20vw 20vw", gridColumnGap: "40px", gridRowGap: "15px"}}, prueba)
+    );*/
+
+    const style = {
+        width: "auto", 
+        backgroundColor: "#E2E2E2", 
+        borderColor: "black", 
+        borderStyle: "solid", 
+        borderWidth: "3px", 
+        display: "grid", 
+        marginBottom: "5px", 
+        fontSize: "4vw", 
+        textAlign:"center", 
+        padding: "3vw 0"
+    };
+
+    const style2 = {width: "30%", height: "auto", display: "block", marginLeft: "auto", marginRight: "auto"};
+
+    const style3 = {width:"100%", paddingTop:"15px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "35% 35%", gridTemplateRows:"20vw 20vw 20vw", gridColumnGap: "40px", gridRowGap: "15px"};
+
+    
+    for(let i=0; i< 4; i++){
+        prueba.push(
+            <div style={style}>
+                <img style={style2} src={pictogramas[i]}/>
+                {apartados[i]}
+            </div>
+        );
+    }
+
+    return (
+        <div style={style3}>
+            {prueba}
+        </div>
     );
+
 }
 
 export default PantallasUsuario;
