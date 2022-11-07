@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import {FlechasPaginacionAgenda} from '../flechasPaginacion'
 import Button from '@mui/material/Button';
+import { TareaAgenda } from '../Layout/TareaAgenda';
 
 export const Agenda = () => {
 
@@ -11,12 +12,13 @@ export const Agenda = () => {
 
 
     const rellenarAgenda = async() => {
-        let url = 'http://localhost:3900/api/usuarios/user'/* +cookie */;
+        let url = 'http://localhost:3900/api/usuarios/user/'+'636948cac1323a887bb794f3'/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
-            setTareas(data.tareas);
+            setTareas(data.usuario.tareasAsignadas);
             setCargando(false);
+          
         } catch (error) {
             console.log(error);
         }
@@ -27,34 +29,36 @@ export const Agenda = () => {
     }, []);
 
 
-    // if(cargando){
-    //     return(
-    //         <div>
-    //             <h1>Cargando...</h1>
-    //         </div>
-    //     )
-    // }
-    // else{
-    //     return (
-    //         <div>
-    //             <h1>AGENDA</h1>
-    //             {/* Flechas -> currentTarea,setCurrentTarea,tareas*/}
-    //             <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
-    //             {/* componente de la tarea*/}
-    //             {/* boton-> currentTarea,tareas */}
-    //             <Button variant="outlined" >Comenzar</Button>
-    //         </div>
-    //     )
-    // }
-    return (
+    if(cargando){
+        return(
+            <div>
+                <h1>Cargando...</h1>
+            </div>
+        )
+    }
+    else{
+        return (
+            <div>
+                <h1>AGENDA</h1>
+                {/* Flechas -> currentTarea,setCurrentTarea,tareas*/}
+                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
+                <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/>
+                {/* componente de la tarea*/}
+                {/* boton-> currentTarea,tareas */}
+                <Button variant="outlined" >Comenzar</Button>
+            </div>
+        )
+    }
+    
+    /* return (
         <div>
             <h1>AGENDA</h1>
-            {/* Flechas -> currentTarea,setCurrentTarea,tareas*/}
-            <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
-            {/* componente de la tarea*/}
-            {/* boton-> currentTarea,tareas */}
-            <Button variant="outlined" >Comenzar</Button>
-        </div>
-    )
+     //       {/* Flechas -> currentTarea,setCurrentTarea,tareas*/
+    //        <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
+    //        {/* componente de la tarea*/}
+    //        {/* boton-> currentTarea,tareas */}
+    //        <Button variant="outlined" >Comenzar</Button>
+    //    </div>
+    //) */
   
 }

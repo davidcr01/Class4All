@@ -7,12 +7,16 @@ import Button from '@mui/material/Button';
 export const FlechasPaginacionAgenda = ({currentTarea,setCurrentTarea,tareas}) => {
 
     const paginaAtras = () => {
+        
         if(currentTarea>0){
             setCurrentTarea(currentTarea-1);
+           
         }
     }
     const paginaAdelante = () => {
+        
         if(currentTarea<tareas.length-1){
+            
             setCurrentTarea(currentTarea+1);
         }
     }
