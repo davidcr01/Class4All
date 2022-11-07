@@ -6,6 +6,7 @@ import {Inicio} from '../componentes/pages/Inicio';
 import { PaginaPrincipal} from '../componentes/pages/PaginaPrincipal';
 import { SesionAlumnosClases} from '../componentes/pages/SesionAlumnosClases';
 import { SesionAlumnos} from '../componentes/pages/SesionAlumnos';
+import { SesionProfesores } from '../componentes/pages/SesionProfesores';
 export const Rutas = () => {
     return (
         <BrowserRouter>
@@ -18,6 +19,7 @@ export const Rutas = () => {
             <Route path="/pagina-principal" element={<PaginaPrincipal/>} />
             <Route path="/sesion-alumnos-clases" element={<SesionAlumnosClases/>} />
             <Route path="/sesion-alumnos" element={<SesionAlumnos/>} />
+            <Route path="/sesion-profesores" element={<SesionProfesores/>} />
             {/* <Route path="/otra-pagina" element={<OtraPagina />} /> */}
         </Routes>
 
