@@ -35,10 +35,11 @@ export const TareaAgenda = ({tarea}) => {
         return (
             <div className='tareaAgenda'>
                 
-                <Card sx={{ maxWidth: 345 }}>
+                <div className='tarjetaAgenda'>
+                <Card sx={{ maxWidth: 645 }}>
                     <CardMedia 
                         component="img"
-                        height="140"
+                        height="240"
                         //Cambiar el el modelo
                         image="https://thumbs.dreamstime.com/b/icono-de-contorno-superficie-limpia-s%C3%ADmbolo-limpieza-f%C3%A1cil-para-el-dise%C3%B1o-gr%C3%A1fico-sitio-web-social-medio-m%C3%B3vil-aplicaci%C3%B3n-ui-194540151.jpg"
                         alt={tareaAgenda.nombre}
@@ -47,6 +48,8 @@ export const TareaAgenda = ({tarea}) => {
                         <h1>{tareaAgenda.nombre}</h1>
                     </CardContent>
                 </Card>
+                </div>
+                
         
                 {/*va con un calendario estático de Material UI y es la fecha limite */}
                 

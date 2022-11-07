@@ -126,13 +126,38 @@ Header{
   justify-content: center;
   text-align: center;
   display: flex;
-  flex-flow: column wrap;
+  /* flex-flow: column wrap; */
+  flex-direction: column;
+}
+.flechaAgenda{
+  align-self: center;
+  width: 1024px;
+  height: 768px;
+  position:absolute;
+}
+.flechaI{
+  border:1px solid red;
+  position:relative;
+  float: left;
+  left: 20%;
+  top: 35%;
+}
+.flechaD{
+  position:relative;
+  float: right;
+  top: 75%;
 }
 .tareaAgenda{
   /* margin-top: 20px; */
   margin: auto;
-  width: 345px;
-  height: 140px;
+  width: 100%;
+  
   align-self: center;
+  flex-grow: 1;
 
+}
+.tarjetaAgenda{
+  float:left;
+  width: 345px;
+  margin-left: 220px;
 }

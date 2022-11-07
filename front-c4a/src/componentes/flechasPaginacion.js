@@ -23,18 +23,23 @@ export const FlechasPaginacionAgenda = ({currentTarea,setCurrentTarea,tareas}) =
 
 
   return (
-    <div>
-        <Stack direction="row" spacing={2}>
-            <Button variant="contained" /* endIcon={<ArrowBackIcon />} */ onClick={e => paginaAtras()}>
+    <div className='flechaAgenda'>
+        {/* <Stack direction="row" spacing={2}> */}
+            <div className='flechaI'>
+            <Button  variant="contained" /* endIcon={<ArrowBackIcon />} */ onClick={e => paginaAtras()}>
                 Pagina anterior
             </Button>
-
-            <Button variant="contained" /* endIcon={<ArrowForwardIcon />} */ onClick={e => paginaAdelante()}>
+            </div>
+            
+            <div className='flechaD'>
+            <Button variant="contained"/* endIcon={<ArrowForwardIcon />} */ onClick={e => paginaAdelante()}>
                 Pagina siguiente
             </Button>
+            </div>
+            
             {/* <button onClick={e => paginaAtras()}> Pagina anterior</button>
             <button onClick={e => paginaAtras()}>Pagina siguiente</button> */}
-        </Stack>
+        {/* </Stack> */}
     </div>
   )
 }
