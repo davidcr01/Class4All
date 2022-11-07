@@ -17,6 +17,7 @@ export const Tareas = (props) => {
         } catch (error) {
             console.log(error);
 
+
         }
     }
 
@@ -50,10 +51,11 @@ export const Tareas = (props) => {
         
         }
         
-
+        
     </div>
     
   )
+
 }
 
 
