@@ -16,6 +16,22 @@ const listaTareas = (req, res) => {
     });
 };
 
+const obtenerTarea = (req, res) => {
+    let idTarea = req.params.idTarea;
+    let consulta = Tarea.findById(idTarea).exec((error, tarea) => {
+        if (error || !tarea) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No existe la tarea"
+            });
+        }
+        return res.status(200).send({
+            status: "success",
+            tarea: tarea
+        });
+    });
+};
+
 
 //Funcionalidad solo para pruebas 
 const crearTarea = (req, res) => {
@@ -184,5 +200,6 @@ module.exports = {
     crearTarea,
     eliminarTarea,
     asignarTarea,
-    desasignarTarea
+    desasignarTarea,
+    obtenerTarea
 }
