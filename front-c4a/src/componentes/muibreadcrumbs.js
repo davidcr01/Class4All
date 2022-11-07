@@ -15,7 +15,7 @@ export const MuiBreadcrumbsGTS = (props) => {
     return <Box m={2} className="breadcrumbs">
         <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
             <Link underline="hover" color="inherit" href="/">Inicio </Link>
-            <Link underline="hover" color="inherit" href="/">Gestion de tareas </Link>
+            <Link underline="hover" color="inherit" href="/gestion-tareas">Gestion de tareas </Link>
             <Typography color="text.primary">{props.tipo}</Typography>
         </Breadcrumbs>
     </Box>
@@ -26,6 +26,18 @@ export const MuiBreadcrumbsGUS = () => {
         <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
             <Link underline="hover" color="inherit" href="/">Inicio </Link>
             <Typography color="text.primary">Gestión de Usuario</Typography>
+        </Breadcrumbs>
+    </Box>
+}
+
+
+export const MuiBreadcrumbsCUS = () => {
+    return <Box m={2} className="breadcrumbs">
+        <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
+            <Link underline="hover" color="inherit" href="/">Inicio </Link>
+            <Link underline="hover" color="inherit" href="/gestion-usuario">Gestión de Usuario </Link>
+
+            <Typography color="text.primary">Crear Usuario</Typography>
         </Breadcrumbs>
     </Box>
 }
