@@ -76,11 +76,28 @@ const listar = (req, res) => {
     });  
 };
 
+const obtenerUsuarioId = (req, res) => {
+    let id = req.params.id;
+    Usuario.findById(id).exec((error, usuario) => {
+        if (error || !usuario){
+            return res.status(404).json({
+                status:"error",
+                mensaje:"No se ha encontrado el usuario"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            usuario: usuario
+        });
+    });
+};
+
 
 
 module.exports = {
     prueba,
     datosEmpresa,
     crear,
-    listar
+    listar,
+    obtenerUsuarioId
 }

@@ -10,8 +10,13 @@ export class GestionTareas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tipo: "Todas"
+      tipo: "asignada"
     }
+  }
+
+  cambiarEstado = (estado) => {
+      this.setState({tipo: estado})
+
   }
 
   render() {
@@ -19,7 +24,7 @@ export class GestionTareas extends React.Component {
       <>
         <Header titulo="Gestión de tareas" />
         <MuiBreadcrumbsGTS tipo={this.state.tipo}/>
-        <PantallaGestionTareas tipo={this.state.tipo} />
+        <PantallaGestionTareas cambio={this.cambiarEstado} tipo={this.state.tipo} />
         <Footer />
       </>)
   }

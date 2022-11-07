@@ -1,57 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import TareaSinAsignar from './TareaSinAsignar';
 import TareaAsignada from './TareaAsignada';
 import TareaRealizada from './TareaRealizada';
-class Tareas extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            tareas: [{}],
-            status: ''
+import TareaNoRealizada from './TareaNoRealizada';
+
+export const Tareas = (props) => {
+    const [tareas,SetTareas] =  useState([]); 
+
+    const conseguirTareas = async() =>{
+        try {
+            const url = "http://localhost:3900/api/tareas/lista-tareasDia";
+            
+            const res = await fetch(url)
+            const data = await res.json();
+            SetTareas(data.tareas);
+        } catch (error) {
+            console.log(error);
+
         }
     }
 
+    useEffect(() => {
+        conseguirTareas();
+    }, []);
 
-    componentDidMount() {
-        fetch('http://localhost:3900/api/tareas/lista-tareasDia',
-            ).then(res => res.json()).then(result => {
-                this.setState({
-                    tareas: result.tareas,
-                    status: result.status
-                })
-            })
-    }
+  return (
+    <div>
+        {tareas != null && tareas.length !== 0 ?
+        tareas.map(t =>{
+            return(
+                <>
+                {t.estado === props.tipo && t.estado === 'sinasignar' && (
+                    <TareaSinAsignar key={t._id} className="tarea" tarea={t} />
+                )}
+                {t.estado === props.tipo && t.estado === 'asignada' && (
+                    <TareaAsignada key={t._id} className="tarea" tarea={t} />
+                )}
+                {t.estado === props.tipo && t.estado === 'realizada' && (
+                    <TareaRealizada key={t._id} className="tarea" tarea={t} />
+                )}
+                {t.estado === props.tipo && t.estado === 'norealizada' && (
+                    <TareaNoRealizada key={t._id} className="tarea" tarea={t} />
+                )}
+                </>
+               
+            );
+        })
+        : <h2>Cargando</h2>
+        
+        }
+        
 
-    render(props) {
-        return (
-            <div className="Tareas">
-                {(() => {
-                    const arr = [];
-                    for (let i = 0; i < this.state.tareas.length; i++) {
-                        switch(this.state.tareas[i].estado) {
-                            case 'sinasignar':
-                                arr.push(<TareaSinAsignar key={i} className="tarea" tarea={this.state.tareas[i]} />);
-                                break;
-                            case 'asignada':
-                                arr.push(<TareaAsignada key={i} className="tarea" tarea={this.state.tareas[i]} />);
-                                break;
-                            case 'realizada':
-                                arr.push(<TareaRealizada key={i} className="tarea" tarea={this.state.tareas[i]} />);
-                                break;
-                            default:
-                                arr.push(<TareaAsignada key={i} className="tarea" tarea={this.state.tareas[i]} />);
-
-                        }}
-                        return arr;
-                        })()}
-                {this.state.status}
-                {this.state.tareas[0].nombre}
-
-                
-
-            </div>
-        )
-    }
+    </div>
+    
+  )
 }
+
 
 export default Tareas;

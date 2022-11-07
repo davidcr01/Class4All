@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const TareaRealizada = (props) => {
+const TareaNoRealizada = (props) => {
 
     const [nombre, setNombre] = React.useState('');
     const [cargando, setCargando] = useState(true);
@@ -40,7 +40,7 @@ const TareaRealizada = (props) => {
                 <div>Tarea: {props.tarea.nombre}</div>
                 <div>Fecha: {props.tarea.fecha}</div>
                 <div>Usuario: {nombre}</div>
-                <div>Realizado: Si</div>
+                <div>Realizado: No</div>
                 <div>Confirmar: <input type="checkbox"></input></div>
                 <div className="botonesTareasReal">
                     <div className="botonTareasReal">BIEN</div>
@@ -59,4 +59,4 @@ const TareaRealizada = (props) => {
 
 }
 
-export default TareaRealizada;
+export default TareaNoRealizada;
