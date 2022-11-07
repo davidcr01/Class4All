@@ -1,7 +1,7 @@
 import React from 'react'
 import Stack from '@mui/material/Stack';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+//import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+//import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Button from '@mui/material/Button';
 
 export const FlechasPaginacionAgenda = ({currentTarea,setCurrentTarea,tareas}) => {
@@ -21,13 +21,15 @@ export const FlechasPaginacionAgenda = ({currentTarea,setCurrentTarea,tareas}) =
   return (
     <div>
         <Stack direction="row" spacing={2}>
-            <Button variant="contained" endIcon={<ArrowBackIcon />} onClick={e => paginaAtras()}>
+            <Button variant="contained" /* endIcon={<ArrowBackIcon />} */ onClick={e => paginaAtras()}>
                 Pagina anterior
             </Button>
 
-            <Button variant="contained" endIcon={<ArrowForwardIcon />} onClick={e => paginaAdelante()}>
+            <Button variant="contained" /* endIcon={<ArrowForwardIcon />} */ onClick={e => paginaAdelante()}>
                 Pagina siguiente
             </Button>
+            {/* <button onClick={e => paginaAtras()}> Pagina anterior</button>
+            <button onClick={e => paginaAtras()}>Pagina siguiente</button> */}
         </Stack>
     </div>
   )

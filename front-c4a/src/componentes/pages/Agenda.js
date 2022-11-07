@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import {FlechasPaginacionAgenda} from '../flechasPaginacion'
-
+import Button from '@mui/material/Button';
 
 export const Agenda = () => {
 
@@ -27,24 +27,34 @@ export const Agenda = () => {
     }, []);
 
 
-    if(cargando){
-        return(
-            <div>
-                <h1>Cargando...</h1>
-            </div>
-        )
-    }
-    else{
-        return (
-            <div>
-                <h1>AGENDA</h1>
-                {/* Flechas -> currentTarea,setCurrentTarea,tareas*/}
-                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
-                {/* componente de la tarea*/}
-                {/* boton-> currentTarea,tareas */}
-                <Button variant="outlined" >Comenzar</Button>
-            </div>
-        )
-    }
+    // if(cargando){
+    //     return(
+    //         <div>
+    //             <h1>Cargando...</h1>
+    //         </div>
+    //     )
+    // }
+    // else{
+    //     return (
+    //         <div>
+    //             <h1>AGENDA</h1>
+    //             {/* Flechas -> currentTarea,setCurrentTarea,tareas*/}
+    //             <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
+    //             {/* componente de la tarea*/}
+    //             {/* boton-> currentTarea,tareas */}
+    //             <Button variant="outlined" >Comenzar</Button>
+    //         </div>
+    //     )
+    // }
+    return (
+        <div>
+            <h1>AGENDA</h1>
+            {/* Flechas -> currentTarea,setCurrentTarea,tareas*/}
+            <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
+            {/* componente de la tarea*/}
+            {/* boton-> currentTarea,tareas */}
+            <Button variant="outlined" >Comenzar</Button>
+        </div>
+    )
   
 }
