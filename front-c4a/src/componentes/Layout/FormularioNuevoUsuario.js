@@ -34,15 +34,41 @@ const FormularioNuevoUsuario = ()=> {
             usuario["clase"]= datos.clase.value
             usuario.rol = 'Alumno'
         }
-        console.log(usuario.rol);
-        fetch('http://localhost:3900/api/usuarios/crear-usuario', {
+        
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("nombre", usuario.nombre);
+        urlencoded.append("apellido1", usuario.apellido1);
+        urlencoded.append("apellido2", usuario.apellido2);
+        // urlencoded.append("email", usuario.email);
+        // urlencoded.append("password", usuario.password);
+        urlencoded.append("foto", "./img/usuario.png");
+        urlencoded.append("rol", usuario.rol);
+        
+        if(usuario.rol == 'Profesor'){
+            urlencoded.append("clase", usuario.clase);
+        }
+        if(usuario.rol == 'Alumno'){
+            urlencoded.append("preferencias", usuario.preferencias);
+            urlencoded.append("clase", usuario.clase);
+        }
+        if(usuario.rol == 'Administrador'){
+            urlencoded.append("clase","Todas");
+        }
+
+        var requestOptions = {
             method: 'POST',
-            body: usuario,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        })
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+        console.log(urlencoded)
+        fetch('http://localhost:3900/api/usuarios/crear-usuario', requestOptions).
+        then(response => response.text()).
+        then(result => console.log(result)).
+        catch(error => console.log('error', error));
+
+    
+    
      }
 
 
