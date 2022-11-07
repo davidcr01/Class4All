@@ -1,18 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CerrarSesionBoton from './CerrarSesionBoton';
 import Cookies from 'universal-cookie';
+import { isCookieSet } from '../../interfazCookies/cookies';
 
 const Header = (props) => {
-    /*
-    return (
-        React.createElement(
-            "h1",
-            { style: { height: "60px", fontSize: "35pt",  color: "#0099D7", backgroundColor: "#E2E2E2", textAlign: "center"} },
-            <>{props.titulo}
-            <CerrarSesionBoton/></>)
-    );
-    */
-
     const style = {
         height: "60px", 
         fontSize: "35pt", 
@@ -21,9 +12,18 @@ const Header = (props) => {
         textAlign: "center"
     };
 
+    let cookieSet=undefined;
+
+    useEffect(()=>{
+        cookieSet=isCookieSet();
+    }, [])
+
     const cookies=new Cookies();
 
-    if(cookies.get("loginCookie")!== undefined)
+    console.log(cookieSet);
+    //const result = await isCookieSet();
+    
+    if(cookies.get("loginCookie") !== undefined && cookieSet === true)
     return (
         <div>
             <h1 style={style}><>{props.titulo}

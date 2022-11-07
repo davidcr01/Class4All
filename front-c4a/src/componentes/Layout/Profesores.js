@@ -1,50 +1,28 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-//import img from "../../img/agenda.png"
 import Cookies from 'universal-cookie';
+import { isCookieSet, loginUser } from '../../interfazCookies/cookies';
 
 //Hace falta comprobar si ya existe
 
 const Profesores = (props) => {
+
+    let cookieSet=undefined;
+
+    useEffect(()=>{
+        cookieSet=isCookieSet();
+    }, [])
+
     const nav = useNavigate();
 
     const handleSubmit = (e) => {
-        //console.log(e);
         e.preventDefault();
-
-        let sessionID=undefined;
-       const loginUser = async () => {
-            //console.log("server: "+usernameServer);
-            try {
-                const url = "http://localhost:3900/api/usuarios/userLogin/";
-                console.log(url);
-                const res = await fetch(url, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({correo: username})
-                })
-
-                const data = await res.json();
-
-                console.log(data);
-
-                if(data.status === "success"){
-                    sessionID = data.sessionID;
-                }
-
-            } catch (error) {
-                console.log(error);
-
-            }        
-        }   
         
-        loginUser().then(()=>{
+        loginUser(username).then((sessionID)=>{
             alert("resultado: "+sessionID);
             if(sessionID !== undefined){
                 //alert(sessionID);
-                cookies.set("loginCookie", sessionID);
+                cookies.set("loginCookie", sessionID, {maxAge: 86400});
                 nav("/");
             }
         });
@@ -53,24 +31,16 @@ const Profesores = (props) => {
     const cookies = new Cookies();
 
     //Para obtener valor variables
-    const [password, setPassword] = useState();
+    const [password, setPassword] = useState();     //Para uso futuro
     const [username, setUsername] = useState()
-    //const [usernameServer, setUsernameServer] = useState();
 
     const handlePassword= (e) => {
         setPassword(e.target.value);
-
-        //console.log(e.target.value);
     }
 
     const handleUsername= (e) => {
         setUsername(e.target.value);
-
-        //console.log(e.target.value);
     }
-
-
-
 
     let prueba=[];
 
@@ -105,9 +75,9 @@ const Profesores = (props) => {
     prueba.push(
         <div style={style}>
             <form style={formulario} onSubmit={handleSubmit} action="#">
-                <label for="fname">Usuario:</label><br/>
+                <label htmlFor="fname">Usuario:</label><br/>
                 <input type="text" id="fname" name="fname" onChange={handleUsername}></input><br/><br/>
-                <label for="fname">Contraseña:</label><br/>
+                <label htmlFor="fname">Contraseña:</label><br/>
                 <input type="text" id="fname" name="fname" onChange={handlePassword}></input>
                 <p>¿Ha olvidado su contraseña?</p>
                 <input type="submit" value="Entrar"></input>
@@ -115,13 +85,14 @@ const Profesores = (props) => {
         </div>
     );
 
-    if(cookies.get("loginCookie")===undefined)
+
+    if(cookies.get("loginCookie")===undefined || !cookieSet)
     return (
         <div style={style2}>
             {prueba}
         </div>
     );
-    else
+    else if(cookies.get("loginCookie")!==undefined && cookieSet)
         return (
             <div>
                 <h1>Sesion ya iniciada</h1>
