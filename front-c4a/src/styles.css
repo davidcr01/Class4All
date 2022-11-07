@@ -121,3 +121,54 @@ Header{
 #as{
   background-color: #70b67c
 }
+
+
+.botoncrear{
+  background-color: rgb(196, 196, 255);
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  font-size: 18px;
+  width: 35%;
+  height: 50px;
+  padding-top: 25px;
+  /* Center div */
+  margin: 0 auto;
+  margin-top: 50px;
+  text-align: center;
+   
+}
+
+.usuario{
+  background-color: rgb(196, 196, 255);
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  font-size: 18px;
+  height: auto;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-left: 2%;
+  margin-top: 50px;
+  text-align: left;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 2%;
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
+
+.botonesuser{
+  display: grid;
+  grid-column-gap: 2%;
+  grid-template-columns: 30% 30% 30%;
+}
+
+.botonuser{
+  background-color: rgb(196, 196, 255);
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  text-align: center;
+  display:grid;
+}

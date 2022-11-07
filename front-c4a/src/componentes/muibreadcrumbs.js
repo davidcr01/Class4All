@@ -21,3 +21,11 @@ export const MuiBreadcrumbsGTS = (props) => {
     </Box>
 }
 
+export const MuiBreadcrumbsGUS = () => {
+    return <Box m={2} className="breadcrumbs">
+        <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
+            <Link underline="hover" color="inherit" href="/">Inicio </Link>
+            <Typography color="text.primary">Gestión de Usuario</Typography>
+        </Breadcrumbs>
+    </Box>
+}
