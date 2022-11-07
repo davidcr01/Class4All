@@ -1,7 +1,44 @@
-import React from 'react';
-import img from "../../img/agenda.png"
+import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
+//import img from "../../img/agenda.png"
+import Cookies from 'universal-cookie';
+
+//Hace falta comprobar si ya existe
 
 const Profesores = (props) => {
+    const nav = useNavigate();
+
+    const handleSubmit = (e) => {
+        //console.log(e);
+        e.preventDefault();
+
+        cookies.set("loginCookie", "OK", {path: "/"});
+
+        alert("username"+username)
+        alert("password"+password);
+
+        nav("/login-ok");
+        //alert("asdasd")
+    }
+
+
+    //Para obtener valor variables
+    const [password, setPassword] = useState();
+    const [username, setUsername] = useState()
+
+    const handlePassword= (e) => {
+        setPassword(e.target.value);
+
+        //console.log(e.target.value);
+    }
+
+    const handleUsername= (e) => {
+        setUsername(e.target.value);
+
+        //console.log(e.target.value);
+    }
+
+    const cookies = new Cookies();
     let prueba=[];
 
     const style = {
@@ -33,23 +70,27 @@ const Profesores = (props) => {
 
     prueba.push(
         <div style={style}>
-            <form style={formulario}>
+            <form style={formulario} onSubmit={handleSubmit} action="#">
                 <label for="fname">Usuario:</label><br/>
-                <input type="text" id="fname" name="fname"></input><br/><br/>
+                <input type="text" id="fname" name="fname" onChange={handleUsername}></input><br/><br/>
                 <label for="fname">Contraseña:</label><br/>
-                <input type="text" id="fname" name="fname"></input>
+                <input type="text" id="fname" name="fname" onChange={handlePassword}></input>
                 <p>¿Ha olvidado su contraseña?</p>
                 <input type="submit" value="Entrar"></input>
             </form>
         </div>
-            
     );
 
+    if(cookies.get("loginCookie")===undefined)
     return (
         <div style={style2}>
             {prueba}
         </div>
     );
+    else
+        return (
+            <h1>Sesion ya iniciada</h1>
+        )
 
 }
 

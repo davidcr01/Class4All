@@ -1,5 +1,6 @@
 import React from 'react';
 import CerrarSesionBoton from './CerrarSesionBoton';
+import Cookies from 'universal-cookie';
 
 const Header = (props) => {
     /*
@@ -20,12 +21,22 @@ const Header = (props) => {
         textAlign: "center"
     };
 
+    const cookies=new Cookies();
+
+    if(cookies.get("loginCookie")!== undefined)
     return (
         <div>
             <h1 style={style}><>{props.titulo}
             <CerrarSesionBoton/></></h1>
         </div>
     );
+    else{
+        return (
+            <div>
+                <h1 style={style}><>{props.titulo}</></h1>
+            </div>
+        );        
+    }
 }
 
 export default Header;
