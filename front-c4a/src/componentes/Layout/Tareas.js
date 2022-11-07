@@ -4,7 +4,7 @@ import TareaAsignada from './TareaAsignada';
 import TareaRealizada from './TareaRealizada';
 import TareaNoRealizada from './TareaNoRealizada';
 
-export const Tareas = () => {
+export const Tareas = (props) => {
     const [tareas,SetTareas] =  useState([]); 
 
     const conseguirTareas = async() =>{
@@ -30,16 +30,16 @@ export const Tareas = () => {
         tareas.map(t =>{
             return(
                 <>
-                {t.estado === 'sinasignar' && (
+                {t.estado === props.tipo && t.estado === 'sinasignar' && (
                     <TareaSinAsignar key={t._id} className="tarea" tarea={t} />
                 )}
-                {t.estado === 'asignada' && (
+                {t.estado === props.tipo && t.estado === 'asignada' && (
                     <TareaAsignada key={t._id} className="tarea" tarea={t} />
                 )}
-                {t.estado === 'realizada' && (
+                {t.estado === props.tipo && t.estado === 'realizada' && (
                     <TareaRealizada key={t._id} className="tarea" tarea={t} />
                 )}
-                {t.estado === 'norealizada' && (
+                {t.estado === props.tipo && t.estado === 'norealizada' && (
                     <TareaNoRealizada key={t._id} className="tarea" tarea={t} />
                 )}
                 </>

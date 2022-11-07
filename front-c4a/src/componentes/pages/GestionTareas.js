@@ -15,8 +15,8 @@ export class GestionTareas extends React.Component {
   }
 
   cambiarEstado = (estado) => {
-    this.setState({tipo: estado})
-    console.log(this.state.tipo);
+      this.setState({tipo: estado})
+
   }
 
   render() {
