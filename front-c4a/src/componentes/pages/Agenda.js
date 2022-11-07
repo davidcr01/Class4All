@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from 'react'
+import {FlechasPaginacionAgenda} from '../flechasPaginacion'
 
 
 export const Agenda = () => {
@@ -38,8 +39,10 @@ export const Agenda = () => {
             <div>
                 <h1>AGENDA</h1>
                 {/* Flechas -> currentTarea,setCurrentTarea,tareas*/}
+                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
                 {/* componente de la tarea*/}
                 {/* boton-> currentTarea,tareas */}
+                <Button variant="outlined" >Comenzar</Button>
             </div>
         )
     }
