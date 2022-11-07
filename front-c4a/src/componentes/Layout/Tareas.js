@@ -2,6 +2,7 @@ import React from 'react';
 import TareaSinAsignar from './TareaSinAsignar';
 import TareaAsignada from './TareaAsignada';
 import TareaRealizada from './TareaRealizada';
+import TareaNoRealizada from './TareaNoRealizada';
 class Tareas extends React.Component {
     constructor(props) {
         super(props);
@@ -38,8 +39,11 @@ class Tareas extends React.Component {
                             case 'realizada':
                                 arr.push(<TareaRealizada key={i} className="tarea" tarea={this.state.tareas[i]} />);
                                 break;
+                            case 'norealizada':
+                                    arr.push(<TareaNoRealizada key={i} className="tarea" tarea={this.state.tareas[i]} />);
+                                    break;
                             default:
-                                arr.push(<TareaAsignada key={i} className="tarea" tarea={this.state.tareas[i]} />);
+                                arr.push(<TareaNoRealizada key={i} className="tarea" tarea={this.state.tareas[i]} />);
 
                         }}
                         return arr;
