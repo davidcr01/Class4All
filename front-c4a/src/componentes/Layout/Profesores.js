@@ -12,19 +12,50 @@ const Profesores = (props) => {
         //console.log(e);
         e.preventDefault();
 
-        cookies.set("loginCookie", "OK", {path: "/"});
+        let sessionID=undefined;
+       const loginUser = async () => {
+            //console.log("server: "+usernameServer);
+            try {
+                const url = "http://localhost:3900/api/usuarios/userLogin/";
+                console.log(url);
+                const res = await fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({correo: username})
+                })
 
-        alert("username"+username)
-        alert("password"+password);
+                const data = await res.json();
 
-        nav("/login-ok");
-        //alert("asdasd")
+                console.log(data);
+
+                if(data.status === "success"){
+                    sessionID = data.sessionID;
+                }
+
+            } catch (error) {
+                console.log(error);
+
+            }        
+        }   
+        
+        loginUser().then(()=>{
+            alert("resultado: "+sessionID);
+            if(sessionID !== undefined){
+                //alert(sessionID);
+                cookies.set("loginCookie", sessionID);
+                nav("/");
+            }
+        });
     }
-
+    
+    const cookies = new Cookies();
 
     //Para obtener valor variables
     const [password, setPassword] = useState();
     const [username, setUsername] = useState()
+    //const [usernameServer, setUsernameServer] = useState();
 
     const handlePassword= (e) => {
         setPassword(e.target.value);
@@ -38,7 +69,9 @@ const Profesores = (props) => {
         //console.log(e.target.value);
     }
 
-    const cookies = new Cookies();
+
+
+
     let prueba=[];
 
     const style = {
@@ -68,6 +101,7 @@ const Profesores = (props) => {
         marginLeft:"5%",
     };
 
+    //Da warning
     prueba.push(
         <div style={style}>
             <form style={formulario} onSubmit={handleSubmit} action="#">
@@ -89,7 +123,9 @@ const Profesores = (props) => {
     );
     else
         return (
-            <h1>Sesion ya iniciada</h1>
+            <div>
+                <h1>Sesion ya iniciada</h1>
+            </div>
         )
 
 }

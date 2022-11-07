@@ -1,5 +1,6 @@
 const Usuario = require("../modelos/Usuario");
-
+//import Cookies from 'universal-cookie';
+const Cookies = require("universal-cookie");
 
 
 const prueba = (req, res) => {
@@ -92,8 +93,11 @@ const obtenerUsuarioId = (req, res) => {
     });
 };
 
-const obtenerUsuarioCorreo = (req, res) => {
-    let correo = req.params.correo;
+const loginUsuario = (req, res) => {
+    let correo = req.body.correo;
+    //let contra = req.params.contra;
+    console.log(correo);
+
     Usuario.find({correo: correo}).exec((error, usuario) => {
         if (error || usuario.length === 0){
             return res.status(404).json({
@@ -101,11 +105,84 @@ const obtenerUsuarioCorreo = (req, res) => {
                 mensaje:"No se ha encontrado el usuario2"
             });
         }
+
+        const cookies = new Cookies();
+        //console.log(usuario[0]._id.toString())
+        const randID = Math.floor(Math.random() * 10000000);    //Mejorable
+        cookies.set("user"+randID, randID, {path: "/"});
+
+        console.log(cookies.getAll());
+
+
         return res.status(200).json({
             status: "success",
-            usuario: usuario
+            usuario: usuario[0],
+            sessionID: randID
         });
     });
+}
+
+const logoutUsuario = (req, res) => {
+    let correo = req.body.correo;
+    //let contra = req.params.contra;
+    console.log(correo);
+
+    Usuario.find({correo: correo}).exec((error, usuario) => {
+        if (error || usuario.length === 0){
+            return res.status(404).json({
+                status:"error",
+                mensaje:"No se ha encontrado el usuario2"
+            });
+        }
+
+        const cookies = new Cookies();
+        //console.log(usuario[0]._id.toString())
+        const randID = Math.floor(Math.random() * 10000000);    //Mejorable
+        cookies.set("user"+randID, randID, {path: "/"});
+
+        return res.status(200).json({
+            status: "success",
+            usuario: usuario[0],
+            sessionID: randID
+        });
+    });
+
+    const cookies = new Cookies();
+    
+    
+    if(cookies.get("user"+req.body.id) !== undefined){
+        cookies.remove("user"+req.body.id);
+        
+        console.log(cookies.getAll());
+
+        return res.status(200).json({
+            status: "success",
+        });
+    }
+    else{
+        return res.status(404).json({
+            status: "error",
+        });        
+    }
+
+}
+
+const obtenerCookie = (req, res) => {
+    let id = req.params.id;
+
+    const cookies = new Cookies();
+
+    console.log(cookies.getAll());
+
+
+    if(cookies.get(id) === undefined)
+        return res.status(404).json({
+            status: "error"
+        });
+    else
+        return res.status(200).json({
+            status: "success"
+        });
 }
 
 module.exports = {
@@ -114,5 +191,7 @@ module.exports = {
     crear,
     listar,
     obtenerUsuarioId,
-    obtenerUsuarioCorreo
+    loginUsuario,
+    obtenerCookie,
+    logoutUsuario,
 }

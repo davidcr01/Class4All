@@ -8,9 +8,39 @@ const CerrarSesionBoton = () => {
     const cookies = new Cookies();
 
     const handleLogOut = (e) => {
-        cookies.remove("loginCookie");
 
-        nav("/");
+        //alert(cookies.get("loginCookie"));
+
+        //cookies.remove("loginCookie");
+
+        const getCookie = async () => {
+            try {
+                const url = "http://localhost:3900/api/usuarios/cookie/" + cookies.get("loginCookie");
+                console.log(url);
+                const res = await fetch(url)
+                const data = await res.json();
+    
+                console.log(data);
+    
+                //setNombre(data.usuario.nombre);
+                //setCargando(false);
+                
+                //console.log(nombre);
+                //console.log(props.tarea.usuarioAsignado);
+                
+            } catch (error) {
+                console.log(error);
+    
+            }                        
+        }
+
+        if(cookies.get("loginCookie") !== undefined){
+            getCookie().then(() =>{
+                cookies.remove("loginCookie");
+                nav("/");
+            });
+        }
+
     }
 
     const style = {
