@@ -141,7 +141,7 @@ const desasignarTarea = (req, res) => {
         //Actualizar datos
         Tarea.updateOne({_id : idTarea},
             {$set:{
-                estado : 'sinAsignar',
+                estado : 'sinasignar',
                 usuarioAsignado : null,
                 fechaAsignada : null
                 }
