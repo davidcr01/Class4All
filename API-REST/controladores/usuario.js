@@ -94,11 +94,11 @@ const obtenerUsuarioId = (req, res) => {
 
 const obtenerUsuarioCorreo = (req, res) => {
     let correo = req.params.correo;
-    Usuario.find({correo: correo}).exec((exec, usuario) => {
+    Usuario.find({correo: correo}).exec((error, usuario) => {
         if (error || !usuario){
             return res.status(404).json({
                 status:"error",
-                mensaje:"No se ha encontrado el usuario"
+                mensaje:"No se ha encontrado el usuario2"
             });
         }
         return res.status(200).json({
