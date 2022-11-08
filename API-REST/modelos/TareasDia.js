@@ -20,6 +20,14 @@ const TareaSchema = Schema({
         type: Date,
         default: null
     },
+    fechaLimite: {
+        type: String,
+        default: 'Hoy'
+    },
+    foto: {
+        type: String,
+        default: 'default.jpg'
+    },
 
     //Datos generales de la tarea
     nombre: {

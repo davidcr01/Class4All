@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import DeleteIcon from '@mui/icons-material/Delete';
 const TareaAsignada = (props) => {
 
     const [nombre, setNombre] = React.useState('');
@@ -17,6 +17,26 @@ const TareaAsignada = (props) => {
 
         fetch(url, {
             method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify()
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                window.location.reload();
+            })
+            .catch(err => console.log(err));
+    }
+
+    const eliminarTarea = (event) => {
+        event.preventDefault();
+        console.log("asdasd");
+        const url = "http://localhost:3900/api/tareas/eliminar-tareaDia/" + props.tarea._id;
+
+        fetch(url, {
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -59,6 +79,8 @@ const TareaAsignada = (props) => {
                 <div>Realizado: No</div>
                 <div>Confirmar <input type="checkbox"></input></div>
                 <form onSubmit={desasignarTarea}><input type="submit" value="Desasignar"/></form>
+                <div className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></div>
+
             </div>)
             }
 

@@ -11,19 +11,21 @@ import { isCookieSet } from '../../interfazCookies/cookies';
 export const Agenda = () => {
 
     const [curretTarea, setCurretTarea] = useState(0)//indice de la estructura de tareas
-    const [cargando, setCargando] = useState(true);
-    const [tareas, setTareas] = useState([]);//estructura de tareas
+
+    const [cargando,setCargando] = useState(true);
+    const [tareas,setTareas] = useState([]);//estructura de tareas
+    //const [fotos,setFotos] = useState([]);//estructura de fotos
     const [cookieSet, setCookieSet] = useState();
+    
 
 
-    const rellenarAgenda = async () => {
-        let url = 'http://localhost:3900/api/tareas/usuario/' + '636948cac1323a887bb794f3'/* +cookie */;
+    const rellenarAgenda = async() => {
+        let url = 'http://localhost:3900/api/tareas/usuario/'+'636a759040fbb96b82f9d6a0'/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
             setTareas(data.tareas);
             //setCargando(false);
-
         } catch (error) {
             console.log(error);
         }
@@ -50,33 +52,41 @@ export const Agenda = () => {
             </div>
         )
     }
-    else {
+
+    else{
         const cookies = new Cookies();
 
-        if (cookies.get("loginCookie") !== undefined && cookieSet)
-            return (
-                <div className='PaginaAgenda'>
-                    <h1>AGENDA</h1>
-
-                    {/* <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/> */}
-
-                    <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas} />
-                    <div className='tareaAgenda'>
-
-                        <div className='tarjetaAgenda'>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <CardMedia
-                                    component="img"
-                                    height="230"
-                                    //Cambiar el el modelo
-                                    image="https://thumbs.dreamstime.com/b/icono-de-contorno-superficie-limpia-s%C3%ADmbolo-limpieza-f%C3%A1cil-para-el-dise%C3%B1o-gr%C3%A1fico-sitio-web-social-medio-m%C3%B3vil-aplicaci%C3%B3n-ui-194540151.jpg"
-                                    alt={tareas[curretTarea].nombre}
-                                />
-                                <CardContent>
-                                    <h1>{tareas[curretTarea].nombre}</h1>
-                                </CardContent>
-                            </Card>
-                        </div>
+        if (cookies.get("loginCookie") !== undefined && cookieSet)    
+        return (
+            <div className='PaginaAgenda'>
+                <h1>AGENDA</h1>
+                
+                {/* <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/> */}
+                
+                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
+               <div className='tareaAgenda'>
+                
+                <div className='tarjetaAgenda'>
+                <Card sx={{ maxWidth: 345 }}>
+                    <CardMedia 
+                        component="img"
+                        height="230"
+                        //Cambiar el el modelo
+                        image={'http://localhost:3900/api/tareas/foto/'+tareas[curretTarea]._id}
+                        alt={tareas[curretTarea].nombre}
+                    />
+                    <CardContent>
+                        <h1>{tareas[curretTarea].nombre}</h1>
+                    </CardContent>
+                </Card>
+                </div>
+                
+        
+                {/*va con un calendario estático de Material UI y es la fecha limite */}
+                <h2>Fecha Límite: {tareas[curretTarea].fechaLimite}</h2>
+                
+                
+            </div>
 
 
                         {/*va con un calendario estático de Material UI y es la fecha limite */}

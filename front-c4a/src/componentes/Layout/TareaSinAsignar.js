@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const TareaSinAsignar = (props) => {
 
@@ -33,7 +34,26 @@ const TareaSinAsignar = (props) => {
             .catch(err => console.log(err));
     }
 
-    
+    const eliminarTarea = (event) => {
+        event.preventDefault();
+        console.log("asdasd");
+        const url = "http://localhost:3900/api/tareas/eliminar-tareaDia/" + props.tarea._id;
+
+        fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify()
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                window.location.reload();
+            })
+            .catch(err => console.log(err));
+    }
+
 
 
 
@@ -66,7 +86,7 @@ const TareaSinAsignar = (props) => {
                 </form>
 
                 </div>
-
+                <div className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></div>
             </div>)
     }
 
