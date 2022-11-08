@@ -1,8 +1,10 @@
 import React,{useState,useEffect} from 'react'
 import {FlechasPaginacionAgenda} from '../flechasPaginacion'
 import Button from '@mui/material/Button';
-import { TareaAgenda } from '../Layout/TareaAgenda';
 import '../../styles.css'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 
 export const Agenda = () => {
 
@@ -13,11 +15,11 @@ export const Agenda = () => {
 
 
     const rellenarAgenda = async() => {
-        let url = 'http://localhost:3900/api/usuarios/user/'+'636948cac1323a887bb794f3'/* +cookie */;
+        let url = 'http://localhost:3900/api/tareas/usuario/'+'636948cac1323a887bb794f3'/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
-            setTareas(data.usuario.tareasAsignadas);
+            setTareas(data.tareas);
             setCargando(false);
           
         } catch (error) {
@@ -41,10 +43,35 @@ export const Agenda = () => {
         return (
             <div className='PaginaAgenda'>
                 <h1>AGENDA</h1>
-                {/* Flechas -> currentTarea,setCurrentTarea,tareas*/}
+                
+                {/* <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/> */}
+                
                 <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
-                <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/>
-                {/* componente de la tarea*/}
+               <div className='tareaAgenda'>
+                
+                <div className='tarjetaAgenda'>
+                <Card sx={{ maxWidth: 345 }}>
+                    <CardMedia 
+                        component="img"
+                        height="230"
+                        //Cambiar el el modelo
+                        image="https://thumbs.dreamstime.com/b/icono-de-contorno-superficie-limpia-s%C3%ADmbolo-limpieza-f%C3%A1cil-para-el-dise%C3%B1o-gr%C3%A1fico-sitio-web-social-medio-m%C3%B3vil-aplicaci%C3%B3n-ui-194540151.jpg"
+                        alt={tareas[curretTarea].nombre}
+                    />
+                    <CardContent>
+                        <h1>{tareas[curretTarea].nombre}</h1>
+                    </CardContent>
+                </Card>
+                </div>
+                
+        
+                {/*va con un calendario estático de Material UI y es la fecha limite */}
+                
+                
+                
+            </div>
+
+
                 {/* boton-> currentTarea,tareas */}
                 <div className='botonComenzar'>
                     <Button variant="outlined" style={{width:'200px',height:'80px'}} >Comenzar</Button>
@@ -53,16 +80,5 @@ export const Agenda = () => {
             </div>
         )
     }
-    
-    /* return (
-        <div>
-            <h1>AGENDA</h1>
-     //       {/* Flechas -> currentTarea,setCurrentTarea,tareas*/
-    //        <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
-    //        {/* componente de la tarea*/}
-    //        {/* boton-> currentTarea,tareas */}
-    //        <Button variant="outlined" >Comenzar</Button>
-    //    </div>
-    //) */
   
 }
