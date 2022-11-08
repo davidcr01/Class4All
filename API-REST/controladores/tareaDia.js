@@ -1,5 +1,7 @@
 const Tarea = require("../modelos/TareasDia");
 const Usuario = require("../modelos/Usuario");
+const fs = require('fs');
+const path = require('path');
 
 const listaTareas = (req, res) => {
     let consulta = Tarea.find({}).exec((error, tareas) => {
@@ -213,7 +215,7 @@ const desasignarTarea = (req, res) => {
 };
 
 const obtenerFoto = (req, res) => {
-    let id = req.params.id;
+    let id = req.params.idTarea;
     Tarea.findById({_id : id}, (error, tarea) => {
         if (error || !tarea) {
             return res.status(404).json({
@@ -222,17 +224,29 @@ const obtenerFoto = (req, res) => {
             });
         }
         let foto = tarea.foto;
-        let urlFisica = "../public/images/" + foto;
+        let urlFisica = "./public/fotos/" + foto;
         fs.stat(urlFisica,(error,existe) => {
             if(existe){
+                /* return res.status(200).json({
+                    status: "success",
+                        mensaje: "Todo se ha modificado correctamete",
+                        ulr : urlFisica
+                        //usuario : usuarioActualizado,
+                        //tarea : tareaActualizada
+                }); */
                 return res.sendFile(path.resolve(urlFisica));
             }else{
-                return res.status(404).json({
-                    status: "error",
-                    mensaje: "La foto no existe"
-                });
+                
+               return res.sendFile(path.resolve("../public/fotos/default.jpg"));
             }
-        });
+        })
+        /* return res.status(200).json({
+            status: "success",
+                mensaje: "Todo se ha modificado correctamete",
+                ulr : urlFisica
+                //usuario : usuarioActualizado,
+                //tarea : tareaActualizada
+        }); */
     });
 };
 

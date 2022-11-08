@@ -26,7 +26,7 @@ const TareaSchema = Schema({
     },
     foto: {
         type: String,
-        default: 'https://thumbs.dreamstime.com/b/icono-de-contorno-superficie-limpia-s%C3%ADmbolo-limpieza-f%C3%A1cil-para-el-dise%C3%B1o-gr%C3%A1fico-sitio-web-social-medio-m%C3%B3vil-aplicaci%C3%B3n-ui-194540151.jpg'
+        default: 'default.jpg'
     },
 
     //Datos generales de la tarea
