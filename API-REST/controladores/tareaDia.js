@@ -212,6 +212,34 @@ const desasignarTarea = (req, res) => {
 
 };
 
+const obtenerFoto = (req, res) => {
+    let id = req.params.id;
+    Tarea.findById({_id : id}, (error, tarea) => {
+        if (error || !tarea) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "La tarea no existe"
+            });
+        }
+        let foto = tarea.foto;
+        let urlFisica = "../public/images/" + foto;
+        fs.stat(urlFisica,(error,existe) => {
+            if(existe){
+                return res.sendFile(path.resolve(urlFisica));
+            }else{
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "La foto no existe"
+                });
+            }
+        });
+    });
+};
+
+
+
+
+
 
 module.exports = {
     listaTareas,
@@ -220,5 +248,6 @@ module.exports = {
     asignarTarea,
     desasignarTarea,
     obtenerTarea,
-    obtenerTareasUsuario
+    obtenerTareasUsuario,
+    obtenerFoto
 }
