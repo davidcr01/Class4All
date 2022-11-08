@@ -21,7 +21,7 @@ const BuscarFiltros = (props) => {
         borderColor: "black", 
         borderStyle: "solid", 
         display: "grid", 
-        borderWidth: "3px", 
+        borderWidth: "2px", 
         fontSize: "4vw", 
         textAlign: "center", 
         padding: "6vw 0"
