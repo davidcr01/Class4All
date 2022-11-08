@@ -6,6 +6,7 @@ const TareaController = require('../controladores/tareaDia.js');
 router.get("/lista-tareasDia" , TareaController.listaTareas);
 router.get("/tarea/:idTarea" , TareaController.obtenerTarea);
 router.get("/usuario/:idUsuario" , TareaController.obtenerTareasUsuario);
+router.get("/foto/:idTarea" , TareaController.obtenerFoto);
 
 router.post("/crear-tareaDia" , TareaController.crearTarea);
 router.delete("/eliminar-tareaDia/:id" , TareaController.eliminarTarea);

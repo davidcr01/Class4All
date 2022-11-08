@@ -11,15 +11,17 @@ export const Agenda = () => {
     const [curretTarea, setCurretTarea] = useState(0)//indice de la estructura de tareas
     const [cargando,setCargando] = useState(true);
     const [tareas,setTareas] = useState([]);//estructura de tareas
+    //const [fotos,setFotos] = useState([]);//estructura de fotos
     
 
 
     const rellenarAgenda = async() => {
-        let url = 'http://localhost:3900/api/tareas/usuario/'+'636948cac1323a887bb794f3'/* +cookie */;
+        let url = 'http://localhost:3900/api/tareas/usuario/'+'636a759040fbb96b82f9d6a0'/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
             setTareas(data.tareas);
+            
             setCargando(false);
           
         } catch (error) {
@@ -55,7 +57,7 @@ export const Agenda = () => {
                         component="img"
                         height="230"
                         //Cambiar el el modelo
-                        image="https://thumbs.dreamstime.com/b/icono-de-contorno-superficie-limpia-s%C3%ADmbolo-limpieza-f%C3%A1cil-para-el-dise%C3%B1o-gr%C3%A1fico-sitio-web-social-medio-m%C3%B3vil-aplicaci%C3%B3n-ui-194540151.jpg"
+                        image={'http://localhost:3900/api/tareas/foto/'+tareas[curretTarea]._id}
                         alt={tareas[curretTarea].nombre}
                     />
                     <CardContent>
@@ -66,7 +68,7 @@ export const Agenda = () => {
                 
         
                 {/*va con un calendario estático de Material UI y es la fecha limite */}
-                
+                <h2>Fecha Límite: {tareas[curretTarea].fechaLimite}</h2>
                 
                 
             </div>
