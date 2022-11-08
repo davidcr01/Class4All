@@ -1,10 +1,28 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Cookies from 'universal-cookie';
 import {useNavigate} from 'react-router-dom';
-import {logoutServer} from "../../interfazCookies/cookies";
+import {isCookieSet, logoutServer} from "../../interfazCookies/cookies";
 
 //Componente para div de cerrar sesion
-const CerrarSesionBoton = () => {    
+const CerrarSesionBoton = () => { 
+    const [cargando, setCargando] = useState();
+    const [logged, setLogged] = useState();
+    
+    
+    useEffect(() => {
+        setLogged(false);
+        setCargando(true);
+        isCookieSet().then((res) => {
+            setCargando(false);
+
+
+            setLogged(res);
+
+            console.log("isSet: "+logged)
+        });
+    }, []);
+    
+    
     const nav=useNavigate();
     const cookies = new Cookies();
 
@@ -27,11 +45,14 @@ const CerrarSesionBoton = () => {
         backgroundColor: "#F1F1F1"
     };
 
-    return (        
-        <button style={style} onClick={handleLogOut}>
-            Cerrar Sesión
-        </button>
-    );
-}
+    if(!cargando && cookies.get("loginCookie") !== undefined && logged === true){
+        console.log(logged)
+        return (        
+            <button style={style} onClick={handleLogOut}>
+                Cerrar Sesión
+            </button>
+        );
+    }
+    }
 
 export default CerrarSesionBoton;

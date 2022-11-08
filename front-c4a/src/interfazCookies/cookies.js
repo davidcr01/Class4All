@@ -55,7 +55,7 @@ export const getCookie = async () => {
  */
 export const isCookieSet = async () => {
     const data = await getCookie();
-    if (data !== undefined)
+    if (data !== undefined && data.status !== "error")
         return true;
 
     else
