@@ -25,11 +25,11 @@ export const TareaAgenda = ({tarea}) => {
     }, [])
 
     if(cargando){
-        return(
+        /* return(
             <div>
                 <h1>Cargando...</h1>
             </div>
-        )
+        ) */
     }
     else{
         return (
