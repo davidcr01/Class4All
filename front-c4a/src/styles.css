@@ -122,6 +122,58 @@ Header{
   background-color: #70b67c
 }
 
+.PaginaAgenda{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-flow: column wrap; 
+}
+.PaginaAgenda > h1{
+  font-size: 4vw;
+  letter-spacing: 0.05em;
+  
+}
+.botonComenzar{
+  margin-top: 80px;
+  align-self: center;
+}
+.tareaAgenda{
+  margin-top: 60px;
+  width: 100%;
+  align-self: center;
+}
+.tarjetaAgenda{
+  float:left;
+  margin-left: 230px;
+  width: 345px;
+}
+.flechaI img{
+  width:  90px;
+  height: 90px;
+  rotate: 180deg;
+}
+.flechaD img{
+  width:  90px;
+  height: 90px;
+}
+.flechaAgenda{
+  align-self: center;
+  width: 100%;
+  height: 100%;
+  position:absolute;
+}
+
+.flechaI{
+  position: absolute;
+  left: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.flechaD{
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
 
 .botoncrear{
   background-color: rgb(196, 196, 255);
