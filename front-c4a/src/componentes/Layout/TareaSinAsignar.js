@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import DeleteIcon from '@mui/material/icons/Delete';
 
 const TareaSinAsignar = (props) => {
 
@@ -66,7 +67,7 @@ const TareaSinAsignar = (props) => {
                 </form>
 
                 </div>
-
+                <div className="Eliminar"><i class="fa-solid fa-trash-can"></i>sds</div>
             </div>)
     }
 
