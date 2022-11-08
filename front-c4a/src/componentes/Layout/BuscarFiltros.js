@@ -1,40 +1,17 @@
 import React from 'react';
+import '../../styles.css';
 const BuscarFiltros = (props) => {
 
-    /*
-    return(React.createElement(
-        "div",
-        { style: { width: "auto", backgroundColor: "#FFFFFF", borderColor: "black", borderStyle: "solid", display: "grid", borderWidth: "3px", fontSize: "4vw", textAlign: "center", padding: "6vw 0" } },
-            <><label>"BUSCAR"</label><input type="text"/>
-            <div className='Filtros'>Filtros:</div>
-            <label htmlFor="a" className="checkbox"><input type="checkbox" id="a"/>OPCION A</label>
-            <label htmlFor="b" className="checkbox"><input type="checkbox" id="b"/>OPCION B</label>
-            <label htmlFor="c" className="checkbox"><input type="checkbox" id="c"/>OPCION C</label>
-            </>
-    )
-    )
-    */
-
-    const style = {
-        width: "auto", 
-        backgroundColor: "#FFFFFF", 
-        borderColor: "black", 
-        borderStyle: "solid", 
-        display: "grid", 
-        borderWidth: "2px", 
-        fontSize: "4vw", 
-        textAlign: "center", 
-        padding: "6vw 0"
-    };
-
     return (
-        <div style={style}>
-            <><label>"BUSCAR"</label><input type="text"/>
-            <div className='Filtros'>Filtros:</div>
-            <label htmlFor="a" className="checkbox"><input type="checkbox" id="a"/>OPCION A</label>
-            <label htmlFor="b" className="checkbox"><input type="checkbox" id="b"/>OPCION B</label>
-            <label htmlFor="c" className="checkbox"><input type="checkbox" id="c"/>OPCION C</label>
-            </>
+        <div className="divfiltros">
+            <div className="divfiltrosinline">
+                <label className="buscarlabel">BUSCAR
+                    <input className="filtrotexto" type="text" /></label>
+                <div className='Filtros'>Filtros:</div>
+                <div class="checkboxs"><label htmlFor="a" className="checkbox"><input type="checkbox" id="a" />OPCION A</label>
+                    <label htmlFor="b" className="checkbox"><input type="checkbox" id="b" />OPCION B</label>
+                    <label htmlFor="c" className="checkbox"><input type="checkbox" id="c" />OPCION C</label>
+                </div></div>
         </div>
     )
 
