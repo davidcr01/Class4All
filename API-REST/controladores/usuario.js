@@ -162,6 +162,21 @@ const obtenerCookie = (req, res) => {
         });
 }
 
+const getAulas = (req, res) => {
+    Usuario.find({rol: "Profesor"}).exec((error, query) => {
+        if (error || query.length == 0 || !query) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No hay profesores :("
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            aulas: query.map((profesor) => {return {clase: profesor.clase, foto: profesor.foto}})
+        });
+    });
+};
+
 module.exports = {
     prueba,
     datosEmpresa,
@@ -171,4 +186,5 @@ module.exports = {
     loginUsuario,
     obtenerCookie,
     logoutUsuario,
+    getAulas
 }
