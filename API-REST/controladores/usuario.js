@@ -1,5 +1,6 @@
 const Usuario = require("../modelos/Usuario");
-
+//import Cookies from 'universal-cookie';
+const Cookies = require("universal-cookie");
 
 
 const prueba = (req, res) => {
@@ -91,13 +92,83 @@ const obtenerUsuarioId = (req, res) => {
         });
     });
 };
+const cookies = new Cookies();
+
+const loginUsuario = (req, res) => {
+    let correo = req.body.correo;
+    //let contra = req.params.contra;
+    console.log(correo);
+
+    Usuario.find({correo: correo}).exec((error, usuario) => {
+        if (error || usuario.length === 0){
+            return res.status(404).json({
+                status:"error",
+                mensaje:"No se ha encontrado el usuario2"
+            });
+        }
+
+        //const cookies = new Cookies();
+        //console.log(usuario[0]._id.toString())
+        const randID = Math.floor(Math.random() * 10000000);    //Mejorable
+        cookies.set("user"+randID, randID, {path: "/", maxAge: 86400});
+
+        console.log(cookies.getAll());
 
 
+        return res.status(200).json({
+            status: "success",
+            usuario: usuario[0],
+            sessionID: randID
+        });
+    });
+}
+
+const logoutUsuario = (req, res) => {
+    //const cookies = new Cookies();
+    
+    
+    if(cookies.get("user"+req.body.id) !== undefined){
+        cookies.remove("user"+req.body.id);
+        
+        console.log(cookies.getAll());
+
+        return res.status(200).json({
+            status: "success",
+        });
+    }
+    else{
+        return res.status(404).json({
+            status: "error",
+        });        
+    }
+
+}
+
+const obtenerCookie = (req, res) => {
+    let id = req.params.id;
+
+    //const cookies = new Cookies();
+    //console.log("id: "+id);
+    //console.log(cookies.getAll());
+
+
+    if(cookies.get("user"+id) === undefined)
+        return res.status(404).json({
+            status: "error"
+        });
+    else
+        return res.status(200).json({
+            status: "success"
+        });
+}
 
 module.exports = {
     prueba,
     datosEmpresa,
     crear,
     listar,
-    obtenerUsuarioId
+    obtenerUsuarioId,
+    loginUsuario,
+    obtenerCookie,
+    logoutUsuario,
 }
