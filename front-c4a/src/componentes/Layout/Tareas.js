@@ -6,6 +6,7 @@ import TareaNoRealizada from './TareaNoRealizada';
 
 export const Tareas = (props) => {
     const [tareas,SetTareas] =  useState([]); 
+    const [usuarios, SetUsuarios] = useState([]);
 
     const conseguirTareas = async() =>{
         try {
@@ -20,9 +21,23 @@ export const Tareas = (props) => {
 
         }
     }
+    const conseguirUsuarios = async() =>{
+        try {
+            const url = "http://localhost:3900/api/usuarios/listar-usuarios";
+            
+            const res = await fetch(url)
+            const data = await res.json();
+            SetUsuarios(data.usuarios);
+        } catch (error) {
+            console.log(error);
 
+
+        }
+    }
+    
     useEffect(() => {
         conseguirTareas();
+        conseguirUsuarios();
     }, []);
 
   return (
@@ -32,7 +47,7 @@ export const Tareas = (props) => {
             return(
                 <>
                 {t.estado === props.tipo && t.estado === 'sinasignar' && (
-                    <TareaSinAsignar key={t._id} className="tarea" tarea={t} />
+                    <TareaSinAsignar key={t._id} className="tarea" usuarios={usuarios} tarea={t} />
                 )}
                 {t.estado === props.tipo && t.estado === 'asignada' && (
                     <TareaAsignada key={t._id} className="tarea" tarea={t} />

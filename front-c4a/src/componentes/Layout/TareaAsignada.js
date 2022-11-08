@@ -10,6 +10,26 @@ const TareaAsignada = (props) => {
         getUser();
     }, []);
 
+    const desasignarTarea = (event) => {
+        event.preventDefault();
+
+        const url = "http://localhost:3900/api/tareas/desasignar-tarea/" + props.tarea._id;
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify()
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                window.location.reload();
+            })
+            .catch(err => console.log(err));
+    }
+    
 
     const getUser = async () => {
         try {
@@ -18,13 +38,9 @@ const TareaAsignada = (props) => {
             const res = await fetch(url)
             const data = await res.json();
 
-            console.log(data);
 
             setNombre(data.usuario.nombre);
             setCargando(false);
-            
-            console.log(nombre);
-            console.log(props.tarea.usuarioAsignado);
             
         } catch (error) {
             console.log(error);
@@ -42,7 +58,7 @@ const TareaAsignada = (props) => {
                 <div>Usuario: {nombre}</div>
                 <div>Realizado: No</div>
                 <div>Confirmar <input type="checkbox"></input></div>
-
+                <form onSubmit={desasignarTarea}><input type="submit" value="Desasignar"/></form>
             </div>)
             }
 

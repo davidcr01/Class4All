@@ -16,13 +16,56 @@ afterEach((done) => {
     Tarea.deleteMany({}).then(() => done());
     Usuario.deleteMany({}).then(() => done());
     mongoose.connection.close();
-    //mongoose.disconnect();
+    mongoose.disconnect();
     done();
 });
 
 const app = crearServidor();
 
 describe('Test de tareas', () => {
+
+    /*
+    test('Debería crear una nueva tarea', async () => {
+        
+        await request(app).post('/api/tareas/crear-tareaDia').send({
+            nombre: "nombre",
+            descripcion: "descripcion",
+            tipoInstrucciones: "texto",
+            instruccionTexto: "instrccionTexto"
+        }).expect(200).then(async (response) => {
+            expect(response.body.status).toBe('success');
+          //  expect(tareaCrear.tarea).toBe(tareaGuardada);
+        });
+    });
+
+    test('Debería listar todas las tareas', async () => {
+        await request(app).get('/api/tareas/lista-tareasDia').expect(200);
+    });
+    */
+    
+    
+
+
+    test('Debería elimiar una tarea existente', async () => {
+        let tareaEliminar = await Tarea.create({
+            estado: "sinAsignar",
+            nombre: "nombre",
+            descripcion: "descripcion",
+            tipoInstrucciones: "texto",
+        });
+
+        await request(app).delete('/api/tareas/eliminar-tareaDia/'+tareaEliminar._id).expect(200).then(async (response) => {
+            expect(response.body.status).toBe('success');
+            expect(response.body.tarea.estado).toBe("sinAsignar");
+            expect(response.body.tarea.nombre).toBe("nombre");
+            expect(response.body.tarea.descripcion).toBe("descripcion");
+            expect(response.body.tarea.tipoInstrucciones).toBe("texto");
+
+        });
+    });
+
+
+
     test('Debería asignar la tarea', async () => {
         let user = await Usuario.create({
             nombre: "test",

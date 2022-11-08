@@ -11,17 +11,35 @@ const TareaSinAsignar = (props) => {
         getUser();
     }, []);
 
+    const asignarTarea = (event) => {
+        event.preventDefault();
+
+        //get value from select
+        const idUsuario = document.getElementById("user").value;
+         const url = "http://localhost:3900/api/tareas/asignar-tarea/" + props.tarea._id + "/" + idUsuario;
+
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify()
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                window.location.reload();
+            })
+            .catch(err => console.log(err));
+    }
+
+    
+
+
 
     const getUser = async () => {
         try {
-            const url = "http://localhost:3900/api/usuarios/listar-usuarios"
-            console.log(url);
-            const res = await fetch(url)
-            const data = await res.json();
-
-            console.log(data);
-
-            setUsuarios(data.usuarios);
+            setUsuarios(props.usuarios);
             setCargando(false);
 
         } catch (error) {
@@ -30,27 +48,29 @@ const TareaSinAsignar = (props) => {
         }
     }
 
-            if(cargando){
-                return <div>Cargando...</div>
-            }else{
-                return (
-                <div className="tarea">
+    if (cargando) {
+        return <div>Cargando...</div>
+    } else {
+        return (
+            <div className="tarea">
                 <div>Tarea: {props.tarea.nombre}</div>
                 <div>Fecha: {props.tarea.fechaAsignada}</div>
-                <div>Usuario: <select name="Usuario">
+                <div>Usuario: <form onSubmit={asignarTarea}><select id="user" name="Usuario">
                     {usuarios.map(u => {
-                        return(
+                        return (
                             <option value={u._id}>{u.nombre}</option>
                         )
                     })}
                 </select>
+                    <input type="submit" value="Asignar" />
+                </form>
 
                 </div>
 
             </div>)
-            }
-
-
     }
 
-    export default TareaSinAsignar;
+
+}
+
+export default TareaSinAsignar;
