@@ -2,6 +2,7 @@ const Usuario = require("../modelos/Usuario");
 //import Cookies from 'universal-cookie';
 const Cookies = require("universal-cookie");
 
+const cookies = new Cookies();
 
 const prueba = (req, res) => {
     console.log("Probando ruta");
@@ -92,7 +93,7 @@ const obtenerUsuarioId = (req, res) => {
         });
     });
 };
-const cookies = new Cookies();
+
 
 const loginUsuario = (req, res) => {
     let correo = req.body.correo;
@@ -101,6 +102,35 @@ const loginUsuario = (req, res) => {
 
     Usuario.find({correo: correo}).exec((error, usuario) => {
         if (error || usuario.length === 0){
+            return res.status(404).json({
+                status:"error",
+                mensaje:"No se ha encontrado el usuario2"
+            });
+        }
+
+        //const cookies = new Cookies();
+        //console.log(usuario[0]._id.toString())
+        const randID = Math.floor(Math.random() * 10000000);    //Mejorable
+        cookies.set("user"+randID, randID, {path: "/", maxAge: 86400});
+
+        console.log(cookies.getAll());
+
+
+        return res.status(200).json({
+            status: "success",
+            usuario: usuario[0],
+            sessionID: randID
+        });
+    });
+}
+
+const loginAlumno = (req, res) => {
+    let id = req.body.id;
+    //let contra = req.params.contra;
+    console.log(req.body);
+
+    Usuario.findById(id).exec((error, usuario) => {
+        if (error || !usuario){
             return res.status(404).json({
                 status:"error",
                 mensaje:"No se ha encontrado el usuario2"
@@ -177,6 +207,24 @@ const getAulas = (req, res) => {
     });
 };
 
+
+const getAlumnos = (req, res) => {
+    let aula = req.params.aula;
+
+    Usuario.find({rol: "Alumno", clase: aula}).exec((error, query) => {
+        if (error || query.length == 0 || !query) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No hay alumnos :("
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            alumnos: query//query.map((profesor) => {return {clase: profesor.clase, foto: profesor.foto}})
+        });
+    });    
+}
+
 module.exports = {
     prueba,
     datosEmpresa,
@@ -186,5 +234,7 @@ module.exports = {
     loginUsuario,
     obtenerCookie,
     logoutUsuario,
-    getAulas
+    getAulas,
+    getAlumnos,
+    loginAlumno
 }

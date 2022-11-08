@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import img from "../../img/agenda.png"
 
 const Clases = (props) => {
@@ -67,6 +68,7 @@ const Clases = (props) => {
 
     console.log("aulas");
     console.log(aulas);
+    const nav = useNavigate();
 
     if(cargando)
         return (
@@ -75,14 +77,15 @@ const Clases = (props) => {
             </div>
         );
     else{
+
+        const goToClassmates = (route) => {
+            nav("/sesion-alumnos", {state: {aula: route}});
+        }
         let res = [];
 
         for(let i=0; i<aulas.length; i++){
-            //let foto =require("../../img/"+aulas[i].foto+".jpg")
-
-            //let foto = require.context("../../img", true)//, /\.(png|jpg|gif|webp)$/);
             res.push(
-                <div style={style}>
+                <div style={style} onClick={() => goToClassmates(aulas[i].clase)}>
                     <img style={style2} src={"../img/"+aulas[i].foto}/>
                     {"Aula "+aulas[i].clase}
                 </div>                

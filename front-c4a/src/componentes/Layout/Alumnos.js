@@ -1,26 +1,44 @@
-import React from 'react';
-import img from "../../img/agenda.png"
+import React, {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+import Cookies from "universal-cookie";
+import { loginAlumno } from '../../interfazCookies/cookies';
 
-const Alumnos = (props) => {
+
+const Alumnos = ({aula}) => {
     let prueba=[];
     let apartados = ["Pepe", "Ana", "Jaimito", "Atanasia", "Andrés", "Alberto"]
     let pictogramas = [ require("../../img/profeA.jpg"), require("../../img/profeB.jpg"), require("../../img/profeC.jpg"), require("../../img/profeD.jpg"), require("../../img/user.png"), require("../../img/user.png")]
     let user = require("../../img/user.png")
 
-    /*for(let i=0; i< 4; i++){
-        prueba.push(
-            React.createElement(
-                        "div",
-                        { style: {width: "auto", backgroundColor: "#E2E2E2", borderColor: "black", borderStyle: "solid", borderWidth: "3px", display: "grid", marginBottom: "5px", fontSize: "4vw", textAlign:"center", padding: "3vw 0"} },
-                        //Imagen de pictograma
-                        React.createElement("img", {src:  pictogramas[i], style: {width: "30%", height: "auto", display: "block", marginLeft: "auto", marginRight: "auto"}}),
-                        //Texto de apartado
-                        apartados[i]
-                        ));
-    }
-    return (
-        React.createElement("div", {style: {width:"100%", paddingTop:"15px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "35% 35%", gridTemplateRows:"20vw 20vw 20vw", gridColumnGap: "40px", gridRowGap: "15px"}}, prueba)
-    );*/
+    //alert(aula)
+
+    
+  const [cargando, setCargando] = useState(true);
+  const [alumnos, setAlumnos] = useState([]);
+
+  useEffect(() => {
+    const getAlumnos = async () => {
+      try {
+          const url = "http://localhost:3900/api/usuarios/alumnos/"+aula;
+          console.log(url);
+          const res = await fetch(url)
+          const data = await res.json();
+  
+          return data;
+          
+      } catch (error) {
+          console.log(error);
+  
+          return undefined;
+      }        
+  }    
+
+    getAlumnos().then((response) => {
+      setAlumnos(response.alumnos);
+      setCargando(false);
+    })
+  }, [])
+
 
     const style = {
         width: "auto", 
@@ -71,25 +89,55 @@ const Alumnos = (props) => {
         padding: "3vw 0",
     };
 
-    for(let i=0; i< 6; i++){
-        prueba.push(
-            <div style={style}>
-                <img style={style2} src={pictogramas[i]}/>
-                {apartados[i]}
+    const nav = useNavigate();
+
+    if(cargando)
+    return (
+        <div>
+            <h1>CARGANDO...</h1>
+        </div>
+    )
+    else if(alumnos !== undefined) {
+        let alumnosJSX = []
+        const cookies = new Cookies();
+
+        const loginUser = (id) => {
+            loginAlumno(id).then((data) => {
+                if(data !== undefined)
+                    cookies.set("loginCookie", data);
+
+
+                nav("/");
+            });
+        }
+
+        for(let i=0; i<alumnos.length; i++){
+            alumnosJSX.push(
+                <div style={style} onClick={()=> loginUser(alumnos[i]._id)}>
+                    <img style={style2} src={"../img/"+alumnos[i].foto}/>
+                    {alumnos[i].nombre}
+                </div>                
+            )
+        }
+
+        return  (
+            <div style={cuerpo}>
+                <div style={recuadros}>
+                    {alumnosJSX}
+                </div>
+
+                <img style={imagenUser} src={user}></img>
             </div>
-            
-        );
+        )
     }
 
-    return (
-        <div style={cuerpo}>
-            <div style={recuadros}>
-                {prueba}
+    else{
+        return (
+            <div>
+                <h1>NO HAY ALUMNOS EN ESTA CLASE</h1>
             </div>
-            <img style={imagenUser} src={user}></img>
-        </div>
-    );
-
+        )
+    }
 }
 
 export default Alumnos;

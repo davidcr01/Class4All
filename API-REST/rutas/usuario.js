@@ -14,7 +14,9 @@ router.post("/userLogout/", UsuarioController.logoutUsuario);
 
 router.get("/cookie/:id/", UsuarioController.obtenerCookie);
 
+router.post("/classLogin/", UsuarioController.loginAlumno)
 
 router.get("/aulas/", UsuarioController.getAulas);
+router.get("/alumnos/:aula", UsuarioController.getAlumnos)
 
 module.exports = router;

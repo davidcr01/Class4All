@@ -91,3 +91,33 @@ export const loginUser = async (correo) => {
         return undefined;
     }        
 }
+
+/**
+ * Loggea al alumno en el sistema dado el id de usuario
+ */
+ export const loginAlumno = async (id) => {
+    //console.log("server: "+usernameServer);
+    try {
+        const url = "http://localhost:3900/api/usuarios/classLogin/";
+        console.log(url);
+        const res = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({id: id})
+        })
+
+        const data = await res.json();
+
+        if(data.status === "success")
+            return data.sessionID;
+        else
+            return undefined;
+
+    } catch (error) {
+        console.log(error);
+
+        return undefined;
+    }        
+}
