@@ -6,7 +6,7 @@ const Header = (props) => {
 
     return (
         <div>
-            <><h1 className="titulo">{props.titulo}</h1>
+            <><h1 className="titulo">Class4All</h1>
             <CerrarSesionBoton/></>
         </div>
     );
