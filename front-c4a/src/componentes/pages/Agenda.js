@@ -1,17 +1,21 @@
-import React,{useState,useEffect} from 'react'
-import {FlechasPaginacionAgenda} from '../flechasPaginacion'
+import React, { useState, useEffect } from 'react'
+import { FlechasPaginacionAgenda } from '../flechasPaginacion'
 import Button from '@mui/material/Button';
 import '../../styles.css'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
+import Cookies from 'universal-cookie';
+import { isCookieSet } from '../../interfazCookies/cookies';
 
 export const Agenda = () => {
 
     const [curretTarea, setCurretTarea] = useState(0)//indice de la estructura de tareas
+
     const [cargando,setCargando] = useState(true);
     const [tareas,setTareas] = useState([]);//estructura de tareas
     //const [fotos,setFotos] = useState([]);//estructura de fotos
+    const [cookieSet, setCookieSet] = useState();
     
 
 
@@ -21,27 +25,38 @@ export const Agenda = () => {
             let res = await fetch(url);
             let data = await res.json();
             setTareas(data.tareas);
-            
-            setCargando(false);
-          
+            //setCargando(false);
         } catch (error) {
             console.log(error);
         }
     }
 
     useEffect(() => {
-        rellenarAgenda();
+        setCargando(true);
+        setCookieSet(false);
+        //Llamada para comprobar (quizas solo admin)
+
+        rellenarAgenda().then(() => {
+            isCookieSet().then((res) => {
+                setCargando(false);
+                setCookieSet(res);
+            });
+        })
     }, []);
 
 
-    if(cargando){
-        return(
+    if (cargando) {
+        return (
             <div>
                 <h1>Cargando...</h1>
             </div>
         )
     }
+
     else{
+        const cookies = new Cookies();
+
+        if (cookies.get("loginCookie") !== undefined && cookieSet)    
         return (
             <div className='PaginaAgenda'>
                 <h1>AGENDA</h1>
@@ -74,13 +89,25 @@ export const Agenda = () => {
             </div>
 
 
-                {/* boton-> currentTarea,tareas */}
-                <div className='botonComenzar'>
-                    <Button variant="outlined" style={{width:'200px',height:'80px'}} >Comenzar</Button>
+                        {/*va con un calendario estático de Material UI y es la fecha limite */}
+
+
+
+                    </div>
+
+
+                    {/* boton-> currentTarea,tareas */}
+                    <div className='botonComenzar'>
+                        <Button variant="outlined" style={{ width: '200px', height: '80px' }} >Comenzar</Button>
+                    </div>
+
                 </div>
-                
-            </div>
-        )
+            )
+
+        else
+            return (
+                <h1>No tiene permiso para ver esta página</h1>
+            )
     }
-  
+
 }
