@@ -10,13 +10,18 @@ Header{
 .breadcrumbs{
   background-color: rgb(196, 196, 255);
   padding-left: 1%;
-
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
 }
 
 
 .buscarlabel{
   display: inline-block;
   height: 120px;
+  /* border-width: 1px;
+  border-color: rgb(2, 6, 255);
+  border-style: solid; */
   margin-bottom: 60px;
   width: 99%
 }
@@ -26,7 +31,9 @@ Header{
 
   text-align: center;
   font-size: 18px;
-
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
   height: 30px;
   padding: 0;
   width: 90%;
@@ -34,8 +41,12 @@ Header{
 }
 
 .checkboxs{
-  width: 99%;
-
+  width: 90%;
+  margin-left: auto;
+  margin-right:auto;
+  /* border-width: 1px;
+  border-color: rgb(255, 0, 0);
+  border-style: solid; */
 }
 
 .Filtros{
@@ -45,7 +56,9 @@ Header{
   margin: 0;
   margin-bottom: 10px;
   padding: 0;
-
+  /* border-width: 1px;
+  border-color: rgb(9, 255, 0);
+  border-style: solid; */
   height: 30px;
 }
 
@@ -60,6 +73,7 @@ Header{
   font-size: 20px; 
   text-align: center; 
   padding: 6vw 0
+  
 }
 
 .filtrotexto{
@@ -67,13 +81,20 @@ Header{
   align-content: center;
   margin:auto;
   height: 80px;
+  /* border-width: 1px;
+  border-color: rgb(245, 139, 0);
+  border-style: solid; */
 }
 
 
 .divfiltrosinline{
   align-content: center;
-
-  width:99%;
+  margin-left: auto;
+  margin-right:auto;
+  /* border-width:3px;
+  border-color: rgb(25, 0, 255);
+  border-style: solid; */
+  width:93%;
 }
 
 .botones{
