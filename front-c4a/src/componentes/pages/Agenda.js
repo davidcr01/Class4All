@@ -89,13 +89,6 @@ export const Agenda = () => {
             </div>
 
 
-                        {/*va con un calendario estático de Material UI y es la fecha limite */}
-
-
-
-                    </div>
-
-
                     {/* boton-> currentTarea,tareas */}
                     <div className='botonComenzar'>
                         <Button variant="outlined" style={{ width: '200px', height: '80px' }} >Comenzar</Button>
