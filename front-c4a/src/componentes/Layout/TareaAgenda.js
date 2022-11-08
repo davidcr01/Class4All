@@ -36,10 +36,10 @@ export const TareaAgenda = ({tarea}) => {
             <div className='tareaAgenda'>
                 
                 <div className='tarjetaAgenda'>
-                <Card sx={{ maxWidth: 645 }}>
+                <Card sx={{ maxWidth: 345 }}>
                     <CardMedia 
                         component="img"
-                        height="240"
+                        height="230"
                         //Cambiar el el modelo
                         image="https://thumbs.dreamstime.com/b/icono-de-contorno-superficie-limpia-s%C3%ADmbolo-limpieza-f%C3%A1cil-para-el-dise%C3%B1o-gr%C3%A1fico-sitio-web-social-medio-m%C3%B3vil-aplicaci%C3%B3n-ui-194540151.jpg"
                         alt={tareaAgenda.nombre}

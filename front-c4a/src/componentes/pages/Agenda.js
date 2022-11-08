@@ -46,7 +46,10 @@ export const Agenda = () => {
                 <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/>
                 {/* componente de la tarea*/}
                 {/* boton-> currentTarea,tareas */}
-                <Button variant="outlined" >Comenzar</Button>
+                <div className='botonComenzar'>
+                    <Button variant="outlined" style={{width:'200px',height:'80px'}} >Comenzar</Button>
+                </div>
+                
             </div>
         )
     }

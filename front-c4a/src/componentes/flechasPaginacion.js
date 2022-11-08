@@ -1,7 +1,8 @@
 import React from 'react'
 import Stack from '@mui/material/Stack';
-//import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-//import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 
 export const FlechasPaginacionAgenda = ({currentTarea,setCurrentTarea,tareas}) => {
@@ -22,18 +23,21 @@ export const FlechasPaginacionAgenda = ({currentTarea,setCurrentTarea,tareas}) =
     }
 
 
+
   return (
     <div className='flechaAgenda'>
         {/* <Stack direction="row" spacing={2}> */}
             <div className='flechaI'>
-            <Button  variant="contained" /* endIcon={<ArrowBackIcon />} */ onClick={e => paginaAtras()}>
-                Pagina anterior
+            <Button  variant="contained" onClick={e => paginaAtras()} /* startIcon={<ArrowBackIcon />} */>
+                <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png'/>
             </Button>
+            
             </div>
+
             
             <div className='flechaD'>
-            <Button variant="contained"/* endIcon={<ArrowForwardIcon />} */ onClick={e => paginaAdelante()}>
-                Pagina siguiente
+            <Button variant="contained" onClick={e => paginaAdelante()}>
+                <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png'/>
             </Button>
             </div>
             
