@@ -7,10 +7,15 @@ import { isCookieSet, loginUser } from '../../interfazCookies/cookies';
 
 const Profesores = (props) => {
 
-    let cookieSet=undefined;
+    const [cookieSet, setCookieSet] = useState(false);
+    const [cargando, setCargando] = useState(true);
 
     useEffect(()=>{
-        cookieSet=isCookieSet();
+        //cookieSet=isCookieSet();
+        isCookieSet().then((res) => {
+            setCookieSet(res);
+            setCargando(false);
+        });
     }, [])
 
     const nav = useNavigate();
@@ -85,19 +90,22 @@ const Profesores = (props) => {
         </div>
     );
 
-
-    if(cookies.get("loginCookie")===undefined || !cookieSet)
-    return (
-        <div style={style2}>
-            {prueba}
-        </div>
-    );
-    else if(cookies.get("loginCookie")!==undefined && cookieSet)
+    if(!cargando){
+        if(cookies.get("loginCookie")===undefined || !cookieSet){
         return (
-            <div>
-                <h1>Sesion ya iniciada</h1>
+            <div style={style2}>
+                {prueba}
             </div>
-        )
+        );
+        }
+        else if(cookies.get("loginCookie")!==undefined && cookieSet){
+            return (
+                <div>
+                    <h1>Sesion ya iniciada</h1>
+                </div>
+            )
+        }
+    }
 
 }
 
