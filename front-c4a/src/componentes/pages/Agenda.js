@@ -107,7 +107,7 @@ export const Agenda = () => {
                 </div>
 
             </div>
-            <Footer/></>
+            </>
             )
 
         else

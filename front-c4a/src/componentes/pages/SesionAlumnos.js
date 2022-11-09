@@ -41,7 +41,6 @@ export const SesionAlumnos = (props) => {
         <Header titulo="Inicio De Sesión"/>
         {/* <MuiBreadcrumbsPP /> */}
         <Alumnos aula={location.state.aula}/>
-        <Footer/>
       </>)
       else
         return (
