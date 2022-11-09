@@ -5,11 +5,23 @@ import Header from '../Layout/Header.js';
 import Footer from '../Layout/Footer.js';
 import Alumnos from '../Layout/Alumnos';
 import { useLocation } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import { isCookieSet } from '../../interfazCookies/cookies';
+import CargandoProgress from '../Layout/CargandoProgress';
 
 export const SesionAlumnos = (props) => {
   const location = useLocation(); //Obtengo la clase elegida de la anterior pagina
 
-  //alert(location.state === null);   //Si es null el state significa que sacamos la pagina por defecto
+  const [isSet, setIsSet] = useState(false);
+  const [cargando, setCargando] = useState(true);
+  const cookies = new Cookies();
+
+  useEffect(() => {
+    isCookieSet().then((response) => {
+      setIsSet(response);
+      setCargando(false);
+    });
+  }, []);
 
 
 
@@ -20,7 +32,10 @@ export const SesionAlumnos = (props) => {
         </div>
       )
     else{
-      //alert("aula antes: "+location.state.aula)
+      if(cargando)
+        return <CargandoProgress/>
+      
+        else if(cookies.get("loginCookie") === undefined || !isSet)
       return (
         <>
         <Header titulo="Inicio De Sesión"/>
@@ -28,6 +43,12 @@ export const SesionAlumnos = (props) => {
         <Alumnos aula={location.state.aula}/>
         <Footer/>
       </>)
+      else
+        return (
+          <div>
+            <h1>EL USUARIO YA HA INICIADO SESION</h1>
+          </div>
+        )
     }
 };
 

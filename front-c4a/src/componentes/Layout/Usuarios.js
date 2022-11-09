@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import CargandoProgress from './CargandoProgress.js';
 import Usuario from './Usuario.js';
 
 export const Usuarios = () => {
@@ -30,7 +31,7 @@ export const Usuarios = () => {
                 <Usuario key={t._id} className="usuariolista" user={t}/ >               
             );
         })
-        : <h2>Cargando</h2>
+        : <CargandoProgress/>
         
         }
         

@@ -1,8 +1,9 @@
+import { CircularProgress } from '@mui/material';
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "universal-cookie";
 import { loginAlumno } from '../../interfazCookies/cookies';
-
+import CargandoProgress from './CargandoProgress';
 
 const Alumnos = ({aula}) => {
     let prueba=[];
@@ -89,13 +90,13 @@ const Alumnos = ({aula}) => {
         padding: "3vw 0",
     };
 
+
+
     const nav = useNavigate();
 
     if(cargando)
     return (
-        <div>
-            <h1>CARGANDO...</h1>
-        </div>
+        <CargandoProgress/>
     )
     else if(alumnos !== undefined) {
         let alumnosJSX = []
@@ -115,7 +116,7 @@ const Alumnos = ({aula}) => {
             //alert(alumnos[i]._id);
             alumnosJSX.push(
                 <div style={style} onClick={()=> loginUser(alumnos[i]._id)}>
-                    <img style={style2} src={"../img/"+alumnos[i].foto}/>
+                    <img style={style2} src={"http://localhost:3900/api/usuarios/foto/"+alumnos[i]._id}/>
                     {alumnos[i].nombre}
                 </div>                
             )

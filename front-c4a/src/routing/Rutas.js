@@ -12,7 +12,7 @@ import { LoginOK } from '../componentes/pages/loginOK';
 import { Agenda } from '../componentes/pages/Agenda';
 import { Tareas } from '../componentes/pages/Tareas';
 import { CreacionUsuario } from '../componentes/pages/CreacionUsuario';
-
+import { TareaEspecifica } from '../componentes/pages/TareaEspecifica';
 export const Rutas = () => {
     return (
         <BrowserRouter>
@@ -31,6 +31,8 @@ export const Rutas = () => {
             <Route path="/Agenda" element={<Agenda/>} />
             <Route path="/tareas" element={<Tareas/>} />
             <Route path="/crear-usuario" element={<CreacionUsuario/>} />
+            <Route path="/mitarea/:id" element={<TareaEspecifica/>} />
+
             {/* <Route path="/otra-pagina" element={<OtraPagina />} /> */}
         </Routes>
 

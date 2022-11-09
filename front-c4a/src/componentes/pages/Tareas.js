@@ -5,6 +5,7 @@ import Footer from '../Layout/Footer.js';
 import PantallaTareas from '../Layout/PantallaTareas.js';
 import Cookies from 'universal-cookie';
 import { isCookieSet } from '../../interfazCookies/cookies';
+import CargandoProgress from '../Layout/CargandoProgress';
 
 export const Tareas = () => {
   const [cargando, setCargando] = useState();
@@ -22,9 +23,7 @@ export const Tareas = () => {
 
   if (cargando === true) {
     return (
-      <div>
-        <h1>CARGANDO...</h1>
-      </div>
+      <CargandoProgress/>
     )
   }
   else {

@@ -345,3 +345,20 @@ Header{
 
   
 }
+
+
+.posicion-circular{
+  display: flex;
+  justify-content: center;
+}
+
+.tarjetaAgenda{
+  width: 90%;
+  margin: auto;
+  display:grid;
+  grid-template-columns: 43% 43%;
+}
+
+.tarjeta{
+  display:grid;
+}

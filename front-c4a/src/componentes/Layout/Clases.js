@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import img from "../../img/agenda.png"
+import CargandoProgress from './CargandoProgress';
 
 const Clases = (props) => {
     let prueba=[];
@@ -62,7 +63,9 @@ const Clases = (props) => {
 
         getAulas().then((data)=>{
             setCargando(false);
-            setAulas(data.aulas);
+
+            if(data.status === "success")
+                setAulas(data.aulas);
         })
     }, []);
 
@@ -72,9 +75,7 @@ const Clases = (props) => {
 
     if(cargando)
         return (
-            <div>
-                <h1>CARGANDO...</h1>
-            </div>
+            <CargandoProgress/>
         );
     else{
 
@@ -86,7 +87,7 @@ const Clases = (props) => {
         for(let i=0; i<aulas.length; i++){
             res.push(
                 <div style={style} onClick={() => goToClassmates(aulas[i].clase)}>
-                    <img style={style2} src={"../img/"+aulas[i].foto}/>
+                    <img style={style2} src={"http://localhost:3900/api/usuarios/foto/"+aulas[i].id}/>
                     {"Aula "+aulas[i].clase}
                 </div>                
             )

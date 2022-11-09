@@ -1,14 +1,17 @@
 import React from 'react';
 import img from "../../img/agenda.png"
+import {useNavigate} from 'react-router-dom';
 
 const PantallaTareas = (props) => {
     let prueba=[];
     let apartados = ["Agenda", "Tareas Realizadas"]
     let pictogramas = [ require("../../img/agenda.png"), require("../../img/realizado.png")]
+    let enlaces = ["/Agenda", "/TareasRealizadas"]
     let user = require("../../img/user.png")
 
     const style = {
         width: "auto", 
+        cursor:"pointer",
         backgroundColor: "#E2E2E2", 
         borderColor: "black", 
         borderStyle: "solid", 
@@ -26,6 +29,7 @@ const PantallaTareas = (props) => {
     const style3 = {width:"100%", paddingTop:"15px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "35% 35%", gridColumnGap: "40px", gridRowGap: "15px"};
 
     //const style4 = {alignSelf: "end", width: "5%", height: "auto%", display: "block", marginLeft: "auto", marginRight: "5%", marginBottom: "2%"};
+    const nav = useNavigate();
 
     const style5 = {
         width: "auto", 
@@ -38,7 +42,7 @@ const PantallaTareas = (props) => {
 
     for(let i=0; i< 2; i++){
         prueba.push(
-            <div style={style}>
+            <div style={style} onClick={() => nav(enlaces[i])}>
                 <img style={style2} src={pictogramas[i]}/>
                 {apartados[i]}
             </div>

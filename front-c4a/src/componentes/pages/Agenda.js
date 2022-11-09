@@ -9,6 +9,8 @@ import Cookies from 'universal-cookie';
 import { isCookieSet } from '../../interfazCookies/cookies';
 import Header from '../Layout/Header.js';
 import Footer from '../Layout/Footer.js';
+import CargandoProgress from '../Layout/CargandoProgress';
+
 
 export const Agenda = () => {
 
@@ -49,9 +51,7 @@ export const Agenda = () => {
 
     if (cargando) {
         return (
-            <div>
-                <h1>Cargando...</h1>
-            </div>
+            <CargandoProgress/>
         )
     }
 

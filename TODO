@@ -1,18 +1,25 @@
 Andrés
 
-Añadir mas atributos a las cookies
-Añadir animacion cargando
-Usar Material UI
-Arreglar fallos breadcrumbs antiguos
-Tener en cuenta los roles en el sistema
-Realizar una ruta por la pagina convincente
+Mejorar posicion de cargando (si da tiempo)
 
-USAR API PARA DESCARGAR FOTOS
+Usar Material UI
+Tener en cuenta los roles en el sistema
+
 Arreglar fallos de push de React en las listas
-foto por defecto a pavos que no tengan
-PONER CARGANDO EN UN COMPONENTE APARTE JUNTO CON OTROS COMO SESION INICIADA, ETC
-poner enlace al boton de sesion-alumnos-clases para los profes
 poner flechas
+
+---------------------------------- EN DESARROLLO ----------------------------------
+Arreglar fallos breadcrumbs antiguos
 arreglar css incrustado en el codigo
 
+-------------------------------------- HECHO --------------------------------------
+
 COMPROBAR EN LAS PAGINAS RESTRINGIDAS QUE EL ID ES EL MISMO, PARA EVITAR FALSIFICACION COOKIES
+Añadir mas atributos a las cookies
+poner enlace al boton de sesion-alumnos-clases para los profes
+Realizar una ruta por la pagina convincente
+PONER FOTOS EN EL BACKEND
+USAR API PARA DESCARGAR FOTOS
+foto por defecto a pavos que no tengan
+PONER CARGANDO EN UN COMPONENTE APARTE JUNTO CON OTROS COMO SESION INICIADA, ETC
+Añadir animacion cargando
