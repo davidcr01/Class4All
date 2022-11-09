@@ -1,6 +1,7 @@
 const Usuario = require("../modelos/Usuario");
-//import Cookies from 'universal-cookie';
 const Cookies = require("universal-cookie");
+const fs = require('fs');
+const path = require('path');
 
 const cookies = new Cookies();
 
@@ -199,7 +200,7 @@ const getAulas = (req, res) => {
         }
         return res.status(200).json({
             status: "success",
-            aulas: query.map((profesor) => {return {clase: profesor.clase, foto: profesor.foto}})
+            aulas: query.map((profesor) => {return {clase: profesor.clase, id: profesor._id}})
         });
     });
 };
@@ -222,6 +223,30 @@ const getAlumnos = (req, res) => {
     });    
 }
 
+
+const obtenerFoto = (req, res) => {
+    let id = req.params.id;
+
+    Usuario.findById(id).exec((error, response) => {
+        if (error || !response) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "La foto de perfil no existe"
+            });
+        }
+        let foto = response.foto;
+        let urlFisica = "./public/fotos/" + foto;
+        fs.stat(urlFisica,(error,existe) => {
+            if(existe){
+                return res.sendFile(path.resolve(urlFisica));
+            }else{
+                
+               return res.sendFile(path.resolve("./public/fotos/default.jpg"));
+            }
+        })
+    });    
+}
+
 module.exports = {
     prueba,
     datosEmpresa,
@@ -233,5 +258,6 @@ module.exports = {
     logoutUsuario,
     getAulas,
     getAlumnos,
-    loginAlumno
+    loginAlumno,
+    obtenerFoto
 }
