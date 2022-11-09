@@ -4,11 +4,12 @@ import React from 'react';
 const Footer = () => {
     const style = {
         textAlign: "center",
-        backgroundColor: "darkgray",
+        backgroundColor: "black",
+        color: "white",
         height: "auto",
         padding: "15px 15px",
-        width: "100%",
-        position: "fixed",
+        width: "97%",
+        //position: "fixed",
         bottom: "0"
     }
     return (
