@@ -16,7 +16,7 @@ export const logoutServer = async () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({id: cookies.get("loginCookie")})
+            body: JSON.stringify({id: cookies.get("loginCookie").sessionID})
         })
     } catch (error) {
         console.log(error);
@@ -31,7 +31,7 @@ export const logoutServer = async () => {
 export const getCookie = async () => {
     try {
         //alert("cookie cookie: "+cookies.get("loginCookie"));
-        const url = "http://localhost:3900/api/usuarios/cookie/" + cookies.get("loginCookie");
+        const url = "http://localhost:3900/api/usuarios/cookie/" + cookies.get("loginCookie").sessionID+"/"+cookies.get("loginCookie").id;
         console.log(url);
         const res = await fetch(url)
         const data = await res.json();
@@ -81,7 +81,7 @@ export const loginUser = async (correo) => {
         const data = await res.json();
 
         if(data.status === "success")
-            return data.sessionID;
+            return {id: data.usuario._id, sessionID: data.sessionID};
         else
             return undefined;
 
@@ -111,7 +111,7 @@ export const loginUser = async (correo) => {
         const data = await res.json();
 
         if(data.status === "success")
-            return data.sessionID;
+            return {id: data.usuario._id, sessionID: data.sessionID};
         else
             return undefined;
 

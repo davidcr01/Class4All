@@ -46,7 +46,6 @@ const CerrarSesionBoton = () => {
     };
 
     if(!cargando && cookies.get("loginCookie") !== undefined && logged === true){
-        console.log(logged)
         return (        
             <button style={style} onClick={handleLogOut}>
                 Cerrar Sesión

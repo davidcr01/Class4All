@@ -14,3 +14,5 @@ PONER CARGANDO EN UN COMPONENTE APARTE JUNTO CON OTROS COMO SESION INICIADA, ETC
 poner enlace al boton de sesion-alumnos-clases para los profes
 poner flechas
 arreglar css incrustado en el codigo
+
+COMPROBAR EN LAS PAGINAS RESTRINGIDAS QUE EL ID ES EL MISMO, PARA EVITAR FALSIFICACION COOKIES

@@ -104,7 +104,7 @@ const Alumnos = ({aula}) => {
         const loginUser = (id) => {
             loginAlumno(id).then((data) => {
                 if(data !== undefined)
-                    cookies.set("loginCookie", data);
+                    cookies.set("loginCookie", {id: data.id, sessionID: data.sessionID}, {maxAge: 86400});
 
 
                 nav("/pagina-principal");
@@ -112,6 +112,7 @@ const Alumnos = ({aula}) => {
         }
 
         for(let i=0; i<alumnos.length; i++){
+            //alert(alumnos[i]._id);
             alumnosJSX.push(
                 <div style={style} onClick={()=> loginUser(alumnos[i]._id)}>
                     <img style={style2} src={"../img/"+alumnos[i].foto}/>
