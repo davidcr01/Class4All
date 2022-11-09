@@ -32,6 +32,11 @@ const Profesores = (props) => {
             }
         });
     }
+    const style4 = {alignSelf: "end", width: "5%", height: "auto%", display: "block", marginLeft: 0, marginRight: "5%", marginBottom: "2%"};
+let user = require("../../img/user.png")
+    const handleClick = () =>{
+        nav("/sesion-alumnos-clases");
+      };
     
     const cookies = new Cookies();
 
@@ -96,7 +101,10 @@ const Profesores = (props) => {
         return (
             <div style={style2}>
                 {prueba}
+                    <img style={style4} src={user} onClick={handleClick}></img>
+
             </div>
+            
         );
         }
         else if(cookies.get("loginCookie")!==undefined && cookieSet){
