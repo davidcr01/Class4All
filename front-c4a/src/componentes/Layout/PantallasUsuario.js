@@ -1,25 +1,17 @@
 import React from 'react';
-import img from "../../img/agenda.png"
+import {useNavigate} from 'react-router-dom';
 
 const PantallasUsuario = (props) => {
-    let prueba=[];
-    let apartados = ["Agenda", "Chat", "Retroalimentacion", "Consentimiento"]
-    let pictogramas = [ require("../../img/agenda.png"), require("../../img/chat.png"), require("../../img/retroalimentacion.png"), require("../../img/firmar.png")]
+    let botones=[];
+    //const apartados = ["Agenda", "Chat", "Retroalimentacion", "Consentimiento"]
+    //const pictogramas = [ require("../../img/agenda.png"), require("../../img/chat.png"), require("../../img/retroalimentacion.png"), require("../../img/firmar.png")]
     
-    /*for(let i=0; i< 4; i++){
-        prueba.push(
-            React.createElement(
-                        "div",
-                        { style: {width: "auto", backgroundColor: "#E2E2E2", borderColor: "black", borderStyle: "solid", borderWidth: "3px", display: "grid", marginBottom: "5px", fontSize: "4vw", textAlign:"center", padding: "3vw 0"} },
-                        //Imagen de pictograma
-                        React.createElement("img", {src:  pictogramas[i], style: {width: "30%", height: "auto", display: "block", marginLeft: "auto", marginRight: "auto"}}),
-                        //Texto de apartado
-                        apartados[i]
-                        ));
-    }
-    return (
-        React.createElement("div", {style: {width:"100%", paddingTop:"15px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "35% 35%", gridTemplateRows:"20vw 20vw 20vw", gridColumnGap: "40px", gridRowGap: "15px"}}, prueba)
-    );*/
+    const informacion = [
+        {apartado: "Agenda", pictograma: require("../../img/agenda.png"), enlace: "/Agenda"},
+        {apartado: "Chat", pictograma: require("../../img/chat.png"), enlace: "/login-ok"},
+        {apartado: "Retroalimentación", pictograma: require("../../img/retroalimentacion.png"), enlace: "/login-ok"},
+        {apartado: "Consentimiento", pictograma: require("../../img/firmar.png"), enlace: "/login-ok"},        
+    ]
 
     const style = {
         width: "auto", 
@@ -38,19 +30,20 @@ const PantallasUsuario = (props) => {
 
     const style3 = {width:"100%", paddingTop:"15px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "35% 35%", gridTemplateRows:"20vw 20vw 20vw", gridColumnGap: "40px", gridRowGap: "15px"};
 
+    const nav = useNavigate();
     
-    for(let i=0; i< 4; i++){
-        prueba.push(
-            <div style={style}>
-                <img style={style2} src={pictogramas[i]}/>
-                {apartados[i]}
+    for(let i=0; i< informacion.length; i++){
+        botones.push(
+            <div style={style} onClick={() => nav(informacion[i].enlace)}>
+                <img style={style2} src={informacion[i].pictograma}/>
+                {informacion[i].apartado}
             </div>
         );
     }
 
     return (
         <div style={style3}>
-            {prueba}
+            {botones}
         </div>
     );
 

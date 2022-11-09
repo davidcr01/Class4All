@@ -107,7 +107,7 @@ const Alumnos = ({aula}) => {
                     cookies.set("loginCookie", data);
 
 
-                nav("/");
+                nav("/pagina-principal");
             });
         }
 
