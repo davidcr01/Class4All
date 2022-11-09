@@ -5,6 +5,7 @@ import Footer from '../Layout/Footer.js';
 import PantallasUsuario from '../Layout/PantallasUsuario';
 import { isCookieSet } from '../../interfazCookies/cookies';
 import Cookies from 'universal-cookie';
+import CargandoProgress from '../Layout/CargandoProgress';
 
 export const PaginaPrincipal = () => {
   const [cargando, setCargando] = useState(true);
@@ -20,9 +21,7 @@ export const PaginaPrincipal = () => {
 
   if(cargando)
   return (
-    <div>
-      <h1>CARGANDO...</h1>
-    </div>
+    <CargandoProgress/>
   );
 
   else{

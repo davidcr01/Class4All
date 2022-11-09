@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CargandoProgress from './CargandoProgress';
 const TareaAsignada = (props) => {
 
     const [nombre, setNombre] = React.useState('');
@@ -69,7 +70,7 @@ const TareaAsignada = (props) => {
     }
 
             if(cargando){
-                return <div>Cargando...</div>
+                return <CargandoProgress/>
             }else{
                 return (
                 <div className="tarea">

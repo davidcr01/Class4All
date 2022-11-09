@@ -6,6 +6,7 @@ import { MuiBreadcrumbsGUS } from '../muibreadcrumbs';
 import PantallaGestionUsuarios from '../Layout/PantallaGestionUsuarios';
 import Cookies from 'universal-cookie';
 import { isCookieSet } from '../../interfazCookies/cookies';
+import CargandoProgress from '../Layout/CargandoProgress';
 
 export const GestionUsuarios = () => {
   const [cargando, setCargando] = useState();
@@ -23,9 +24,7 @@ export const GestionUsuarios = () => {
 
   if (cargando === true) {
     return (
-      <div>
-        <h1>CARGANDO...</h1>
-      </div>
+      <CargandoProgress/>
     )
   }
   else {

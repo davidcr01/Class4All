@@ -6,6 +6,7 @@ import { MuiBreadcrumbsCUS } from '../muibreadcrumbs';
 import FormularioNuevoUsuario from '../Layout/FormularioNuevoUsuario';
 import Cookies from 'universal-cookie';
 import { isCookieSet } from '../../interfazCookies/cookies';
+import CargandoProgress from '../Layout/CargandoProgress';
 
 export const CreacionUsuario = () => {
   const [cargando, setCargando] = useState();
@@ -21,11 +22,9 @@ export const CreacionUsuario = () => {
     });
   }, []);
 
-  if (cargando === true) {
+  if (cargando) {
     return (
-      <div>
-        <h1>CARGANDO...</h1>
-      </div>
+      <CargandoProgress/>
     )
   }
   else {

@@ -1,5 +1,7 @@
 Andrés
 
+Mejorar posicion de cargando (si da tiempo)
+
 Usar Material UI
 Arreglar fallos breadcrumbs antiguos
 Tener en cuenta los roles en el sistema
@@ -9,8 +11,6 @@ poner flechas
 arreglar css incrustado en el codigo
 
 ---------------------------------- EN DESARROLLO ----------------------------------
-PONER CARGANDO EN UN COMPONENTE APARTE JUNTO CON OTROS COMO SESION INICIADA, ETC
-Añadir animacion cargando
 
 -------------------------------------- HECHO --------------------------------------
 
@@ -21,3 +21,5 @@ Realizar una ruta por la pagina convincente
 PONER FOTOS EN EL BACKEND
 USAR API PARA DESCARGAR FOTOS
 foto por defecto a pavos que no tengan
+PONER CARGANDO EN UN COMPONENTE APARTE JUNTO CON OTROS COMO SESION INICIADA, ETC
+Añadir animacion cargando

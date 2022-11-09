@@ -3,6 +3,7 @@ import TareaSinAsignar from './TareaSinAsignar';
 import TareaAsignada from './TareaAsignada';
 import TareaRealizada from './TareaRealizada';
 import TareaNoRealizada from './TareaNoRealizada';
+import CargandoProgress from './CargandoProgress';
 
 export const Tareas = (props) => {
     const [tareas,SetTareas] =  useState([]); 
@@ -63,7 +64,7 @@ export const Tareas = (props) => {
                
             );
         })
-        : <h2>Cargando</h2>
+        : <CargandoProgress/>
         
         }
         
