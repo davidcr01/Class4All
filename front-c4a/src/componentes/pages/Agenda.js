@@ -7,7 +7,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Cookies from 'universal-cookie';
 import { isCookieSet } from '../../interfazCookies/cookies';
+import Header from '../Layout/Header.js';
+import Footer from '../Layout/Footer.js';
 import CargandoProgress from '../Layout/CargandoProgress';
+
 
 export const Agenda = () => {
 
@@ -57,43 +60,43 @@ export const Agenda = () => {
 
         if (cookies.get("loginCookie") !== undefined && cookieSet)    
         return (
-            <div className='PaginaAgenda'>
+            <><Header titulo="Agenda" /><div className='PaginaAgenda'>
                 <h1>AGENDA</h1>
-                
+
                 {/* <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/> */}
-                
-                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
-               <div className='tareaAgenda'>
-                
-                <div className='tarjetaAgenda'>
-                <Card sx={{ maxWidth: 345 }}>
-                    <CardMedia 
-                        component="img"
-                        height="230"
-                        //Cambiar el el modelo
-                        image={'http://localhost:3900/api/tareas/foto/'+tareas[curretTarea]._id}
-                        alt={tareas[curretTarea].nombre}
-                    />
-                    <CardContent>
-                        <h1>{tareas[curretTarea].nombre}</h1>
-                    </CardContent>
-                </Card>
-                </div>
-                
-        
-                {/*va con un calendario estático de Material UI y es la fecha limite */}
-                <h2>Fecha Límite: {tareas[curretTarea].fechaLimite}</h2>
-                
-                
-            </div>
 
+                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas} />
+                <div className='tareaAgenda'>
 
-                    {/* boton-> currentTarea,tareas */}
-                    <div className='botonComenzar'>
-                        <Button variant="outlined" style={{ width: '200px', height: '80px' }} >Comenzar</Button>
+                    <div className='tarjetaAgenda'>
+                        <Card sx={{ maxWidth: 345 }}>
+                            <CardMedia
+                                component="img"
+                                height="230"
+                                //Cambiar el el modelo
+                                image={'http://localhost:3900/api/tareas/foto/' + tareas[curretTarea]._id}
+                                alt={tareas[curretTarea].nombre} />
+                            <CardContent>
+                                <h1>{tareas[curretTarea].nombre}</h1>
+                            </CardContent>
+                        </Card>
                     </div>
 
+
+                    {/*va con un calendario estático de Material UI y es la fecha limite */}
+                    <h2>Fecha Límite: {tareas[curretTarea].fechaLimite}</h2>
+
+
                 </div>
+
+
+                {/* boton-> currentTarea,tareas */}
+                <div className='botonComenzar'>
+                    <Button variant="outlined" style={{ width: '200px', height: '80px' }}>Comenzar</Button>
+                </div>
+
+            </div>
+            <Footer/></>
             )
 
         else
