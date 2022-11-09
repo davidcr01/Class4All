@@ -45,8 +45,15 @@ const CerrarSesionBoton = () => {
         fontSize: "50%",  
         color: "black", 
         backgroundColor: "#F1F1F1",
-        fontSize: "100%"
+        fontSize: "90%"
     };
+
+    const imagen = {
+        width: "30%"
+    };
+
+    //imagen cerrar sesion
+    //let img = require("../../img/cerrar-sesion3.png")
 
     if(!cargando && cookies.get("loginCookie") !== undefined && logged === true){
         return (        
