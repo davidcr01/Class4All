@@ -3,15 +3,11 @@ Andrés
 Mejorar posicion de cargando (si da tiempo)
 
 Usar Material UI
-Tener en cuenta los roles en el sistema
 
 Arreglar fallos de push de React en las listas
 poner flechas
 
 ---------------------------------- EN DESARROLLO ----------------------------------
-Hacer distincion de roles
-todas las imagenes en el backend
-mirar problema boton cerrar sesion video dani
 Arreglar fallos breadcrumbs antiguos
 arreglar css incrustado en el codigo
 
@@ -26,3 +22,7 @@ USAR API PARA DESCARGAR FOTOS
 foto por defecto a pavos que no tengan
 PONER CARGANDO EN UN COMPONENTE APARTE JUNTO CON OTROS COMO SESION INICIADA, ETC
 Añadir animacion cargando
+Hacer distincion de roles
+todas las imagenes en el backend
+mirar problema boton cerrar sesion video dani
+Tener en cuenta los roles en el sistema
