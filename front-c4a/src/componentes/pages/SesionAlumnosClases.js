@@ -7,6 +7,7 @@ import { MuiBreadcrumbs } from '../muibreadcrumbs';
 import Clases from '../Layout/Clases';
 import Cookies from "universal-cookie";
 import { isCookieSet } from '../../interfazCookies/cookies';
+import CargandoProgress from '../Layout/CargandoProgress';
 
 export const SesionAlumnosClases = () => {
 
@@ -23,9 +24,7 @@ export const SesionAlumnosClases = () => {
 
   if(cargando)
     return (
-      <div>
-        <h1>CARGANDO...</h1>
-      </div>
+      <CargandoProgress/>
     )
 
     else if(cookies.get("loginCookie") !== undefined && isSet){

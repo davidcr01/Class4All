@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import img from "../../img/agenda.png"
+import CargandoProgress from './CargandoProgress';
 
 const Clases = (props) => {
     let prueba=[];
@@ -72,9 +73,7 @@ const Clases = (props) => {
 
     if(cargando)
         return (
-            <div>
-                <h1>CARGANDO...</h1>
-            </div>
+            <CargandoProgress/>
         );
     else{
 
