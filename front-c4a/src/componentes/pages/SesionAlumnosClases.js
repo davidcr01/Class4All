@@ -40,7 +40,6 @@ export const SesionAlumnosClases = () => {
     <Header titulo="Inicio De Sesión"/>
     {/* <MuiBreadcrumbsPP /> */}
     <Clases/>
-    <Footer/>
   </>)
 
 };
