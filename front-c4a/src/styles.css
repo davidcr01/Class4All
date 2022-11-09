@@ -387,8 +387,40 @@ Header{
 .tarjetaAgenda{
   width: 25%;
   grid-template-columns: 43% 43%;
+  cursor: pointer;
 }
 
 .tarjeta{
+  align-content: center;
+  margin:auto;
   display:grid;
+  align-self: center;
+
+}
+
+.tarjetaTarea{
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 40% 40%;
+
+}
+
+.tarjetaTarea2{
+  grid-template-rows: 50% 50%;
+  grid-row-gap: 5%;
+}
+
+.tarjetatarea2{
+  display: grid;
+  margin-bottom: 10%;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+}
+
+.tareaprincipal{
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
 }

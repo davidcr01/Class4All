@@ -10,6 +10,7 @@ import { isCookieSet } from '../../interfazCookies/cookies';
 import Header from '../Layout/Header.js';
 import Footer from '../Layout/Footer.js';
 import CargandoProgress from '../Layout/CargandoProgress';
+import {useNavigate} from 'react-router-dom';
 
 
 export const Agenda = () => {
@@ -22,6 +23,7 @@ export const Agenda = () => {
     const [cookieSet, setCookieSet] = useState();
     
 
+    const nav = useNavigate();
 
     const rellenarAgenda = async() => {
         let url = 'http://localhost:3900/api/tareas/usuario/'+'636a759040fbb96b82f9d6a0'/* +cookie */;
@@ -77,8 +79,8 @@ export const Agenda = () => {
 
                 <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas} />
                 <div className='tareaAgenda'>
-
-                    <div className='tarjetaAgenda'>
+                    {console.log("/mitarea/"+tareas[curretTarea]._id)}
+                    <div className='tarjetaAgenda' onClick={() => nav("/mitarea/"+tareas[curretTarea]._id)}>
                         <Card sx={{ maxWidth: 345 }}>
                             <CardMedia
                                 component="img"
