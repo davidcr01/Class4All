@@ -55,7 +55,17 @@ export const Agenda = () => {
     else{
         const cookies = new Cookies();
 
-        if (cookies.get("loginCookie") !== undefined && cookieSet)    
+        const isRoleRight = () => {
+            let res = false;
+            const infoCookie = cookies.get("loginCookie");
+      
+            if(infoCookie.rol === "Alumno")
+              res =true;
+      
+            return res;
+          }
+
+        if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())    
         return (
             <div className='PaginaAgenda'>
                 <h1>AGENDA</h1>
