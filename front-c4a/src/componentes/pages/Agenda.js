@@ -73,13 +73,10 @@ export const Agenda = () => {
         if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())    
         return (
             <><Header titulo="Agenda" /><div className='PaginaAgenda'>
-                <h1>AGENDA</h1>
-
                 {/* <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/> */}
 
                 <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas} />
                 <div className='tareaAgenda'>
-                    {console.log("/mitarea/"+tareas[curretTarea]._id)}
                     <div className='tarjetaAgenda' onClick={() => nav("/mitarea/"+tareas[curretTarea]._id)}>
                         <Card sx={{ maxWidth: 345 }}>
                             <CardMedia

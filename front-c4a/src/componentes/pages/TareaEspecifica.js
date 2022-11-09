@@ -9,7 +9,7 @@ import Cookies from 'universal-cookie';
 import { isCookieSet } from '../../interfazCookies/cookies';
 import CargandoProgress from '../Layout/CargandoProgress';
 import { useParams } from "react-router-dom"
-
+import Header from '../Layout/Header';
 export const TareaEspecifica = () => {
 
     const [tarea, setTarea] = useState(0)//indice de la estructura de tareas
@@ -21,12 +21,10 @@ export const TareaEspecifica = () => {
     const { id } = useParams();
 
     const getTarea = async () => {
-        console.log("a" + id);
         let url = 'http://localhost:3900/api/tareas/tarea/' + id/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
-            console.log(data);
             setTarea(data);
             //setCargando(false);
         } catch (error) {
@@ -53,14 +51,21 @@ export const TareaEspecifica = () => {
             <CargandoProgress />
         )
     }
-
-    else {
+    else{
         const cookies = new Cookies();
 
-        if (cookies.get("loginCookie") !== undefined && cookieSet)
+        const isRoleRight = () => {
+            let res = false;
+            const infoCookie = cookies.get("loginCookie");
+      
+            if(infoCookie.rol === "Alumno")
+              res =true;
+      
+            return res;
+          }
+        if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())
             return (
-                <div className='PaginaAgenda'>
-                    <h1>{tarea.tarea.nombre}</h1>
+                <><Header titulo={tarea.tarea.nombre} /><div className='PaginaAgenda'>
                     <div className='tareaAgenda'>
 
                         <div className='tarjetaTarea'>
@@ -110,7 +115,7 @@ export const TareaEspecifica = () => {
 
  
 
-                </div>
+                </div></>
             )
 
         else
