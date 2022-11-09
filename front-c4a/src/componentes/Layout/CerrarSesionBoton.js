@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Cookies from 'universal-cookie';
 import {useNavigate} from 'react-router-dom';
 import {isCookieSet, logoutServer} from "../../interfazCookies/cookies";
+import { fontSize } from '@mui/system';
 
 //Componente para div de cerrar sesion
 const CerrarSesionBoton = () => { 
@@ -38,11 +39,13 @@ const CerrarSesionBoton = () => {
     const style = {
         position: "absolute", 
         top: "3.3%", 
-        width: "20%", 
+        height: "4%",
+        width: "12%", 
         right:"2%", 
         fontSize: "50%",  
         color: "black", 
-        backgroundColor: "#F1F1F1"
+        backgroundColor: "#F1F1F1",
+        fontSize: "100%"
     };
 
     if(!cargando && cookies.get("loginCookie") !== undefined && logged === true){
