@@ -6,9 +6,9 @@ import { loginAlumno } from '../../interfazCookies/cookies';
 import CargandoProgress from './CargandoProgress';
 
 const Alumnos = ({aula}) => {
-    let prueba=[];
-    let apartados = ["Pepe", "Ana", "Jaimito", "Atanasia", "Andrés", "Alberto"]
-    let pictogramas = [ require("../../img/profeA.jpg"), require("../../img/profeB.jpg"), require("../../img/profeC.jpg"), require("../../img/profeD.jpg"), require("../../img/user.png"), require("../../img/user.png")]
+    //let prueba=[];
+    //let apartados = ["Pepe", "Ana", "Jaimito", "Atanasia", "Andrés", "Alberto"]
+    //let pictogramas = [ require("../../img/profeA.jpg"), require("../../img/profeB.jpg"), require("../../img/profeC.jpg"), require("../../img/profeD.jpg"), require("../../img/user.png"), require("../../img/user.png")]
     let user = require("../../img/user.png")
 
     //alert(aula)
@@ -110,8 +110,10 @@ const Alumnos = ({aula}) => {
 
         const loginUser = (id) => {
             loginAlumno(id).then((data) => {
-                if(data !== undefined)
-                    cookies.set("loginCookie", {id: data.id, sessionID: data.sessionID}, {maxAge: 86400});
+                if(data !== undefined){
+                    alert(JSON.stringify(data));
+                    cookies.set("loginCookie", {id: data.id, sessionID: data.sessionID, rol: data.rol}, {maxAge: 86400});
+                }
 
 
                 nav("/pagina-principal");

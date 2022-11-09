@@ -30,7 +30,17 @@ export const GestionUsuarios = () => {
   else {
     const cookies = new Cookies();
 
-    if (cookies.get("loginCookie") !== undefined && cookieSet)
+    const isRoleRight = () => {
+      let res = false;
+      const infoCookie = cookies.get("loginCookie");
+
+      if(infoCookie.rol === "Administrador")
+        res =true;
+
+      return res;
+    }
+
+    if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())
       return (
         <>
           <Header titulo="Gestión de Usuarios" />

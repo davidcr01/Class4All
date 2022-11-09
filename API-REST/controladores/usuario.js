@@ -101,7 +101,9 @@ const loginUsuario = (req, res) => {
     //let contra = req.params.contra;
     console.log(correo);
 
-    Usuario.find({correo: correo}).exec((error, usuario) => {
+    Usuario.find({correo: correo, rol: {$in: ["Profesor", "Administrador"]}}).exec((error, usuario) => {
+        //console.log(usuario)
+
         if (error || usuario.length === 0){
             return res.status(404).json({
                 status:"error",
@@ -112,14 +114,16 @@ const loginUsuario = (req, res) => {
         //const cookies = new Cookies();
         //console.log(usuario[0]._id.toString())
         const randID = Math.floor(Math.random() * 10000000);    //Mejorable
-        cookies.set("user"+randID, {id: usuario[0]._id, token: randID}, {path: "/", maxAge: 86400});
+        cookies.set("user"+randID, {id: usuario[0]._id, token: randID, rol: usuario[0].rol}, {path: "/", maxAge: 86400});
 
         console.log(cookies.getAll());
+
+        const usuarioData = {_id: usuario[0]._id, rol: usuario[0].rol}
 
 
         return res.status(200).json({
             status: "success",
-            usuario: usuario[0],
+            usuario: usuarioData,
             sessionID: randID
         });
     });
@@ -141,14 +145,17 @@ const loginAlumno = (req, res) => {
         //const cookies = new Cookies();
         //console.log(usuario[0]._id.toString())
         const randID = Math.floor(Math.random() * 10000000);    //Mejorable
-        cookies.set("user"+randID, {id: usuario._id, token: randID}, {path: "/", maxAge: 86400});
+        cookies.set("user"+randID, {id: usuario._id, token: randID, rol: usuario.rol}, {path: "/", maxAge: 86400});
 
         console.log(cookies.getAll());
 
+        const usuarioData = {_id: usuario._id, rol: usuario.rol}
+
+        //console.log(usuarioData);
 
         return res.status(200).json({
             status: "success",
-            usuario: usuario,
+            usuario: usuarioData,
             sessionID: randID
         });
     });
@@ -176,11 +183,12 @@ const logoutUsuario = (req, res) => {
 }
 
 const obtenerCookie = (req, res) => {
-    let sessionID = req.params.sessionID;
-    let id = req.params.userID;
+    const sessionID = req.params.sessionID;
+    const id = req.params.userID;
+    const rol = req.params.rol; 
 
 
-    if(cookies.get("user"+sessionID) === undefined || cookies.get("user"+sessionID).id !== id)
+    if(cookies.get("user"+sessionID) === undefined || cookies.get("user"+sessionID).id !== id || cookies.get("user"+sessionID).rol !== rol)
         return res.status(404).json({
             status: "error"
         });
@@ -218,7 +226,7 @@ const getAlumnos = (req, res) => {
         }
         return res.status(200).json({
             status: "success",
-            alumnos: query//query.map((profesor) => {return {clase: profesor.clase, foto: profesor.foto}})
+            alumnos: query.map((i) => {return {clase: i.clase, _id: i._id, nombre: i.nombre}})
         });
     });    
 }
