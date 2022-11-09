@@ -33,7 +33,6 @@ export const PaginaPrincipal = () => {
       <Header titulo="Página Principal"/>
       {/* <MuiBreadcrumbsPP /> */}
       <PantallasUsuario/>
-      <Footer/>
     </>)
     }
   

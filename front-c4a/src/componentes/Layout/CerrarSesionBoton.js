@@ -37,12 +37,16 @@ const CerrarSesionBoton = () => {
 
     const style = {
         position: "absolute", 
-        top: "3.3%", 
+        top: "3.3%",
+        height: "5%",
         width: "20%", 
         right:"2%", 
         fontSize: "50%",  
         color: "black", 
-        backgroundColor: "#F1F1F1"
+        backgroundColor: "#E89482",
+        borderRadius: "5px",
+        fontSize: "1em",
+        fontWeight: "bold"
     };
 
     if(!cargando && cookies.get("loginCookie") !== undefined && logged === true){

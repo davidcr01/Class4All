@@ -49,19 +49,24 @@ const Alumnos = ({aula}) => {
         borderWidth: "3px", 
         display: "grid", 
         marginBottom: "5px", 
-        fontSize: "2vw", 
+        fontSize: "2.5vw", 
         textAlign:"center", 
         padding: "3vw 0",
+        borderRadius: "35px",
+        fontWeight: "bold"
     };
 
-    const style2 = {width: "50%", 
+    const style2 = {
+        width: "50%", 
         height: "auto", 
         display: "block", 
         marginLeft: "auto",
-        marginRight: "auto"
+        marginRight: "auto",
+        borderRadius: "50%"
     };
 
-    const recuadros = {width:"100%", 
+    const recuadros = {
+        width:"100%", 
         paddingTop:"15px", 
         paddingBottom:"15px", 
         justifyContent: "center", 
@@ -74,7 +79,8 @@ const Alumnos = ({aula}) => {
         gridRowGap: "15px"
     };
 
-    const imagenUser = {alignSelf: "end", 
+    const imagenUser = {
+        alignSelf: "end", 
         width: "5%", height: "auto%", 
         display: "block", 
         marginLeft: "auto", 

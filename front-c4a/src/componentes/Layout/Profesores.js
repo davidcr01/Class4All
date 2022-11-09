@@ -59,6 +59,7 @@ const Profesores = (props) => {
         fontSize: "2vw", 
         /*textAlign:"center", podriamos descomentar este y comentar el estilo del form*/
         padding: "3vw 0",
+        borderRadius: "15%"
     };
 
     const style2 = {
@@ -80,12 +81,12 @@ const Profesores = (props) => {
     prueba.push(
         <div style={style}>
             <form style={formulario} onSubmit={handleSubmit} action="#">
-                <label htmlFor="fname">Usuario:</label><br/>
+                <label htmlFor="fname" style={{fontWeight:"bold"}}>Usuario:</label><br/>
                 <input type="text" id="fname" name="fname" onChange={handleUsername}></input><br/><br/>
-                <label htmlFor="fname">Contraseña:</label><br/>
-                <input type="text" id="fname" name="fname" onChange={handlePassword}></input>
+                <label htmlFor="fname" style={{fontWeight:"bold"}}>Contraseña:</label><br/>
+                <input type="password" id="fname" name="fname" onChange={handlePassword}></input>
                 <p>¿Ha olvidado su contraseña?</p>
-                <input type="submit" value="Entrar"></input>
+                <input className='boton-enviar' type="submit" value="Entrar"></input>
             </form>
         </div>
     );
