@@ -18,7 +18,7 @@ export const Rutas = () => {
         <BrowserRouter>
 
         <Routes>
-            <Route path="/" element={<Inicio />} />
+            <Route path="/" element={<SesionAlumnosClases />} />
             <Route path="/inicio" element={<Inicio />} />
             <Route path="/gestion-centro" element={<Gestion />} />
             <Route path="/gestion-tareas" element={<GestionTareas />} />

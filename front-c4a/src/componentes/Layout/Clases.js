@@ -92,12 +92,16 @@ const Clases = (props) => {
             )
         }
 
+        const handleClick = () =>{
+            nav("/sesion-profesores");
+        };
+
         return (
             <div style={style5}>
             <div style={style3}>
                 {res}
             </div>
-            <img style={style4} src={user}></img>
+            <img style={style4} src={user} onClick={handleClick}></img>
             </div>            
         )
     }

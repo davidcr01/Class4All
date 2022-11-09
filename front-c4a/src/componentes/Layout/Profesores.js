@@ -28,7 +28,7 @@ const Profesores = (props) => {
             if(sessionID !== undefined){
                 //alert(sessionID);
                 cookies.set("loginCookie", sessionID, {maxAge: 86400});
-                nav("/");
+                nav("/gestion-centro");
             }
         });
     }

@@ -1,8 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PantallasGestion = (props) => {
-    let prueba=[];
-    let apartados = ["Gestión de usuario", "Gestión de Tareas", "Gestión de Menús", "Comandas", "Stock", "Chat"]
+    const nav = useNavigate();
+    let botones=[];
+    const informacion = [
+        {apartado: "Gestión de usuarios", enlace: "/gestion-usuarios"},
+        {apartado: "Gestión de tareas", enlace: "/gestion-tareas"},
+        {apartado: "Gestión de menús", enlace: "/login-ok"},
+        {apartado: "Comandas", enlace: "/login-ok"},
+        {apartado: "Stock", enlace: "/login-ok"},
+        {apartado: "Chat", enlace: "/login-ok"},
+    ]
 
     const style = {
         width: "auto", 
@@ -17,26 +26,11 @@ const PantallasGestion = (props) => {
         padding: "6vw 0"
     };
     
-    /*for(let i=0; i< 6; i++){
-        prueba.push(
-            React.createElement(
-                        "div",
-                        { style: {width: "auto", backgroundColor: "#E2E2E2", borderColor: "black", borderStyle: "solid", borderWidth: "3px", display: "grid", marginBottom: "5px", fontSize: "4vw", textAlign:"center", padding: "6vw 0"} },
-                        // React.createElement(
-                        //     "img",
-                        //     { src: "https://img.asmedia.epimg.net/resizer/K8BK0UV3TAYniv5tW3DCKnG6nno=/644x362/cloudfront-eu-central-1.images.arcpublishing.com/diarioas/D56EEJ2ZXBIOFGPHEYLA4AXHVI.jpg" },
-                        //     )
-                        apartados[i]
-                        ));
-    }
-    return (
-        React.createElement("div", {style: {width:"100%", paddingTop:"15px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "40% 40%", gridTemplateRows:"18vw 18vw 18vw", gridColumnGap: "20px", gridRowGap: "15px"}}, prueba)
-    );
-    */
-    for(let i=0; i< 6; i++){
-        prueba.push(
-        <div style={style}>
-            {apartados[i]}
+
+    for(let i=0; i< informacion.length; i++){
+        botones.push(
+        <div style={style} onClick={() => nav(informacion[i].enlace)}>
+            {informacion[i].apartado}
         </div>
         );
     }
@@ -57,7 +51,7 @@ const PantallasGestion = (props) => {
 
     return(
         <div style={style2}>
-            {prueba}
+            {botones}
         </div>
     );
 

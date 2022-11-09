@@ -107,7 +107,7 @@ const Alumnos = ({aula}) => {
                     cookies.set("loginCookie", data);
 
 
-                nav("/");
+                nav("/pagina-principal");
             });
         }
 
@@ -120,13 +120,17 @@ const Alumnos = ({aula}) => {
             )
         }
 
+        const handleClick = () =>{
+            nav("/sesion-profesores");
+        };
+
         return  (
             <div style={cuerpo}>
                 <div style={recuadros}>
                     {alumnosJSX}
                 </div>
 
-                <img style={imagenUser} src={user}></img>
+                <img style={imagenUser} src={user} onClick={handleClick}></img>
             </div>
         )
     }
