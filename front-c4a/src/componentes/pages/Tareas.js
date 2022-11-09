@@ -29,14 +29,24 @@ export const Tareas = () => {
   else {
     const cookies = new Cookies();
 
-    if (cookies.get("loginCookie") !== undefined && cookieSet)  
+    const isRoleRight = () => {
+      let res = false;
+      const infoCookie = cookies.get("loginCookie");
+
+      if(infoCookie.rol === "Alumno")
+        res =true;
+
+      return res;
+    }      
+    
+    if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())  {
     return (
       <>
         <Header titulo="Tareas" />
         <PantallaTareas />
         <Footer />
       </>)  
-      
+    }
       else
       return (
         <h1>No tiene permiso para ver esta página</h1>

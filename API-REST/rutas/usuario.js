@@ -12,7 +12,7 @@ router.get("/user/:id", UsuarioController.obtenerUsuarioId);
 router.post("/userLogin/", UsuarioController.loginUsuario);
 router.post("/userLogout/", UsuarioController.logoutUsuario);
 
-router.get("/cookie/:sessionID/:userID", UsuarioController.obtenerCookie);
+router.get("/cookie/:sessionID/:userID/:rol", UsuarioController.obtenerCookie);
 
 router.post("/classLogin/", UsuarioController.loginAlumno)
 

@@ -31,7 +31,7 @@ export const logoutServer = async () => {
 export const getCookie = async () => {
     try {
         //alert("cookie cookie: "+cookies.get("loginCookie"));
-        const url = "http://localhost:3900/api/usuarios/cookie/" + cookies.get("loginCookie").sessionID+"/"+cookies.get("loginCookie").id;
+        const url = "http://localhost:3900/api/usuarios/cookie/" + cookies.get("loginCookie").sessionID+"/"+cookies.get("loginCookie").id+"/"+cookies.get("loginCookie").rol;
         console.log(url);
         const res = await fetch(url)
         const data = await res.json();
@@ -50,7 +50,7 @@ export const getCookie = async () => {
 
 
 /**
- * Comprueba si la cookie esta tambien en el servidor
+ * Comprueba si la cookie esta tambien en el servidor y no ha sido modificada de ninguna forma
  * @returns true en caso de tener el servidor la cookie, y false en otro caso
  */
 export const isCookieSet = async () => {
@@ -81,7 +81,9 @@ export const loginUser = async (correo) => {
         const data = await res.json();
 
         if(data.status === "success")
-            return {id: data.usuario._id, sessionID: data.sessionID};
+            return {id: data.usuario._id, sessionID: data.sessionID, rol: data.usuario.rol};
+
+            //return data;//{id: data.usuario._id, sessionID: data.sessionID};
         else
             return undefined;
 
@@ -110,8 +112,12 @@ export const loginUser = async (correo) => {
 
         const data = await res.json();
 
-        if(data.status === "success")
-            return {id: data.usuario._id, sessionID: data.sessionID};
+        if(data.status === "success"){
+            //alert("server local: "+data.rol)
+            //const resData = {id: data.usuario._id, sessionID: data.sessionID, rol: data.rol};
+            //return data;//{id: data.usuario._id, sessionID: data.sessionID};
+            return {id: data.usuario._id, sessionID: data.sessionID, rol: data.usuario.rol};
+        }
         else
             return undefined;
 

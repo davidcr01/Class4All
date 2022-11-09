@@ -39,3 +39,33 @@ export const Rutas = () => {
         </BrowserRouter>
     );
 }
+
+/**
+ * Alumnos:
+ * inicio
+ * pagina-principal
+ * Agenda
+ * tareas
+ * mitarea
+ * 
+ * NO VA A TENER ACCESO A:
+ * gestion-centro
+ * gestion-tareas
+ * gestion-usuarios
+ * crear-usuario
+ * 
+ * 
+ * 
+ * ADMIN:
+ * TODO libre POR DEFECTO, excepto pantallas alumnos
+ * 
+ * PROFESOR:
+ * TEMA TAREAS NADA MAS, lo demas bloqueado (incluyendo alumno)
+ * 
+ * 
+ * Profesores y admins NO TIENEN ACCESO A:
+ * pagina-principal
+ * Agenda
+ * tareas
+ * mitarea
+ */

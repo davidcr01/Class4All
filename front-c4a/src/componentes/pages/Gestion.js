@@ -31,7 +31,16 @@ export const Gestion = () => {
   else {
     const cookies = new Cookies();
 
-    if (cookies.get("loginCookie") !== undefined && cookieSet)
+    const rightRole = () => {
+      let res = false;
+      const cookieInfo = cookies.get("loginCookie");
+      if(cookieInfo.rol === "Administrador" || cookieInfo.rol === "Profesor")
+        res=true;
+
+        return res;
+    }
+
+    if (cookies.get("loginCookie") !== undefined && cookieSet && rightRole())
       return (
         <>
           <Header titulo="Gestión del centro" />
