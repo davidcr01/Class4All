@@ -86,7 +86,7 @@ const Clases = (props) => {
         for(let i=0; i<aulas.length; i++){
             res.push(
                 <div style={style} onClick={() => goToClassmates(aulas[i].clase)}>
-                    <img style={style2} src={"../img/"+aulas[i].foto}/>
+                    <img style={style2} src={"http://localhost:3900/api/usuarios/foto/"+aulas[i].id}/>
                     {"Aula "+aulas[i].clase}
                 </div>                
             )

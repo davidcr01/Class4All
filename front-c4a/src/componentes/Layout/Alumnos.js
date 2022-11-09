@@ -115,7 +115,7 @@ const Alumnos = ({aula}) => {
             //alert(alumnos[i]._id);
             alumnosJSX.push(
                 <div style={style} onClick={()=> loginUser(alumnos[i]._id)}>
-                    <img style={style2} src={"../img/"+alumnos[i].foto}/>
+                    <img style={style2} src={"http://localhost:3900/api/usuarios/foto/"+alumnos[i]._id}/>
                     {alumnos[i].nombre}
                 </div>                
             )

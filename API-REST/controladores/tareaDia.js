@@ -237,7 +237,7 @@ const obtenerFoto = (req, res) => {
                 return res.sendFile(path.resolve(urlFisica));
             }else{
                 
-               return res.sendFile(path.resolve("../public/fotos/default.jpg"));
+               return res.sendFile(path.resolve("./public/fotos/default.jpg"));
             }
         })
         /* return res.status(200).json({

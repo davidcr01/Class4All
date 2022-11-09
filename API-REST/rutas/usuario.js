@@ -19,4 +19,6 @@ router.post("/classLogin/", UsuarioController.loginAlumno)
 router.get("/aulas/", UsuarioController.getAulas);
 router.get("/alumnos/:aula", UsuarioController.getAlumnos)
 
+router.get("/foto/:id", UsuarioController.obtenerFoto);
+
 module.exports = router;
