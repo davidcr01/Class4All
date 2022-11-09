@@ -59,11 +59,11 @@ const TareaRealizada = (props) => {
     } else {
         return (
             <div className="tarea">
-                <div>Tarea: {props.tarea.nombre}</div>
-                <div>Fecha: {props.tarea.fecha}</div>
-                <div>Usuario: {nombre}</div>
-                <div>Realizado: Si</div>
-                <div>Confirmar: <input type="checkbox"></input></div>
+                <div><label className='label-tareas'>Tarea:</label> {props.tarea.nombre}</div>
+                <div><label className='label-tareas'>Fecha:</label> {props.tarea.fecha}</div>
+                <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
+                <div><label className='label-tareas'>Realizado:</label> Si</div>
+                <div><label className='label-tareas'>Confirmar:</label> <input type="checkbox"></input></div>
                 <div className="botonesTareasReal">
                     <div className="botonTareasReal">BIEN</div>
                     <div className="botonTareasReal">MAL</div>

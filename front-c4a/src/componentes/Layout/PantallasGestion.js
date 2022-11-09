@@ -22,9 +22,12 @@ const PantallasGestion = (props) => {
         borderWidth: "3px", 
         display: "grid", 
         marginBottom: "5px", 
-        fontSize: "4vw", 
+        fontSize: "3vw", 
         textAlign:"center", 
-        padding: "6vw 0"
+        paddingTop: "4vw",
+        paddingBottom: "3vw",
+        fontWeight: "bold",
+        borderRadius: "25px"
     };
     
     const cookies = new Cookies();
@@ -57,8 +60,8 @@ const PantallasGestion = (props) => {
         display: "grid", 
         marginRight:"auto", 
         marginLeft:"auto", 
-        gridTemplateColumns: "40% 40%", 
-        gridTemplateRows:"18vw 18vw 18vw", 
+        gridTemplateColumns: "30% 30%", 
+        gridTemplateRows:"13vw 13vw 13vw", 
         gridColumnGap: "20px", 
         gridRowGap: "15px"
     };

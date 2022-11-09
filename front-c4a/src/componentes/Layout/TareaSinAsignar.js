@@ -74,9 +74,9 @@ const TareaSinAsignar = (props) => {
     } else {
         return (
             <div className="tarea">
-                <div>Tarea: {props.tarea.nombre}</div>
-                <div>Fecha: {props.tarea.fechaAsignada}</div>
-                <div>Usuario: <form onSubmit={asignarTarea}><select id="user" name="Usuario">
+                <div><label className='label-tareas'>Tarea:</label> {props.tarea.nombre}</div>
+                <div><label className='label-tareas'>Fecha:</label> {props.tarea.fechaAsignada}</div>
+                <div><label className='label-tareas'>Usuario:</label> <form onSubmit={asignarTarea}><select id="user" name="Usuario">
                     {usuarios.map(u => {
                         return (
                             <option value={u._id}>{u.nombre}</option>

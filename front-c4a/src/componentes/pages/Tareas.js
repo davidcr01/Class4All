@@ -44,7 +44,6 @@ export const Tareas = () => {
       <>
         <Header titulo="Tareas" />
         <PantallaTareas />
-        <Footer />
       </>)  
     }
       else

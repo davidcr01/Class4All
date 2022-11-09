@@ -38,14 +38,17 @@ const CerrarSesionBoton = () => {
 
     const style = {
         position: "absolute", 
-        top: "3.3%", 
-        height: "4%",
-        width: "12%", 
+
+        top: "3.3%",
+        height: "5%",
+        width: "20%", 
         right:"2%", 
         fontSize: "50%",  
         color: "black", 
-        backgroundColor: "#F1F1F1",
-        fontSize: "90%"
+        backgroundColor: "#E89482",
+        borderRadius: "5px",
+        fontSize: "1em",
+        fontWeight: "bold"
     };
 
     const imagen = {
