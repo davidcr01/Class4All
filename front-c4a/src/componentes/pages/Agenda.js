@@ -73,6 +73,7 @@ export const Agenda = () => {
                             <CardMedia
                                 component="img"
                                 height="230"
+                                style={{display: 'unset', width: 'auto'}}
                                 //Cambiar el el modelo
                                 image={'http://localhost:3900/api/tareas/foto/' + tareas[curretTarea]._id}
                                 alt={tareas[curretTarea].nombre} />
