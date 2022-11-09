@@ -63,7 +63,9 @@ const Clases = (props) => {
 
         getAulas().then((data)=>{
             setCargando(false);
-            setAulas(data.aulas);
+
+            if(data.status === "success")
+                setAulas(data.aulas);
         })
     }, []);
 
