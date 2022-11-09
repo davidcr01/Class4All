@@ -6,6 +6,7 @@ import { MuiBreadcrumbs } from '../muibreadcrumbs';
 import PantallasGestion from '../Layout/PantallasGestion';
 import { isCookieSet } from '../../interfazCookies/cookies';
 import Cookies from 'universal-cookie';
+import CargandoProgress from '../Layout/CargandoProgress';
 
 export const Gestion = () => {
   const [cargando, setCargando] = useState();
@@ -22,11 +23,9 @@ export const Gestion = () => {
   }, []);
 
 
-  if (cargando === true) {
+  if (cargando) {
     return (
-      <div>
-        <h1>CARGANDO...</h1>
-      </div>
+      <CargandoProgress/>
     )
   }
   else {

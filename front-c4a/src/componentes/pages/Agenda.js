@@ -7,6 +7,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Cookies from 'universal-cookie';
 import { isCookieSet } from '../../interfazCookies/cookies';
+import CargandoProgress from '../Layout/CargandoProgress';
 
 export const Agenda = () => {
 
@@ -47,9 +48,7 @@ export const Agenda = () => {
 
     if (cargando) {
         return (
-            <div>
-                <h1>Cargando...</h1>
-            </div>
+            <CargandoProgress/>
         )
     }
 

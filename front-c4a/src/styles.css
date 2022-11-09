@@ -344,3 +344,9 @@ Header{
 
   
 }
+
+
+.posicion-circular{
+  display: flex;
+  justify-content: center;
+}

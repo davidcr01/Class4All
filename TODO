@@ -1,17 +1,14 @@
 Andrés
 
-Añadir animacion cargando
+Mejorar posicion de cargando (si da tiempo)
+
 Usar Material UI
 Arreglar fallos breadcrumbs antiguos
 Tener en cuenta los roles en el sistema
 
-USAR API PARA DESCARGAR FOTOS
 Arreglar fallos de push de React en las listas
-PONER CARGANDO EN UN COMPONENTE APARTE JUNTO CON OTROS COMO SESION INICIADA, ETC
 poner flechas
 arreglar css incrustado en el codigo
-foto por defecto a pavos que no tengan
-PONER FOTOS EN EL BACKEND
 
 ---------------------------------- EN DESARROLLO ----------------------------------
 
@@ -21,3 +18,8 @@ COMPROBAR EN LAS PAGINAS RESTRINGIDAS QUE EL ID ES EL MISMO, PARA EVITAR FALSIFI
 Añadir mas atributos a las cookies
 poner enlace al boton de sesion-alumnos-clases para los profes
 Realizar una ruta por la pagina convincente
+PONER FOTOS EN EL BACKEND
+USAR API PARA DESCARGAR FOTOS
+foto por defecto a pavos que no tengan
+PONER CARGANDO EN UN COMPONENTE APARTE JUNTO CON OTROS COMO SESION INICIADA, ETC
+Añadir animacion cargando
