@@ -23,11 +23,11 @@ const Profesores = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        loginUser(username).then((sessionID)=>{
-            alert("resultado: "+sessionID);
-            if(sessionID !== undefined){
+        loginUser(username).then((response)=>{
+            alert("resultado: "+JSON.stringify(response));
+            if(response !== undefined){
                 //alert(sessionID);
-                cookies.set("loginCookie", sessionID, {maxAge: 86400});
+                cookies.set("loginCookie", {id: response.id, sessionID: response.sessionID}, {maxAge: 86400});
                 nav("/gestion-centro");
             }
         });

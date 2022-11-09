@@ -111,7 +111,7 @@ const loginUsuario = (req, res) => {
         //const cookies = new Cookies();
         //console.log(usuario[0]._id.toString())
         const randID = Math.floor(Math.random() * 10000000);    //Mejorable
-        cookies.set("user"+randID, randID, {path: "/", maxAge: 86400});
+        cookies.set("user"+randID, {id: usuario[0]._id, token: randID}, {path: "/", maxAge: 86400});
 
         console.log(cookies.getAll());
 
@@ -127,7 +127,7 @@ const loginUsuario = (req, res) => {
 const loginAlumno = (req, res) => {
     let id = req.body.id;
     //let contra = req.params.contra;
-    console.log(req.body);
+    //console.log("identificador alumnos: "+ req.body.id);
 
     Usuario.findById(id).exec((error, usuario) => {
         if (error || !usuario){
@@ -140,14 +140,14 @@ const loginAlumno = (req, res) => {
         //const cookies = new Cookies();
         //console.log(usuario[0]._id.toString())
         const randID = Math.floor(Math.random() * 10000000);    //Mejorable
-        cookies.set("user"+randID, randID, {path: "/", maxAge: 86400});
+        cookies.set("user"+randID, {id: usuario._id, token: randID}, {path: "/", maxAge: 86400});
 
         console.log(cookies.getAll());
 
 
         return res.status(200).json({
             status: "success",
-            usuario: usuario[0],
+            usuario: usuario,
             sessionID: randID
         });
     });
@@ -175,14 +175,11 @@ const logoutUsuario = (req, res) => {
 }
 
 const obtenerCookie = (req, res) => {
-    let id = req.params.id;
-
-    //const cookies = new Cookies();
-    //console.log("id: "+id);
-    //console.log(cookies.getAll());
+    let sessionID = req.params.sessionID;
+    let id = req.params.userID;
 
 
-    if(cookies.get("user"+id) === undefined)
+    if(cookies.get("user"+sessionID) === undefined || cookies.get("user"+sessionID).id !== id)
         return res.status(404).json({
             status: "error"
         });
