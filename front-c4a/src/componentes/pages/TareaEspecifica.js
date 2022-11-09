@@ -14,15 +14,15 @@ export const TareaEspecifica = () => {
 
     const [tarea, setTarea] = useState(0)//indice de la estructura de tareas
 
-    const [cargando,setCargando] = useState(true);
+    const [cargando, setCargando] = useState(true);
     //const [fotos,setFotos] = useState([]);//estructura de fotos
     const [cookieSet, setCookieSet] = useState();
-    
+
     const { id } = useParams();
 
-    const getTarea = async() => {
+    const getTarea = async () => {
         console.log("a" + id);
-        let url = 'http://localhost:3900/api/tareas/tarea/'+id/* +cookie */;
+        let url = 'http://localhost:3900/api/tareas/tarea/' + id/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
@@ -50,70 +50,65 @@ export const TareaEspecifica = () => {
 
     if (cargando) {
         return (
-            <CargandoProgress/>
+            <CargandoProgress />
         )
     }
 
-    else{
+    else {
         const cookies = new Cookies();
 
-        if (cookies.get("loginCookie") !== undefined && cookieSet)    
-        return (
-            <div className='PaginaAgenda'>
-                <h1>{tarea.tarea.nombre}</h1>
-               <div className='tareaAgenda'>
-                
-                <div className='tarjetaAgenda'>
-                <Card className="tarjeta" sx={{ maxWidth: 345 }}>
-                    <CardMedia 
-                        component="img"
-                        height="230"
-                        //Cambiar el el modelo
-                        image={'http://localhost:3900/api/tareas/foto/'+tarea.tarea._id}
-                        alt={tarea.nombre}
-                    />
-                    <CardContent>
-                        <h1>{tarea.nombre}</h1>
-                    </CardContent>
-                </Card>
-                <div className='tarjeta'><Card sx={{ maxWidth: 345 }}>
-                    <CardMedia 
-                        component="img"
-                        height="230"
-                        //Cambiar el el modelo
-                        image={require("../../img/done.png")}
-                        alt={tarea.nombre}
-                    />
-                    <CardContent>
-                        <h1>{tarea.nombre}</h1>
-                    </CardContent>
-                </Card>
-                <Card sx={{ maxWidth: 345 }}>
-                    <CardMedia 
-                        component="img"
-                        height="230"
-                        //Cambiar el el modelo
-                        image={require("../../img/instrucciones.png")}
-                        alt={tarea.nombre}
-                    />
-                    <CardContent>
-                        <h1>{tarea.nombre}</h1>
-                    </CardContent>
-                </Card></div>
-                </div>
-                
-        
-                {/*va con un calendario estático de Material UI y es la fecha limite */}
-                <h2>Fecha Límite: {tarea.tarea.fechaLimite}</h2>
-                
-                
-            </div>
+        if (cookies.get("loginCookie") !== undefined && cookieSet)
+            return (
+                <div className='PaginaAgenda'>
+                    <h1>{tarea.tarea.nombre}</h1>
+                    <div className='tareaAgenda'>
+
+                        <div className='tarjetaTarea'>
+                            <Card className="tarjeta tareaprincipal" sx={{ maxWidth: 545 }}>
+                                <CardMedia
+                                    component="img"
+                                    height="530"
+                                    width="745"
+                                    //Cambiar el el modelo
+                                    image={'http://localhost:3900/api/tareas/foto/' + tarea.tarea._id}
+                                    alt={tarea.tarea.nombre}
+                                />
+                                <CardContent>
+                                    <h1>{tarea.tarea.nombre}</h1>
+                                </CardContent>
+                            </Card>
+                            <div className="tarjeta tarjetaTarea2">
+                                <Card className="tarjetatarea2" sx={{ maxWidth: 345 }}>
+                                    <CardMedia
+                                        component="img"
+                                        height="250"
+                                        //Cambiar el el modelo
+                                        image={require("../../img/done.png")}
+                                        alt="Tarea completada"
+                                    />
+                                    <CardContent>
+                                        <h1>Tarea completada</h1>
+                                    </CardContent>
+                                </Card>
+                                <Card className="tarjetatarea2" sx={{ maxWidth: 345 }}>
+                                    <CardMedia
+                                        component="img"
+                                        height="250"
+                                        //Cambiar el el modelo
+                                        image={require("../../img/instrucciones.png")}
+                                        alt="Instrucciones"
+                                    />
+                                    <CardContent>
+                                        <h1>Instrucciones</h1>
+                                    </CardContent>
+                                </Card></div>
+                        </div>
 
 
-                    {/* boton-> currentTarea,tareas */}
-                    <div className='botonComenzar'>
-                        <Button variant="outlined" style={{ width: '200px', height: '80px' }} >Comenzar</Button>
                     </div>
+
+
+ 
 
                 </div>
             )
