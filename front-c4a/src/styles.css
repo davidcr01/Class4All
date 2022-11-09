@@ -354,7 +354,6 @@ Header{
 
 .tarjetaAgenda{
   width: 90%;
-  margin: auto;
   display:grid;
   grid-template-columns: 43% 43%;
 }
