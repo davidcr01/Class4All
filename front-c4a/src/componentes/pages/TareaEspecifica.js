@@ -8,22 +8,38 @@ import CardMedia from '@mui/material/CardMedia';
 import Cookies from 'universal-cookie';
 import { isCookieSet } from '../../interfazCookies/cookies';
 import CargandoProgress from '../Layout/CargandoProgress';
+import { useParams } from "react-router-dom"
 
-export const Agenda = () => {
+export const TareaEspecifica = () => {
 
-    const [curretTarea, setCurretTarea] = useState(0)//indice de la estructura de tareas
+    const [tarea, setTarea] = useState(0)//indice de la estructura de tareas
 
     const [cargando,setCargando] = useState(true);
-    const [tareas,setTareas] = useState([]);//estructura de tareas
     //const [fotos,setFotos] = useState([]);//estructura de fotos
     const [cookieSet, setCookieSet] = useState();
     
+    const { id } = useParams();
+
+    const getTarea = async() => {
+        console.log("a" + id);
+        let url = 'http://localhost:3900/api/tareas/tarea/'+id/* +cookie */;
+        try {
+            let res = await fetch(url);
+            let data = await res.json();
+            console.log(data);
+            setTarea(data);
+            //setCargando(false);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
         setCargando(true);
         setCookieSet(false);
         //Llamada para comprobar (quizas solo admin)
 
-        rellenarAgenda().then(() => {
+        getTarea().then(() => {
             isCookieSet().then((res) => {
                 setCargando(false);
                 setCookieSet(res);
@@ -44,31 +60,51 @@ export const Agenda = () => {
         if (cookies.get("loginCookie") !== undefined && cookieSet)    
         return (
             <div className='PaginaAgenda'>
-                <h1>AGENDA</h1>
-                
-                {/* <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/> */}
-                
-                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas}/>
+                <h1>{tarea.tarea.nombre}</h1>
                <div className='tareaAgenda'>
                 
                 <div className='tarjetaAgenda'>
+                <Card className="tarjeta" sx={{ maxWidth: 345 }}>
+                    <CardMedia 
+                        component="img"
+                        height="230"
+                        //Cambiar el el modelo
+                        image={'http://localhost:3900/api/tareas/foto/'+tarea.tarea._id}
+                        alt={tarea.nombre}
+                    />
+                    <CardContent>
+                        <h1>{tarea.nombre}</h1>
+                    </CardContent>
+                </Card>
+                <div className='tarjeta'><Card sx={{ maxWidth: 345 }}>
+                    <CardMedia 
+                        component="img"
+                        height="230"
+                        //Cambiar el el modelo
+                        image={require("../../img/done.png")}
+                        alt={tarea.nombre}
+                    />
+                    <CardContent>
+                        <h1>{tarea.nombre}</h1>
+                    </CardContent>
+                </Card>
                 <Card sx={{ maxWidth: 345 }}>
                     <CardMedia 
                         component="img"
                         height="230"
                         //Cambiar el el modelo
-                        image={'http://localhost:3900/api/tareas/foto/'+tareas[curretTarea]._id}
-                        alt={tareas[curretTarea].nombre}
+                        image={require("../../img/instrucciones.png")}
+                        alt={tarea.nombre}
                     />
                     <CardContent>
-                        <h1>{tareas[curretTarea].nombre}</h1>
+                        <h1>{tarea.nombre}</h1>
                     </CardContent>
-                </Card>
+                </Card></div>
                 </div>
                 
         
                 {/*va con un calendario estático de Material UI y es la fecha limite */}
-                <h2>Fecha Límite: {tareas[curretTarea].fechaLimite}</h2>
+                <h2>Fecha Límite: {tarea.tarea.fechaLimite}</h2>
                 
                 
             </div>
