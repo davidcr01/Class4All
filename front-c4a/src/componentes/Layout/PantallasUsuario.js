@@ -7,7 +7,7 @@ const PantallasUsuario = (props) => {
     //const pictogramas = [ require("../../img/agenda.png"), require("../../img/chat.png"), require("../../img/retroalimentacion.png"), require("../../img/firmar.png")]
     
     const informacion = [
-        {apartado: "Agenda", pictograma: require("../../img/agenda.png"), enlace: "/Agenda"},
+        {apartado: "Tareas", pictograma: require("../../img/tareas.png"), enlace: "/Tareas"},
         {apartado: "Chat", pictograma: require("../../img/chat.png"), enlace: "/login-ok"},
         {apartado: "Retroalimentación", pictograma: require("../../img/retroalimentacion.png"), enlace: "/login-ok"},
         {apartado: "Consentimiento", pictograma: require("../../img/firmar.png"), enlace: "/login-ok"},        
@@ -15,6 +15,8 @@ const PantallasUsuario = (props) => {
 
     const style = {
         width: "auto", 
+        cursor:"pointer",
+
         backgroundColor: "#E2E2E2", 
         borderColor: "black", 
         borderStyle: "solid", 
