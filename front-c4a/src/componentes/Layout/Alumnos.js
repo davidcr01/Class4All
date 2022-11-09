@@ -6,9 +6,9 @@ import { loginAlumno } from '../../interfazCookies/cookies';
 import CargandoProgress from './CargandoProgress';
 
 const Alumnos = ({aula}) => {
-    let prueba=[];
-    let apartados = ["Pepe", "Ana", "Jaimito", "Atanasia", "Andrés", "Alberto"]
-    let pictogramas = [ require("../../img/profeA.jpg"), require("../../img/profeB.jpg"), require("../../img/profeC.jpg"), require("../../img/profeD.jpg"), require("../../img/user.png"), require("../../img/user.png")]
+    //let prueba=[];
+    //let apartados = ["Pepe", "Ana", "Jaimito", "Atanasia", "Andrés", "Alberto"]
+    //let pictogramas = [ require("../../img/profeA.jpg"), require("../../img/profeB.jpg"), require("../../img/profeC.jpg"), require("../../img/profeD.jpg"), require("../../img/user.png"), require("../../img/user.png")]
     let user = require("../../img/user.png")
 
     //alert(aula)
@@ -49,19 +49,24 @@ const Alumnos = ({aula}) => {
         borderWidth: "3px", 
         display: "grid", 
         marginBottom: "5px", 
-        fontSize: "2vw", 
+        fontSize: "2.5vw", 
         textAlign:"center", 
         padding: "3vw 0",
+        borderRadius: "35px",
+        fontWeight: "bold"
     };
 
-    const style2 = {width: "50%", 
+    const style2 = {
+        width: "50%", 
         height: "auto", 
         display: "block", 
         marginLeft: "auto",
-        marginRight: "auto"
+        marginRight: "auto",
+        borderRadius: "50%"
     };
 
-    const recuadros = {width:"100%", 
+    const recuadros = {
+        width:"100%", 
         paddingTop:"15px", 
         paddingBottom:"15px", 
         justifyContent: "center", 
@@ -74,7 +79,8 @@ const Alumnos = ({aula}) => {
         gridRowGap: "15px"
     };
 
-    const imagenUser = {alignSelf: "end", 
+    const imagenUser = {
+        alignSelf: "end", 
         width: "5%", height: "auto%", 
         display: "block", 
         marginLeft: "auto", 
@@ -104,8 +110,10 @@ const Alumnos = ({aula}) => {
 
         const loginUser = (id) => {
             loginAlumno(id).then((data) => {
-                if(data !== undefined)
-                    cookies.set("loginCookie", {id: data.id, sessionID: data.sessionID}, {maxAge: 86400});
+                if(data !== undefined){
+                    alert(JSON.stringify(data));
+                    cookies.set("loginCookie", {id: data.id, sessionID: data.sessionID, rol: data.rol}, {maxAge: 86400});
+                }
 
 
                 nav("/pagina-principal");

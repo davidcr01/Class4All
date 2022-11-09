@@ -21,7 +21,8 @@ const PantallaTareas = (props) => {
         fontSize: "4vw", 
         textAlign:"center", 
         padding: "3vw 0",
-        borderRadius: "55px"
+        borderRadius: "25px",
+        fontWeight: "bold"
     };
 
     const style2 = {width: "30%", height: "auto", display: "block", marginLeft: "auto", marginRight: "auto"};

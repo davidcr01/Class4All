@@ -21,16 +21,18 @@ const PantallasUsuario = (props) => {
         borderColor: "black", 
         borderStyle: "solid", 
         borderWidth: "3px", 
-        display: "grid", 
+        display: "grid",
         marginBottom: "5px", 
-        fontSize: "4vw", 
+        fontSize: "3.5vw", 
         textAlign:"center", 
-        padding: "3vw 0"
+        padding: "2vw 0",
+        borderRadius: "25px",
+        fontWeight: "bold"
     };
 
     const style2 = {width: "30%", height: "auto", display: "block", marginLeft: "auto", marginRight: "auto"};
 
-    const style3 = {width:"100%", paddingTop:"15px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "35% 35%", gridTemplateRows:"20vw 20vw 20vw", gridColumnGap: "40px", gridRowGap: "15px"};
+    const style3 = {width:"100%", paddingTop:"15px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "35% 35%", gridTemplateRows:"20vw 20vw", gridColumnGap: "40px", gridRowGap: "15px"};
 
     const nav = useNavigate();
     

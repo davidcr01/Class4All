@@ -8,7 +8,6 @@ export const LoginOK = () => {
     <>
     <Header titulo="Login OK"/>
     <h1>Login OK</h1>
-    <Footer/>
   </>)
 };
 

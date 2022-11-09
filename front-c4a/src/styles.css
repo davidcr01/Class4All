@@ -4,6 +4,7 @@
 
 Header{
   text-align: center;
+  border: none;
   
 }
 
@@ -38,6 +39,7 @@ Header{
   padding: 0;
   width: 90%;
   margin-bottom: 5%;
+  border-radius: 5px;
 }
 
 .checkboxs{
@@ -115,6 +117,18 @@ Header{
   font-size: 18px;
   height: 50px;
   padding-top: 25px;
+  border-radius: 20px;
+}
+
+.boton-enviar{
+  background-color: lightgreen;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.label-tareas{
+  font-weight: bold;
 }
 
 .tarea{
@@ -189,6 +203,7 @@ Header{
   height: 20px;
   padding-top: 5px;
   padding-bottom: 10px;
+  border-radius: 15px;
 }
 
 #as{
@@ -251,11 +266,12 @@ Header{
 }
 
 .botoncrear{
-  background-color: rgb(196, 196, 255);
-  border-width: 1px;
+  background-color: black;
+  color: white;
+  border-width: 2px;
   border-color: black;
   border-style: solid;
-  font-size: 18px;
+  font-size: 22px;
   width: 35%;
   height: 50px;
   padding-top: 25px;
@@ -263,6 +279,8 @@ Header{
   margin: 0 auto;
   margin-top: 50px;
   text-align: center;
+  border-radius: 15px;
+  font-weight: bolder;
    
 }
 
@@ -273,16 +291,17 @@ Header{
   border-style: solid;
   font-size: 18px;
   height: auto;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   padding-left: 2%;
-  margin-top: 50px;
+  margin-top: 25px;
   text-align: left;
   margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 2%;
   display: grid;
   grid-template-columns: 60% 40%;
+  border-radius: 10px;
 }
 
 .botonesuser{
@@ -298,6 +317,19 @@ Header{
   border-style: solid;
   text-align: center;
   display:grid;
+  border-radius: 10px;
+  font-style: italic;
+}
+
+.botonuser-eliminar{
+  background-color: red;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  text-align: center;
+  display:grid;
+  border-radius: 10px;
+  font-style: italic;
 }
 
 .footer{

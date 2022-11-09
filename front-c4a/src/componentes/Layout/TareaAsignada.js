@@ -74,11 +74,11 @@ const TareaAsignada = (props) => {
             }else{
                 return (
                 <div className="tarea">
-                <div>Tarea: {props.tarea.nombre}</div>
-                <div>Fecha: {props.tarea.fechaAsignada}</div>
-                <div>Usuario: {nombre}</div>
-                <div>Realizado: No</div>
-                <div>Confirmar <input type="checkbox"></input></div>
+                <div><label className='label-tareas'>Tarea:</label> {props.tarea.nombre}</div>
+                <div><label className='label-tareas'>Fecha:</label> {props.tarea.fechaAsignada}</div>
+                <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
+                <div><label className='label-tareas'>Realizado:</label> No</div>
+                <div><label className='label-tareas'>Confirmar</label> <input type="checkbox"></input></div>
                 <form onSubmit={desasignarTarea}><input type="submit" value="Desasignar"/></form>
                 <div className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></div>
 
