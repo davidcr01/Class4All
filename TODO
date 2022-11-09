@@ -3,14 +3,14 @@ Andrés
 Mejorar posicion de cargando (si da tiempo)
 
 Usar Material UI
-Arreglar fallos breadcrumbs antiguos
 Tener en cuenta los roles en el sistema
 
 Arreglar fallos de push de React en las listas
 poner flechas
-arreglar css incrustado en el codigo
 
 ---------------------------------- EN DESARROLLO ----------------------------------
+Arreglar fallos breadcrumbs antiguos
+arreglar css incrustado en el codigo
 
 -------------------------------------- HECHO --------------------------------------
 
