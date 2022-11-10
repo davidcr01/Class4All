@@ -3,11 +3,6 @@ import {useNavigate} from 'react-router-dom';
 import CargandoProgress from './CargandoProgress';
 
 const Clases = ({aulas}) => {
-
-
-    //let prueba=[];
-    //let apartados = ["ClaseA", "ClaseB", "ClaseC", "ClaseD"]
-    //let pictogramas = [ require("../../img/profeA.jpg"), require("../../img/profeB.jpg"), require("../../img/profeC.jpg"), require("../../img/profeD.jpg")]
     let user = require("../../img/user.png")
 
     const style = {
@@ -40,31 +35,31 @@ const Clases = ({aulas}) => {
         padding: "3vw 0",
     };
 
-    //Obtener las aulas
-    //const [cargando, setCargando] = useState(true);
-
-    console.log("aulas");
-    console.log(aulas);
-    const nav = useNavigate();
-
-        const goToClassmates = (route) => {
-            nav("/sesion-alumnos", {state: {aula: route}});
-        }
-        let res = [];
-
-        for(let i=0; i<aulas.length; i++){
-            res.push(
-                <div style={style} onClick={() => goToClassmates(aulas[i].clase)}>
-                    <img style={style2} src={"http://localhost:3900/api/usuarios/foto/"+aulas[i].id}/>
-                    {"Aula "+aulas[i].clase}
-                </div>                
+        if(aulas === undefined || aulas.length === 0){
+            return (
+                <h1>NO HAY AULAS EN EL SISTEMA</h1>
             )
         }
+        else{
+            const nav = useNavigate();
 
-        const handleClick = () =>{
-            nav("/sesion-profesores");
-        };
-
+            const goToClassmates = (route) => {
+                nav("/sesion-alumnos", {state: {aula: route}});
+            }
+            let res = [];
+    
+            for(let i=0; i<aulas.length; i++){
+                res.push(
+                    <div style={style} onClick={() => goToClassmates(aulas[i].clase)}>
+                        <img style={style2} src={"http://localhost:3900/api/usuarios/foto/"+aulas[i].id}/>
+                        {"Aula "+aulas[i].clase}
+                    </div>                
+                )
+            }
+    
+            const handleClick = () =>{
+                nav("/sesion-profesores");
+            };            
         return (
             <div style={style5}>
             <div style={style3}>
@@ -73,6 +68,7 @@ const Clases = ({aulas}) => {
             <img style={style4} src={user} onClick={handleClick}></img>
             </div>            
         )
+        }
     
 }
 

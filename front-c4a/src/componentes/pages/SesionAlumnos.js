@@ -42,8 +42,6 @@ export const SesionAlumnos = (props) => {
         setAlumnos(response.alumnos);
         setCargando(false);
       })
-      
-      setCargando(false);
     });
   }, []);
 
@@ -61,11 +59,12 @@ export const SesionAlumnos = (props) => {
       
         else if(cookies.get("loginCookie") === undefined || !isSet){
           const increment = 4;
-          const alumnosVisibles = alumnos.slice(index, index+increment);
+          const alumnosVisibles = (alumnos === undefined) ? undefined : alumnos.slice(index, index+increment);
+          const alumnosLength = (alumnos === undefined) ? 0 : alumnos.length;
       return (
         <>
         <Header titulo="Inicio De Sesión"/>
-        <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={alumnos.length} increment={increment}/>
+        <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={alumnosLength} increment={increment}/>
         <Alumnos alumnos={alumnosVisibles}/>
       </>)
         }
