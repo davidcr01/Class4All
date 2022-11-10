@@ -17,7 +17,7 @@ export const FlechasPaginacionGenerico = ({currentIndex,setCurrentIndex,length, 
     }
     const paginaAdelante = () => {
         
-        if(currentIndex<length-1){
+        if(currentIndex<length-increment){
             
             setCurrentIndex(currentIndex+increment);
         }

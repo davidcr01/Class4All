@@ -16,7 +16,7 @@ export const SesionAlumnosClases = () => {
   const [cargando, setCargando] = useState(true);
   const [isSet, setIsSet] = useState(false);
   const [aulas, setAulas] = useState([]);
-  const [index, setIndex] = useState(-1);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     isCookieSet().then((res) => {
@@ -62,13 +62,14 @@ export const SesionAlumnosClases = () => {
       )      
     }
   else{
-    //alert(index);
+    const increment=4;
+    const aulasVisibles = aulas.slice(index, index+increment);
   return (
     <>
     <Header titulo="Inicio De Sesión"/>
     {/* <MuiBreadcrumbsPP /> */}
-    <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulas.length} increment={1}/>
-    <Clases aulas={aulas}/>
+    <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulas.length} increment={increment}/>
+    <Clases aulas={aulasVisibles}/>
   </>)
   }
 
