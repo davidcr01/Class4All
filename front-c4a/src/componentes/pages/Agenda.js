@@ -26,7 +26,8 @@ export const Agenda = () => {
     const nav = useNavigate();
 
     const rellenarAgenda = async() => {
-        let url = 'http://localhost:3900/api/tareas/usuario/'+'636a759040fbb96b82f9d6a0'/* +cookie */;
+        const cookies = new Cookies();
+        let url = 'http://localhost:3900/api/tareas/usuario/'+ cookies.get('loginCookie').id/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
@@ -44,8 +45,8 @@ export const Agenda = () => {
 
         rellenarAgenda().then(() => {
             isCookieSet().then((res) => {
-                setCargando(false);
                 setCookieSet(res);
+                setCargando(false);
             });
         })
     }, []);
@@ -75,7 +76,7 @@ export const Agenda = () => {
             <><Header titulo="Agenda" /><div className='PaginaAgenda'>
                 {/* <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/> */}
 
-                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas} />
+                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} totalTareas={tareas.length} />
                 <div className='tareaAgenda'>
                     <div className='tarjetaAgenda' onClick={() => nav("/mitarea/"+tareas[curretTarea]._id)}>
                         <Card sx={{ maxWidth: 345 }}>

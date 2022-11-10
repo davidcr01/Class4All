@@ -5,25 +5,6 @@ const path = require('path');
 
 const cookies = new Cookies();
 
-const prueba = (req, res) => {
-    console.log("Probando ruta");
-    return res.status(200).json({
-        mensaje: "Accion test para controlador de usuario"
-    })
-}
-
-const datosEmpresa = (req, res) => {
-    console.log("Probando ruta");
-
-    /* Devolver html */
-    //return res.status(200).send("<h1>Pagina de inicio</h1>");
-    /* Devolver json */
-    return res.status(200).send({
-        app:"Class4All",
-        nombreReal:"Paz Pegamento",
-    });
-}
-
 //const listaUsuarios = null;
 
 const crear = (req, res) => {
@@ -254,8 +235,6 @@ const obtenerFoto = (req, res) => {
 }
 
 module.exports = {
-    prueba,
-    datosEmpresa,
     crear,
     listar,
     obtenerUsuarioId,

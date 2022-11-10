@@ -5,7 +5,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 
-export const FlechasPaginacionAgenda = ({currentTarea,setCurrentTarea,tareas}) => {
+export const FlechasPaginacionAgenda = ({currentTarea,setCurrentTarea,totalTareas}) => {
 
     const paginaAtras = () => {
         
@@ -16,7 +16,7 @@ export const FlechasPaginacionAgenda = ({currentTarea,setCurrentTarea,tareas}) =
     }
     const paginaAdelante = () => {
         
-        if(currentTarea<tareas.length-1){
+        if(currentTarea<totalTareas-1){
             
             setCurrentTarea(currentTarea+1);
         }
