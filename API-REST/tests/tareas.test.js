@@ -44,7 +44,10 @@ describe('Test de tareas', () => {
     */
     
     
-
+    test('Deberíalistar todas las tareas', async () => {
+        await request(app).get('/api/tareas/lista-tareasDia').expect(200);
+    });
+    
 
     test('Debería elimiar una tarea existente', async () => {
         let tareaEliminar = await Tarea.create({
