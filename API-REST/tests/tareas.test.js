@@ -23,27 +23,11 @@ afterEach((done) => {
 const app = crearServidor();
 
 describe('Test de tareas', () => {
-
-    /*
-    test('Debería crear una nueva tarea', async () => {
-        
-        await request(app).post('/api/tareas/crear-tareaDia').send({
-            nombre: "nombre",
-            descripcion: "descripcion",
-            tipoInstrucciones: "texto",
-            instruccionTexto: "instrccionTexto"
-        }).expect(200).then(async (response) => {
-            expect(response.body.status).toBe('success');
-          //  expect(tareaCrear.tarea).toBe(tareaGuardada);
-        });
-    });
-
-    test('Debería listar todas las tareas', async () => {
+    
+    
+    test('Deberíalistar todas las tareas', async () => {
         await request(app).get('/api/tareas/lista-tareasDia').expect(200);
     });
-    */
-    
-    
 
 
     test('Debería elimiar una tarea existente', async () => {
@@ -126,6 +110,67 @@ describe('Test de tareas', () => {
 
             expect(userAsigned).toBe(null);
             expect(tareaTest.estado).toBe('sinAsignar');
+           
+        });
+    });
+
+    test('Debería sacar la foto de la tarea', async () => {
+        let tareaTest = await Tarea.create({
+            nombre: "test",
+            descripcion: "test",
+            tipoInstrucciones: "texto",
+            instruccionTexto: "test",
+        });
+
+        await request(app).get('/api/tareas/foto/'+ tareaTest._id).expect(200).then(async (response) => {
+           expect(response.headers['content-type']).toBe('image/jpeg');
+           
+        });
+    });
+
+    test('Debería obtener la tarea por su id', async () => {
+        let tareaTest = await Tarea.create({
+            nombre: "test",
+            descripcion: "test",
+            tipoInstrucciones: "texto",
+            instruccionTexto: "test",
+        });
+
+        await request(app).get('/api/tareas/tarea/'+ tareaTest._id).expect(200).then(async (response) => {
+            expect(response.body.status).toBe('success');
+            expect(response.body.tarea.nombre).toBe("test");
+            expect(response.body.tarea.descripcion).toBe("test");
+            expect(response.body.tarea.tipoInstrucciones).toBe("texto");
+            expect(response.body.tarea.instruccionTexto).toBe("test");
+           
+        });
+    });
+
+    test('Debería obtener todas las tareas de un alumno por su id', async () => {
+        let user = await Usuario.create({
+            nombre: "test",
+            apellido1: "test",
+            apellido2: "test",
+            rol : "Alumno",
+            foto : "test",
+            clase : "test",
+        });
+
+        let tareaTest = await Tarea.create({
+            nombre: "test",
+            descripcion: "test",
+            tipoInstrucciones: "texto",
+            instruccionTexto: "test"
+        });
+
+        await request(app).put('/api/tareas/asignar-tarea/'+ tareaTest._id+'/'+user._id).expect(200);
+
+        await request(app).get('/api/tareas/usuario/'+ user._id).expect(200).then(async (response) => {
+            expect(response.body.status).toBe('success');
+            expect(response.body.tareas[0].nombre).toBe("test");
+            expect(response.body.tareas[0].descripcion).toBe("test");
+            expect(response.body.tareas[0].tipoInstrucciones).toBe("texto");
+            expect(response.body.tareas[0].instruccionTexto).toBe("test");
            
         });
     });
