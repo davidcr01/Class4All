@@ -47,7 +47,7 @@ describe('Test de tareas', () => {
     test('Deberíalistar todas las tareas', async () => {
         await request(app).get('/api/tareas/lista-tareasDia').expect(200);
     });
-    
+
 
     test('Debería elimiar una tarea existente', async () => {
         let tareaEliminar = await Tarea.create({
@@ -129,6 +129,20 @@ describe('Test de tareas', () => {
 
             expect(userAsigned).toBe(null);
             expect(tareaTest.estado).toBe('sinAsignar');
+           
+        });
+    });
+
+    test('Debería sacar la foto de la tarea', async () => {
+        let tareaTest = await Tarea.create({
+            nombre: "test",
+            descripcion: "test",
+            tipoInstrucciones: "texto",
+            instruccionTexto: "test",
+        });
+
+        await request(app).get('/api/tareas/foto/'+ tareaTest._id).expect(200).then(async (response) => {
+           expect(response.headers['content-type']).toBe('image/jpeg');
            
         });
     });
