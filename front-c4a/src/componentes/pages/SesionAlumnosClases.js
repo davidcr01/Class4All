@@ -8,6 +8,7 @@ import Clases from '../Layout/Clases';
 import Cookies from "universal-cookie";
 import { isCookieSet } from '../../interfazCookies/cookies';
 import CargandoProgress from '../Layout/CargandoProgress';
+import { FlechasPaginacionGenerico } from '../flechasPaginacionGenerico';
 
 export const SesionAlumnosClases = () => {
 
@@ -21,7 +22,7 @@ export const SesionAlumnosClases = () => {
       setCargando(false);
     });
   }, []);
-
+  
   if(cargando)
     return (
       <CargandoProgress/>
@@ -34,13 +35,20 @@ export const SesionAlumnosClases = () => {
         </div>
       )      
     }
-  else
+  else{
+    let clasesLength=undefined;
+    const getClases = (i) =>{
+      clasesLength=i;
+    }
+
   return (
     <>
     <Header titulo="Inicio De Sesión"/>
     {/* <MuiBreadcrumbsPP /> */}
-    <Clases/>
+    <FlechasPaginacionGenerico currentIndex={clasesLength} setCurrentIndex={0} length={1}/>
+    <Clases obtenerLength={getClases}/>
   </>)
+  }
 
 };
 
