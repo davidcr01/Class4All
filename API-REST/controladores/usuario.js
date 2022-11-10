@@ -21,8 +21,6 @@ const datosEmpresa = (req, res) => {
     return res.status(200).send({
         app:"Class4All",
         nombreReal:"Paz Pegamento",
-        nombreRealDeVerdad:"Retrasaap"
-
     });
 }
 
