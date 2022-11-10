@@ -21,7 +21,7 @@ const Clases = ({aulas}) => {
         fontSize: "4vw", 
         textAlign:"center", 
         padding: "3vw 0",
-        paddingBottom: "4.5em",
+        paddingBottom: "5em",
         borderRadius: "35px",
         fontWeight: "bold"
     };
