@@ -8,7 +8,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Cookies from 'universal-cookie';
 import { isCookieSet } from '../../interfazCookies/cookies';
 import Header from '../Layout/Header.js';
-import Footer from '../Layout/Footer.js';
 import CargandoProgress from '../Layout/CargandoProgress';
 import {useNavigate} from 'react-router-dom';
 

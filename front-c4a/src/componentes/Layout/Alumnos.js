@@ -1,45 +1,10 @@
-import { CircularProgress } from '@mui/material';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "universal-cookie";
 import { loginAlumno } from '../../interfazCookies/cookies';
-import CargandoProgress from './CargandoProgress';
 
-const Alumnos = ({aula}) => {
-    //let prueba=[];
-    //let apartados = ["Pepe", "Ana", "Jaimito", "Atanasia", "Andrés", "Alberto"]
-    //let pictogramas = [ require("../../img/profeA.jpg"), require("../../img/profeB.jpg"), require("../../img/profeC.jpg"), require("../../img/profeD.jpg"), require("../../img/user.png"), require("../../img/user.png")]
+const Alumnos = ({alumnos}) => {
     let user = require("../../img/user.png")
-
-    //alert(aula)
-
-    
-  const [cargando, setCargando] = useState(true);
-  const [alumnos, setAlumnos] = useState([]);
-
-  useEffect(() => {
-    const getAlumnos = async () => {
-      try {
-          const url = "http://localhost:3900/api/usuarios/alumnos/"+aula;
-          console.log(url);
-          const res = await fetch(url)
-          const data = await res.json();
-  
-          return data;
-          
-      } catch (error) {
-          console.log(error);
-  
-          return undefined;
-      }        
-  }    
-
-    getAlumnos().then((response) => {
-      setAlumnos(response.alumnos);
-      setCargando(false);
-    })
-  }, [])
-
 
     const style = {
         width: "auto", 
@@ -73,7 +38,7 @@ const Alumnos = ({aula}) => {
         display: "grid", 
         marginRight:"auto", 
         marginLeft:"auto", 
-        gridTemplateColumns: "25% 25% 25%", 
+        gridTemplateColumns: "25% 25%", 
         gridTemplateRows:"20vw 20vw", 
         gridColumnGap: "40px", 
         gridRowGap: "15px"
@@ -94,11 +59,7 @@ const Alumnos = ({aula}) => {
 
     const nav = useNavigate();
 
-    if(cargando)
-    return (
-        <CargandoProgress/>
-    )
-    else if(alumnos !== undefined) {
+    if(alumnos !== undefined) {
         let alumnosJSX = []
         const cookies = new Cookies();
 
@@ -115,7 +76,6 @@ const Alumnos = ({aula}) => {
         }
 
         for(let i=0; i<alumnos.length; i++){
-            //alert(alumnos[i]._id);
             alumnosJSX.push(
                 <div style={style} onClick={()=> loginUser(alumnos[i]._id)}>
                     <img style={style2} src={"http://localhost:3900/api/usuarios/foto/"+alumnos[i]._id}/>
