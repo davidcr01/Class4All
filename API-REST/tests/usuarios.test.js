@@ -60,7 +60,7 @@ describe('Test de usuarios', () => {
             clase: "clase"
         });
 
-        await request(app).get('/api/usuarios//user/'+usuario._id).expect(200);/* .then(async (response) => {
+        await request(app).get('/api/usuarios//user/'+usuario._id).expect(200).then(async (response) => {
             expect(response.body.status).toBe('success');
             expect(response.body.usuario.nombre).toBe("nombre");
             expect(response.body.usuario.apellido1).toBe("apellido1");
@@ -68,7 +68,24 @@ describe('Test de usuarios', () => {
             expect(response.body.usuario.rol).toBe("Alumno");
             expect(response.body.usuario.foto).toBe("foto");
             expect(response.body.usuario.clase).toBe("clase");
-        }); */
+        });
     });
+
+    test('Debería enviar la foto de un usuario', async () => {
+        let usuario = await Usuario.create({
+            nombre: "nombre",
+            apellido1: "apellido1",
+            apellido2: "apellido2",
+            rol: "Alumno",
+            foto: "foto",
+            clase: "clase"
+        });
+
+        await request(app).get('/api/usuarios/foto/'+usuario._id).expect(200).then(async (response) => {
+            //expect(response.headers['Content-Type']).toBe('image/*');
+            expect(response.headers['content-type']).toBe('image/jpeg');
+        });
+    });
+    
 });
    
