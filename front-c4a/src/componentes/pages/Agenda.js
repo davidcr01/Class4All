@@ -76,7 +76,7 @@ export const Agenda = () => {
             <><Header titulo="Agenda" /><div className='PaginaAgenda'>
                 {/* <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/> */}
 
-                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} tareas={tareas} />
+                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} totalTareas={tareas.length} />
                 <div className='tareaAgenda'>
                     <div className='tarjetaAgenda' onClick={() => nav("/mitarea/"+tareas[curretTarea]._id)}>
                         <Card sx={{ maxWidth: 345 }}>
