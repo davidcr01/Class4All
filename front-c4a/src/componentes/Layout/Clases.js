@@ -29,7 +29,7 @@ const Clases = (props) => {
 
     const style3 = {width:"100%", paddingTop:"10px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "35% 35%", gridTemplateRows:"20vw 20vw", gridColumnGap: "40px", gridRowGap: "15px"};
 
-    const style4 = {alignSelf: "end", width: "5%", height: "auto%", display: "block", marginLeft: "auto", marginRight: "5%", marginBottom: "2%"};
+    const style4 = {position: "absolute", width: "10%", height: "auto%", bottom: "2%", right: "2%"};
 
     const style5 = {
         width: "auto", 

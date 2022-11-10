@@ -79,14 +79,8 @@ const Alumnos = ({aula}) => {
         gridRowGap: "15px"
     };
 
-    const imagenUser = {
-        alignSelf: "end", 
-        width: "5%", height: "auto%", 
-        display: "block", 
-        marginLeft: "auto", 
-        marginRight: "5%", 
-        marginBottom: "2%"
-    };
+    const imagenUser = {position: "absolute", width: "10%", height: "auto%", bottom: "2%", right: "2%"};
+
 
     const cuerpo = {
         width: "auto", 
