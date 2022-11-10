@@ -26,7 +26,8 @@ export const Agenda = () => {
     const nav = useNavigate();
 
     const rellenarAgenda = async() => {
-        let url = 'http://localhost:3900/api/tareas/usuario/'+'636a759040fbb96b82f9d6a0'/* +cookie */;
+        const cookies = new Cookies();
+        let url = 'http://localhost:3900/api/tareas/usuario/'+ cookies.get('loginCookie').id/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
@@ -44,8 +45,8 @@ export const Agenda = () => {
 
         rellenarAgenda().then(() => {
             isCookieSet().then((res) => {
-                setCargando(false);
                 setCookieSet(res);
+                setCargando(false);
             });
         })
     }, []);
