@@ -2,13 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import CargandoProgress from './CargandoProgress';
 
-const Clases = ({func}) => {
-    func("asdsd");
+const Clases = ({aulas}) => {
 
 
-    let prueba=[];
-    let apartados = ["ClaseA", "ClaseB", "ClaseC", "ClaseD"]
-    let pictogramas = [ require("../../img/profeA.jpg"), require("../../img/profeB.jpg"), require("../../img/profeC.jpg"), require("../../img/profeD.jpg")]
+    //let prueba=[];
+    //let apartados = ["ClaseA", "ClaseB", "ClaseC", "ClaseD"]
+    //let pictogramas = [ require("../../img/profeA.jpg"), require("../../img/profeB.jpg"), require("../../img/profeC.jpg"), require("../../img/profeD.jpg")]
     let user = require("../../img/user.png")
 
     const style = {
@@ -42,47 +41,11 @@ const Clases = ({func}) => {
     };
 
     //Obtener las aulas
-    const [aulas, setAulas] = useState([]);
-    const [cargando, setCargando] = useState(true);
-
-    useEffect(() =>{
-        const getAulas = async () => {
-            try {
-                //alert("cookie cookie: "+cookies.get("loginCookie"));
-                const url = "http://localhost:3900/api/usuarios/aulas/";
-                console.log(url);
-                const res = await fetch(url)
-                const data = await res.json();
-        
-                //console.log("datos")
-                //console.log(data);
-        
-                return data;
-                
-            } catch (error) {
-                console.log(error);
-        
-                return undefined;
-            }              
-        }
-
-        getAulas().then((data)=>{
-            setCargando(false);
-
-            if(data.status === "success")
-                setAulas(data.aulas);
-        })
-    }, []);
+    //const [cargando, setCargando] = useState(true);
 
     console.log("aulas");
     console.log(aulas);
     const nav = useNavigate();
-
-    if(cargando)
-        return (
-            <CargandoProgress/>
-        );
-    else{
 
         const goToClassmates = (route) => {
             nav("/sesion-alumnos", {state: {aula: route}});
@@ -110,7 +73,7 @@ const Clases = ({func}) => {
             <img style={style4} src={user} onClick={handleClick}></img>
             </div>            
         )
-    }
+    
 }
 
 export default Clases;

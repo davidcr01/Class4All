@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 
 export const FlechasPaginacionGenerico = ({currentIndex,setCurrentIndex,length, increment}) => {
-    alert(currentIndex);
+    //alert(currentIndex);
 
     const paginaAtras = () => {
         

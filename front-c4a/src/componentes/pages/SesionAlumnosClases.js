@@ -15,11 +15,37 @@ export const SesionAlumnosClases = () => {
   const cookies = new Cookies();
   const [cargando, setCargando] = useState(true);
   const [isSet, setIsSet] = useState(false);
+  const [aulas, setAulas] = useState([]);
+  const [index, setIndex] = useState(-1);
 
   useEffect(() => {
     isCookieSet().then((res) => {
       setIsSet(res);
       setCargando(false);
+
+      const getAulas = async () => {
+        try {
+            //alert("cookie cookie: "+cookies.get("loginCookie"));
+            const url = "http://localhost:3900/api/usuarios/aulas/";
+            console.log(url);
+            const res = await fetch(url)
+            const data = await res.json();
+    
+            return data;
+            
+        } catch (error) {
+            console.log(error);
+    
+            return undefined;
+        }              
+    }
+
+    getAulas().then((data)=>{
+        setCargando(false);
+
+        if(data.status === "success")
+            setAulas(data.aulas);
+    })      
     });
   }, []);
   
@@ -36,17 +62,13 @@ export const SesionAlumnosClases = () => {
       )      
     }
   else{
-    let clasesLength=undefined;
-    const getClases = (i) =>{
-      clasesLength=i;
-    }
-
+    //alert(index);
   return (
     <>
     <Header titulo="Inicio De Sesión"/>
     {/* <MuiBreadcrumbsPP /> */}
-    <FlechasPaginacionGenerico currentIndex={clasesLength} setCurrentIndex={0} length={1}/>
-    <Clases obtenerLength={getClases}/>
+    <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulas.length} increment={1}/>
+    <Clases aulas={aulas}/>
   </>)
   }
 
