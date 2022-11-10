@@ -49,5 +49,26 @@ describe('Test de usuarios', () => {
     test('Debería mostrar todos los usuario', async () => {
         await request(app).get('/api/usuarios/listar-usuarios').expect(200);
     });
+
+    test('Debería mostrar un usuario por su id', async () => {
+        let usuario = await Usuario.create({
+            nombre: "nombre",
+            apellido1: "apellido1",
+            apellido2: "apellido2",
+            rol: "Alumno",
+            foto: "foto",
+            clase: "clase"
+        });
+
+        await request(app).get('/api/usuarios//user/'+usuario._id).expect(200);/* .then(async (response) => {
+            expect(response.body.status).toBe('success');
+            expect(response.body.usuario.nombre).toBe("nombre");
+            expect(response.body.usuario.apellido1).toBe("apellido1");
+            expect(response.body.usuario.apellido2).toBe("apellido2");
+            expect(response.body.usuario.rol).toBe("Alumno");
+            expect(response.body.usuario.foto).toBe("foto");
+            expect(response.body.usuario.clase).toBe("clase");
+        }); */
+    });
 });
    
