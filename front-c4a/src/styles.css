@@ -423,3 +423,22 @@ Header{
   border-color: black;
   border-style: solid;
 }
+
+.botonParaAtras{
+  position: absolute;
+  padding: 1% 0;
+  width: 6%;
+  left: 0;
+  top: 0;
+  text-align: center;
+  background-color: #91bae0;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+}
+
+.atras{
+  position:relative;
+  width: 60%
+  
+}

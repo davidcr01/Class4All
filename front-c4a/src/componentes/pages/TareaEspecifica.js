@@ -10,6 +10,9 @@ import { isCookieSet } from '../../interfazCookies/cookies';
 import CargandoProgress from '../Layout/CargandoProgress';
 import { useParams } from "react-router-dom"
 import Header from '../Layout/Header';
+import {useNavigate} from 'react-router-dom';
+
+
 export const TareaEspecifica = () => {
 
     const [tarea, setTarea] = useState(0)//indice de la estructura de tareas
@@ -19,6 +22,7 @@ export const TareaEspecifica = () => {
     const [cookieSet, setCookieSet] = useState();
 
     const { id } = useParams();
+    const nav = useNavigate();
 
     const getTarea = async () => {
         let url = 'http://localhost:3900/api/tareas/tarea/' + id/* +cookie */;
@@ -65,7 +69,9 @@ export const TareaEspecifica = () => {
           }
         if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())
             return (
-                <><Header titulo={tarea.tarea.nombre} /><div className='PaginaAgenda'>
+                <>
+                <div onClick={() => nav("/Agenda")} className="botonParaAtras"><img className="atras" src={require("../../img/flechaatras.png")} /></div>
+                <Header titulo={tarea.tarea.nombre} /><div className='PaginaAgenda'>
                     <div className='tareaAgenda'>
 
                         <div className='tarjetaTarea'>
