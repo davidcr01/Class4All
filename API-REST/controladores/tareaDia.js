@@ -113,13 +113,14 @@ const asignarTarea = (req, res) => {
     let idAlumno = req.params.idAlumno;
 
     //actualizar tarea
-    Tarea.updateOne({_id : idTarea}, 
+    Tarea.findByIdAndUpdate({_id : idTarea}, 
                     {$set:{                             //Para actualizar valores concretos se debe usar set
                         estado : 'asignada',
                         usuarioAsignado : idAlumno,
                         fechaAsignada : Date.now()
                         }
-                    }, 
+                    },
+                    {lean: true,new:true}, 
                     (error, tareaActualizada) => {
                         if (error || !tareaActualizada) {
                             return res.status(404).json({
@@ -128,32 +129,33 @@ const asignarTarea = (req, res) => {
                             });
                         }
                         //tareaActualizada = tareaActualizada;
-        
+                        //actualizar alumno
+                        Usuario.findByIdAndUpdate({_id : idAlumno},
+                            {$push:{                            //Introduce un nuevo elemento en un array
+                                tareasAsignadas : idTarea
+                                }
+                            },
+                            {lean: true,new:true},
+                            (error, usuarioActualizado) => {
+                                if (error || !usuarioActualizado) {
+                                    return res.status(404).json({
+                                    status: "error",
+                                    mensaje: "El usuario no se ha actualizado"
+                                    });
+                                }
+                                return res.status(200).json({
+                                    status: "success",
+                                        mensaje: "Todo se ha modificado bien",
+                                        usuario : usuarioActualizado,
+                                        tarea : tareaActualizada
+                                });
+                                //usuarioActualizado = usuarioActualizado;
+                            });
                     });
 
-    //actualizar alumno
-    Usuario.updateOne({_id : idAlumno},
-                    {$push:{                            //Introduce un nuevo elemento en un array
-                        tareasAsignadas : idTarea
-                        }
-                    },
-                    {new: true},
-                    (error, usuarioActualizado) => {
-                        if (error || !usuarioActualizado) {
-                            return res.status(404).json({
-                            status: "error",
-                            mensaje: "El usuario no se ha actualizado"
-                            });
-                        }
-                        //usuarioActualizado = usuarioActualizado;
-                    });
     
-    return res.status(200).json({
-        status: "success",
-            mensaje: "Todo se ha modificado correctamete",
-            //usuario : usuarioActualizado,
-            //tarea : tareaActualizada
-    });
+    
+    
     
 };
 
@@ -161,9 +163,60 @@ const asignarTarea = (req, res) => {
 const desasignarTarea = (req, res) => {
     let idTarea = req.params.idTarea;
     
-    
-     
     Tarea.findById({_id : idTarea}, (error, tarea) => {
+        if (error || !tarea) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "La tarea no existe"
+            });
+        }
+        
+        //obtener id del usuario
+        let idAlumno = tarea.usuarioAsignado.toString();
+        
+        //Actualizar datos
+        Tarea.findByIdAndUpdate({_id : idTarea},
+            {$set:{
+                estado : 'sinAsignar',
+                usuarioAsignado : null,
+                fechaAsignada : null
+                }
+            },
+            {lean: true,new:true},
+            (error, tareaActualizada) => {
+                if (error || !tareaActualizada) {
+                    return res.status(404).json({
+                    status: "error",
+                    mensaje: "La tarea no se ha actualizado"
+                    });
+                }
+                Usuario.findByIdAndUpdate({_id : idAlumno},
+                    {$pull:{                                //Saca un elemento de un array
+                        tareasAsignadas : idTarea
+                        }
+                    },
+                    {lean: true,new:true},                            //Para que devuelva el objeto actualizado
+                    (error, usuarioActualizado) => {
+                        if (error || !usuarioActualizado) {
+                            return res.status(404).json({
+                            status: "error",
+                            mensaje: "El usuario no se ha actualizado"
+                            });
+                        }
+                        return res.status(200).json({
+                            status: "success",
+                            mensaje: "Todo se ha modificado bien",
+                            usuario : usuarioActualizado,
+                            tarea : tareaActualizada
+                        });
+                    });
+            });
+            
+        
+                
+    });
+     
+    /* Tarea.findById({_id : idTarea}, (error, tarea) => {
         if (error || !tarea) {
             return res.status(404).json({
                 status: "error",
@@ -210,7 +263,7 @@ const desasignarTarea = (req, res) => {
                 });
             });
                 
-    });
+    }); */
 
 };
 
