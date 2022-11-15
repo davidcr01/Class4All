@@ -14,21 +14,6 @@ const PantallasGestion = (props) => {
         {apartado: "Chat", enlace: "/login-ok", rol: "Profesor"},
     ]
 
-    const style = {
-        width: "auto", 
-        backgroundColor: "#E2E2E2", 
-        borderColor: "black", 
-        borderStyle: "solid", 
-        borderWidth: "3px", 
-        display: "grid", 
-        marginBottom: "5px", 
-        fontSize: "3vw", 
-        textAlign:"center", 
-        paddingTop: "4vw",
-        paddingBottom: "3vw",
-        fontWeight: "bold",
-        borderRadius: "25px"
-    };
     
     const cookies = new Cookies();
 
@@ -45,9 +30,9 @@ const PantallasGestion = (props) => {
     for(let i=0; i< informacion.length; i++){
         if(isRoleRight(i)){
             botones.push(
-            <div style={style} onClick={() => nav(informacion[i].enlace)}>
+            <button className="botonesGC" onClick={() => nav(informacion[i].enlace)}>
                 {informacion[i].apartado}
-            </div>
+            </button>
             );
         }
     }

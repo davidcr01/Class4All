@@ -122,6 +122,7 @@ Header{
 
 .boton-enviar{
   background-color: lightgreen;
+  width: 35%;
   font-weight: bold;
   border-radius: 5px;
   padding: 5px;
@@ -273,13 +274,13 @@ Header{
   font-size: 22px;
   width: 35%;
   height: 50px;
-  padding-top: 25px;
   /* Center div */
   margin: 0 auto;
   margin-top: 50px;
   text-align: center;
   border-radius: 15px;
   font-weight: bolder;
+  cursor: pointer;
    
 }
 
@@ -441,4 +442,107 @@ Header{
   position:relative;
   width: 60%
   
+}
+
+.botonesClase{
+  width: auto;
+  background-color:  #91bae0;
+  border-color:  black;
+  border-style:  solid; 
+  border-width:  3px;
+  display:  grid;
+  margin-bottom:  5px; 
+  font-size:  2.5vw; 
+  text-align: center;
+  padding: 3vw 0;
+  padding-bottom:5em;
+  border-radius:  35px;
+  font-weight:  bold;
+  cursor:  pointer;
+}
+
+.botonesAlumnos{
+  width: auto;
+  background-color:   #91bae0;
+  border-color:  black;
+  border-style:  solid; 
+  border-width:  3px;
+  display:  grid;
+  margin-bottom:  5px; 
+  font-size:  2.5vw; 
+  text-align: center;
+  padding: 3vw 0;
+  border-radius:  35px;
+  font-weight:  bold;
+  cursor:  pointer;
+}
+
+.botonesPP{
+  width:  auto;
+  cursor: pointer  ;
+  background-color:  #91bae0  ; 
+  border-color:  black  ; 
+  border-style:  solid  ; 
+  border-width:  3px  ; 
+  display:  grid  ;
+  margin-bottom:  5px  ; 
+  font-size:  3.5vw  ; 
+  text-align: center  ; 
+  padding:  2vw 0  ;
+  border-radius:  25px  ;
+  font-weight:  bold 
+}
+
+.botonesPT{
+    width:  auto;
+    cursor: pointer  ;
+    background-color:  #91bae0  ; 
+    border-color:  black  ; 
+    border-style:  solid  ; 
+    border-width:  3px  ; 
+    display:  grid  ;
+    margin-bottom:  5px  ; 
+    font-size: 4vw  ; 
+    text-align: center  ; 
+    padding:  3vw 0  ;
+    border-radius:  25px  ;
+    font-weight:  bold 
+}
+
+.botonesGC{
+  width:  auto;
+  cursor: pointer  ;
+  background-color:  #91bae0  ; 
+  border-color:  black  ; 
+  border-style:  solid  ; 
+  border-width:  3px  ; 
+  display:  grid  ;
+  margin-bottom:  5px  ; 
+  font-size: 3vw  ; 
+  text-align: center  ; 
+  padding-top: 4vw;
+  padding-bottom: 3vw;
+    border-radius:  25px  ;
+  font-weight:  bold 
+}
+
+
+.botonesAlumnos:hover{
+  background-color: #E2E2E2;
+}
+
+.botonesGC:hover{
+  background-color: #E2E2E2;
+}
+
+.botonesClase:hover{
+  background-color: #E2E2E2;
+}
+
+
+.botonesPP:hover{
+  background-color: #E2E2E2;
+}
+.botonesPT:hover{
+  background-color: #E2E2E2;
 }

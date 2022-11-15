@@ -8,7 +8,7 @@ const ListaUsuarios = (props) => {
 
         return (
             <div className='ListaTareas'>
-                <div className="botoncrear" onClick={() => nav("/crear-usuario")}>Crear usuario</div>
+                <button className="botoncrear" onClick={() => nav("/crear-usuario")}>Crear usuario</button>
                 <Usuarios/>
             </div>
 

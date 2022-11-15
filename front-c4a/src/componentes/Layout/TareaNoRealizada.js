@@ -14,7 +14,6 @@ const TareaNoRealizada = (props) => {
 
     const eliminarTarea = (event) => {
         event.preventDefault();
-        console.log("asdasd");
         const url = "http://localhost:3900/api/tareas/eliminar-tareaDia/" + props.tarea._id;
 
         fetch(url, {
@@ -35,17 +34,12 @@ const TareaNoRealizada = (props) => {
     const getUser = async () => {
         try {
             const url = "http://localhost:3900/api/usuarios/user/" + props.tarea.usuarioAsignado
-            console.log(url);
             const res = await fetch(url)
             const data = await res.json();
 
-            console.log(data);
 
             setNombre(data.usuario.nombre);
             setCargando(false);
-
-            console.log(nombre);
-            console.log(props.tarea.usuarioAsignado);
 
         } catch (error) {
             console.log(error);

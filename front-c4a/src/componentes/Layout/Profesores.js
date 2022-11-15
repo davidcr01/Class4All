@@ -31,7 +31,7 @@ const Profesores = (props) => {
             }
         });
     }
-    const style4 = {position: "absolute", width: "10%", height: "auto%", bottom: "40%", right: "2%"};
+    const style4 = {position: "absolute", cursor: "pointer", width: "10%", height: "auto%", bottom: "40%", right: "2%"};
 let user = require("../../img/user.png")
     const handleClick = () =>{
         nav("/sesion-alumnos-clases");

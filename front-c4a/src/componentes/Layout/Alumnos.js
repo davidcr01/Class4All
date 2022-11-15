@@ -6,20 +6,6 @@ import { loginAlumno } from '../../interfazCookies/cookies';
 const Alumnos = ({alumnos}) => {
     let user = require("../../img/user.png")
 
-    const style = {
-        width: "auto", 
-        backgroundColor: "#E2E2E2", 
-        borderColor: "black", 
-        borderStyle: "solid", 
-        borderWidth: "3px", 
-        display: "grid", 
-        marginBottom: "5px", 
-        fontSize: "2.5vw", 
-        textAlign:"center", 
-        padding: "3vw 0",
-        borderRadius: "35px",
-        fontWeight: "bold"
-    };
 
     const style2 = {
         width: "50%", 
@@ -27,7 +13,7 @@ const Alumnos = ({alumnos}) => {
         display: "block", 
         marginLeft: "auto",
         marginRight: "auto",
-        borderRadius: "50%"
+        borderRadius: "50%",
     };
 
     const recuadros = {
@@ -44,7 +30,7 @@ const Alumnos = ({alumnos}) => {
         gridRowGap: "15px"
     };
 
-    const imagenUser = {position: "absolute", width: "10%", height: "auto%", bottom: "2%", right: "2%"};
+    const imagenUser = {position: "absolute",  cursor: "pointer", width: "10%", height: "auto%", bottom: "2%", right: "2%"};
 
 
     const cuerpo = {
@@ -76,10 +62,10 @@ const Alumnos = ({alumnos}) => {
 
         for(let i=0; i<alumnos.length; i++){
             alumnosJSX.push(
-                <div style={style} onClick={()=> loginUser(alumnos[i]._id)}>
+                <button className="botonesAlumnos" onClick={()=> loginUser(alumnos[i]._id)}>
                     <img style={style2} src={"http://localhost:3900/api/usuarios/foto/"+alumnos[i]._id}/>
                     {alumnos[i].nombre}
-                </div>                
+                </button>                
             )
         }
 

@@ -17,8 +17,6 @@ const CerrarSesionBoton = () => {
 
 
             setLogged(res);
-
-            console.log("isSet: "+logged)
         });
     }, []);
     

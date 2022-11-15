@@ -41,10 +41,10 @@ const PantallaTareas = (props) => {
 
     for(let i=0; i< 2; i++){
         prueba.push(
-            <div style={style} onClick={() => nav(enlaces[i])}>
+            <button className='botonesPT' onClick={() => nav(enlaces[i])}>
                 <img style={style2} src={pictogramas[i]}/>
                 {apartados[i]}
-            </div>
+            </button>
             
         );
     }

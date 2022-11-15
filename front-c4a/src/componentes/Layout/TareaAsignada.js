@@ -33,7 +33,6 @@ const TareaAsignada = (props) => {
 
     const eliminarTarea = (event) => {
         event.preventDefault();
-        console.log("asdasd");
         const url = "http://localhost:3900/api/tareas/eliminar-tareaDia/" + props.tarea._id;
 
         fetch(url, {

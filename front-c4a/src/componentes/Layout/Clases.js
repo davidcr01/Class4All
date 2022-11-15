@@ -17,7 +17,8 @@ const Clases = ({aulas}) => {
         padding: "3vw 0",
         paddingBottom: "5em",
         borderRadius: "35px",
-        fontWeight: "bold"
+        fontWeight: "bold",
+        cursor: "pointer"
     };
 
     const style2 = {
@@ -43,7 +44,7 @@ const Clases = ({aulas}) => {
         gridRowGap: "15px"
     };//gridColumnGap: "40px", gridRowGap: "15px"};
 
-    const style4 = {position: "absolute", width: "10%", height: "auto%", bottom: "2%", right: "2%"};
+    const style4 = {position: "absolute", cursor: "pointer", width: "10%", height: "auto%", bottom: "2%", right: "2%"};
 
     const style5 = {
         width: "auto", 
@@ -68,10 +69,10 @@ const Clases = ({aulas}) => {
     
             for(let i=0; i<aulas.length; i++){
                 res.push(
-                    <div style={style} onClick={() => goToClassmates(aulas[i].clase)}>
+                    <button className="botonesClase" onClick={() => goToClassmates(aulas[i].clase)}>
                         <img style={style2} src={"http://localhost:3900/api/usuarios/foto/"+aulas[i].id}/>
                         {"Aula "+aulas[i].clase}
-                    </div>                
+                    </button>                
                 )
             }
     
