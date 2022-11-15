@@ -1,7 +1,6 @@
 import '../../styles.css'
 import React from 'react'
 import Header from '../Layout/Header.js';
-import Footer from '../Layout/Footer.js';
 
 export const LoginOK = () => {
   return (
@@ -10,5 +9,3 @@ export const LoginOK = () => {
     <h1>Login OK</h1>
   </>)
 };
-
-//export default Inicio;

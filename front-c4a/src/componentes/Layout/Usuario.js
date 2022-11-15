@@ -9,7 +9,8 @@ const Usuario = (props) => {
                 <div className="botonuser-eliminar" id>Eliminar</div>
                 <div className="botonuser">Ver</div>
             </div>
-        </div>)
+        </div>
+    )
 
 }
 

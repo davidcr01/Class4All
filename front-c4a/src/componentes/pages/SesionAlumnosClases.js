@@ -1,9 +1,6 @@
 import '../../styles.css'
 import React, {useState, useEffect} from 'react'
 import Header from '../Layout/Header.js';
-import Footer from '../Layout/Footer.js';
-import Body from '../Layout/Body.js';
-import { MuiBreadcrumbs } from '../muibreadcrumbs';
 import Clases from '../Layout/Clases';
 import Cookies from "universal-cookie";
 import { isCookieSet } from '../../interfazCookies/cookies';
@@ -67,12 +64,9 @@ export const SesionAlumnosClases = () => {
   return (
     <>
     <Header titulo="Inicio De Sesión"/>
-    {/* <MuiBreadcrumbsPP /> */}
     <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulas.length} increment={increment}/>
     <Clases aulas={aulasVisibles}/>
   </>)
   }
 
 };
-
-//export default SesionAlumnosClases;

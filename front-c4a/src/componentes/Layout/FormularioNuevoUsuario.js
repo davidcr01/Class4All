@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import '../../styles.css';
 
 const FormularioNuevoUsuario = ()=> {
 
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState(0);
 
 
     const cambiar = (event) => {

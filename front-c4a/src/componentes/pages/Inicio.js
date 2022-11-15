@@ -12,5 +12,3 @@ export const Inicio = () => {
     <Footer/>
   </>)
 };
-
-//export default Inicio;

@@ -4,7 +4,7 @@ import CargandoProgress from './CargandoProgress';
 
 const TareaRealizada = (props) => {
 
-    const [nombre, setNombre] = React.useState('');
+    const [nombre, setNombre] = useState('');
     const [cargando, setCargando] = useState(true);
 
     useEffect(() => {

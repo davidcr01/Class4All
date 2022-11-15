@@ -55,9 +55,6 @@ const TareaSinAsignar = (props) => {
             .catch(err => console.log(err));
     }
 
-
-
-
     const getUser = async () => {
         try {
             setUsuarios(props.usuarios);
@@ -90,8 +87,6 @@ const TareaSinAsignar = (props) => {
                 <div className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></div>
             </div>)
     }
-
-
 }
 
 export default TareaSinAsignar;

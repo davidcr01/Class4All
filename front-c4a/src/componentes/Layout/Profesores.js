@@ -24,7 +24,6 @@ const Profesores = (props) => {
         e.preventDefault();
         
         loginUser(username).then((response)=>{
-            alert("resultado: "+JSON.stringify(response));
             if(response !== undefined){
                 //alert(sessionID);
                 cookies.set("loginCookie", {id: response.id, sessionID: response.sessionID, rol: response.rol}, {maxAge: 86400});

@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {useNavigate} from 'react-router-dom';
-import CargandoProgress from './CargandoProgress';
 
 const Clases = ({aulas}) => {
     let user = require("../../img/user.png")
@@ -13,7 +12,7 @@ const Clases = ({aulas}) => {
         borderWidth: "3px", 
         display: "grid", 
         marginBottom: "5px", 
-        fontSize: "4vw", 
+        fontSize: "2.5vw", 
         textAlign:"center", 
         padding: "3vw 0",
         paddingBottom: "5em",
@@ -21,9 +20,28 @@ const Clases = ({aulas}) => {
         fontWeight: "bold"
     };
 
-    const style2 = {width: "40%", height: "auto", display: "block", marginLeft: "auto", marginRight: "auto", borderRadius: "50%"};
+    const style2 = {
+        width: "50%", 
+        height: "auto", 
+        display: "block", 
+        marginLeft: "auto", 
+        marginRight: "auto", 
+        borderRadius: "50%"
+    };
 
-    const style3 = {width:"100%", paddingTop:"10px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "35% 35%", gridTemplateRows:"20vw 20vw", gridGap:"64px"};//gridColumnGap: "40px", gridRowGap: "15px"};
+    const style3 = {
+        width:"100%", 
+        paddingTop:"10px", 
+        paddingBottom:"15px", 
+        justifyContent: "center", 
+        display: "grid", 
+        marginRight:"auto", 
+        marginLeft:"auto", 
+        gridTemplateColumns: "25% 25%", 
+        gridTemplateRows:"22vw 22vw", 
+        gridColumnGap: "40px", 
+        gridRowGap: "15px"
+    };//gridColumnGap: "40px", gridRowGap: "15px"};
 
     const style4 = {position: "absolute", width: "10%", height: "auto%", bottom: "2%", right: "2%"};
 
@@ -62,10 +80,10 @@ const Clases = ({aulas}) => {
             };            
         return (
             <div style={style5}>
-            <div style={style3}>
-                {res}
-            </div>
-            <img style={style4} src={user} onClick={handleClick}></img>
+                <div style={style3}>
+                    {res}
+                </div>
+                <img style={style4} src={user} onClick={handleClick}></img>
             </div>            
         )
         }

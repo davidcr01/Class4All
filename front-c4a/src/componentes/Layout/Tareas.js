@@ -18,8 +18,6 @@ export const Tareas = (props) => {
             SetTareas(data.tareas);
         } catch (error) {
             console.log(error);
-
-
         }
     }
     
@@ -32,8 +30,6 @@ export const Tareas = (props) => {
             SetUsuarios(data.usuarios);
         } catch (error) {
             console.log(error);
-
-
         }
     }
     
@@ -61,19 +57,14 @@ export const Tareas = (props) => {
                     <TareaNoRealizada key={t._id} className="tarea" tarea={t} />
                 )}
                 </>
-               
             );
         })
         : <CargandoProgress/>
-        
         }
-        
-        
     </div>
     
   )
 
 }
-
 
 export default Tareas;

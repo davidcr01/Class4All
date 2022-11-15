@@ -39,7 +39,7 @@ export const GestionTareas = () => {
       if(infoCookie.rol === "Administrador" || infoCookie.rol === "Profesor")
         res =true;
 
-      return res;
+        return res;
     }
 
     if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())

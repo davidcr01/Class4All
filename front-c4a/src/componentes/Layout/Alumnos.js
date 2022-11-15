@@ -66,7 +66,6 @@ const Alumnos = ({alumnos}) => {
         const loginUser = (id) => {
             loginAlumno(id).then((data) => {
                 if(data !== undefined){
-                    alert(JSON.stringify(data));
                     cookies.set("loginCookie", {id: data.id, sessionID: data.sessionID, rol: data.rol}, {maxAge: 86400});
                 }
 

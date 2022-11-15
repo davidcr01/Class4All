@@ -114,5 +114,4 @@ export const Agenda = () => {
                 <h1>No tiene permiso para ver esta página</h1>
             )
     }
-
 }

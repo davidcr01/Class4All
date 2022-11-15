@@ -3,7 +3,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CargandoProgress from './CargandoProgress';
 const TareaAsignada = (props) => {
 
-    const [nombre, setNombre] = React.useState('');
+    const [nombre, setNombre] = useState('');
     const [cargando, setCargando] = useState(true);
 
     useEffect(() => {

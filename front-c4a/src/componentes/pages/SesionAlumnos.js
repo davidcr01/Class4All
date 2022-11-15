@@ -1,6 +1,5 @@
 import '../../styles.css'
 import React, { useState, useEffect } from 'react'
-
 import Header from '../Layout/Header.js';
 import Alumnos from '../Layout/Alumnos';
 import { useLocation } from 'react-router-dom';
@@ -45,8 +44,6 @@ export const SesionAlumnos = (props) => {
     });
   }, []);
 
-
-
     if(location.state === null)
       return (
         <div>
@@ -76,5 +73,3 @@ export const SesionAlumnos = (props) => {
         )
     }
 };
-
-//export default SesionAlumnos;

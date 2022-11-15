@@ -3,9 +3,7 @@ import {useNavigate} from 'react-router-dom';
 
 const PantallasUsuario = (props) => {
     let botones=[];
-    //const apartados = ["Agenda", "Chat", "Retroalimentacion", "Consentimiento"]
-    //const pictogramas = [ require("../../img/agenda.png"), require("../../img/chat.png"), require("../../img/retroalimentacion.png"), require("../../img/firmar.png")]
-    
+   
     const informacion = [
         {apartado: "Tareas", pictograma: require("../../img/tareas.png"), enlace: "/Tareas"},
         {apartado: "Chat", pictograma: require("../../img/chat.png"), enlace: "/login-ok"},

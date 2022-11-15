@@ -1,5 +1,4 @@
 import React from 'react';
-import img from "../../img/agenda.png"
 import {useNavigate} from 'react-router-dom';
 
 const PantallaTareas = (props) => {
@@ -7,7 +6,6 @@ const PantallaTareas = (props) => {
     let apartados = ["Agenda", "Tareas Realizadas"]
     let pictogramas = [ require("../../img/agenda.png"), require("../../img/realizado.png")]
     let enlaces = ["/Agenda", "/TareasRealizadas"]
-    let user = require("../../img/user.png")
 
     const style = {
         width: "auto", 

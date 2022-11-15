@@ -3,7 +3,7 @@ import CargandoProgress from './CargandoProgress.js';
 import Usuario from './Usuario.js';
 
 export const Usuarios = () => {
-    const [usuarios,SetUsuarios] =  useState([]); 
+    const [usuarios, SetUsuarios] =  useState([]); 
 
     const conseguirUsuarios = async() =>{
         try {
@@ -14,8 +14,6 @@ export const Usuarios = () => {
             SetUsuarios(data.usuarios);
         } catch (error) {
             console.log(error);
-
-
         }
     }
 
@@ -34,12 +32,8 @@ export const Usuarios = () => {
         : <CargandoProgress/>
         
         }
-        
-        
     </div>
-    
   )
-
 }
 
 

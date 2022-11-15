@@ -1,7 +1,6 @@
 import '../../styles.css'
 import React, {useState, useEffect} from 'react'
 import Header from '../Layout/Header.js';
-import Footer from '../Layout/Footer.js';
 import PantallaTareas from '../Layout/PantallaTareas.js';
 import Cookies from 'universal-cookie';
 import { isCookieSet } from '../../interfazCookies/cookies';
@@ -52,4 +51,3 @@ export const Tareas = () => {
       )
   }      
 }
-//export default GestionTareasSinAsignar;

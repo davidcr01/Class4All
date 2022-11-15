@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { FlechasPaginacionAgenda } from '../flechasPaginacion'
-import Button from '@mui/material/Button';
 import '../../styles.css'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -18,7 +16,6 @@ export const TareaEspecifica = () => {
     const [tarea, setTarea] = useState(0)//indice de la estructura de tareas
 
     const [cargando, setCargando] = useState(true);
-    //const [fotos,setFotos] = useState([]);//estructura de fotos
     const [cookieSet, setCookieSet] = useState();
 
     const { id } = useParams();
@@ -88,6 +85,7 @@ export const TareaEspecifica = () => {
                                     <h1>{tarea.tarea.nombre}</h1>
                                 </CardContent>
                             </Card>
+
                             <div className="tarjeta tarjetaTarea2">
                                 <Card className="tarjetatarea2" sx={{ maxWidth: 345 }}>
                                     <CardMedia
@@ -112,15 +110,10 @@ export const TareaEspecifica = () => {
                                     <CardContent>
                                         <h1>Instrucciones</h1>
                                     </CardContent>
-                                </Card></div>
+                                </Card>
+                            </div>
                         </div>
-
-
                     </div>
-
-
- 
-
                 </div></>
             )
 
@@ -129,5 +122,4 @@ export const TareaEspecifica = () => {
                 <h1>No tiene permiso para ver esta página</h1>
             )
     }
-
 }

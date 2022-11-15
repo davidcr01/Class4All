@@ -4,7 +4,7 @@ import CargandoProgress from './CargandoProgress';
 
 const TareaNoRealizada = (props) => {
 
-    const [nombre, setNombre] = React.useState('');
+    const [nombre, setNombre] = useState('');
     const [cargando, setCargando] = useState(true);
 
     useEffect(() => {
@@ -78,8 +78,6 @@ const TareaNoRealizada = (props) => {
 
             </div>)
     }
-
-
 }
 
 export default TareaNoRealizada;

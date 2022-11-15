@@ -8,10 +8,7 @@ export const SesionProfesores = () => {
   return (
     <>
     <Header titulo="Inicio De Sesión"/>
-    {/* <MuiBreadcrumbsPP /> */}
     <Profesores/>
     <Footer/>
   </>)
 };
-
-//export default SesionProfesores;

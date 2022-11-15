@@ -5,8 +5,6 @@ const path = require('path');
 
 const cookies = new Cookies();
 
-//const listaUsuarios = null;
-
 const crear = (req, res) => {
     
     //Recoger parametros por post
@@ -78,10 +76,8 @@ const obtenerUsuarioId = (req, res) => {
 const loginUsuario = (req, res) => {
     let correo = req.body.correo;
     //let contra = req.params.contra;
-    console.log(correo);
 
     Usuario.find({correo: correo, rol: {$in: ["Profesor", "Administrador"]}}).exec((error, usuario) => {
-        //console.log(usuario)
 
         if (error || usuario.length === 0){
             return res.status(404).json({
@@ -90,12 +86,8 @@ const loginUsuario = (req, res) => {
             });
         }
 
-        //const cookies = new Cookies();
-        //console.log(usuario[0]._id.toString())
         const randID = Math.floor(Math.random() * 10000000);    //Mejorable
         cookies.set("user"+randID, {id: usuario[0]._id, token: randID, rol: usuario[0].rol}, {path: "/", maxAge: 86400});
-
-        console.log(cookies.getAll());
 
         const usuarioData = {_id: usuario[0]._id, rol: usuario[0].rol}
 
@@ -110,8 +102,6 @@ const loginUsuario = (req, res) => {
 
 const loginAlumno = (req, res) => {
     let id = req.body.id;
-    //let contra = req.params.contra;
-    //console.log("identificador alumnos: "+ req.body.id);
 
     Usuario.findById(id).exec((error, usuario) => {
         if (error || !usuario){
@@ -121,16 +111,10 @@ const loginAlumno = (req, res) => {
             });
         }
 
-        //const cookies = new Cookies();
-        //console.log(usuario[0]._id.toString())
         const randID = Math.floor(Math.random() * 10000000);    //Mejorable
         cookies.set("user"+randID, {id: usuario._id, token: randID, rol: usuario.rol}, {path: "/", maxAge: 86400});
 
-        console.log(cookies.getAll());
-
         const usuarioData = {_id: usuario._id, rol: usuario.rol}
-
-        //console.log(usuarioData);
 
         return res.status(200).json({
             status: "success",
@@ -141,9 +125,7 @@ const loginAlumno = (req, res) => {
 }
 
 const logoutUsuario = (req, res) => {
-    //const cookies = new Cookies();
-    
-    
+   
     if(cookies.get("user"+req.body.id) !== undefined){
         cookies.remove("user"+req.body.id);
         

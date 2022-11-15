@@ -1,7 +1,6 @@
 import '../../styles.css'
 import React, { useEffect, useState } from 'react'
 import Header from '../Layout/Header.js';
-import Footer from '../Layout/Footer.js';
 import PantallasUsuario from '../Layout/PantallasUsuario';
 import { isCookieSet } from '../../interfazCookies/cookies';
 import Cookies from 'universal-cookie';
@@ -41,7 +40,6 @@ export const PaginaPrincipal = () => {
     return (
       <>
       <Header titulo="Página Principal"/>
-      {/* <MuiBreadcrumbsPP /> */}
       <PantallasUsuario/>
     </>)
     }
@@ -55,5 +53,3 @@ export const PaginaPrincipal = () => {
     }
   }
 };
-
-//export default PaginaPrincipal;

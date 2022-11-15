@@ -1,4 +1,3 @@
-import { GpsFixed } from '@mui/icons-material';
 import React from 'react';
 
 const Footer = () => {
