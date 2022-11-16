@@ -47,7 +47,7 @@ describe('Test de usuarios', () => {
     });
     
     test('Debería mostrar todos los usuario', async () => {
-        await request(app).get('/api/usuarios/listar-usuarios').expect(200);
+        await request(app).get('/api/usuarios/lista-usuarios').expect(200);
     });
 
     test('Debería mostrar un usuario por su id', async () => {
@@ -60,7 +60,7 @@ describe('Test de usuarios', () => {
             clase: "clase"
         });
 
-        await request(app).get('/api/usuarios//user/'+usuario._id).expect(200).then(async (response) => {
+        await request(app).get('/api/usuarios/get-usuario/'+usuario._id).expect(200).then(async (response) => {
             expect(response.body.status).toBe('success');
             expect(response.body.usuario.nombre).toBe("nombre");
             expect(response.body.usuario.apellido1).toBe("apellido1");
@@ -81,7 +81,7 @@ describe('Test de usuarios', () => {
             clase: "clase"
         });
 
-        await request(app).get('/api/usuarios/foto/'+usuario._id).expect(200).then(async (response) => {
+        await request(app).get('/api/usuarios/get-foto/'+usuario._id).expect(200).then(async (response) => {
             //expect(response.headers['Content-Type']).toBe('image/*');
             expect(response.headers['content-type']).toBe('image/jpeg');
         });
