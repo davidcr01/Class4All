@@ -23,7 +23,7 @@ export const SesionAlumnos = (props) => {
 
       const getAlumnos = async () => {
         try {
-            const url = "http://localhost:3900/api/usuarios/alumnos/"+location.state.aula;
+            const url = "http://localhost:3900/api/usuarios/get-alumnos-aula/"+location.state.aula;
             console.log(url);
             const res = await fetch(url)
             const data = await res.json();

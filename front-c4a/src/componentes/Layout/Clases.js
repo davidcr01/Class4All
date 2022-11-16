@@ -70,7 +70,7 @@ const Clases = ({aulas}) => {
             for(let i=0; i<aulas.length; i++){
                 res.push(
                     <button className="botonesClase" onClick={() => goToClassmates(aulas[i].clase)}>
-                        <img style={style2} src={"http://localhost:3900/api/usuarios/foto/"+aulas[i].id}/>
+                        <img style={style2} src={"http://localhost:3900/api/usuarios/get-foto/"+aulas[i].id}/>
                         {"Aula "+aulas[i].clase}
                     </button>                
                 )

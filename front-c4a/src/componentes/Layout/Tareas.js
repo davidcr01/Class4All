@@ -23,7 +23,7 @@ export const Tareas = (props) => {
     
     const conseguirUsuarios = async() =>{
         try {
-            const url = "http://localhost:3900/api/usuarios/listar-usuarios";
+            const url = "http://localhost:3900/api/usuarios/lista-usuarios";
             
             const res = await fetch(url)
             const data = await res.json();

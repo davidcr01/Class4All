@@ -22,7 +22,7 @@ export const TareaEspecifica = () => {
     const nav = useNavigate();
 
     const getTarea = async () => {
-        let url = 'http://localhost:3900/api/tareas/tarea/' + id/* +cookie */;
+        let url = 'http://localhost:3900/api/tareas/get-tarea/' + id/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
@@ -78,7 +78,7 @@ export const TareaEspecifica = () => {
                                     height="530"
                                     width="745"
                                     //Cambiar el el modelo
-                                    image={'http://localhost:3900/api/tareas/foto/' + tarea.tarea._id}
+                                    image={'http://localhost:3900/api/tareas/get-foto/' + tarea.tarea._id}
                                     alt={tarea.tarea.nombre}
                                 />
                                 <CardContent>

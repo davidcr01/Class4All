@@ -23,7 +23,7 @@ export const SesionAlumnosClases = () => {
       const getAulas = async () => {
         try {
             //alert("cookie cookie: "+cookies.get("loginCookie"));
-            const url = "http://localhost:3900/api/usuarios/aulas/";
+            const url = "http://localhost:3900/api/usuarios/lista-aulas/";
             console.log(url);
             const res = await fetch(url)
             const data = await res.json();
