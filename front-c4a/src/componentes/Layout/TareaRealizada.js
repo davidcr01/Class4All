@@ -33,7 +33,7 @@ const TareaRealizada = (props) => {
 
     const getUser = async () => {
         try {
-            const url = "http://localhost:3900/api/usuarios/user/" + props.tarea.usuarioAsignado
+            const url = "http://localhost:3900/api/usuarios/get-usuario/" + props.tarea.usuarioAsignado
             const res = await fetch(url)
             const data = await res.json();
 

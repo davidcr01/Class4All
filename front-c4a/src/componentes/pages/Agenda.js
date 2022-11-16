@@ -26,7 +26,7 @@ export const Agenda = () => {
 
     const rellenarAgenda = async() => {
         const cookies = new Cookies();
-        let url = 'http://localhost:3900/api/tareas/usuario/'+ cookies.get('loginCookie').id/* +cookie */;
+        let url = 'http://localhost:3900/api/tareas/tareas-usuario/'+ cookies.get('loginCookie').id/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
@@ -84,7 +84,7 @@ export const Agenda = () => {
                                 height="230"
                                 style={{display: 'unset', width: 'auto'}}
                                 //Cambiar el el modelo
-                                image={'http://localhost:3900/api/tareas/foto/' + tareas[curretTarea]._id}
+                                image={'http://localhost:3900/api/tareas/get-foto/' + tareas[curretTarea]._id}
                                 alt={tareas[curretTarea].nombre} />
                             <CardContent>
                                 <h1>{tareas[curretTarea].nombre}</h1>

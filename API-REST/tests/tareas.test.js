@@ -122,7 +122,7 @@ describe('Test de tareas', () => {
             instruccionTexto: "test",
         });
 
-        await request(app).get('/api/tareas/foto/'+ tareaTest._id).expect(200).then(async (response) => {
+        await request(app).get('/api/tareas/get-foto/'+ tareaTest._id).expect(200).then(async (response) => {
            expect(response.headers['content-type']).toBe('image/jpeg');
            
         });
@@ -136,7 +136,7 @@ describe('Test de tareas', () => {
             instruccionTexto: "test",
         });
 
-        await request(app).get('/api/tareas/tarea/'+ tareaTest._id).expect(200).then(async (response) => {
+        await request(app).get('/api/tareas/get-tarea/'+ tareaTest._id).expect(200).then(async (response) => {
             expect(response.body.status).toBe('success');
             expect(response.body.tarea.nombre).toBe("test");
             expect(response.body.tarea.descripcion).toBe("test");
@@ -165,7 +165,7 @@ describe('Test de tareas', () => {
 
         await request(app).put('/api/tareas/asignar-tarea/'+ tareaTest._id+'/'+user._id).expect(200);
 
-        await request(app).get('/api/tareas/usuario/'+ user._id).expect(200).then(async (response) => {
+        await request(app).get('/api/tareas/tareas-usuario/'+ user._id).expect(200).then(async (response) => {
             expect(response.body.status).toBe('success');
             expect(response.body.tareas[0].nombre).toBe("test");
             expect(response.body.tareas[0].descripcion).toBe("test");

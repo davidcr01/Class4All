@@ -13,7 +13,7 @@ const ListaTareas = (props) => {
             //getelementbyid
             if(!SA){
                 document.getElementById('sa').style.backgroundColor = '#70b67c';
-                props.cambio("sinasignar")
+                props.cambio("sinAsignar")
                 setSA(true);
                 setA(false);               
                 setR(false); 
@@ -64,7 +64,7 @@ const ListaTareas = (props) => {
             }
             else{
                 document.getElementById('re').style.backgroundColor = 'rgb(196, 196, 255)';
-                props.cambio("asignada")
+                props.cambio("completada")
                 setR(false);
                 setA(true);            
                 setSA(false); 
@@ -77,7 +77,7 @@ const ListaTareas = (props) => {
         function seleccionNoReal(){
             if(!NR){
                 document.getElementById('nr').style.backgroundColor = '#70b67c';
-                props.cambio("norealizada")
+                props.cambio("cancelada")
                 setR(false);           
                 setA(false);            
                 setSA(false); 
