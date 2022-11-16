@@ -129,7 +129,7 @@ const logoutUsuario = (req, res) => {
     if(cookies.get("user"+req.body.id) !== undefined){
         cookies.remove("user"+req.body.id);
         
-        console.log(cookies.getAll());
+      //  console.log(cookies.getAll());
 
         return res.status(200).json({
             status: "success",
