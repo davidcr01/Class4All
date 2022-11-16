@@ -44,16 +44,16 @@ export const Tareas = (props) => {
         tareas.map(t =>{
             return(
                 <>
-                {t.estado === props.tipo && t.estado === 'sinasignar' && (
+                {t.estado === props.tipo && t.estado === "sinAsignar" && (
                     <TareaSinAsignar key={t._id} className="tarea" usuarios={usuarios} tarea={t} />
                 )}
                 {t.estado === props.tipo && t.estado === 'asignada' && (
                     <TareaAsignada key={t._id} className="tarea" tarea={t} />
                 )}
-                {t.estado === props.tipo && t.estado === 'realizada' && (
+                {t.estado === props.tipo && t.estado === 'completada' && (
                     <TareaRealizada key={t._id} className="tarea" tarea={t} />
                 )}
-                {t.estado === props.tipo && t.estado === 'norealizada' && (
+                {t.estado === props.tipo && t.estado === 'cancelada' && (
                     <TareaNoRealizada key={t._id} className="tarea" tarea={t} />
                 )}
                 </>
