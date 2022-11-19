@@ -70,7 +70,7 @@ const Alumnos = ({alumnos}) => {
 
         for(let i=0; i<alumnos.length; i++){
             alumnosJSX.push(
-                <button className="botonesAlumnos" onClick={()=> loginUser(alumnos[i]._id)}>
+                <button key={(alumnos[i]._id)} className="botonesAlumnos" onClick={()=> loginUser(alumnos[i]._id)}>
                     <img style={style2} src={"http://localhost:3900/api/usuarios/get-foto/"+alumnos[i]._id}/>
                     {alumnos[i].nombre}
                 </button>

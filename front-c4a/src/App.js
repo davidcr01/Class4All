@@ -25,7 +25,6 @@ function App() {
           setRol('Profesor');
         else{
           setRol(null);
-          console.log("No hay cookie");
         }
         
       }
@@ -35,9 +34,8 @@ function App() {
 
   const getCookieActual = async () => {
     const cookies = new Cookies();
-    let cookieActual = cookies.get('loginCookie')//JSON.stringify((cookies.get('loginCookie')).rol);
+    let cookieActual = cookies.get('loginCookie')
     if(cookieActual !== undefined){
-      //setCookie(JSON.stringify(cookieActual.rol));
       setCookie(cookieActual.rol);
     }
     else{
@@ -57,14 +55,7 @@ function App() {
 
   return (
     <div>
-      <button onClick={() =>console.log(cookie)}>Cookie</button>
-      <button onClick={() => console.log(rol)}>Rol</button>
-      <button onClick={() => console.log(error)}>Error</button>
       <ContextoRol.Provider value={{setCookie}}>
-        {/* {rol === 'Administrador' && (<RouterAdmins/>)}
-        {rol === 'Alumno' && (<RouterAlumnos/>)}
-        {rol === 'Profesor' && (<RouterProfesores/>)}
-        {!rol && (<RouterInicioSesion />)} */}
         {rol === 'Administrador' ? (<RouterAdmins/>) : (rol === 'Alumno' ? (<RouterAlumnos/>) : (rol === 'Profesor' ? (<RouterProfesores/>) : (<RouterInicioSesion />)))}
       </ContextoRol.Provider>
       
