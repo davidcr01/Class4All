@@ -28,10 +28,27 @@ function App() {
     
   };
 
+  useEffect(() => {
+    getCookieActual();
+  }, []);
+
+  useEffect(() => {
+    ChangeRol();
+  }, [cookie]);
+
 
 
   return (
-    <Rutas />
+    <div>
+      <ContextoRol.Provider value={{setCookie}}>
+        {!rol && (<RouterInicioSesion />)}
+        {rol === 'admin' && (<RouterAdmins/>)}
+        {rol === 'alumno' && (<RouterAlumnos/>)}
+        {rol === 'profesor' && (<RouterProfesores/>)}
+      </ContextoRol.Provider>
+      
+      
+    </div>
   );
 }
 
