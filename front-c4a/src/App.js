@@ -54,8 +54,6 @@ function App() {
 
   return (
     <div>
-      <button onClick={() => {console.log(rol)}}>MirarRol</button>
-      <button onClick={() => {console.log(cookie)}}>MirarCookie</button>
       <ContextoRol.Provider value={{setCookie}}>
         {rol === 'Administrador' && (<RouterAdmins/>)}
         {rol === 'Alumno' && (<RouterAlumnos/>)}
