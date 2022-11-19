@@ -3,12 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from "universal-cookie";
 import { loginAlumno } from '../../../interfazCookies/cookies';
 
+import { ContextoRol } from '../../../contexto/Roles';
+
 // Componente para mostrar el login de los alumnos
 // Vista: compartido
 
 const Alumnos = ({alumnos}) => {
     let user = require("../../../img/user.png")
 
+    const {setCookie} = React.useContext(ContextoRol);
 
     const style2 = {
         width: "50%",
@@ -56,16 +59,18 @@ const Alumnos = ({alumnos}) => {
             loginAlumno(id).then((data) => {
                 if(data !== undefined){
                     cookies.set("loginCookie", {id: data.id, sessionID: data.sessionID, rol: data.rol}, {maxAge: 86400});
+                    setCookie('Alumno');
+                    nav('/');
                 }
 
 
-                nav("/pagina-principal");
+                //nav("/pagina-principal");
             });
         }
 
         for(let i=0; i<alumnos.length; i++){
             alumnosJSX.push(
-                <button className="botonesAlumnos" onClick={()=> loginUser(alumnos[i]._id)}>
+                <button key={(alumnos[i]._id)} className="botonesAlumnos" onClick={()=> loginUser(alumnos[i]._id)}>
                     <img style={style2} src={"http://localhost:3900/api/usuarios/get-foto/"+alumnos[i]._id}/>
                     {alumnos[i].nombre}
                 </button>

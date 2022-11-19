@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Cookies from 'universal-cookie';
 import {useNavigate} from 'react-router-dom';
 import {isCookieSet, logoutServer} from "../../../interfazCookies/cookies";
+import {ContextoRol} from "../../../contexto/Roles";
 
 //Componente para div de cerrar sesion
 // Vista: compartido
@@ -10,6 +11,7 @@ const CerrarSesionBoton = () => {
     const [cargando, setCargando] = useState();
     const [logged, setLogged] = useState();
     
+    const {setCookie} = React.useContext(ContextoRol);
     
     useEffect(() => {
         setLogged(false);
@@ -30,6 +32,7 @@ const CerrarSesionBoton = () => {
         if(cookies.get("loginCookie") !== undefined){
             logoutServer().then(() =>{
                 cookies.remove("loginCookie");
+                setCookie(null);
                 nav("/");
             });
         }
