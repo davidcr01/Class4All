@@ -33,7 +33,7 @@ function App() {
     
   };
 
-  const getCookieActual = async() => {
+  const getCookieActual = async () => {
     const cookies = new Cookies();
     let cookieActual = cookies.get('loginCookie')//JSON.stringify((cookies.get('loginCookie')).rol);
     if(cookieActual !== undefined){
