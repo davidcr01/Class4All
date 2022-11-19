@@ -79,7 +79,7 @@ export const Agenda = () => {
 
                 <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} totalTareas={tareas.length} />
                 <div className='tareaAgenda'>
-                    <div className='tarjetaAgenda' onClick={() => nav("/mitarea/"+tareas[curretTarea]._id)}>
+                    <div className='tarjetaAgenda' >
                         <Card sx={{ maxWidth: 345 }}>
                             <CardMedia
                                 component="img"
@@ -103,7 +103,7 @@ export const Agenda = () => {
 
 
                 {/* boton-> currentTarea,tareas */}
-                <div className='botonComenzar'>
+                <div className='botonComenzar' onClick={() => nav("/mitarea/"+tareas[curretTarea]._id)}>
                     <Button variant="outlined" style={{ width: '200px', height: '80px' }}>Comenzar</Button>
                 </div>
 

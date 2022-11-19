@@ -1,7 +1,6 @@
 import React,{useEffect,useState} from 'react'
 
 
-import {Rutas} from './routing/Rutas.js';
 import {ContextoRol} from './contexto/Roles';
 import {RouterAdmins} from './routing/RouterAdmins.js';
 import {RouterInicioSesion} from './routing/RouterInicioSesion.js';
