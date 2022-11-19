@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Cookies from 'universal-cookie';
 import {useNavigate} from 'react-router-dom';
 import {isCookieSet, logoutServer} from "../../../interfazCookies/cookies";
-import {ContextoRol} from "../../../Contexto/Roles";
+import {ContextoRol} from "../../../contexto/Roles";
 
 //Componente para div de cerrar sesion
 // Vista: compartido
@@ -33,7 +33,7 @@ const CerrarSesionBoton = () => {
             logoutServer().then(() =>{
                 cookies.remove("loginCookie");
                 setCookie(null);
-                //nav("/");
+                nav("/");
             });
         }
     }

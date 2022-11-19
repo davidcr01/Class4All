@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from "universal-cookie";
 import { loginAlumno } from '../../../interfazCookies/cookies';
 
-import { ContextoRol } from '../../../contexto/ContextoRol';
+import { ContextoRol } from '../../../contexto/Roles';
 
 // Componente para mostrar el login de los alumnos
 // Vista: compartido
@@ -59,7 +59,8 @@ const Alumnos = ({alumnos}) => {
             loginAlumno(id).then((data) => {
                 if(data !== undefined){
                     cookies.set("loginCookie", {id: data.id, sessionID: data.sessionID, rol: data.rol}, {maxAge: 86400});
-                    setCookie('alumno');
+                    setCookie('Alumno');
+                    nav('/');
                 }
 
 

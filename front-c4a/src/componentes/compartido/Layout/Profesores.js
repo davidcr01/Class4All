@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { isCookieSet, loginUser } from '../../../interfazCookies/cookies';
-import { ContextoRol } from '../../../contexto/ContextoRol';
+import { ContextoRol } from '../../../contexto/Roles';
 
 // Vista: compatido entre profesores y admins
 
@@ -33,8 +33,8 @@ const Profesores = (props) => {
             if(response !== undefined){
                 //alert(sessionID);
                 cookies.set("loginCookie", {id: response.id, sessionID: response.sessionID, rol: response.rol}, {maxAge: 86400});
-                setCookie('admin');
-                //nav("/gestion-centro");
+                setCookie('Administrador');
+                nav("/");
             }
         });
     }
