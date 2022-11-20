@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { FlechasPaginacionAgenda } from '../../flechasPaginacion'
 
 import Button from '@mui/material/Button';
 import '../styles.css'
@@ -11,28 +10,31 @@ import Cookies from 'universal-cookie';
 import { isCookieSet } from '../../../interfazCookies/cookies';
 import Header from '../../compartido/Layout/Header';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 
 
 export const Agenda = () => {
 
-    const [curretTarea, setCurretTarea] = useState(0)//indice de la estructura de tareas
+    const [currentTarea, setCurrentTarea] = useState(0)//indice de la estructura de tareas
 
-    const [cargando,setCargando] = useState(true);
-    const [tareas,setTareas] = useState([]);//estructura de tareas
+    const [cargando, setCargando] = useState(true);
+    const [tareas, setTareas] = useState(undefined);//estructura de tareas
     //const [fotos,setFotos] = useState([]);//estructura de fotos
     const [cookieSet, setCookieSet] = useState();
-    
+
 
     const nav = useNavigate();
 
-    const rellenarAgenda = async() => {
+    const rellenarAgenda = async () => {
         const cookies = new Cookies();
-        let url = 'http://localhost:3900/api/tareas/tareas-usuario/'+ cookies.get('loginCookie').id/* +cookie */;
+        let url = 'http://localhost:3900/api/tareas/tareas-usuario/' + cookies.get('loginCookie').id/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
-            setTareas(data.tareas);
+
+            if (data.status === "success")
+                setTareas(data.tareas);
             //setCargando(false);
         } catch (error) {
             console.log(error);
@@ -55,61 +57,76 @@ export const Agenda = () => {
 
     if (cargando) {
         return (
-            <CargandoProgress/>
+            <CargandoProgress />
         )
     }
 
-    else{
+    else {
         const cookies = new Cookies();
 
         const isRoleRight = () => {
             let res = false;
             const infoCookie = cookies.get("loginCookie");
-      
-            if(infoCookie.rol === "Alumno")
-              res =true;
-      
+
+            if (infoCookie.rol === "Alumno")
+                res = true;
+
             return res;
-          }
+        }
 
-        if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())    
-        return (
-            <><Header titulo="Agenda" /><div className='PaginaAgenda'>
-                {/* <TareaAgenda tarea={tareas[curretTarea]} key={curretTarea}/> */}
+        if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight()) {
+            const tareasLength = (tareas === undefined) ? 0 : tareas.length;
+            const tareasIncrement = 1;
 
-                <FlechasPaginacionAgenda currentTarea={curretTarea} setCurrentTarea={setCurretTarea} totalTareas={tareas.length} />
-                <div className='tareaAgenda'>
-                    <div className='tarjetaAgenda' >
-                        <Card sx={{ maxWidth: 345 }}>
-                            <CardMedia
-                                component="img"
-                                height="230"
-                                className="estilotarjeta"
-                                //Cambiar el el modelo
-                                image={'http://localhost:3900/api/tareas/get-foto/' + tareas[curretTarea]._id}
-                                alt={tareas[curretTarea].nombre} />
-                            <CardContent>
-                                <h1>{tareas[curretTarea].nombre}</h1>
-                            </CardContent>
-                        </Card>
-                    </div>
+            if (tareas !== undefined && tareasLength > 0)
+                return (
+                    <>
+                        <Header titulo="Agenda" /><div className='PaginaAgenda'>
+                            {/* <TareaAgenda tarea={tareas[currentTarea]} key={currentTarea}/> */}
+
+                            <FlechasPaginacionGenerico currentIndex={currentTarea} setCurrentIndex={setCurrentTarea} length={tareas.length} increment={tareasIncrement} />
+                            {/*<FlechasPaginacionAgenda currentTarea={currentTarea} setCurrentTarea={setCurrentTarea} totalTareas={tareas.length} />*/}
+                            <div className='tareaAgenda'>
+                                <div className='tarjetaAgenda' >
+                                    <Card sx={{ maxWidth: 345 }}>
+                                        <CardMedia
+                                            component="img"
+                                            height="230"
+                                            className="estilotarjeta"
+                                            //Cambiar el el modelo
+                                            image={'http://localhost:3900/api/tareas/get-foto/' + tareas[currentTarea]._id}
+                                            alt={tareas[currentTarea].nombre} />
+                                        <CardContent>
+                                            <h1>{tareas[currentTarea].nombre}</h1>
+                                        </CardContent>
+                                    </Card>
+                                </div>
 
 
-                    {/*va con un calendario estático de Material UI y es la fecha limite */}
-                    <h2>Fecha Límite: {tareas[curretTarea].fechaLimite}</h2>
+                                {/*va con un calendario estático de Material UI y es la fecha limite */}
+                                <h2>Fecha Límite: {tareas[currentTarea].fechaLimite}</h2>
 
 
-                </div>
+                            </div>
 
 
-                {/* boton-> currentTarea,tareas */}
-                <div className='botonComenzar' onClick={() => nav("/mitarea/"+tareas[curretTarea]._id)}>
-                    <Button variant="outlined" className='estilobotoncomenzar'>Comenzar</Button>
-                </div>
+                            {/* boton-> currentTarea,tareas */}
+                            <div className='botonComenzar' onClick={() => nav("/mitarea/" + tareas[currentTarea]._id)}>
+                                <Button variant="outlined" className='estilobotoncomenzar'>Comenzar</Button>
+                            </div>
 
-            </div>
-            </>
-            )
+                        </div>
+                    </>
+                )
+
+            else
+                return (
+                    <>
+                        <Header titulo="Agenda" /><div className='PaginaAgenda'></div>
+                        <h1>NO TIENES TAREAS ASIGNADAS</h1>
+                    </>
+                )
+        }
 
         else
             return (
