@@ -38,24 +38,11 @@ const CerrarSesionBoton = () => {
         }
     }
 
-    const style = {
-        position: "absolute", 
 
-        top: "3.3%",
-        height: "5%",
-        width: "20%", 
-        right:"2%", 
-        fontSize: "50%",  
-        color: "black", 
-        backgroundColor: "#E89482",
-        borderRadius: "5px",
-        fontSize: "1em",
-        fontWeight: "bold"
-    };
 
     if(!cargando && cookies.get("loginCookie") !== undefined && logged === true){
         return (        
-            <button style={style} onClick={handleLogOut}>
+            <button className='botoncerrarsesion' onClick={handleLogOut}>
                 Cerrar Sesión
             </button>
         );

@@ -1,0 +1,130 @@
+.formuser{
+    background-color: rgb(196, 196, 255);
+    margin-left: 2%;
+    margin-right: 2%;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    padding-left: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+  }
+
+
+.etiq{
+    margin-right: 2%;
+  }
+
+
+.ListaUsuarios{
+    width: auto;
+    background-color: #FFFFFF;
+    border-color: black;
+    border-style: solid;
+    display: grid;
+    border-width: 2px;
+    font-size: 20px;
+    text-align: center; 
+  }
+  
+  .botoncrear{
+    background-color: black;
+    color: white;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    font-size: 22px;
+    width: 35%;
+    height: 50px;
+    /* Center div */
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+    border-radius: 15px;
+    font-weight: bolder;
+    cursor: pointer;
+  }
+
+  .PantallaGestionUsuarios{
+    justify-content: center;
+    width: auto;
+    grid-template-columns: 22% 76%;
+    grid-column-gap: 20px;
+    border-width: 2px;
+    display: grid;
+    margin-bottom: 2px;
+    font-size: 4vw;
+    text-align: center
+  } 
+  
+
+
+.usuario{
+    background-color: rgb(196, 196, 255);
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    font-size: 18px;
+    height: auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 2%;
+    margin-top: 25px;
+    text-align: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 2%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    border-radius: 10px;
+  }
+
+  .botonesuser{
+    display: grid;
+    grid-column-gap: 2%;
+    grid-template-columns: 30% 30% 30%;
+  }
+  
+  .botonuser{
+    background-color: rgb(196, 196, 255);
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    display:grid;
+    border-radius: 10px;
+    font-style: italic;
+  }
+
+  .botonuser-eliminar{
+    background-color: rgb(255, 109, 109);
+  }
+  
+  .botonuser-modificar{
+    background-color: rgb(164, 163, 250);
+  }
+
+  .botonuser-ver{
+    background-color: rgb(163, 250, 164);
+  }
+  .datosuser{
+    font-weight: bold
+  }
+
+.formuser {
+  background-color: rgb(196, 196, 255);
+  margin-left: 2%;
+  margin-right: 2%;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  padding-left: 1%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+
+.etiq {
+  margin-right: 2%;
+
+}

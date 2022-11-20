@@ -1,6 +1,6 @@
 import React from 'react';
 import CerrarSesionBoton from './CerrarSesionBoton';
-import '../../../styles.css';
+import '../styles.css';
 const Header = (props) => {
 
     return (

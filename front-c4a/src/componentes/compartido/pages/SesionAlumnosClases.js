@@ -1,4 +1,4 @@
-import '../../../styles.css'
+import '../styles.css'
 import React, {useState, useEffect} from 'react'
 import Header from '../../compartido/Layout/Header.js';
 import Clases from '../../alumnos/Layout/Clases';

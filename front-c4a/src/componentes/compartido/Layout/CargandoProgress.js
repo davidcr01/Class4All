@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material';
 import React from 'react';
-import '../../../styles.css';
+import '../styles.css';
 
 // Animación de carga
 // Vista: compartido
