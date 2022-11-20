@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import '../styles.css';
+import $ from 'jquery';
 
 // Vista: admins
 
@@ -10,6 +11,11 @@ const FormularioNuevoUsuario = ()=> {
 
     const cambiar = (event) => {
         setValue(event.target.value);
+    }
+
+    function eliminarEmail(){
+        document.getElementById("email").remove();
+        $('label[for="email"]').hide();
     }
 
     const enviar = (event) => {
@@ -106,7 +112,7 @@ const FormularioNuevoUsuario = ()=> {
                     <option value="3">Alumno</option>
                 </select>
                 </p>
-                {(value == 3 &&
+                {(value == 3 && eliminarEmail() &&
                     <p><label className="etiq" htmlFor="preferencias">Preferencias</label>
                     <input type="number" id="preferencias" min="0" max="10"></input></p>
                     )
