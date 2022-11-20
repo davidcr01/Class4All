@@ -237,3 +237,9 @@
 .botonesAlumnos:hover {
   background-color: #E2E2E2;
 }
+
+
+.atras {
+  position: relative;
+  width: 60%
+}
