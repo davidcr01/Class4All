@@ -25,19 +25,19 @@ export const SesionAlumnos = (props) => {
 
       const getAlumnos = async () => {
         try {
-            const url = "http://localhost:3900/api/usuarios/get-alumnos-aula/"+location.state.aula;
-            console.log(url);
-            const res = await fetch(url)
-            const data = await res.json();
+          const url = "http://localhost:3900/api/usuarios/get-alumnos-aula/" + location.state.aula;
+          console.log(url);
+          const res = await fetch(url)
+          const data = await res.json();
 
-            return data;
+          return data;
 
         } catch (error) {
-            console.log(error);
+          console.log(error);
 
-            return undefined;
+          return undefined;
         }
-    }
+      }
 
       getAlumnos().then((response) => {
         setAlumnos(response.alumnos);
@@ -46,32 +46,42 @@ export const SesionAlumnos = (props) => {
     });
   }, []);
 
-    if(location.state === null)
-      return (
-        <div>
-          <h1>AULA INVALIDA</h1>
-        </div>
-      )
-    else{
-      if(cargando)
-        return <CargandoProgress/>
+  if (location.state === null)
+    return (
+      <div>
+        <h1>AULA INVALIDA</h1>
+      </div>
+    )
+  else {
+    if (cargando)
+      return <CargandoProgress />
 
-        else if(cookies.get("loginCookie") === undefined || !isSet){
-          const increment = 4;
-          const alumnosVisibles = (alumnos === undefined) ? undefined : alumnos.slice(index, index+increment);
-          const alumnosLength = (alumnos === undefined) ? 0 : alumnos.length;
-      return (
-        <>
-        <Header titulo="Inicio De Sesión"/>
-        <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={alumnosLength} increment={increment}/>
-        <Alumnos alumnos={alumnosVisibles}/>
-      </>)
-        }
+    else if (cookies.get("loginCookie") === undefined || !isSet) {
+      const increment = 4;
+      const alumnosVisibles = (alumnos === undefined) ? undefined : alumnos.slice(index, index + increment);
+      const alumnosLength = (alumnos === undefined) ? 0 : alumnos.length;
+
+      if (alumnosLength > 0)
+        return (
+          <>
+            <Header titulo="Inicio De Sesión" />
+            <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={alumnosLength} increment={increment} />
+            <Alumnos alumnos={alumnosVisibles} />
+          </>)
+
       else
         return (
-          <div>
-            <h1>EL USUARIO YA HA INICIADO SESION</h1>
-          </div>
-        )
+          <>
+            <Header titulo="Inicio De Sesión" />
+            <h1>NO HAY ALUMNOS EN ESTA CLASE</h1>
+          </>
+        );
     }
+    else
+      return (
+        <div>
+          <h1>EL USUARIO YA HA INICIADO SESION</h1>
+        </div>
+      )
+  }
 };

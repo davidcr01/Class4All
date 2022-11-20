@@ -1,28 +1,11 @@
 Andrés
 
-Mejorar posicion de cargando (si da tiempo)
 
-Usar Material UI
-
-Arreglar fallos de push de React en las listas
-poner flechas
+Arreglar getCookie
+Arreglar if else de los roles
 
 ---------------------------------- EN DESARROLLO ----------------------------------
-Arreglar fallos breadcrumbs antiguos
-arreglar css incrustado en el codigo
+Arreglar flechas para que desaparezcan cuando no hay informacion
 
 -------------------------------------- HECHO --------------------------------------
 
-COMPROBAR EN LAS PAGINAS RESTRINGIDAS QUE EL ID ES EL MISMO, PARA EVITAR FALSIFICACION COOKIES
-Añadir mas atributos a las cookies
-poner enlace al boton de sesion-alumnos-clases para los profes
-Realizar una ruta por la pagina convincente
-PONER FOTOS EN EL BACKEND
-USAR API PARA DESCARGAR FOTOS
-foto por defecto a pavos que no tengan
-PONER CARGANDO EN UN COMPONENTE APARTE JUNTO CON OTROS COMO SESION INICIADA, ETC
-Añadir animacion cargando
-Hacer distincion de roles
-todas las imagenes en el backend
-mirar problema boton cerrar sesion video dani
-Tener en cuenta los roles en el sistema
