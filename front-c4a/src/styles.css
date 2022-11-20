@@ -563,3 +563,84 @@ Header{
 .botonesPT:hover{
   background-color: #E2E2E2;
 }
+
+.foto{
+    width: 50%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+}
+
+
+.recuadrosalumnos{
+    width:100%;
+    padding-top:15px;
+    padding-bottom:15px;
+    justify-content: center;
+    display: grid;
+    margin-right:auto;
+    margin-left:auto;
+    grid-template-columns: 25% 25%;
+    grid-template-rows:20vw 20vw;
+    grid-column-gap: 40px;
+    grid-row-gap: 15px
+}
+
+
+
+.cuerpo{
+  width: auto;
+  border-width: 3px;
+  display: flex;
+  margin-bottom: 5px;
+  padding: 3vw 0;
+}
+
+
+
+.recuadrosclases{
+    width:100%;
+    padding-top:10px;
+    padding-bottom:15px;
+    justify-content: center;
+    display: grid;
+    margin-right:auto;
+    margin-left:auto;
+    grid-template-columns: 25% 25%;
+    grid-template-rows:22vw 22vw;
+    grid-column-gap: 40px;
+    grid-row-gap: 15px
+}
+
+.imagenUser{
+  position: absolute;
+   cursor: pointer;
+   width: 10%;
+  height: auto;
+  bottom: 2%;
+  right: 2%
+}
+
+.imgpantallausuario{
+  width: 30%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.imgspantallausuario{
+  width:100%;
+  padding-top:15px;
+  padding-bottom:15px;
+  justify-content: center;
+  display: grid;
+  margin-right:auto;
+  margin-left:auto;
+  grid-template-columns: 35% 35%;
+  grid-template-rows:20vw 20vw;
+  grid-column-gap: 40px;
+  grid-row-gap: 15px
+}
