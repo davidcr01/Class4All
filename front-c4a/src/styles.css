@@ -282,72 +282,10 @@ Header{
   transform: translateY(-50%);
 }
 
-.botoncrear{
-  background-color: black;
-  color: white;
-  border-width: 2px;
-  border-color: black;
-  border-style: solid;
-  font-size: 22px;
-  width: 35%;
-  height: 50px;
-  /* Center div */
-  margin: 0 auto;
-  margin-top: 50px;
-  text-align: center;
-  border-radius: 15px;
-  font-weight: bolder;
-  cursor: pointer;
-   
-}
 
-.usuario{
-  background-color: rgb(196, 196, 255);
-  border-width: 1px;
-  border-color: black;
-  border-style: solid;
-  font-size: 18px;
-  height: auto;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 2%;
-  margin-top: 25px;
-  text-align: left;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 2%;
-  display: grid;
-  grid-template-columns: 60% 40%;
-  border-radius: 10px;
-}
 
-.botonesuser{
-  display: grid;
-  grid-column-gap: 2%;
-  grid-template-columns: 30% 30% 30%;
-}
 
-.botonuser{
-  background-color: rgb(196, 196, 255);
-  border-width: 1px;
-  border-color: black;
-  border-style: solid;
-  text-align: center;
-  display:grid;
-  border-radius: 10px;
-  font-style: italic;
-}
 
-.botonuser-eliminar{
-  background-color: red;
-  border-width: 1px;
-  border-color: black;
-  border-style: solid;
-  text-align: center;
-  display:grid;
-  border-radius: 10px;
-  font-style: italic;
-}
 
 .footer{
   background-color: rgb(182, 182, 182);
@@ -623,7 +561,7 @@ Header{
   right: 2%
 }
 
-.imgpantallausuario{
+.imgpantalla{
   width: 30%;
   height: auto;
   display: block;
@@ -631,7 +569,7 @@ Header{
   margin-right: auto
 }
 
-.imgspantallausuario{
+.imgspantalla{
   width:100%;
   padding-top:15px;
   padding-bottom:15px;
@@ -643,4 +581,14 @@ Header{
   grid-template-rows:20vw 20vw;
   grid-column-gap: 40px;
   grid-row-gap: 15px
+}
+
+
+.cuerpopantallatareas{
+  width: auto;
+  border-width: 3px;
+  margin-bottom: 5px;
+  padding: 3vw 0;
+  justify-content: center;
+  align-items: center
 }

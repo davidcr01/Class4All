@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styles.css';
+import '../styles.css';
 import BuscarFiltros from '../../compartido/Layout/Tareas/BuscarFiltros';
 import ListaUsuarios from '../../admins/Layout/ListaUsuarios';
 
@@ -7,7 +7,7 @@ import ListaUsuarios from '../../admins/Layout/ListaUsuarios';
 
 const PantallaGestionUsuarios = ()=> {
     return(
-    <div className='PantallaGestionTareas'>
+    <div className='PantallaGestionUsuarios'>
         <BuscarFiltros/>
 
         <ListaUsuarios/>

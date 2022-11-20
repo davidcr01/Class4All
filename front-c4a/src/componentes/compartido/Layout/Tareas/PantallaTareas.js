@@ -9,42 +9,16 @@ const PantallaTareas = (props) => {
     let pictogramas = [ require("../../../../img/agenda.png"), require("../../../../img/realizado.png")]
     let enlaces = ["/Agenda", "/TareasRealizadas"]
 
-    const style = {
-        width: "auto",
-        cursor:"pointer",
-        backgroundColor: "#E2E2E2",
-        borderColor: "black",
-        borderStyle: "solid",
-        borderWidth: "3px",
-        display: "grid",
-        marginBottom: "5px",
-        fontSize: "4vw",
-        textAlign:"center",
-        padding: "3vw 0",
-        borderRadius: "25px",
-        fontWeight: "bold"
-    };
 
-    const style2 = {width: "30%", height: "auto", display: "block", marginLeft: "auto", marginRight: "auto"};
-
-    const style3 = {width:"100%", paddingTop:"15px", paddingBottom:"15px", justifyContent: "center", display: "grid", marginRight:"auto", marginLeft:"auto", gridTemplateColumns: "35% 35%", gridColumnGap: "40px", gridRowGap: "15px"};
 
     //const style4 = {alignSelf: "end", width: "5%", height: "auto%", display: "block", marginLeft: "auto", marginRight: "5%", marginBottom: "2%"};
     const nav = useNavigate();
 
-    const style5 = {
-        width: "auto",
-        borderWidth: "3px",
-        marginBottom: "5px",
-        padding: "3vw 0",
-        justifyContent: "center",
-        alignItems: "center"
-    };
 
     for(let i=0; i< 2; i++){
         prueba.push(
             <button className='botonesPT' onClick={() => nav(enlaces[i])}>
-                <img style={style2} src={pictogramas[i]}/>
+                <img class="imgpantalla" src={pictogramas[i]}/>
                 {apartados[i]}
             </button>
 
@@ -52,8 +26,8 @@ const PantallaTareas = (props) => {
     }
 
     return (
-        <div style={style5}>
-            <div style={style3}>
+        <div className="cuerpopantallatareas">
+            <div className="imgspantalla">
                 {prueba}
             </div>
         </div>

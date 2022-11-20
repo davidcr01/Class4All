@@ -19,14 +19,14 @@ const PantallasUsuario = (props) => {
     for(let i=0; i< informacion.length; i++){
         botones.push(
             <button key={informacion[i].apartado} className="botonesPP" onClick={() => nav(informacion[i].enlace)}>
-                <img className='imgpantallausuario' src={informacion[i].pictograma}/>
+                <img className='imgpantalla' src={informacion[i].pictograma}/>
                 {informacion[i].apartado}
             </button>
         );
     }
 
     return (
-        <div className='imgspantallausuario'>
+        <div className='imgspantalla'>
             {botones}
         </div>
     );

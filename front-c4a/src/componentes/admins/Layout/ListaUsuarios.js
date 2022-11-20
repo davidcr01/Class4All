@@ -10,7 +10,7 @@ const ListaUsuarios = (props) => {
     let nav = useNavigate();
 
         return (
-            <div className='ListaTareas'>
+            <div className='ListaUsuarios'>
                 <button className="botoncrear" onClick={() => nav("/crear-usuario")}>Crear usuario</button>
                 <Usuarios/>
             </div>
