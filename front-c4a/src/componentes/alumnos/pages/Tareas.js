@@ -1,4 +1,4 @@
-import '../../../styles.css'
+import '../styles.css'
 import React, {useState, useEffect} from 'react'
 import Header from '../../compartido/Layout/Header';
 import PantallaTareas from '../../compartido/Layout/Tareas/PantallaTareas.js';

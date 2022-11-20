@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { FlechasPaginacionAgenda } from '../../flechasPaginacion'
 
 import Button from '@mui/material/Button';
-import '../../../styles.css'
+import '../styles.css'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -84,7 +84,7 @@ export const Agenda = () => {
                             <CardMedia
                                 component="img"
                                 height="230"
-                                style={{display: 'unset', width: 'auto'}}
+                                className="estilotarjeta"
                                 //Cambiar el el modelo
                                 image={'http://localhost:3900/api/tareas/get-foto/' + tareas[curretTarea]._id}
                                 alt={tareas[curretTarea].nombre} />
@@ -104,7 +104,7 @@ export const Agenda = () => {
 
                 {/* boton-> currentTarea,tareas */}
                 <div className='botonComenzar' onClick={() => nav("/mitarea/"+tareas[curretTarea]._id)}>
-                    <Button variant="outlined" style={{ width: '200px', height: '80px' }}>Comenzar</Button>
+                    <Button variant="outlined" className='estilobotoncomenzar'>Comenzar</Button>
                 </div>
 
             </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import '../../../styles.css'
+import '../styles.css'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -69,9 +69,10 @@ export const TareaEspecifica = () => {
         if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())
             return (
                 <>
-                <div onClick={() => nav("/Agenda")} className="botonParaAtras"><img className="atras" src={require("../../../img/flechaatras.png")} /></div>
-                <Header titulo={tarea.tarea.nombre} /><div className='PaginaAgenda'>
-                    <div className='tareaAgenda'>
+                <button onClick={() => nav("/Agenda")} className="botonParaAtras"><img className="atras" src={require("../../../img/flechaatras.png")} /></button>
+                <Header titulo={tarea.tarea.nombre} />
+                <div className='PaginaAgenda'>
+                    <div className='tareaAgendaespe'>
 
                         <div className='tarjetaTarea'>
                             <Card className="tarjeta tareaprincipal" sx={{ maxWidth: 545 }}>

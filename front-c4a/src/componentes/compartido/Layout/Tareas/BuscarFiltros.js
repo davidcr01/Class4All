@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../../styles.css';
+import '../../styles.css';
 
 // Componente para buscar filtros en la gestión de las tareas
 // Vista: compartido (admins y profes)

@@ -39,22 +39,10 @@ const PantallasGestion = (props) => {
         }
     }
 
-    const style2 = {
-        width:"100%", 
-        paddingTop:"15px", 
-        paddingBottom:"15px", 
-        justifyContent: "center", 
-        display: "grid", 
-        marginRight:"auto", 
-        marginLeft:"auto", 
-        gridTemplateColumns: "30% 30%", 
-        gridTemplateRows:"13vw 13vw 13vw", 
-        gridColumnGap: "20px", 
-        gridRowGap: "15px"
-    };
+
 
     return(
-        <div style={style2}>
+        <div className='pantallasgestion'>
             {botones}
         </div>
     );
