@@ -50,7 +50,7 @@ const Alumnos = ({alumnos}) => {
             </div>
         )
     }
-
+/*
     else{
         return (
             <div>
@@ -58,6 +58,7 @@ const Alumnos = ({alumnos}) => {
             </div>
         )
     }
+    */
 }
 
 export default Alumnos;

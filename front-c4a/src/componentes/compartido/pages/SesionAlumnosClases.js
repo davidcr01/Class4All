@@ -1,5 +1,5 @@
 import '../styles.css'
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from '../../compartido/Layout/Header.js';
 import Clases from '../../alumnos/Layout/Clases';
 import Cookies from "universal-cookie";
@@ -24,51 +24,63 @@ export const SesionAlumnosClases = () => {
 
       const getAulas = async () => {
         try {
-            //alert("cookie cookie: "+cookies.get("loginCookie"));
-            const url = "http://localhost:3900/api/usuarios/lista-aulas/";
-            console.log(url);
-            const res = await fetch(url)
-            const data = await res.json();
+          //alert("cookie cookie: "+cookies.get("loginCookie"));
+          const url = "http://localhost:3900/api/usuarios/lista-aulas/";
+          console.log(url);
+          const res = await fetch(url)
+          const data = await res.json();
 
-            return data;
+          return data;
 
         } catch (error) {
-            console.log(error);
+          console.log(error);
 
-            return undefined;
+          return undefined;
         }
-    }
+      }
 
-    getAulas().then((data)=>{
+      getAulas().then((data) => {
         setCargando(false);
 
-        if(data.status === "success")
-            setAulas(data.aulas);
-    })
+        if (data.status === "success")
+          setAulas(data.aulas);
+      })
     });
   }, []);
 
-  if(cargando)
+  if (cargando)
     return (
-      <CargandoProgress/>
+      <CargandoProgress />
     )
 
-    /* else if(cookies.get("loginCookie") !== undefined && isSet){
+  /* else if(cookies.get("loginCookie") !== undefined && isSet){
+    return (
+      <div>
+        <h1>SESION YA INICIADA</h1>
+      </div>
+    )
+  } */
+  else {
+    const increment = 4;
+    const aulasVisibles = aulas.slice(index, index + increment);
+    const aulasLength = (aulas === undefined) ? 0 : aulas.length;
+
+    if (aulasLength > 0)
       return (
-        <div>
-          <h1>SESION YA INICIADA</h1>
-        </div>
+        <>
+          <Header titulo="Inicio De Sesión" />
+          <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulasLength} increment={increment} />
+          <Clases aulas={aulasVisibles} />
+        </>
+      );
+
+    else
+      return (
+        <>
+          <Header titulo="Inicio De Sesión" />
+          <h1>NO HAY CLASES EN EL SISTEMA</h1>
+        </>
       )
-    } */
-  else{
-    const increment=4;
-    const aulasVisibles = aulas.slice(index, index+increment);
-  return (
-    <>
-    <Header titulo="Inicio De Sesión"/>
-    <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulas.length} increment={increment}/>
-    <Clases aulas={aulasVisibles}/>
-  </>)
   }
 
 };
