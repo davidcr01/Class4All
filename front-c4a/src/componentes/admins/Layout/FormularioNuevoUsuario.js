@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import '../styles.css';
-import $ from 'jquery';
 
 // Vista: admins
 
@@ -15,7 +14,18 @@ const FormularioNuevoUsuario = ()=> {
 
     function eliminarEmail(){
         document.getElementById("email").remove();
-        $('label[for="email"]').hide();
+        
+        var id = "email";
+        let labelBuscada;
+        let labels = document.getElementsByTagName("label");
+        for (let i = 0; i < labels.length; i++) {
+            if (labels[i].htmlFor === id) {
+                labelBuscada = labels[i];
+                break;
+            }   
+        }
+        labelBuscada.remove();
+
     }
 
     const enviar = (event) => {
