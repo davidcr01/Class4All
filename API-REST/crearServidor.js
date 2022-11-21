@@ -17,8 +17,10 @@ function crearSevidor(){
 
     const rutas_usuario = require('./rutas/usuario');
     const rutas_tarea = require('./rutas/tareasDia');
+    const rutas_menu = require('./rutas/menu');
     app.use("/api/usuarios", rutas_usuario);
     app.use("/api/tareas", rutas_tarea);
+    app.use("/api/menus", rutas_menu);
 
     return app;
 }
