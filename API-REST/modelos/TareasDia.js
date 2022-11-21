@@ -70,16 +70,9 @@ const TareaSchema = Schema({
     //Comandas
     menus: [
         {
-            menu: {
-                type: Schema.Types.ObjectId,
-                default: null
-            },
-            cantidad: {
-                type: Number,
-                default: 0
-            }
+            menu: Schema.Types.ObjectId,
+            cantidad: Number,   
         }
-
     ]
 
     //Menús

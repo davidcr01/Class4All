@@ -304,35 +304,44 @@ const obtenerFoto = (req, res) => {
 };
 
 
-// ARREGLAR
-/* 
-const actualizarCantidad = (req, res) => {
+
+const actualizarCantidades = (req, res) => {
     let idTarea = req.params.idTarea;
-    let cantidad = req.body.cantidad;
-    Tarea.findByIdAndUpdate
-    ({_id :
-        idTarea
-    },
-    {$set:{
-        mcantidad : cantidad
+    let cantidades = req.body.cantidades;
+    Tarea.findById(
+        {_id : idTarea},
+        (error, tarea) => {
+            if (error || !tarea) {
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "La tarea no existe"
+                });
+            }
         }
-    },
-    (error, tareaActualizada) => {
-        if (error || !tareaActualizada) {
-            return res.status(404).json({
-            status: "error",
+    );
 
-            mensaje: "La tarea no se ha actualizado"
-            });
-
-        }
-        return res.status(200).json({
-            status: "success",
-            mensaje: "Todo se ha modificado bien",
-            tarea : tareaActualizada
-        });
+    //actualizar cantidad de los menus
+    for(let i = 0; i < cantidades.length; i++){
+        Tarea.updateOne(
+            {_id : idTarea, "menus._id" : cantidades[i].idMenu},
+            {$set:{"menus.$.cantidad" : cantidades[i].cantidad}},
+            (error, tareaActualizada) => {
+                if (error || !tareaActualizada) {
+                    return res.status(404).json({
+                    status: "error",
+                    mensaje: "La tarea no se ha actualizado"
+                    });
+                }
+            }
+        );
+    }
+    return res.status(200).json({
+        status: "success",
+            mensaje: "Todo se ha modificado correctamete",
     });
-}; */
+    
+
+}; 
 
 
 

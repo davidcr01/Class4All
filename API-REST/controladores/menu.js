@@ -22,6 +22,50 @@ const listar = (req, res) => {
     });  
 };
 
+const crear = (req, res) => {
+    let body = req.body;
+    let menu = new Menu({
+        nombre: body.nombre,
+        foto: body.foto
+    });
+
+    menu.save((error, menuGuardado) => {
+        if (error || !menuGuardado){
+            return res.status(404).json({
+                status:"error",
+                mensaje:"No se ha podido crear el menú"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            menu: menuGuardado
+        });
+    });
+};
+
+
+const eliminar = (req, res) => {
+    let id = req.params.id;
+    let menu = Menu.findByIdAndDelete(id, (error, menuEliminado) => {
+        if (error || !menuEliminado){
+            return res.status(404).json({
+                status:"error",
+                mensaje:"No se ha podido eliminar el menú"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            menu: menuEliminado
+        });
+    });
+};
+
+
+
+
 module.exports = {
     listar
+    , crear
+    , eliminar
+    
 }
