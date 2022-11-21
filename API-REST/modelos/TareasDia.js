@@ -7,6 +7,12 @@ const TareaSchema = Schema({
         default: 'sinAsignar',
         enum: ['sinAsignar', 'asignada', 'completada','cancelada']
     },
+    tipo: {
+        type: String,
+        required: true,
+        default: 'general',
+        enum: ['general', 'comanda', 'entregaMateriales']
+    },
     usuarioAsignado: {
         type: Schema.Types.ObjectId,
         default: null,
@@ -58,8 +64,18 @@ const TareaSchema = Schema({
     instruccionTexto: {
         type: String,
         default: null
-    }
+    },
 
+
+    //Comandas
+    menus: [
+        {
+            menu: Schema.Types.ObjectId,
+            cantidad: Number,   
+        }
+    ]
+
+    //Menús
     
 
 
