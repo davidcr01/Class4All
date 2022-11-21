@@ -40,3 +40,12 @@ export const MuiBreadcrumbsCUS = () => {
         </Breadcrumbs>
     </Box>
 }
+
+export const MuiBreadcrumbsGM = () => {
+    return <Box m={2} className="breadcrumbs">
+        <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
+            <Link underline="hover" color="inherit" href="/">Gestión del centro </Link>
+            <Typography color="text.primary">Gestión de Menús</Typography>
+        </Breadcrumbs>
+    </Box>
+}
