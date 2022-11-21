@@ -73,9 +73,16 @@ const TareaSchema = Schema({
             menu: Schema.Types.ObjectId,
             cantidad: Number,   
         }
+    ],
+
+    //Materiales
+    materiales: [
+        {
+            material: Schema.Types.ObjectId,
+            cantidad: Number,   
+        }
     ]
 
-    //Menús
     
 
 
