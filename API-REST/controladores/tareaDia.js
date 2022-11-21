@@ -304,6 +304,38 @@ const obtenerFoto = (req, res) => {
 };
 
 
+// ARREGLAR
+/* 
+const actualizarCantidad = (req, res) => {
+    let idTarea = req.params.idTarea;
+    let cantidad = req.body.cantidad;
+    Tarea.findByIdAndUpdate
+    ({_id :
+        idTarea
+    },
+    {$set:{
+        mcantidad : cantidad
+        }
+    },
+    (error, tareaActualizada) => {
+        if (error || !tareaActualizada) {
+            return res.status(404).json({
+            status: "error",
+
+            mensaje: "La tarea no se ha actualizado"
+            });
+
+        }
+        return res.status(200).json({
+            status: "success",
+            mensaje: "Todo se ha modificado bien",
+            tarea : tareaActualizada
+        });
+    });
+}; */
+
+
+
 
 
 
