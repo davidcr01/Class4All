@@ -1,9 +1,5 @@
 const Menu = require("../modelos/Menu");
-const Cookies = require("universal-cookie");
-const fs = require('fs');
-const path = require('path');
 
-const cookies = new Cookies();
 
 
 const listar = (req, res) => {

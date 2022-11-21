@@ -3,8 +3,6 @@ const crearServidor = require('../crearServidor');
 const {conexionTest} = require('../basedatos/conexionTests');
 const Usuario = require("../modelos/Usuario");
 const request = require('supertest');
-const TareasDia = require('../modelos/TareasDia');
-
 
 beforeEach((done) => {
     //conexionTest();

@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const crearServidor = require('../crearServidor');
-const {conexionTest} = require('../basedatos/conexionTests');
 const Tarea = require("../modelos/TareasDia");
 const Usuario = require("../modelos/Usuario");
 const request = require('supertest');
@@ -9,6 +8,7 @@ const request = require('supertest');
 beforeEach((done) => {
     //conexionTest();
     mongoose.connect("mongodb+srv://test:test@c4a-test.97v4qpm.mongodb.net/?retryWrites=true&w=majority", () => done());
+    
     //done();
 });
 
