@@ -6,6 +6,8 @@ import { GestionTareas } from '../componentes/compartido/pages/GestionTareas';
 import { GestionUsuarios} from '../componentes/admins/pages/GestionUsuarios';
 import { CreacionUsuario } from '../componentes/admins/pages/CreacionUsuario';
 import { GestionMenus } from '../componentes/admins/pages/GestionMenus';
+import { InfoMenus } from '../componentes/admins/pages/InfoMenus';
+import { CreacionMenu } from '../componentes/admins/pages/CreacionMenu';
 
 export const RouterAdmins = () => {
     return (
@@ -17,6 +19,8 @@ export const RouterAdmins = () => {
             <Route path="/gestion-usuarios" element={<GestionUsuarios/>} />
             <Route path="/crear-usuario" element={<CreacionUsuario/>} />
             <Route path="/gestion-menus" element={<GestionMenus/>} />
+            <Route path="/info-menus" element={<InfoMenus/>} />
+            <Route path="/crear-menu" element={<CreacionMenu/>} />
             <Route path="*" element={<><h1>404 Admins</h1></>} />
             {/* <Route path="/otra-pagina" element={<OtraPagina />} /> */}
         </Routes>

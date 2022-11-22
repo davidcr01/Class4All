@@ -49,3 +49,25 @@ export const MuiBreadcrumbsGM = () => {
         </Breadcrumbs>
     </Box>
 }
+
+export const MuiBreadcrumbsIM = () => {
+    return <Box m={2} className="breadcrumbs">
+        <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
+            <Link underline="hover" color="inherit" href="/">Gestión del centro </Link>
+            <Link underline="hover" color="inherit" href="/gestion-menus">Gestión de Menus </Link>
+
+            <Typography color="text.primary">Información del Menú</Typography>
+        </Breadcrumbs>
+    </Box>
+}
+
+export const MuiBreadcrumbsCM = () => {
+    return <Box m={2} className="breadcrumbs">
+        <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
+            <Link underline="hover" color="inherit" href="/">Gestión del centro </Link>
+            <Link underline="hover" color="inherit" href="/gestion-menus">Gestión de Menus </Link>
+
+            <Typography color="text.primary">Crear Menú</Typography>
+        </Breadcrumbs>
+    </Box>
+}

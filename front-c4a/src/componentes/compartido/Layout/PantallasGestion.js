@@ -10,7 +10,7 @@ const PantallasGestion = (props) => {
     const informacion = [
         {apartado: "Gestión de usuarios", enlace: "/gestion-usuarios", rol: "Administrador"},
         {apartado: "Gestión de tareas", enlace: "/gestion-tareas", rol: "Profesor"},
-        {apartado: "Gestión de menús", enlace: "/login-ok", rol: "Administrador"},
+        {apartado: "Gestión de menús", enlace: "/gestion-menus", rol: "Administrador"},
         {apartado: "Comandas", enlace: "/login-ok", rol: "Administrador"},
         {apartado: "Stock", enlace: "/login-ok", rol: "Administrador"},
         {apartado: "Chat", enlace: "/login-ok", rol: "Profesor"},
