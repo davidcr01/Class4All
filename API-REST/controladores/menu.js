@@ -1,5 +1,6 @@
 const Menu = require("../modelos/Menu");
-
+const fs = require('fs');
+const path = require('path');
 
 
 const listar = (req, res) => {
@@ -19,12 +20,11 @@ const listar = (req, res) => {
 };
 
 const crear = (req, res) => {
-    let body = req.body;
-    let menu = new Menu({
-        nombre: body.nombre,
-        foto: body.foto
-    });
-
+    const body = req.body;
+    const menu = new Menu(body);
+    console.log(menu);
+    console.log(body);
+    console.log(req.body.nombre);
     menu.save((error, menuGuardado) => {
         if (error || !menuGuardado){
             return res.status(404).json({
@@ -34,7 +34,9 @@ const crear = (req, res) => {
         }
         return res.status(200).json({
             status: "success",
-            menu: menuGuardado
+            menu: menuGuardado,
+            mensaje:"El menú se ha guardado correctamente"
+
         });
     });
 };
@@ -56,6 +58,27 @@ const eliminar = (req, res) => {
     });
 };
 
+const getFoto = (req, res) => {
+    let id = req.params.id;
+    Menu.findById(id, (error, menu) => {
+        if (error || !menu){
+            return res.status(404).json({
+                status:"error",
+                mensaje:"No se ha podido encontrar el menú"
+            });
+        }
+        let foto = menu.foto
+        let urlFisica = "./public/fotos/" + foto;
+        fs.stat(urlFisica,(error,existe) => {
+            if(existe){
+                return res.sendFile(path.resolve(urlFisica));
+            }else{
+                
+               return res.sendFile(path.resolve("./public/fotos/menudefault.jpg"));
+            }
+        })
+    });
+};
 
 
 
@@ -63,5 +86,6 @@ module.exports = {
     listar
     , crear
     , eliminar
+    , getFoto
     
 }
