@@ -11,7 +11,7 @@ const ListaMenus = (props) => {
 
         return (
             <div className='ListaUsuarios'>
-                <button className="botoncrear" onClick={() => nav("/crear-menu")}>Crear menú</button>
+                <button className="botoncrear" onClick={() => nav("/crear-menu")}>Añadir menú</button>
                 <Menus/>
             </div>
 

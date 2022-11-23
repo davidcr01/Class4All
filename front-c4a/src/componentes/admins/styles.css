@@ -94,6 +94,7 @@
     display:grid;
     border-radius: 10px;
     font-style: italic;
+    font-size: 18px;
   }
 
   .botonuser-eliminar{
