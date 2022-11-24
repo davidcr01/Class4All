@@ -402,7 +402,47 @@ const setestadocompletada = (req, res) => {
 
 };
 
+const crearTareaMaterial = (req, res) => {
 
+        //Recoger parametros por post
+        let parametros = req.body;
+
+        parametros.realizada = false;
+        parametros.estado = 'sinAsignar';
+        parametros.tipo = 'entregaMateriales'
+        // parametros.tipoInstrucciones = "texto";
+
+        if(parametros.nombre == null){
+            parametros.nombre = "Tarea sin nombre";
+        }
+        if(parametros.descripcion == null){
+            parametros.descripcion = "Tarea sin descripcion";
+        }  
+        console.log(parametros);
+
+        //Crear objeto 
+        const tarea = new Tarea(parametros);
+
+    
+        //Guardar el objeto en la base de datos
+        tarea.save((error, tareaGuardada) => {
+            if (error || !tareaGuardada) {
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "La tarea no se ha guardado"
+                });
+            }
+            return res.status(200).json({
+                status: "success",
+                tarea: tareaGuardada,
+                mensaje: "La tarea se ha guardado correctamente"
+            });
+    
+        });
+    
+
+
+}
     
 
 
@@ -421,6 +461,8 @@ module.exports = {
     obtenerFoto,
     actualizarCantidades,
     setrealizada,
-    setestadocompletada
+    setestadocompletada,
+    crearTareaMaterial
+
     
 }
