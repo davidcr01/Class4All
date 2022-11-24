@@ -28,7 +28,7 @@ export const Menus = () => {
         {menus != null && menus.length !== 0 ?
         menus.map(t =>{
             return(
-                <Menu key={t._id} className="usuariolista" user={t}/ >
+                <Menu key={t._id} className="usuariolista" menu={t}/ >
             );
         })
         : <CargandoProgress/>
