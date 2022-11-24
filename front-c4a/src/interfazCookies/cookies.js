@@ -10,7 +10,7 @@ const cookies = new Cookies();
 export const logoutServer = async () => {
     try {
         const url = "http://localhost:3900/api/usuarios/userLogout/";
-        console.log(url);
+        //console.log(url);
         const res = await fetch(url, {
             method: "POST",
             headers: {
