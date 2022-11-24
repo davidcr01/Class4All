@@ -26,26 +26,29 @@ export const logoutServer = async () => {
 
 /**
  * Llamada AJAX que devuelve la cookie del servidor que corresponde con el usuario actual.
- * @returns undefined en caso de fallo o de no existir la cookie en el servidor, el valor de la cookie en otro caso
+ * @returns undefined en caso de fallo o de no existir la cookie en el servidor o no tener la cookie en el cliente, 
+ * el valor de la cookie en otro caso
  */
 export const getCookie = async () => {
-    try {
-        //alert("cookie cookie: "+cookies.get("loginCookie"));
-        const url = "http://localhost:3900/api/usuarios/cookie/" + cookies.get("loginCookie").sessionID+"/"+cookies.get("loginCookie").id+"/"+cookies.get("loginCookie").rol;
-        console.log(url);
-        const res = await fetch(url)
-        const data = await res.json();
 
-        console.log("datos")
-        console.log(data);
+    try {
+        let data = undefined;
+
+        if (cookies.get("loginCookie") !== undefined) {
+            const url = "http://localhost:3900/api/usuarios/cookie/" + cookies.get("loginCookie").sessionID + "/" + cookies.get("loginCookie").id + "/" + cookies.get("loginCookie").rol;
+
+
+            const res = await fetch(url)
+            data = await res.json();
+        }
 
         return data;
-        
+
     } catch (error) {
         console.log(error);
 
         return undefined;
-    }                        
+    }
 }
 
 
