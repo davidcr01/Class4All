@@ -28,50 +28,21 @@ const FormularioNuevoMenu = ()=> {
 
     }
 
+    
+
     const enviar = (event) => {
         event.preventDefault();
 
         let datos = event.target;
 
-        let usuario = {
+        let menu = {
             nombre: datos.nombre.value,
-            apellido1: datos.apellido1.value,
-            apellido2: datos.apellido2.value,
-            email: datos.email.value,
-            password: datos.password.value,
-            rol: datos.rol.value,
-        }
-        if(usuario.rol == 1){
-            usuario.rol = 'Administrador'
-        }else if(usuario.rol == 2){
-            usuario.rol= 'Profesor'
-            usuario["clase"]= datos.clase.value
-        }
-        else if(usuario.rol == 3){
-            usuario["preferencias"] =  datos.preferencias.value
-            usuario["clase"]= datos.clase.value
-            usuario.rol = 'Alumno'
+            imagen: datos.imagen.value,
         }
 
         var urlencoded = new URLSearchParams();
-        urlencoded.append("nombre", usuario.nombre);
-        urlencoded.append("apellido1", usuario.apellido1);
-        urlencoded.append("apellido2", usuario.apellido2);
-        // urlencoded.append("email", usuario.email);
-        // urlencoded.append("password", usuario.password);
-        urlencoded.append("foto", "./img/usuario.png");
-        urlencoded.append("rol", usuario.rol);
-
-        if(usuario.rol == 'Profesor'){
-            urlencoded.append("clase", usuario.clase);
-        }
-        if(usuario.rol == 'Alumno'){
-            urlencoded.append("preferencias", usuario.preferencias);
-            urlencoded.append("clase", usuario.clase);
-        }
-        if(usuario.rol == 'Administrador'){
-            urlencoded.append("clase","Todas");
-        }
+        urlencoded.append("nombre", menu.nombre);
+        urlencoded.append("imagen", menu.imagen);
 
         var requestOptions = {
             method: 'POST',
@@ -80,14 +51,11 @@ const FormularioNuevoMenu = ()=> {
         };
 
         console.log(urlencoded)
-        fetch('http://localhost:3900/api/usuarios/crear-usuario', requestOptions).
+        fetch('http://localhost:3900/api/menus/crear-menu', requestOptions).
         then(response => response.text()).
         then(result => console.log(result)).
         catch(error => console.log('error', error));
-
-
-
-     }
+    }
 
 
 
@@ -101,8 +69,8 @@ const FormularioNuevoMenu = ()=> {
                 <p><label className="etiq" htmlFor="nombre">Nombre</label>
                 <input type="text" id="nombre"/>
                 </p>
-                <p><label className="etiq" htmlFor="apellido1">Imagen</label>
-                <input type="text" id="apellido1"/>
+                <p><label className="etiq" htmlFor="imagen">Imagen</label>
+                <input type="text" id="imagen"/>
                 </p>
             </div>
             <input type="submit" value="Enviar"/>
