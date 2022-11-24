@@ -12,4 +12,7 @@ router.post("/crear-tareaDia" , TareaController.crearTarea);
 router.delete("/eliminar-tareaDia/:id" , TareaController.eliminarTarea);
 router.put("/asignar-tarea/:idTarea/:idAlumno" , TareaController.asignarTarea);
 router.put("/desasignar-tarea/:idTarea" , TareaController.desasignarTarea);
+
+router.put("/completar-tarea-alumno/:idTarea" , TareaController.setrealizada);
+router.put("/completar-tarea-profesor/:idTarea" , TareaController.setestadocompletada);
 module.exports = router;

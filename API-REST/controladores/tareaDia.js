@@ -344,6 +344,77 @@ const actualizarCantidades = (req, res) => {
 }; 
 
 
+const setrealizada = (req, res) => {
+    let idTarea = req.params.idTarea;
+    Tarea.findById({id : idTarea},
+        (error, tarea) => {
+            if (error || !tarea) {
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "La tarea no existe"
+                });
+            }
+        }
+    );
+    Tarea.updateOne(
+        {
+        id : idTarea},
+        {$set:{realizada : true}},
+        (error, tareaActualizada) => {
+            if (error || !tareaActualizada) {
+                return res.status(404).json({
+                status: "error",
+                mensaje: "La tarea no se ha actualizado"
+                });
+            }
+        }
+    );
+    return res.status(200).json({
+        status: "success",
+            mensaje: "Todo se ha modificado correctamete",
+    });
+
+};
+
+const setestadocompletada = (req, res) => {
+    
+    let idTarea = req.params.idTarea;
+    Tarea.findById
+    (
+        {id : idTarea},
+        (error, tarea) => {
+            if (error || !tarea) {
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "La tarea no existe"   
+                });
+            }
+        }
+    );
+    Tarea.updateOne(
+        {
+        id : idTarea},
+        {$set:{estado : 'completada'}},
+        (error, tareaActualizada) => {
+            if (error || !tareaActualizada) {
+                return res.status(404).json({
+                status: "error",
+                mensaje: "La tarea no se ha actualizado"
+                });
+            }
+        }
+    );
+    return res.status(200).json({
+        status: "success",
+
+            mensaje: "Todo se ha modificado correctamete",
+    });
+
+};
+
+
+    
+
 
 
 
@@ -357,5 +428,9 @@ module.exports = {
     desasignarTarea,
     obtenerTarea,
     obtenerTareasUsuario,
-    obtenerFoto
+    obtenerFoto,
+    actualizarCantidades,
+    setrealizada,
+    setestadocompletada
+    
 }
