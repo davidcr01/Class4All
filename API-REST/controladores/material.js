@@ -45,6 +45,9 @@ const getFoto = (req, res) => {
     });
 };
 
+
+
+
 module.exports = {
     listar
     , getFoto
