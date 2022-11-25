@@ -12,7 +12,7 @@ import Header from '../../compartido/Layout/Header';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { useNavigate } from 'react-router-dom';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
-
+import BotonParaAtras from '../../compartido/Layout/BotonParaAtras';
 
 export const Agenda = () => {
 
@@ -91,6 +91,7 @@ export const Agenda = () => {
             if (tareas !== undefined && tareasLength > 0)
                 return (
                     <>
+                      <BotonParaAtras url="/Tareas"/>
                         <Header titulo="Agenda" /><div className='PaginaAgenda'>
                             {/* <TareaAgenda tarea={tareas[currentTarea]} key={currentTarea}/> */}
 

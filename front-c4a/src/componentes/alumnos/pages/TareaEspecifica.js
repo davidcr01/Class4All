@@ -9,6 +9,8 @@ import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { useParams } from "react-router-dom"
 import Header from '../../compartido/Layout/Header';
 import {useNavigate} from 'react-router-dom';
+import BotonParaAtras from '../../compartido/Layout/BotonParaAtras';
+
 
 // Vista: alumno
 
@@ -69,7 +71,7 @@ export const TareaEspecifica = () => {
         if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())
             return (
                 <>
-                <button onClick={() => nav("/Agenda")} className="botonParaAtras"><img className="atras" src={require("../../../img/flechaatras.png")} /></button>
+                <BotonParaAtras url="/Agenda"/>
                 <Header titulo={tarea.tarea.nombre} />
                 <div className='PaginaAgenda'>
                     <div className='tareaAgendaespe'>
