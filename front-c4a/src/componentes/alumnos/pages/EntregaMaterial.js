@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import { useParams } from "react-router-dom"
-
+import '../styles.css'
 import Header from '../../compartido/Layout/Header';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
@@ -46,7 +46,9 @@ export const EntregaMaterial = () => {
                 <h2>Pictogramas</h2>
              </section>
 
+
              <FlechasPaginacionGenerico currentIndex={currentMaterial} setCurrentIndex={setcurrentMaterial} length={materiales.length} increment={materialesIncrement} />
+
              <section>
                 <h2>materiales</h2>
              </section>
