@@ -312,6 +312,7 @@ const obtenerFoto = (req, res) => {
 const actualizarCantidades = (req, res) => {
     let idTarea = req.params.idTarea;
     let cantidades = req.body.cantidades;
+
     Tarea.findById(
         { _id: idTarea },
         (error, tarea) => {
@@ -322,28 +323,59 @@ const actualizarCantidades = (req, res) => {
                 });
             }
 
+            let menus = tarea.menus;
+
+            let salir = false;
             //actualizar cantidad de los menus
             for (let i = 0; i < cantidades.length; i++) {
-                Tarea.updateOne(
-                    { _id: idTarea, "menus._id": cantidades[i].idMenu },
-                    { $set: { "menus.$.cantidad": cantidades[i].cantidad } },
-                    (error, tareaActualizada) => {
-                        if (error || !tareaActualizada) {
-                            return res.status(404).json({
-                                status: "error",
-                                mensaje: "La tarea no se ha actualizado"
-                            });
-                        }
+                for(let  j = 0; j < menus.length && !salir; j++){
+                    if(menus[j].menu == cantidades[i].menu){
+                        menus[j].cantidad = Number(menus[j].cantidad)
+                        menus[j].cantidad += Number(cantidades[i].cantidad);   
+                        salir = true;                     
                     }
-                );
-            }
+                }
+
+                if(salir == false){
+                    menus.push(cantidades[i]);
+                }
+                    salir = false;
+
+               }
+
+            // console.log(menus);
+            //actualizar la tarea
+            Tarea.findByIdAndUpdate(
+                { _id: idTarea },
+                {
+                    $set: {
+                        menus: menus
+                    }
+                },
+                { lean: true, new: true },
+                (error, tareaActualizada) => {
+                    if (error || !tareaActualizada) {
+                        return res.status(404).json({
+                            status: "error",
+                            mensaje: "La tarea no se ha actualizado"
+                        });
+                    }
+
+                    return res.status(200).json({
+                        status: "success",
+                        mensaje: "Todo se ha modificado bien",
+                        tarea: tareaActualizada
+                    });
+                }
+            );
+
+
+
+
+
+
         }
     );
-
-    return res.status(200).json({
-        status: "success",
-        mensaje: "Todo se ha modificado correctamete",
-    });
 
 
 };
