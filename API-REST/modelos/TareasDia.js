@@ -1,11 +1,11 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const TareaSchema = Schema({
     estado: {
         type: String,
         required: true,
         default: 'sinAsignar',
-        enum: ['sinAsignar', 'asignada', 'completada','cancelada']
+        enum: ['sinAsignar', 'asignada', 'completada', 'cancelada']
     },
     tipo: {
         type: String,
@@ -50,12 +50,12 @@ const TareaSchema = Schema({
         enum: ['texto', 'imagen', 'video']
     },
     instruccionesFotos: {
-        instrucciones:[{
+        instrucciones: [{
             foto: String,
             alt: String
         }],
         default: []
-        
+
     },
     urlVideo: {
         type: String,
@@ -71,19 +71,26 @@ const TareaSchema = Schema({
     menus: [
         {
             menu: Schema.Types.ObjectId,
-            cantidad: Number,   
+            cantidad: Number,
         }
     ],
 
     //Materiales
-    materiales: [
-        {
-            material: Schema.Types.ObjectId,
-            cantidad: Number,   
-        }
-    ]
+    entregamateriales: {
+        materiales: [
+            {
+                material: Schema.Types.ObjectId,
+                cantidad: Number,
+            }
+        ],
+        idProfesor: Schema.Types.ObjectId,
 
-    
+    },
+
+    realizada: {
+        type: Boolean,
+        default: false
+    }
 
 
 });

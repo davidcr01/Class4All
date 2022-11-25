@@ -12,7 +12,7 @@ import Header from '../../compartido/Layout/Header';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { useNavigate } from 'react-router-dom';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
-
+import BotonParaAtras from '../../compartido/Layout/BotonParaAtras';
 
 export const Agenda = () => {
 
@@ -22,9 +22,19 @@ export const Agenda = () => {
     const [tareas, setTareas] = useState(undefined);//estructura de tareas
     //const [fotos,setFotos] = useState([]);//estructura de fotos
     const [cookieSet, setCookieSet] = useState();
-
-
     const nav = useNavigate();
+
+    const comenzarHandler = (t) =>{
+        if(t.tipo === "entregaMateriales"){
+            nav(`/entregaMaterial/${t._id}`)
+        }
+        else if(t.tipo === "comanda"){
+            nav(`/comanda/${t._id}`)
+        }
+        else{
+            nav(`/mitarea/${t._id}`)
+        }
+    }
 
     const rellenarAgenda = async () => {
         const cookies = new Cookies();
@@ -81,6 +91,7 @@ export const Agenda = () => {
             if (tareas !== undefined && tareasLength > 0)
                 return (
                     <>
+                      <BotonParaAtras url="/Tareas"/>
                         <Header titulo="Agenda" /><div className='PaginaAgenda'>
                             {/* <TareaAgenda tarea={tareas[currentTarea]} key={currentTarea}/> */}
 
@@ -111,7 +122,7 @@ export const Agenda = () => {
 
 
                             {/* boton-> currentTarea,tareas */}
-                            <div className='botonComenzar' onClick={() => nav("/mitarea/" + tareas[currentTarea]._id)}>
+                            <div className='botonComenzar' onClick={e => comenzarHandler(tareas[currentTarea])/* () => nav("/mitarea/" + tareas[currentTarea]._id) */}>
                                 <Button variant="outlined" className='estilobotoncomenzar'>Comenzar</Button>
                             </div>
 

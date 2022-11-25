@@ -23,7 +23,32 @@ const listar = (req, res) => {
 };
 
 
+const getFoto = (req, res) => {
+    let id = req.params.id;
+    Material.findById(id, (error, material) => {
+        if (error || !material){
+            return res.status(404).json({
+                status:"error",
+                mensaje:"No se ha podido encontrar el menú"
+            });
+        }
+        let foto = material.foto
+        let urlFisica = "./public/fotos/" + foto;
+        fs.stat(urlFisica,(error,existe) => {
+            if(existe){
+                return res.sendFile(path.resolve(urlFisica));
+            }else{
+                
+               return res.sendFile(path.resolve("./public/fotos/materialdefault.jpg"));
+            }
+        })
+    });
+};
+
+
+
 
 module.exports = {
-    listar    
+    listar
+    , getFoto
 }

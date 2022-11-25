@@ -10,6 +10,7 @@ const crear = (req, res) => {
     //Recoger parametros por post
     let parametros = req.body;
     //Validar datos ?
+    console.log(parametros.nombre);
 
     //Crear objeto 
     const usuario = new Usuario(parametros);        //se asignan los parametros de manera automática si coinciden el nombre

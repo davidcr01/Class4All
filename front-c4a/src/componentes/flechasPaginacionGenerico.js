@@ -1,41 +1,65 @@
 import React from 'react'
 import Button from '@mui/material/Button';
 
-export const FlechasPaginacionGenerico = ({currentIndex,setCurrentIndex,length, increment}) => {
+export const FlechasPaginacionGenerico = ({ currentIndex, setCurrentIndex, length, increment }) => {
     //alert(currentIndex);
 
     const paginaAtras = () => {
-        
-        if(currentIndex>0){
-            setCurrentIndex(currentIndex-increment);
-           
+
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - increment);
+
         }
     }
     const paginaAdelante = () => {
-        
-        if(currentIndex<length-increment){
-            
-            setCurrentIndex(currentIndex+increment);
+
+        if (currentIndex < length - increment) {
+
+            setCurrentIndex(currentIndex + increment);
         }
     }
 
 
-    if(length > increment)
-  return (
-    <div className='flechaAgenda'>
-            <div className='flechaI'>
-            <Button  variant="contained" onClick={e => paginaAtras()} /* startIcon={<ArrowBackIcon />} */>
-                <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png'/>
-            </Button>
-            
-            </div>
+    if (length > increment){
 
-            
-            <div className='flechaD'>
-            <Button variant="contained" onClick={e => paginaAdelante()}>
-                <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png'/>
-            </Button>
+        if(currentIndex === 0)
+        return (
+            <div className='flechaAgenda'>
+                <div className='flechaD'>
+                    <Button variant="contained" onClick={e => paginaAdelante()}>
+                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
+                    </Button>
+                </div>
             </div>
-    </div>
-  )
+        )
+
+        else if(currentIndex + increment >= length )
+        return (
+            <div className='flechaAgenda'>
+                <div className='flechaI'>
+                    <Button variant="contained" onClick={e => paginaAtras()} /* startIcon={<ArrowBackIcon />} */>
+                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
+                    </Button>
+
+                </div>
+            </div>
+        )
+
+        else
+        return(
+            <div className='flechaAgenda'>
+                <div className='flechaI'>
+                    <Button variant="contained" onClick={e => paginaAtras()} /* startIcon={<ArrowBackIcon />} */>
+                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
+                    </Button>
+                </div>
+
+                <div className='flechaD'>
+                    <Button variant="contained" onClick={e => paginaAdelante()}>
+                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
+                    </Button>
+                </div>
+            </div>
+        )
+    }
 }
