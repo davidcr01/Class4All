@@ -18,7 +18,8 @@
     grid-template-columns: 25% 25%;
     grid-template-rows:20vw 20vw;
     grid-column-gap: 40px;
-    grid-row-gap: 15px
+    grid-row-gap: 15px;
+    grid-auto-flow: column
 }
 
 .recuadrosclases{
@@ -166,6 +167,18 @@
   .estilobotoncomenzar{
     width: 200px;
     height: 80px
+  }
+
+  .contenedorBoton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .botonEnviarMenus{
+    font-size: 10em;
+    width: 50em;
+    height: 20em;
   }
   
   
