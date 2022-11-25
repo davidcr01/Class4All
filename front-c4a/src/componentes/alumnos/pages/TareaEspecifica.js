@@ -4,7 +4,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Cookies from 'universal-cookie';
-import { isCookieSet } from '../../../interfazCookies/cookies';
+import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { useParams } from "react-router-dom"
 import Header from '../../compartido/Layout/Header';

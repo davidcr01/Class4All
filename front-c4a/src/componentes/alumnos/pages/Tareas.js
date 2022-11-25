@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import Header from '../../compartido/Layout/Header';
 import PantallaTareas from '../../compartido/Layout/Tareas/PantallaTareas.js';
 import Cookies from 'universal-cookie';
-import { isCookieSet } from '../../../interfazCookies/cookies';
+import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 
 // Vista: alumno

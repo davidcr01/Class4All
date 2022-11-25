@@ -2,7 +2,7 @@ import '../styles.css'
 import React, { useEffect, useState } from 'react'
 import Header from '../../compartido/Layout/Header';
 import PantallasUsuario from '../../alumnos/Layout/PantallasUsuario';
-import { isCookieSet } from '../../../interfazCookies/cookies';
+import { isCookieSet } from '../../../interfaces/cookies';
 import Cookies from 'universal-cookie';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 

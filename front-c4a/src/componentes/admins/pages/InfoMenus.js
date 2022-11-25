@@ -5,7 +5,7 @@ import Footer from '../../compartido/Layout/Footer.js';
 import { MuiBreadcrumbsIM} from '../../muibreadcrumbs';
 import PantallaInfoMenus from '../Layout/PantallaInfoMenus';
 import Cookies from 'universal-cookie';
-import { isCookieSet } from '../../../interfazCookies/cookies';
+import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 
 // Vista: admin

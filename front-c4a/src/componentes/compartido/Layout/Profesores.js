@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import { isCookieSet, loginUser } from '../../../interfazCookies/cookies';
+import { isCookieSet, loginUser } from '../../../interfaces/cookies';
 import { ContextoRol } from '../../../contexto/Roles';
 
 // Vista: compatido entre profesores y admins
