@@ -22,9 +22,6 @@ const listar = (req, res) => {
 const crear = (req, res) => {
     const body = req.body;
     const menu = new Menu(body);
-    console.log(menu);
-    console.log(body);
-    console.log(req.body.nombre);
     menu.save((error, menuGuardado) => {
         if (error || !menuGuardado){
             return res.status(404).json({
