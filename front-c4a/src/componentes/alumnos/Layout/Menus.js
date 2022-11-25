@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "universal-cookie";
-import { loginAlumno } from '../../../interfazCookies/cookies';
+import { loginAlumno } from '../../../interfaces/cookies';
 
 import { ContextoRol } from '../../../contexto/Roles';
 

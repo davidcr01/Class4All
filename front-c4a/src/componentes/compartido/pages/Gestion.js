@@ -4,7 +4,7 @@ import Header from '../../compartido/Layout/Header.js';
 import Footer from '../../compartido/Layout/Footer.js';
 import { MuiBreadcrumbs } from '../../muibreadcrumbs';
 import PantallasGestion from '../../compartido/Layout/PantallasGestion';
-import { isCookieSet } from '../../../interfazCookies/cookies';
+import { isCookieSet } from '../../../interfaces/cookies';
 import Cookies from 'universal-cookie';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 

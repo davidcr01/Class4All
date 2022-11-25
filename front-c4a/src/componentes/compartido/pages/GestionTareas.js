@@ -5,7 +5,7 @@ import Footer from '../../compartido/Layout/Footer.js';
 import { MuiBreadcrumbsGTS } from '../../muibreadcrumbs';
 import PantallaGestionTareas from '../../compartido/Layout/Tareas/PantallaGestionTareas';
 import Cookies from 'universal-cookie';
-import { isCookieSet } from '../../../interfazCookies/cookies';
+import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 
 // Vista: compartida entre admins y profs

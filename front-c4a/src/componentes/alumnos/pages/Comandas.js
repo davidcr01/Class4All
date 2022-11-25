@@ -5,7 +5,7 @@ import Header from '../../compartido/Layout/Header.js';
 import Menus from '../Layout/Menus';
 import Cookies from "universal-cookie";
 import { useLocation } from 'react-router-dom';
-import { isCookieSet } from '../../../interfazCookies/cookies';
+import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 

@@ -4,7 +4,7 @@ import Header from '../../compartido/Layout/Header.js';
 import Alumnos from '../../alumnos/Layout/Alumnos';
 import { useLocation } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import { isCookieSet } from '../../../interfazCookies/cookies';
+import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 
