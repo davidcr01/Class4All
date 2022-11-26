@@ -6,48 +6,39 @@ import { getListSubheaderUtilityClass } from '@mui/material';
 
 // Vista: compartida (administradores y profesores)
 
-export const Tareas = (props) => {
-    
-    const [materiales, SetMateriales] =  useState([]);
-    const [usuarios, SetUsuarios] = useState([]);
+export const Tareas = () => {
+
+    const [materialesPedidos, SetMaterialesPedidos] = useState([]);
+    const [pedido, SetPedido] = useState([]);
 
     useEffect(() => {
-        getMateriales();
-        getUsuarios();
+        getPedido();
     }, []);
 
-    const getMateriales = async() =>{
+    //PETICIÓN A LA BASE DE DATOS QUE PASANDO EL ID DEL PROFESOR DIGA SI HA HECHO PETICIÓN DE MATERIAL O NO
+    //ESTO SE HACE CON LAS COOCKIES
+    const getPedido = async() => {
         try {
-            const url = "http://localhost:3900/api/materiales/lista-materiales";
-
-            const res = await fetch(url)
-            const data = await res.json();
-            SetMateriales(data.materiales);
-        } catch (error) {
-            console.log(error);
+            const url = "http://localhost:3900/api/materiales/get-materiales/";
+            const res = await fetch(url);
+            const materialesPedidos = await res.json();
+            
+            SetPedido(1);
+            SetMaterialesPedidos(materialesPedidos)
+        } catch {
+            SetPedido(0);
         }
     }
-
-    const getUsuarios = async() =>{
-        try {
-            const url = "http://localhost:3900/api/usuarios/lista-usuarios";
-
-            const res = await fetch(url)
-            const data = await res.json();
-            SetUsuarios(data.usuarios);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
 
     //Aquí que se haga como un if para comprobar si hay o no materialesPedidos, y si los hay que se haga
     //lo de MaterialPedido y si no lo del otro
     return (
         <section>
-           {materialesPedidos != null && materialesPedidos.length !== 0 ?
-                {}
-                : <CargandoProgress/>  
+            {pedido === 1 && 
+                <MaterialPedido className="materiales" materiales={materialesPedidos}/>
+            }
+            {pedido === 0 && 
+                <PedirMaterial />
             }
         </section>
 

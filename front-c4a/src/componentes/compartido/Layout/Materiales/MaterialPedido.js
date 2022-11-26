@@ -6,14 +6,14 @@ import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 
 const MaterialPedido = (props) => {
 
-    const [usuarios, setUsuarios] = useState('');
-    const [materiales, setMaterialesPedidos] = useState('');
+    const [usuario, setUsuarios] = useState('');
+ //   const [materiales, setMaterialesPedidos] = useState('');
     const [cargando, setCargando] = useState(true);
 
     useEffect(() => {
         setCargando(true);
         getUser();
-        getMaterialesPedidos();
+  //      getMaterialesPedidos();
     }, []);
 
     
@@ -39,6 +39,7 @@ const MaterialPedido = (props) => {
     }
 
 
+    //Da el alumno al que se ha asignado la tarea
     const getUser = async () => {
         try {
             const url = "http://localhost:3900/api/usuarios/get-usuario/" + props.materiales.usuario
@@ -82,21 +83,20 @@ const MaterialPedido = (props) => {
         return <CargandoProgress/>
     }else{
         return (
-            <div className="materiales">
-                <div><label className='label-materiales'>Alumno:</label> {props.materiales.usuario.nombre}</div>
+            <section className="materiales">
+                Alumno: {usuario}
                 
                 <article>
-                    <div><label className='label-materiales'>Material:</label> {props.materiales.material.nombre}</div>
-                    <div><label className='label-materiales'>Cantidad:</label> {props.materiales.cantidad}</div>
+                    Material: {materiales.material.nombre}
+                    Cantidad: {materiales.cantidad}
                 </article>
                 
+                Realizado: No
+                Recibido <input type="checkbox"></input>
 
-                <div><label className='label-materiales'>Realizado:</label> No</div>
-                <div><label className='label-materiales'>Recibido</label> <input type="checkbox"></input></div>
+                <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/></button>
 
-                <div className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/></div>
-
-            </div>
+            </section>
         )
     }
 

@@ -4,17 +4,51 @@ import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 
 // Vista: compartida (administradores y profesores)
 
-const PedirMateriales = (props) => {
+const PedirMateriales = () => {
 
-    const [usuarios, setUsuarios] = React.useState([{}]);
-    const [materiales, setMateriales] = React.useState([{}]);
+//    const [usuarios, setUsuarios] = React.useState([{}]);
+//    const [materiales, setMateriales] = React.useState([{}]);
+  
     const [cargando, setCargando] = useState(true);
 
+    const [allMateriales, SetAllMateriales] =  useState([]);
+    const [allUsuarios, SetAllUsuarios] = useState([]);
+/*
     useEffect(() => {
         setCargando(true);
         getUser();
         getMaterial();
     }, []);
+*/
+    useEffect(() => {
+        setCargando(true);
+        getAllMateriales();
+        getAllUsuarios();
+    }, []);
+
+    const getAllMateriales = async() =>{
+        try {
+            const url = "http://localhost:3900/api/materiales/lista-materiales";
+
+            const res = await fetch(url)
+            const data = await res.json();
+            SetMateriales(data.AllMateriales);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getAllUsuarios = async() =>{
+        try {
+            const url = "http://localhost:3900/api/usuarios/lista-usuarios";
+
+            const res = await fetch(url)
+            const data = await res.json();
+            SetUsuarios(data.AllUsuarios);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const asignarUsuario = (event) => {
         event.preventDefault();
@@ -68,7 +102,7 @@ const PedirMateriales = (props) => {
     }
 
     //profesor, alumno, tipo (entregamaterial), descripcion, tipo de instrucciones, vector de materialess
-
+/*
     const getUser = async () => {
         try {
             setUsuarios(props.usuarios);
@@ -88,7 +122,7 @@ const PedirMateriales = (props) => {
             console.log(error);
         }
     }
-
+*/
     const cancelarMaterial = (event) => {
         event.preventDefault();
 
