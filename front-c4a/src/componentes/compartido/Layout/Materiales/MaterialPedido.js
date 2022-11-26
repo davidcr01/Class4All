@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
+import { ListItem } from '@mui/material';
 
 // Vista: compartida (administradores y profesores)
 
@@ -82,18 +83,21 @@ const MaterialPedido = (props) => {
     if(cargando){
         return <CargandoProgress/>
     }else{
+        const pedidos = materiales.map(mat => 
+            <>
+                <article>
+                    Material: {mat.material.nombre}
+                    Cantidad: {mat.cantidad}
+                </article>
+                Realizado: No
+                Recibido <input type="checkbox"></input>
+            </>
+        );
+
         return (
             <section className="materiales">
                 Alumno: {usuario}
-                
-                <article>
-                    Material: {materiales.material.nombre}
-                    Cantidad: {materiales.cantidad}
-                </article>
-                
-                Realizado: No
-                Recibido <input type="checkbox"></input>
-
+                {pedidos}
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/></button>
 
             </section>
