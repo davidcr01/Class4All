@@ -72,7 +72,7 @@ export const TareaEspecifica = () => {
             return (
                 <>
                 <BotonParaAtras url="/Agenda"/>
-                <Header titulo={tarea.tarea.nombre} />
+                <Header titulo={tarea.tarea.nombre} alumnos="si"/>
                 <div className='PaginaAgenda'>
                     <div className='tareaAgendaespe'>
 

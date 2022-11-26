@@ -74,7 +74,7 @@ export const Comandas = ({aula}) => {
       if (index === menusLength-1){
         return (
           <>
-            <Header titulo={"Comandas clase " + location.state.aula} />
+            <Header titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior="/comandas-clases"/>
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={menusLength} increment={increment} />
             <section className='contenedorBoton'>
               <Button variant="outlined" sx={{fontSize: 35, borderRadius: 5}} className='botonEnviarMenus'>Enviar</Button>
@@ -85,7 +85,7 @@ export const Comandas = ({aula}) => {
       else {
         return (
           <>
-            <Header titulo={"Comandas clase " + location.state.aula} />
+            <Header titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior="/comandas-clases"/>
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={menusLength} increment={increment} />
             <Menus menus={menusVisibles} />
 

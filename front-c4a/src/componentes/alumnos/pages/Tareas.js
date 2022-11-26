@@ -43,7 +43,7 @@ export const Tareas = () => {
     if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())  {
     return (
       <>
-        <Header titulo="Tareas" />
+        <Header titulo="Tareas" alumnos="si" url_anterior="/"/>
         <PantallaTareas />
       </>)
     }

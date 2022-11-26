@@ -68,7 +68,7 @@ export const SesionAlumnosClases = () => {
     if (aulasLength > 0)
       return (
         <>
-          <Header titulo="Inicio De Sesión" />
+          <Header titulo="Inicio De Sesión" alumnos="principal"/>
           <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulasLength} increment={increment} />
           <Clases aulas={aulasVisibles} />
         </>

@@ -91,8 +91,7 @@ export const Agenda = () => {
             if (tareas !== undefined && tareasLength > 0)
                 return (
                     <>
-                      <BotonParaAtras url="/Tareas"/>
-                        <Header titulo="Agenda" /><div className='PaginaAgenda'>
+                        <Header titulo="Agenda" alumnos="si" url_anterior="/Tareas"/><div className='PaginaAgenda'>
                             {/* <TareaAgenda tarea={tareas[currentTarea]} key={currentTarea}/> */}
 
                             <FlechasPaginacionGenerico currentIndex={currentTarea} setCurrentIndex={setCurrentTarea} length={tareas.length} increment={tareasIncrement} />

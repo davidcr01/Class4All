@@ -222,7 +222,6 @@
   }
 
 
-
 .tarjetaAgendaespe{
   width: 25%;
   grid-template-columns: 43% 43%;
@@ -265,17 +264,15 @@
 }
 
 .botonParaAtras{
-  position: absolute;
+  flex: 0.7;
+  padding: 2em;
   cursor: pointer;
-  padding: 1% 0;
-  width: 7em;
-  left: 0;
-  top: 0;
   text-align: center;
   background-color: #91bae0;
   border-width: 1px;
   border-color: black;
   border-style: solid;
+  white-space: inherit;
 }
 
 .botonesClase:hover {
@@ -293,5 +290,6 @@
 
 
 .atras {
-  width: 80%;
+  height: fit-content;
+  width: 5em;
 }

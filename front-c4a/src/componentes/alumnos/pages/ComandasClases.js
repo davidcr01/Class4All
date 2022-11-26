@@ -68,7 +68,7 @@ export const ComandasClases = () => {
     if (aulasLength > 0)
       return (
         <>
-          <Header titulo="Comandas" />
+          <Header titulo="Comandas" alumnos="si" url_anterior="/Agenda"/>
           <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulasLength} increment={increment} />
           <ClasesComandas aulas={aulasVisibles} />
         </>

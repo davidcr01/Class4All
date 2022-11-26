@@ -41,7 +41,7 @@ export const PaginaPrincipal = () => {
     if(cookies.get("loginCookie") !== undefined && isSet && isRoleRight()){
     return (
       <>
-      <Header titulo="Página Principal"/>
+      <Header titulo="Página Principal" alumnos="si"/>
       <PantallasUsuario/>
     </>)
     }
