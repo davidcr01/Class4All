@@ -20,8 +20,8 @@ export const RouterAlumnos = () => {
             <Route path="/Agenda" element={<Agenda/>} />
             <Route path="/tareas" element={<Tareas/>} />
             <Route path="/mitarea/:id" element={<TareaEspecifica/>} />
-            <Route path="/comandas-clases" element={<ComandasClases/>} />
-            <Route path="/comandas" element={<Comandas/>} />
+            <Route path="/comanda/:id" element={<ComandasClases/>} />
+            <Route path="/comandas/:id" element={<Comandas/>} />
             <Route path="/entregaMaterial/:id" element={<EntregaMaterial/>} />
             <Route path="*" element={<><h1>404 Router Alumnos</h1></>}  />
         

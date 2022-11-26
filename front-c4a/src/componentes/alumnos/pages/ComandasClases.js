@@ -6,11 +6,13 @@ import Cookies from "universal-cookie";
 import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
+import { useParams } from "react-router-dom"
 
 // Vista: compartida
 
 export const ComandasClases = () => {
 
+  const { id } = useParams();
   const cookies = new Cookies();
   const [cargando, setCargando] = useState(true);
   const [isSet, setIsSet] = useState(false);
@@ -70,7 +72,7 @@ export const ComandasClases = () => {
         <>
           <Header titulo="Comandas" alumnos="si" url_anterior="/Agenda"/>
           <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulasLength} increment={increment} />
-          <ClasesComandas aulas={aulasVisibles} />
+          <ClasesComandas aulas={aulasVisibles} id={id}/>
         </>
       );
 

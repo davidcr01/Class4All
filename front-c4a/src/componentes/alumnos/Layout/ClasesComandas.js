@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 // Componente para mostrar las comandas de los alumnos
 // Vista: alumno
 
-const Clases = ({aulas}) => {
+const Clases = ({aulas, id}) => {
 
 
         if(aulas === undefined || aulas.length === 0){
@@ -16,7 +16,7 @@ const Clases = ({aulas}) => {
             const nav = useNavigate();
 
             const goToComandas = (route) => {
-                nav("/comandas", {state: {aula: route}});
+                nav(`/comandas/${id}`, {state: {aula: route}});
             }
             let res = [];
 

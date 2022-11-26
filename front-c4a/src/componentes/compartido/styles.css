@@ -307,7 +307,7 @@ Header {
 .flechaI {
   position: absolute;
   width: 12%;
-  left: 2%;
+  left: 7%;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -315,7 +315,7 @@ Header {
 .flechaD {
   position: absolute;
   width: 12%;
-  right: 2%;
+  right: 7%;
   top: 50%;
   transform: translateY(-50%);
 }

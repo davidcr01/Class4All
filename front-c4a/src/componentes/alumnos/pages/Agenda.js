@@ -12,7 +12,6 @@ import Header from '../../compartido/Layout/Header';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { useNavigate } from 'react-router-dom';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
-import BotonParaAtras from '../../compartido/Layout/BotonParaAtras';
 
 export const Agenda = () => {
 
