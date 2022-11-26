@@ -529,6 +529,26 @@ const crearTareaMaterial = (req, res) => {
 
 }
 
+//Obtener tareas de tipo entregamaterial de un profesor concreto
+const getTareasEntregaMaterial = (req, res) => {
+    let idProfesor = req.params.idProfesor;
+    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor}, (error, tareas) => {
+        if (error || !tareas) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No hay tareas"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            mensaje: "Tareas encontradas",
+            tareas: tareas
+        });
+    });
+}
+
+
+
 
 
 module.exports = {
@@ -543,7 +563,8 @@ module.exports = {
     actualizarCantidades,
     setrealizada,
     setestadocompletada,
-    crearTareaMaterial
+    crearTareaMaterial,
+    getTareasEntregaMaterial
 
 
 }

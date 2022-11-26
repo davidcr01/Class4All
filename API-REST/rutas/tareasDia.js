@@ -5,6 +5,7 @@ const TareaController = require('../controladores/tareaDia.js');
 
 router.get("/lista-tareasDia" , TareaController.listaTareas);
 router.get("/get-tarea/:idTarea" , TareaController.obtenerTarea);
+router.get("/lista-tareasDia-prof/:idProfesor", TareaController.getTareasEntregaMaterial);
 router.get("/tareas-usuario/:idUsuario" , TareaController.obtenerTareasUsuario);
 router.get("/get-foto/:idTarea" , TareaController.obtenerFoto);
 
