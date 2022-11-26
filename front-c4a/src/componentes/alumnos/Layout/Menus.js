@@ -17,7 +17,8 @@ const Menus = ({menus}) => {
     const nav = useNavigate();
 
     if(menus !== undefined) {
-        let menusJSX = []
+        let menusJSX = [];
+        let cantidadesJSX = [];
         const cookies = new Cookies();
 
         const loginUser = (id) => {
@@ -35,10 +36,15 @@ const Menus = ({menus}) => {
 
         for(let i=0; i<menus.length; i++){
             menusJSX.push(
-                <button key={(menus[i]._id)} className="botonesAlumnos" onClick={()=> loginUser(menus[i]._id)}>
+                <section className="botonesAlumnos">
                     <img className="foto" src={"http://localhost:3900/api/menus/obtenerfoto/"+menus[i]._id}/>
                     {menus[i].nombre}
-                </button>
+                </section>
+            )
+            cantidadesJSX.push(
+                <section>
+                    Cantidades de {menus[i].nombre}
+                </section>
             )
         }
 
@@ -46,6 +52,7 @@ const Menus = ({menus}) => {
             <div className="cuerpo">
                 <div className="recuadrosalumnos">
                     {menusJSX}
+                    {cantidadesJSX}
                 </div>
             </div>
         )
