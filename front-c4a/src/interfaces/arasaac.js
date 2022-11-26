@@ -40,13 +40,28 @@ export const getImage = (id, parameters) => {
     return "https://api.arasaac.org/api/pictograms/" + id + parsed;
 }
 
+
 //EJEMPLO PARA OBTENER UNA IMAGEN
 //getImage(123, {plural: true, action: action.past, resolution: resolution[500], skin: skin.black, hair: hair.brown, identifier: identifier.health})
-
-
+//Para poder usar el archivo hace falta poner: import 
 //enumerados para ayudar en los parametros
 export const action = Object.freeze({ past: "past", future: "future" });
 export const resolution = Object.freeze({ 500: 500, 2500: 2500 });
 export const skin = Object.freeze({ white: "white", black: "black", assian: "assian", mulatto: "mulatto", aztec: "aztec" });
 export const hair = Object.freeze({ blonde: "blonde", brown: "brown", darkBrown: "darkBrown", gray: "gray", darkGray: "darkGray", red: "red", black: "black" });
 export const identifier = Object.freeze({ classroom: "classroom", health: "health", library: "library", office: "office" });
+
+
+/**
+ * EJEMPLO DE USO CON FICHERO:
+ * import { getImage, skin } from '../../../interfaces/arasaac';
+ * import imagenesARASAAC from "../../../img/imagenesARASAAC.json";
+ * 
+ * //CODIGO...
+ * 
+ * <img src={getImage(imagenesARASAAC.numeros.dos, {skin: skin.black})}/>
+ * 
+ * 
+ * //Tambien se le puede pasar asi para que salga con los valores por defecto
+ * <img src={getImage(imagenesARASAAC.numeros.dos)}/>
+ */
