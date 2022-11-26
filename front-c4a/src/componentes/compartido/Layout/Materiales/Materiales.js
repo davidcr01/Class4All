@@ -6,7 +6,7 @@ import { getListSubheaderUtilityClass } from '@mui/material';
 
 // Vista: compartida (administradores y profesores)
 
-export const Tareas = () => {
+export const Materiales = ({usuario}) => {
 
     const [materialesPedidos, SetMaterialesPedidos] = useState([]);
     const [pedido, SetPedido] = useState([]);
@@ -19,7 +19,7 @@ export const Tareas = () => {
     //ESTO SE HACE CON LAS COOCKIES
     const getPedido = async() => {
         try {
-            const url = "http://localhost:3900/api/materiales/get-materiales/";
+            const url = "http://localhost:3900/api/tareas/lista-tareasDia-prof/" + usuario._id;
             const res = await fetch(url);
             const materialesPedidos = await res.json();
             
@@ -35,7 +35,7 @@ export const Tareas = () => {
     return (
         <section>
             {pedido === 1 && 
-                <MaterialPedido className="materiales" materiales={materialesPedidos}/>
+                <MaterialPedido className="materiales" alumno ={materialesPedidos.usuario} materiales={materialesPedidos.materiales}/>
             }
             {pedido === 0 && 
                 <PedirMaterial />

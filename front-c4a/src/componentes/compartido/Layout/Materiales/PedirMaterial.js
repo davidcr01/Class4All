@@ -28,7 +28,7 @@ const PedirMateriales = () => {
 
     const getAllMateriales = async() =>{
         try {
-            const url = "http://localhost:3900/api/materiales/lista-materiales";
+            const url = "http://localhost:3900/api/materials/lista-material";
 
             const res = await fetch(url)
             const data = await res.json();
@@ -144,6 +144,7 @@ const PedirMateriales = () => {
                             )})}
                         </select>
                     </p>
+
                     <article>
                         <p> 
                             <label className='etiq' htmlFor="material">Material</label> 
@@ -158,8 +159,9 @@ const PedirMateriales = () => {
                             <input type="text" id="cantidad"/>
                         </p>
                     </article>
-                   
-                
+
+                    <button className="botonAñadir" onClick={() => nav("/añadir-material")}>Añadir</button>
+
                     <input type="submit" value="Confirmar"/>
                 </form>
             </section>

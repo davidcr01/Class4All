@@ -5,15 +5,15 @@ import { ListItem } from '@mui/material';
 
 // Vista: compartida (administradores y profesores)
 
-const MaterialPedido = (props) => {
+const MaterialPedido = ({alumno, materiales}) => {
 
-    const [usuario, setUsuarios] = useState('');
+ //   const [usuario, setUsuarios] = useState('');
  //   const [materiales, setMaterialesPedidos] = useState('');
     const [cargando, setCargando] = useState(true);
 
     useEffect(() => {
         setCargando(true);
-        getUser();
+  //      getUser();
   //      getMaterialesPedidos();
     }, []);
 
@@ -41,7 +41,7 @@ const MaterialPedido = (props) => {
 
 
     //Da el alumno al que se ha asignado la tarea
-    const getUser = async () => {
+/*    const getUser = async () => {
         try {
             const url = "http://localhost:3900/api/usuarios/get-usuario/" + props.materiales.usuario
             console.log(url);
@@ -57,7 +57,7 @@ const MaterialPedido = (props) => {
 
         }
     }
-/*
+
     const getMaterialesPedidos = async () => {
         try {
             const url = "http://localhost:3900/api/materiales/get-materiales/" + props.materialesPedidos.MaterialPedido
@@ -93,11 +93,11 @@ const MaterialPedido = (props) => {
                 Recibido <input type="checkbox"></input>
             </>
         );
-
+        //Pedidos devolverá todos los materiales pedidos (para cada uno, el material, la cantidad, si está o no realizado y el checkbox)
         return (
             <section className="materiales">
-                Alumno: {usuario}
-                {pedidos}
+                Alumno: {alumno}
+                {pedidos}   
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/></button>
 
             </section>
