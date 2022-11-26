@@ -1,7 +1,7 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 
-// Componente para seleccionar la clase para iniciar sesión como alumno
+// Componente para mostrar las comandas de los alumnos
 // Vista: alumno
 
 const Clases = ({aulas}) => {

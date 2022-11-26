@@ -64,4 +64,7 @@ export const identifier = Object.freeze({ classroom: "classroom", health: "healt
  * 
  * //Tambien se le puede pasar asi para que salga con los valores por defecto
  * <img src={getImage(imagenesARASAAC.numeros.dos)}/>
+ * 
+ * O bien, si se necesita acceder a un valor mediante una valiable:
+ * imagenesARASAAC['numeros][variable], donde "variable" almacena el valor que necesitamos
  */

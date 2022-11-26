@@ -19,7 +19,7 @@ const PantallaTareas = (props) => {
         prueba.push(
             <button className='botonesPT' onClick={() => nav(enlaces[i])}>
                 <img class="imgpantalla" src={pictogramas[i]}/>
-                {apartados[i]}
+                <p>{apartados[i]}</p>
             </button>
 
         );
