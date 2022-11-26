@@ -376,17 +376,41 @@ header{
   margin-bottom: 20px;
   margin-top: 0;
   padding: 20px;
+  padding-left: 160px;
   
 }
 
-.titulo2 {
+.titulo_admins {
   flex: 15;
   height: 60px;
   font-size: 50px;
   margin-bottom: 20px;
   margin-top: 0;
   padding: 20px;
-  padding-left: 210px;
+  padding-left: 230px;
+  
+}
+
+.titulo_inicio_alumnos {
+  flex: 15;
+  height: 60px;
+  font-size: 50px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  padding: 20px;
+  padding-left: 0px;
+  padding-right: 90px;
+  
+}
+
+.titulo-principal {
+  flex: 15;
+  height: 60px;
+  font-size: 50px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  padding: 20px;
+  padding-left: 50px;
   
 }
 
@@ -394,6 +418,7 @@ header{
   flex: 2;
   padding: 10px;
   margin: 10px;
+  margin-right: 50px;
   height: 5%;
   width: 20%; 
   font-size: 50%;  

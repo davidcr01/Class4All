@@ -18,7 +18,17 @@ const Header = (props) => {
     if (props.alumnos === "principal") {
         return (
             <header>
-                <h1 className="titulo">{props.titulo}</h1>
+                <h1 className="titulo-principal">{props.titulo}</h1>
+                <CerrarSesionBoton/>
+            </header>
+        );
+    }
+
+    if (props.alumnos === "principal-alumnos") {
+        return (
+            <header>
+                <BotonParaAtras url={props.url_anterior}></BotonParaAtras>
+                <h1 className="titulo_inicio_alumnos">{props.titulo}</h1>
                 <CerrarSesionBoton/>
             </header>
         );
@@ -26,7 +36,7 @@ const Header = (props) => {
 
     return (
         <header>
-            <h1 className="titulo2">{props.titulo}</h1>
+            <h1 className="titulo_admins">{props.titulo}</h1>
             <CerrarSesionBoton/>
         </header>
     );
