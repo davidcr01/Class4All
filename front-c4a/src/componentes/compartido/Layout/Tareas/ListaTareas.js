@@ -21,12 +21,13 @@ const ListaTareas = (props) => {
             setA(false);
             setR(false);
             setNR(false);
-            document.getElementById('as').style.backgroundColor = 'rgb(196, 196, 255)';
-            document.getElementById('re').style.backgroundColor = 'rgb(196, 196, 255)';
-            document.getElementById('nr').style.backgroundColor = 'rgb(196, 196, 255)';
+
+            document.getElementById('as').style.backgroundColor = null;
+            document.getElementById('re').style.backgroundColor = null;
+            document.getElementById('nr').style.backgroundColor = null;
         }
         else {
-            document.getElementById('sa').style.backgroundColor = 'rgb(196, 196, 255)';
+            document.getElementById('sa').style.backgroundColor = null;
             props.cambio("asignada")
             setSA(false);
             setA(true);
@@ -45,28 +46,28 @@ const ListaTareas = (props) => {
         setSA(false);
         setR(false);
         setNR(false);
-        document.getElementById('sa').style.backgroundColor = 'rgb(196, 196, 255)';
-        document.getElementById('re').style.backgroundColor = 'rgb(196, 196, 255)';
-        document.getElementById('nr').style.backgroundColor = 'rgb(196, 196, 255)';
 
-
+        document.getElementById('sa').style.backgroundColor = null;
+        document.getElementById('re').style.backgroundColor = null;
+        document.getElementById('nr').style.backgroundColor = null;
     }
 
     function seleccionReal() {
         //getelementbyid
         if (!R) {
             document.getElementById('re').style.backgroundColor = '#70b67c';
-            props.cambio("realizada")
+            props.cambio("completada")
             setR(true);
             setA(false);
             setSA(false);
             setNR(false);
-            document.getElementById('as').style.backgroundColor = 'rgb(196, 196, 255)';
-            document.getElementById('sa').style.backgroundColor = 'rgb(196, 196, 255)';
-            document.getElementById('nr').style.backgroundColor = 'rgb(196, 196, 255)';
+
+            document.getElementById('as').style.backgroundColor = null;
+            document.getElementById('sa').style.backgroundColor = null;
+            document.getElementById('nr').style.backgroundColor = null;
         }
         else {
-            document.getElementById('re').style.backgroundColor = 'rgb(196, 196, 255)';
+            document.getElementById('re').style.backgroundColor = null;
             props.cambio("completada")
             setR(false);
             setA(true);
@@ -85,13 +86,14 @@ const ListaTareas = (props) => {
             setA(false);
             setSA(false);
             setNR(true);
-            document.getElementById('sa').style.backgroundColor = 'rgb(196, 196, 255)';
-            document.getElementById('re').style.backgroundColor = 'rgb(196, 196, 255)';
-            document.getElementById('as').style.backgroundColor = 'rgb(196, 196, 255)';
 
+            document.getElementById('sa').style.backgroundColor = null;
+            document.getElementById('re').style.backgroundColor = null;
+            document.getElementById('as').style.backgroundColor = null;
         }
         else {
-            document.getElementById('nr').style.backgroundColor = 'rgb(196, 196, 255)';
+            document.getElementById('nr').style.backgroundColor = null;
+
             props.cambio("asignada")
             setR(false);
             setA(true);
@@ -107,10 +109,10 @@ const ListaTareas = (props) => {
     return (
         <div className='ListaTareas'>
             <div className="botones">
-                <div className="boton" id="sa" onClick={seleccionSinAs}>SIN ASIGNAR</div>
-                <div className="boton" id="as" onClick={seleccionAs}>ASIGNADAS</div>
-                <div className="boton" id="re" onClick={seleccionReal}>REALIZADAS</div>
-                <div className="boton" id="nr" onClick={seleccionNoReal}>NO REALIZADAS</div>
+                <button className="boton" id="sa" onClick={seleccionSinAs}>SIN ASIGNAR</button>
+                <button className="boton" id="as" style={{backgroundColor: "#70b67c"}} onClick={seleccionAs}>ASIGNADAS</button>
+                <button className="boton" id="re" onClick={seleccionReal}>REALIZADAS</button>
+                <button className="boton" id="nr" onClick={seleccionNoReal}>NO REALIZADAS</button>
             </div>
             <Tareas tipo={props.tipo} />
         </div>

@@ -381,7 +381,7 @@ const actualizarCantidades = (req, res) => {
 };
 
 
-const setrealizada = (req, res) => {
+const setRealizada = (req, res) => {
     let idTarea = req.params.idTarea;
 
     Tarea.findByIdAndUpdate(
@@ -404,9 +404,10 @@ const setrealizada = (req, res) => {
 
 };
 
-const setestadocompletada = (req, res) => {
+const setEstadoCompletada = (req, res) => {
 
-    let idTarea = req.params.idTarea;
+    let idTarea = req.body.idTarea;
+
     Tarea.findById
         (
             { _id: idTarea },
@@ -417,26 +418,25 @@ const setestadocompletada = (req, res) => {
                         mensaje: "La tarea no existe"
                     });
                 }
+                else{
+                    Tarea.findOneAndUpdate({_id: idTarea}, { $set: {estado: "completada"}}, (err, doc) => {
+                        if(err || !doc){
+                            return res.status(404).json({
+                                status: "error",
+                                mensaje: err
+                            });            
+                        }
+                        else{
+                            return res.status(200).json({
+                                status: "success",
+                        
+                                mensaje: "Todo se ha modificado correctamete",
+                            });            
+                        }
+                    })                    
+                }
             }
         );
-    Tarea.updateOne(
-        { _id: idTarea },
-        { $set: { estado: 'completada' } },
-        (error, tareaActualizada) => {
-            if (error || !tareaActualizada) {
-                return res.status(404).json({
-                    status: "error",
-                    mensaje: "La tarea no se ha actualizado"
-                });
-            }
-        }
-    );
-    return res.status(200).json({
-        status: "success",
-
-        mensaje: "Todo se ha modificado correctamete",
-    });
-
 };
 
 const crearTareaMaterial = (req, res) => {
@@ -561,8 +561,8 @@ module.exports = {
     obtenerTareasUsuario,
     obtenerFoto,
     actualizarCantidades,
-    setrealizada,
-    setestadocompletada,
+    setRealizada,
+    setEstadoCompletada,
     crearTareaMaterial,
     getTareasEntregaMaterial
 

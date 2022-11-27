@@ -84,26 +84,32 @@
 .botones{
     display:grid;
     text-align: center;
-    grid-template-columns: 20% 20% 20% 20%;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     justify-content: center;
-    margin-top: 50px;
+    padding: 2% 2%;
+    /*margin-top: 50px;*/
     grid-column-gap: 10px;
-  
+    grid-auto-rows: 10vw;
+    /*grid-auto-rows: 100%;*/
   }
   
   .boton{
-    background-color: rgb(196, 196, 255);
+    cursor: pointer;
+    background-color: #c4c4ff;
     border-width: 1px;
     border-color: black;
     border-style: solid;
     font-size: 18px;
-    height: 50px;
-    padding-top: 25px;
     border-radius: 20px;
+  }
+
+  .boton:hover{
+    background-color: #8e8eb5;
   }
 
   .ListaTareas{
     width: auto;
+    min-width: max-content;
     background-color: #FFFFFF;
     border-color: black;
     border-style: solid;
@@ -356,10 +362,6 @@ Header {
   padding-top: 5px;
   padding-bottom: 10px;
   border-radius: 15px;
-}
-
-#as {
-  background-color: #70b67c
 }
 
 .titulo {

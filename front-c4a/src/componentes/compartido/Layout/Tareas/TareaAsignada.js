@@ -74,13 +74,43 @@ const TareaAsignada = (props) => {
             if(cargando){
                 return <CargandoProgress/>
             }else{
+
+                const confirmarTarea = () => {
+                    let decision = window.confirm("¿Está seguro de que desea confirmar la tarea como REALIZADA?");
+
+                    if(decision){
+                        const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/"
+
+                        fetch(url,{
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({idTarea: props.tarea._id})
+                        }).then(res => res.json()).then(data => {
+                            if(data.status === "success"){
+                                //alert("La tarea ha sido confirmada con éxito");
+                                props.setNeedsRender(!props.needsRender);
+                            }
+                            else
+                                alert("Ha habido un error al confirmar la tarea");
+                        })
+                        .catch(error => alert(error));
+                            
+                    }
+                    else{
+                        alert("La tarea no ha sido confirmada, ningún dato ha sido modificado.");
+                    }
+                }
+
                 return (
                 <div className="tarea">
                 <div><label className='label-tareas'>Tarea:</label> {props.tarea.nombre}</div>
                 <div><label className='label-tareas'>Fecha:</label> {props.tarea.fechaAsignada}</div>
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> No</div>
-                <div><label className='label-tareas'>Confirmar</label> <input type="checkbox"></input></div>
+                {/*<div><label className='label-tareas'>Confirmar</label> <input type="checkbox"></input></div>*/}
+                <div><button id='confirmar-tarea' onClick={confirmarTarea}>Confirmar</button></div>
                 <form onSubmit={desasignarTarea}><input type="submit" value="Desasignar"/></form>
                 <div className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></div>
 
