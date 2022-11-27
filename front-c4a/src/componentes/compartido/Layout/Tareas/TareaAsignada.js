@@ -10,7 +10,6 @@ const TareaAsignada = (props) => {
     const [cargando, setCargando] = useState(true);
 
     useEffect(() => {
-        setCargando(true);
         getUser();
     }, []);
 
