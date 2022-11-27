@@ -64,4 +64,7 @@ export const identifier = Object.freeze({ classroom: "classroom", health: "healt
  * 
  * //Tambien se le puede pasar asi para que salga con los valores por defecto
  * <img src={getImage(imagenesARASAAC.numeros.dos)}/>
+ * <img src={getImage(imagenesARASAAC.numeros.[2])}/>
+ * //Tambien se le puede pasar el ID como un numero directamente
+ * <img src={getImage(123)}/>
  */
