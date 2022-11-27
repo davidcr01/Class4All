@@ -8,8 +8,8 @@ import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 // Vista: compartida (admins y profs)
 
 export const Tareas = (props) => {
-    const [tareas,SetTareas] =  useState([]);
-    const [usuarios, SetUsuarios] = useState([]);
+    const [tareas,setTareas] =  useState([]);
+    const [usuarios, setUsuarios] = useState([]);
     const [needsRender, setNeedsRender] = useState(false);
     const conseguirTareas = async() =>{
         try {
@@ -17,7 +17,7 @@ export const Tareas = (props) => {
 
             const res = await fetch(url)
             const data = await res.json();
-            SetTareas(data.tareas);
+            setTareas(data.tareas);
         } catch (error) {
             console.log(error);
         }
@@ -29,7 +29,7 @@ export const Tareas = (props) => {
 
             const res = await fetch(url)
             const data = await res.json();
-            SetUsuarios(data.usuarios);
+            setUsuarios(data.usuarios);
         } catch (error) {
             console.log(error);
         }
