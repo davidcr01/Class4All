@@ -14,11 +14,15 @@ router.post("/crear-tareaMaterial", TareaController.crearTareaMaterial);
 
 router.delete("/eliminar-tareaDia/:id" , TareaController.eliminarTarea);
 
+// --------------------------- QUIZAS SEA NECESARIO ARREGLAR ---------------------------
 router.put("/asignar-tarea/:idTarea/:idAlumno" , TareaController.asignarTarea);
 router.put("/desasignar-tarea/:idTarea" , TareaController.desasignarTarea);
-router.put("/completar-tarea-alumno/:idTarea" , TareaController.setrealizada);
-router.put("/completar-tarea-profesor/:idTarea" , TareaController.setestadocompletada);
+router.put("/completar-tarea-alumno/:idTarea" , TareaController.setRealizada);
 router.put("/actualizar-cantidades/:idTarea" , TareaController.actualizarCantidades);
+
+// --------------------------- ARREGLADAS ---------------------------
+router.post("/completar-tarea-profesor/" , TareaController.setEstadoCompletada);
+
 
 
 module.exports = router;
