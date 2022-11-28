@@ -4,19 +4,20 @@ import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 
 // Vista: compartida (administradores y profesores)
 
-const PedirMateriales = () => {
+export const PedirMaterial = () => {
   
     const [cargando, setCargando] = useState(true);
 
     const [allMateriales, SetAllMateriales] =  useState([]);
     const [allUsuarios, SetAllUsuarios] = useState([]);
 
-    const [datosForm, setdatosForm] = useState([{ idMat: "", catidad: 0}]);
+    const [datosForm, setdatosForm] = useState([/* { idMat: "", catidad: 0} */]);
 
     useEffect(() => {
-        setCargando(true);
+        
         getAllMateriales();
         getAllUsuarios();
+        setCargando(false);
     }, []);
 
     const getAllMateriales = async() =>{
@@ -25,7 +26,7 @@ const PedirMateriales = () => {
 
             const res = await fetch(url)
             const data = await res.json();
-            SetMateriales(data.AllMateriales);
+            SetAllMateriales(data.materials);
         } catch (error) {
             console.log(error);
         }
@@ -37,7 +38,7 @@ const PedirMateriales = () => {
 
             const res = await fetch(url)
             const data = await res.json();
-            SetUsuarios(data.AllUsuarios);
+            SetAllUsuarios(data.usuarios);
         } catch (error) {
             console.log(error);
         }
@@ -58,6 +59,11 @@ const PedirMateriales = () => {
         let nuevosDatos = [...datosForm];
         nuevosDatos.splice(i, 1);
         setdatosForm(nuevosDatos);
+    }
+
+    const style = {
+        backgroundColor: "#f5f5f5",
+        margin: "10px",
     }
 
 
@@ -89,7 +95,7 @@ const PedirMateriales = () => {
         
         event.preventDefault();
 
-        let formulario = event.target;
+        /* let formulario = event.target;
        
         let nuevoMaterial = {
             material: formulario.material.value,
@@ -111,7 +117,7 @@ const PedirMateriales = () => {
         fetch(url, requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
-            .catch(error => console.log('error', error));
+            .catch(error => console.log('error', error)); */
     }
 
     
@@ -126,28 +132,30 @@ const PedirMateriales = () => {
                     <p> 
                         <label className='etiq' htmlFor="user">Alumno</label> 
                         <select id="user" name="Alumno">
-                            {usuarios.map(u => { return (
-                                <option value={u._id}>{u.nombre}</option>
+                            {allUsuarios.map(u => { return (
+                                <option key={u._id} value={u._id}>{u.nombre}</option>
                             )})}
                         </select>
                     </p>
-                    {datosForm.map((item, index) => {
-                        <article key={index}>
+                    {datosForm.map((item, index) => { return (
+                        <article key={index} style={style}>
                             <p> 
                                 <label className='etiq' htmlFor="material">Material</label> 
-                                <select id="material" name="Material" onChange={e=> cambioForm(index, e)}>
-                                    {materiales.map(u => { return (
-                                        <option value={u._id} selected={item.idMat === u._id}>{u.nombre}</option>
+                                <select id="material" name="idMat" onChange={e => cambioForm(index, e)}>
+                                    <option value="err"   hidden></option>
+                                    {allMateriales.map(u => { return (
+                                        <option key={u._id}  value={u._id} selected={item.idMat === u._id}>{u.nombre}</option>
                                     )})}
                                 </select>
                             </p>
+                            
                             <p>
                                 <label className="etiq" htmlFor="cantidad">Cantidad</label>
-                                <input type="text" id="cantidad" value={item.cantidad || "0"}/>
+                                <input type="text" id="cantidad" name='cantidad' value={item.cantidad ||""} onChange={e => cambioForm(index, e)}/>
                             </p>
-                            {index && <button onClick={() => cancelar(index)}>Cancelar</button>}
+                            <button onClick={() => cancelar(index)}>Cancelar</button>
                         </article>
-                    })}                                    
+                    )})}                                    
                     
                     <input type="submit" value="Confirmar"/>
                 </form>
@@ -160,6 +168,6 @@ const PedirMateriales = () => {
     }
 }
 
-export default PedirMaterial;
+
     
 
