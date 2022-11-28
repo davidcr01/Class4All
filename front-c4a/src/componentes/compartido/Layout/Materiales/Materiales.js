@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import PedirMaterial from './PedirMaterial';
+import {PedirMaterial} from './PedirMaterial';
 import MaterialPedido from './MaterialPedido';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { getListSubheaderUtilityClass } from '@mui/material';
-import Cookies from '../../../../interfazCookies/Cookies';
+import Cookies from 'universal-cookie';
 
 // Vista: compartida (administradores y profesores)
 
 export const Materiales = () => {
 
     const [materialesPedidos, SetMaterialesPedidos] = useState([]);
-    const [pedido, SetPedido] = useState([]);
+    const [pedido, SetPedido] = useState(0);
 
     const cookies = new Cookies();
 
@@ -22,14 +22,19 @@ export const Materiales = () => {
     //ESTO SE HACE CON LAS COOCKIES
     const getPedido = async() => {
         try {
-            const url = "http://localhost:3900/api/tareas/lista-tareasDia-prof/" + cookies.get("loginCookie").get(id);
+            const url = "http://localhost:3900/api/tareas/lista-tareasDia-prof/" + cookies.get('loginCookie').id;
             const res = await fetch(url);
             const materialesPedidos = await res.json();
             
-            SetPedido(1);
+            if(materialesPedidos.tareas.length > 0){
+                SetPedido(1);
+            }
+            else{
+                SetPedido(0);
+            }
             SetMaterialesPedidos(materialesPedidos)
         } catch {
-            SetPedido(0);
+            //SetPedido(0);
         }
     }
 
@@ -38,11 +43,11 @@ export const Materiales = () => {
     return (
         <section>
             {pedido === 1 && 
-                <MaterialPedido className="materiales" 
-                    profesorID = {cookies.get("loginCookie").get(id)} 
+                {/* <MaterialPedido className="materiales" 
+                    profesorID = {cookies.get('loginCookie').id} 
                     alumno ={materialesPedidos.usuarioAsignado} 
                     materiales={materialesPedidos.materiales}
-                />
+                /> */}
             }
             {pedido === 0 && 
                 <PedirMaterial />
