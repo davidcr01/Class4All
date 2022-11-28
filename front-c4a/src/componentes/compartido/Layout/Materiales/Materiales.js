@@ -43,11 +43,11 @@ export const Materiales = () => {
     return (
         <section>
             {pedido === 1 && 
-                {/* <MaterialPedido className="materiales" 
+                <MaterialPedido className="materiales" 
                     profesorID = {cookies.get('loginCookie').id} 
                     alumno ={materialesPedidos.usuarioAsignado} 
                     materiales={materialesPedidos.materiales}
-                /> */}
+                /> 
             }
             {pedido === 0 && 
                 <PedirMaterial />
