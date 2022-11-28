@@ -5,21 +5,14 @@ import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 // Vista: compartida (administradores y profesores)
 
 const PedirMateriales = () => {
-
-//    const [usuarios, setUsuarios] = React.useState([{}]);
-//    const [materiales, setMateriales] = React.useState([{}]);
   
     const [cargando, setCargando] = useState(true);
 
     const [allMateriales, SetAllMateriales] =  useState([]);
     const [allUsuarios, SetAllUsuarios] = useState([]);
-/*
-    useEffect(() => {
-        setCargando(true);
-        getUser();
-        getMaterial();
-    }, []);
-*/
+
+    const [datosForm, setdatosForm] = useState([{ idMat: "", catidad: 0}]);
+
     useEffect(() => {
         setCargando(true);
         getAllMateriales();
@@ -50,6 +43,25 @@ const PedirMateriales = () => {
         }
     }
 
+
+    const cambioForm = (i,e) => {
+        let nuevosDatos = [...datosForm];
+        nuevosDatos[i][e.target.name] = e.target.value;
+        setdatosForm(nuevosDatos);
+    }
+
+    const fAñadir = () => {
+        setdatosForm([...datosForm, { idMat: "", cantidad: 0 }]);
+    }
+
+    const cancelar = (i) => {
+        let nuevosDatos = [...datosForm];
+        nuevosDatos.splice(i, 1);
+        setdatosForm(nuevosDatos);
+    }
+
+
+/*
     const asignarUsuario = (event) => {
         event.preventDefault();
 
@@ -71,8 +83,9 @@ const PedirMateriales = () => {
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
     }
+    */
 
-    const pedirMaterial = (event) => {
+    const confirmar = (event) => {
         
         event.preventDefault();
 
@@ -101,33 +114,7 @@ const PedirMateriales = () => {
             .catch(error => console.log('error', error));
     }
 
-    //profesor, alumno, tipo (entregamaterial), descripcion, tipo de instrucciones, vector de materialess
-/*
-    const getUser = async () => {
-        try {
-            setUsuarios(props.usuarios);
-            setCargando(false);
-
-        } catch (error) {
-            console.log(error);
-
-        }
-    }
-
-    const getMaterial = async () => {
-        try{
-            setMateriales(props.materiales);
-            setCargando(false);
-        } catch (error) {
-            console.log(error);
-        }
-    }
-*/
-    const cancelarMaterial = (event) => {
-        event.preventDefault();
-
-
-    }
+    
 
     if (cargando) {
         return <CargandoProgress/>
@@ -144,26 +131,30 @@ const PedirMateriales = () => {
                             )})}
                         </select>
                     </p>
-
-                    <article>
-                        <p> 
-                            <label className='etiq' htmlFor="material">Material</label> 
-                            <select id="material" name="Material">
-                                {materiales.map(u => { return (
-                                    <option value={u._id}>{u.nombre}</option>
-                                )})}
-                            </select>
-                        </p>
-                        <p>
-                            <label className="etiq" htmlFor="cantidad">Cantidad</label>
-                            <input type="text" id="cantidad"/>
-                        </p>
-                    </article>
-
-                    <button className="botonAñadir" onClick={() => nav("/añadir-material")}>Añadir</button>
-
+                    {datosForm.map((item, index) => {
+                        <article key={index}>
+                            <p> 
+                                <label className='etiq' htmlFor="material">Material</label> 
+                                <select id="material" name="Material" onChange={e=> cambioForm(index, e)}>
+                                    {materiales.map(u => { return (
+                                        <option value={u._id} selected={item.idMat === u._id}>{u.nombre}</option>
+                                    )})}
+                                </select>
+                            </p>
+                            <p>
+                                <label className="etiq" htmlFor="cantidad">Cantidad</label>
+                                <input type="text" id="cantidad" value={item.cantidad || "0"}/>
+                            </p>
+                            {index && <button onClick={() => cancelar(index)}>Cancelar</button>}
+                        </article>
+                    })}                                    
+                    
                     <input type="submit" value="Confirmar"/>
                 </form>
+
+                <article>
+                    <button onClick={(fAñadir)}>Añadir</button>
+                </article>
             </section>
         )
     }

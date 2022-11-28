@@ -3,13 +3,16 @@ import PedirMaterial from './PedirMaterial';
 import MaterialPedido from './MaterialPedido';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { getListSubheaderUtilityClass } from '@mui/material';
+import Cookies from '../../../../interfazCookies/Cookies';
 
 // Vista: compartida (administradores y profesores)
 
-export const Materiales = ({usuario}) => {
+export const Materiales = () => {
 
     const [materialesPedidos, SetMaterialesPedidos] = useState([]);
     const [pedido, SetPedido] = useState([]);
+
+    const cookies = new Cookies();
 
     useEffect(() => {
         getPedido();
@@ -19,7 +22,7 @@ export const Materiales = ({usuario}) => {
     //ESTO SE HACE CON LAS COOCKIES
     const getPedido = async() => {
         try {
-            const url = "http://localhost:3900/api/tareas/lista-tareasDia-prof/" + usuario._id;
+            const url = "http://localhost:3900/api/tareas/lista-tareasDia-prof/" + cookies.get("loginCookie").get(id);
             const res = await fetch(url);
             const materialesPedidos = await res.json();
             
@@ -35,7 +38,11 @@ export const Materiales = ({usuario}) => {
     return (
         <section>
             {pedido === 1 && 
-                <MaterialPedido className="materiales" alumno ={materialesPedidos.usuario} materiales={materialesPedidos.materiales}/>
+                <MaterialPedido className="materiales" 
+                    profesorID = {cookies.get("loginCookie").get(id)} 
+                    alumno ={materialesPedidos.usuarioAsignado} 
+                    materiales={materialesPedidos.materiales}
+                />
             }
             {pedido === 0 && 
                 <PedirMaterial />

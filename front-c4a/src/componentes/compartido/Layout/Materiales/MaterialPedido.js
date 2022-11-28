@@ -5,22 +5,20 @@ import { ListItem } from '@mui/material';
 
 // Vista: compartida (administradores y profesores)
 
-const MaterialPedido = ({alumno, materiales}) => {
+const MaterialPedido = ({profesosID, alumno, materiales}) => {
 
  //   const [usuario, setUsuarios] = useState('');
- //   const [materiales, setMaterialesPedidos] = useState('');
     const [cargando, setCargando] = useState(true);
 
     useEffect(() => {
         setCargando(true);
   //      getUser();
-  //      getMaterialesPedidos();
     }, []);
 
     
     const eliminarMateriales = (event) => {
         event.preventDefault();
-        const url = "http://localhost:3900/api/materiales/eliminar-peticion/" + props.materiales._id;
+        const url = "http://localhost:3900/api/materiales/eliminar-peticion/" + profesosID;
 
         var requestOptions = {
             method: 'DELETE',
@@ -58,26 +56,6 @@ const MaterialPedido = ({alumno, materiales}) => {
         }
     }
 
-    const getMaterialesPedidos = async () => {
-        try {
-            const url = "http://localhost:3900/api/materiales/get-materiales/" + props.materialesPedidos.MaterialPedido
-            console.log(url);
-            const res = await fetch(url)
-            const data = await res.json();
-
-
-            setMaterialesPedidos({data.materiales.map(m => {
-                {m.estado === props.tipo && m.estado === "pedido" && (
-                    <MaterialesPedidos key={m._id} className="material" usuarios={usuarios} material={m} />
-                )}
-            }));
-            setCargando(false);
-
-        } catch (error) {
-            console.log(error);
-
-        }
-    }
 */
 
     if(cargando){
@@ -89,15 +67,15 @@ const MaterialPedido = ({alumno, materiales}) => {
                     Material: {mat.material.nombre}
                     Cantidad: {mat.cantidad}
                 </article>
-                Realizado: No
-                Recibido <input type="checkbox"></input>
             </>
-        );
+);
         //Pedidos devolverá todos los materiales pedidos (para cada uno, el material, la cantidad, si está o no realizado y el checkbox)
         return (
             <section className="materiales">
                 Alumno: {alumno}
                 {pedidos}   
+                Realizado: No
+                Recibido <input type="checkbox"></input>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/></button>
 
             </section>
