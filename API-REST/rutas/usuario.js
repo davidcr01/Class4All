@@ -17,6 +17,7 @@ router.post("/classLogin/", UsuarioController.loginAlumno)
 
 router.get("/lista-aulas/", UsuarioController.getAulas);
 router.get("/get-alumnos-aula/:aula", UsuarioController.getAlumnos)
+router.get("/get-alumnos", UsuarioController.getTodosAlumnos)
 
 router.get("/get-foto/:id", UsuarioController.obtenerFoto);
 
