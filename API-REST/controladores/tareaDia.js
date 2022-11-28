@@ -554,7 +554,6 @@ const completarClaseComanda = (req, res) => {
     const idTarea = req.body.idTarea;
 
     Tarea.findByIdAndUpdate(idTarea, {$pull: {aulasRestantes: aula}}, (err, out) => {
-        //console.log(out);
         if(err || !out){
             return res.status(404).json({
                 status: "error",
@@ -569,9 +568,27 @@ const completarClaseComanda = (req, res) => {
             });
         }
     });
-
-    //Tarea.findByIdAndUpdate
 };
+
+const getAulasRestantes = (req, res) => {
+    const idTarea = req.params.idTarea;
+
+    Tarea.findById(idTarea, (err, out) => {
+        if(err || !out){
+            return res.status(404).json({
+                status: "error",
+                mensaje: "La tarea no existe"
+            })
+        }
+        else{
+            return res.status(200).json({
+                status: "success",
+                mensaje: "Tarea encontrada",
+                aulasRestantes: out.aulasRestantes
+            })
+        }
+    });
+}
 
 
 module.exports = {
@@ -588,5 +605,6 @@ module.exports = {
     setEstadoCompletada,
     crearTareaMaterial,
     getTareasEntregaMaterial,
-    completarClaseComanda
+    completarClaseComanda,
+    getAulasRestantes
 }
