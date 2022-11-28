@@ -21,8 +21,8 @@ router.put("/completar-tarea-alumno/:idTarea" , TareaController.setRealizada);
 router.put("/actualizar-cantidades/:idTarea" , TareaController.actualizarCantidades);
 
 // --------------------------- ARREGLADAS ---------------------------
+router.get("/aulas-restantes-comanda/:idTarea", TareaController.getAulasRestantes);
 router.post("/completar-tarea-profesor/" , TareaController.setEstadoCompletada);
-
-
+router.post("/completar-clase-comanda/", TareaController.completarClaseComanda);
 
 module.exports = router;

@@ -90,6 +90,10 @@ const TareaSchema = Schema({
     realizada: {
         type: Boolean,
         default: false
+    },
+
+    aulasRestantes: {
+        type: Array
     }
 
 
