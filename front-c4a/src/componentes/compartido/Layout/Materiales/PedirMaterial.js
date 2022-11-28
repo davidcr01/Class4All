@@ -141,16 +141,17 @@ export const PedirMaterial = () => {
                         <article key={index} style={style}>
                             <p> 
                                 <label className='etiq' htmlFor="material">Material</label> 
-                                <select id="material" name="Material" onChange={e => cambioForm(index, e)}>
+                                <select id="material" name="idMat" onChange={e => cambioForm(index, e)}>
+                                    <option value="err"   hidden></option>
                                     {allMateriales.map(u => { return (
-                                        <option key={u._id}  value={u._id}>{u.nombre}</option>
+                                        <option key={u._id}  value={u._id} selected={item.idMat === u._id}>{u.nombre}</option>
                                     )})}
                                 </select>
                             </p>
                             
                             <p>
                                 <label className="etiq" htmlFor="cantidad">Cantidad</label>
-                                <input type="text" id="cantidad" value={datosForm.cantidad} onChange={e => cambioForm(index, e)}/>
+                                <input type="text" id="cantidad" name='cantidad' value={item.cantidad ||""} onChange={e => cambioForm(index, e)}/>
                             </p>
                             <button onClick={() => cancelar(index)}>Cancelar</button>
                         </article>
