@@ -22,7 +22,7 @@ router.put("/actualizar-cantidades/:idTarea" , TareaController.actualizarCantida
 
 // --------------------------- ARREGLADAS ---------------------------
 router.post("/completar-tarea-profesor/" , TareaController.setEstadoCompletada);
-
+router.post("/completar-clase-comanda/", TareaController.completarClaseComanda);
 
 
 module.exports = router;
