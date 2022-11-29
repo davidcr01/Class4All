@@ -131,12 +131,18 @@ export const EntregaMaterial = () => {
         }
         else{
             return(
-                <section>
-                    <Button variant="contained" onClick={e => tareaCompletada()}>
-                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Send-email.svg/750px-Send-email.svg.png' alt='Material ya recogido' />
-                        <p>ENVIAR</p> 
-                    </Button>
-                </section>
+                <>
+                    <Header titulo="Materiales" alumnos="si" url_anterior="/Agenda" />
+                    <main className='EnviarDatosRecogida'>
+                        <section className='botonEnvairRecogida'>
+                            <Button variant="contained" onClick={e => tareaCompletada()} >
+                                <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Send-email.svg/750px-Send-email.svg.png' alt='Material ya recogido' />
+
+                            </Button>
+                            <p>ENVIAR</p> 
+                        </section>
+                    </main>
+                </>
             )
         }
     }
