@@ -78,7 +78,7 @@
 
 .botonesAlumnos{
     width: auto;
-    background-color:   #91bae0;
+    background-color:  hsl(174, 38%, 79%) ;
     border-color:  black;
     border-style:  solid;
     border-width:  3px;
@@ -104,7 +104,7 @@
 
 .botonesClase{
     width: auto;
-    background-color:  #91bae0;
+    background-color:  hsl(174, 38%, 79%);
     border-color:  black;
     border-style:  solid;
     border-width:  3px;
