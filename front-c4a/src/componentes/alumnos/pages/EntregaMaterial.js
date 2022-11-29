@@ -48,6 +48,16 @@ export const EntregaMaterial = () => {
         }
     };
 
+    const recogidoMat = () => {
+        let nuevosDatos = [...materiales];
+        nuevosDatos.splice(currentMaterial, 1);
+        setMateriales(nuevosDatos);
+        if (currentMaterial > 0) {
+            setcurrentMaterial(currentMaterial - 1);
+        }
+
+    };
+
     useEffect(() => {
         rellenarMateriales();
     }, []);
@@ -58,38 +68,49 @@ export const EntregaMaterial = () => {
         )
     }
     else{
-        return (
-            <>
-             <Header titulo="Materiales" alumnos="si"/><div className='PaginaAgenda'></div>
-             <section>
-                <figure>
-                    <img src={"https://api.arasaac.org/api/pictograms/31758"} alt={"voy a"} />
-                </figure>
-                <figure>
-                    <img src={"http://localhost:3900/api/usuarios/get-foto/"+ Profe._id} alt={"Clase de " + Profe.nombre} />
-                </figure>
-             </section>
+        if(materiales.length > 0){
+            return (
+                <>
+                 <Header titulo="Materiales" alumnos="si"/><div className='PaginaAgenda'></div>
+                 <section className='pictogramasDireccionEntrega'>
+                    <figure>
+                        <img src={"https://api.arasaac.org/api/pictograms/31758"} alt={"voy a"} />
+                    </figure>
+                    <figure>
+                        <img src={"http://localhost:3900/api/usuarios/get-foto/"+ Profe._id} alt={"Clase de " + Profe.nombre} />
+                    </figure>
+                 </section>
 
 
-             <FlechasPaginacionGenerico currentIndex={currentMaterial} setCurrentIndex={setcurrentMaterial} length={materiales.length} increment={materialesIncrement} />
+                 <FlechasPaginacionGenerico currentIndex={currentMaterial} setCurrentIndex={setcurrentMaterial} length={materiales.length} increment={materialesIncrement} />
 
-             <section>
-                <figure>
-                    <img src={getImage(imagenesARASAAC['numeros'][materiales[currentMaterial].cantidad])} alt={"Material " + materiales[currentMaterial].idMaterial} />
-                </figure>
-                <figure>
-                    <img src={"http://localhost:3900/api/materials/obtenerfoto/"+ materiales[currentMaterial].material} alt={"XD"} />
-                </figure>
-             </section>
+                 <section>
+                    <figure>
+                        <img src={getImage(imagenesARASAAC['numeros'][materiales[currentMaterial].cantidad])} alt={"Material " + materiales[currentMaterial].idMaterial} />
+                    </figure>
+                    <figure>
+                        <img src={"http://localhost:3900/api/materials/obtenerfoto/"+ materiales[currentMaterial].material} alt={"XD"} />
+                    </figure>
+                 </section>
 
-             <section>
-                <Button variant="contained" onClick={e => paginaAdelante()}>
-                    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
-                </Button>
-             </section>
-            
-            </>
-          )
+                 <section>
+                    <Button variant="contained" onClick={e => recogidoMat()}>
+                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png' />
+                    </Button>
+                 </section>
+
+                </>
+            )
+        }
+        else{
+            return(
+                <>
+                <Button variant="contained">
+                        Enviar 
+                    </Button>
+                </>
+            )
+        }
     }
   
 }
