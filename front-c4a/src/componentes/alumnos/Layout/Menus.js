@@ -30,7 +30,7 @@ const Menus = ({menus,cantidades,setCantidades}) => {
         }
 
         return  (
-           <div className="cuerpo">
+            <div className='cuerpo'>
                 <div className="recuadrosmenus">
                     {menusJSX}
                 </div>

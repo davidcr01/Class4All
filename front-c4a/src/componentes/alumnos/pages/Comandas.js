@@ -22,6 +22,7 @@ export const Comandas = ({aula}) => {
   const [menus, setMenus] = useState([]);
   const [index, setIndex] = useState(0);
   const [conteoCantidades,setConteoCantidades] = useState([]);
+  const [menusRecogidos, setMenusRecogidos] = useState(0);
 
   useEffect(() => {
     isCookieSet().then((res) => {
@@ -51,14 +52,18 @@ export const Comandas = ({aula}) => {
         if (data.status === "success")
           setMenus(data.menus);
         
-        for(let i = 0; i < menus.length; i++){
-          let datos = conteoCantidades;
-          datos.push(0);
-          setConteoCantidades(datos);
-        }
+          setMenusRecogidos(1);
       })
     });
   }, []);
+
+  useEffect(() => {
+    for(let i = 0; i < menus.length; i++){
+      let datos = conteoCantidades;
+      datos.push("0");
+      setConteoCantidades(datos);
+    }
+  }, [menusRecogidos]);
 
   if (cargando)
     return (

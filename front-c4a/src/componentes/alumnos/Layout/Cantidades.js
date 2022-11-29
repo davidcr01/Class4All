@@ -27,7 +27,7 @@ const Cantidades = ({cantidades,setCantidades,index}) => {
     return  (
         <section className='cantidades'>
             <img className='botonesMasMenos' src={menos} onClick={Decrementar}/>
-            <img className='imagenCantidad' src={getImage(imagenesARASAAC['numeros'][cantidades[index]])} />
+            <img className='imagenCantidad' src={getImage(imagenesARASAAC['numeros'][cantidades[0]])} />
             <img className='botonesMasMenos' src={mas} onClick={Incrementar}/>
         </section>
     )
