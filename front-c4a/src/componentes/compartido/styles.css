@@ -469,3 +469,7 @@ header{
 .boton-paginacion:hover{
   background-color: #007165 !important;
 }
+
+.fuente-flecha{
+  font-size: 80px !important;
+}
