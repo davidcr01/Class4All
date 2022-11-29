@@ -485,3 +485,40 @@ header{
 .fuente-flecha{
   font-size: 80px !important;
 }
+
+/*Aún sin definir*/
+.peticion{  
+  background-color: white;
+  margin-left: 2%;
+  margin-right: 2%;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  padding-left: 1%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.etiq {
+  margin-right: 2%;
+}
+
+.materialesPedidos{
+  justify-content: center;
+  width: auto;
+  grid-template-columns: 22% 76%;
+  grid-column-gap: 20px;
+  border-width: 2px;
+  display: grid;
+  margin-bottom: 2px;
+  font-size: 4vw;
+  text-align: center
+} 
+
+.botonEliminar{
+  background-color: rgb(255, 109, 109);
+}
+
+.botonCancelar{
+  background-color: #b2dafa;
+}
