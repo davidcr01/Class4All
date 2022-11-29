@@ -22,7 +22,7 @@ const ListaTareas = (props) => {
     function seleccionSinAs() {
         //getelementbyid
         if (!SA) {
-            document.getElementById('sa').style.backgroundColor = '#70b67c';
+            document.getElementById('sa').style.backgroundColor = '#E2E2E2';
             props.cambio("sinAsignar")
             setSA(true);
             setA(false);
@@ -40,14 +40,14 @@ const ListaTareas = (props) => {
             setA(true);
             setR(false);
             setNR(false);
-            document.getElementById('as').style.backgroundColor = '#70b67c';
+            document.getElementById('as').style.backgroundColor = '#E2E2E2';
 
         }
     }
 
     function seleccionAs() {
         //getelementbyid
-        document.getElementById('as').style.backgroundColor = '#70b67c';
+        document.getElementById('as').style.backgroundColor = '#E2E2E2';
         props.cambio("asignada")
         setA(true);
         setSA(false);
@@ -62,7 +62,7 @@ const ListaTareas = (props) => {
     function seleccionReal() {
         //getelementbyid
         if (!R) {
-            document.getElementById('re').style.backgroundColor = '#70b67c';
+            document.getElementById('re').style.backgroundColor = '#E2E2E2';
             props.cambio("completada")
             setR(true);
             setA(false);
@@ -80,14 +80,14 @@ const ListaTareas = (props) => {
             setA(true);
             setSA(false);
             setNR(false);
-            document.getElementById('as').style.backgroundColor = '#70b67c';
+            document.getElementById('as').style.backgroundColor = '#E2E2E2';
 
         }
     }
 
     function seleccionNoReal() {
         if (!NR) {
-            document.getElementById('nr').style.backgroundColor = '#70b67c';
+            document.getElementById('nr').style.backgroundColor = '#E2E2E2';
             props.cambio("cancelada")
             setR(false);
             setA(false);
@@ -108,7 +108,7 @@ const ListaTareas = (props) => {
             setNR(false);
 
 
-            document.getElementById('as').style.backgroundColor = '#70b67c';
+            document.getElementById('as').style.backgroundColor = '#E2E2E2';
 
         }
     }
@@ -117,7 +117,7 @@ const ListaTareas = (props) => {
         <div className='ListaTareas'>
             <div className="botones">
                 <button className="boton" id="sa" onClick={seleccionSinAs}>SIN ASIGNAR</button>
-                <button className="boton" id="as" style={{backgroundColor: "#70b67c"}} onClick={seleccionAs}>ASIGNADAS</button>
+                <button className="boton" id="as" style={{backgroundColor: "#E2E2E2"}} onClick={seleccionAs}>ASIGNADAS</button>
                 <button className="boton" id="re" onClick={seleccionReal}>REALIZADAS</button>
                 <button className="boton" id="nr" onClick={seleccionNoReal}>NO REALIZADAS</button>
             </div>

@@ -72,7 +72,13 @@ const Profesores = (props) => {
                 <label htmlFor="password" style={{ fontWeight: "bold" }}>Contraseña:</label><br />
                 <input type="password" id="password" name="password" onChange={handlePassword}></input>
                 <p>¿Ha olvidado su contraseña?</p>
-                <input className='boton-enviar' type="submit" value="Entrar"></input>
+                <input className='boton-enviar' type="submit" value="Entrar" style={{
+                    width: "20%",
+                    height: "2em",
+                    borderRadius: "20px",
+                    borderColor: "black",
+                    fontWeight: "bold"}}>
+                </input>
             </form>
         </div>
     );
