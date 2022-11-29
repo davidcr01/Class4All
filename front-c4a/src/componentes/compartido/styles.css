@@ -358,10 +358,6 @@ Header {
   border-radius: 15px;
 }
 
-#as {
-  background-color: #70b67c
-}
-
 header{
   display: flex;
   align-items: center;

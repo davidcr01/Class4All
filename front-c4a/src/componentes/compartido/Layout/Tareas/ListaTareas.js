@@ -5,12 +5,19 @@ import '../../styles.css';
 // Vista: profesores y admins
 
 const ListaTareas = (props) => {
-
+/*
     const [SA, setSA] = useState(false);
     const [A, setA] = useState(true);
     const [R, setR] = useState(false);
     const [NR, setNR] = useState(false);
+*/
 
+    let SA = false, A = true, R = false, NR = false;
+
+    const setSA = (val) => {SA = val}
+    const setA = (val) => {A = val}
+    const setR = (val) => {R = val}
+    const setNR = (val) => {NR = val}
 
     function seleccionSinAs() {
         //getelementbyid
@@ -94,14 +101,14 @@ const ListaTareas = (props) => {
         else {
             document.getElementById('nr').style.backgroundColor = null;
 
-            props.cambio("asignada")
+            props.cambio("asignada");
             setR(false);
             setA(true);
             setSA(false);
             setNR(false);
 
 
-            document.getElementById('as').style.backgroundColor = '70b67c';
+            document.getElementById('as').style.backgroundColor = '#70b67c';
 
         }
     }
