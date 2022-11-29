@@ -8,6 +8,7 @@ import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 import {getImage} from '../../../interfaces/arasaac'
 import imagenesARASAAC from "../../../img/imagenesARASAAC.json";
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 export const EntregaMaterial = () => {
 
@@ -18,6 +19,7 @@ export const EntregaMaterial = () => {
     const [Profe , setProfe] = useState({});
 
     const materialesIncrement = 1;
+    let nav = useNavigate();
 
     const rellenarMateriales = async () => {
         let url = 'http://localhost:3900/api/tareas/get-tarea/' + id;
@@ -56,6 +58,25 @@ export const EntregaMaterial = () => {
             setcurrentMaterial(currentMaterial - 1);
         }
 
+    };
+    const tareaCompletada = () => {
+        let url = 'http://localhost:3900/api/tareas/completar-tarea-alumno/' + id;
+        try {
+            fetch(url, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "estado": "completada"
+                })
+            });
+        }
+        catch (error) {
+            console.log(error);
+            console.log("Error al completar tarea");
+        }
+        nav("/Agenda");
     };
 
     useEffect(() => {
@@ -111,7 +132,7 @@ export const EntregaMaterial = () => {
         else{
             return(
                 <section>
-                    <Button variant="contained">
+                    <Button variant="contained" onClick={e => tareaCompletada()}>
                         <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Send-email.svg/750px-Send-email.svg.png' alt='Material ya recogido' />
                         <p>ENVIAR</p> 
                     </Button>
