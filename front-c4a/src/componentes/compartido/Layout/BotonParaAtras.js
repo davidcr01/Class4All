@@ -12,7 +12,7 @@ const BotonParaAtras = (props) => {
     const nav = useNavigate();
 
     return (
-        <button onClick={() => nav(props.url)} className="botonParaAtras"><img className="atras" src={require("../../../img/flechaatras.png")} /></button>
+        <button onClick={() => nav(props.url)} className="botonParaAtras"><img className="atras" src={require("../../../img/flechaatras.png")} alt="Ir hacia atrás"/></button>
     )
 };
 

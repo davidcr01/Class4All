@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 // Vista: alumnos
 
 const PantallaTareas = (props) => {
-    let prueba=[];
+    let botones=[];
     let apartados = ["Agenda", "Tareas Realizadas"]
     let pictogramas = [ require("../../../../img/agenda.png"), require("../../../../img/realizado.png")]
     let enlaces = ["/Agenda", "/TareasRealizadas"]
@@ -16,7 +16,7 @@ const PantallaTareas = (props) => {
 
 
     for(let i=0; i< 2; i++){
-        prueba.push(
+        botones.push(
             <button className='botonesPT' onClick={() => nav(enlaces[i])}>
                 <img class="imgpantalla" src={pictogramas[i]}/>
                 <p>{apartados[i]}</p>
@@ -28,7 +28,7 @@ const PantallaTareas = (props) => {
     return (
         <div className="cuerpopantallatareas">
             <div className="imgspantalla">
-                {prueba}
+                {botones}
             </div>
         </div>
     );

@@ -122,7 +122,7 @@
   .botonesPT {
     width: auto;
     cursor: pointer;
-    background-color: #91bae0;
+    background-color: #8dd1ca;
     border-color: black;
     border-style: solid;
     border-width: 3px;
@@ -456,4 +456,16 @@ header{
 
 .botonesGC:hover {
   background-color: #E2E2E2;
+}
+
+.color-alumno{
+  color: #00897B !important;
+}
+
+.boton-paginacion {
+  background-color: #00b09f !important;
+}
+
+.boton-paginacion:hover{
+  background-color: #007165 !important;
 }
