@@ -19,14 +19,13 @@ export const FlechasPaginacionGenerico = ({ currentIndex, setCurrentIndex, lengt
         }
     }
 
-
+/*
     if (length > increment) {
         if (currentIndex === 0)
             return (
                 <div className='flechaAgenda'>
                     <div className='flechaD'>
                         <Button className="boton-paginacion" variant="contained" onClick={e => paginaAdelante()}>
-                            {/* <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' /> */}
                             <ArrowForward className='fuente-flecha'/>
                         </Button>
                     </div>
@@ -37,7 +36,7 @@ export const FlechasPaginacionGenerico = ({ currentIndex, setCurrentIndex, lengt
             return (
                 <div className='flechaAgenda'>
                     <div className='flechaI'>
-                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAtras()} /* startIcon={<ArrowBackIcon />} */>
+                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAtras()}>
                             <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
                         </Button>
 
@@ -49,7 +48,7 @@ export const FlechasPaginacionGenerico = ({ currentIndex, setCurrentIndex, lengt
             return (
                 <div className='flechaAgenda'>
                     <div className='flechaI'>
-                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAtras()} /* startIcon={<ArrowBackIcon />} */>
+                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAtras()}>
                             <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
                         </Button>
                     </div>
@@ -61,5 +60,26 @@ export const FlechasPaginacionGenerico = ({ currentIndex, setCurrentIndex, lengt
                     </div>
                 </div>
             )
+    }
+    */
+
+    if(length>increment){
+        return (
+            <div className='flechaAgenda'>
+                { (currentIndex + increment >= length || (currentIndex + increment < length && currentIndex!==0)) &&
+                    <div className='flechaI'>
+                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAtras()}>
+                            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
+                        </Button>
+                    </div>}
+
+                    { (currentIndex === 0 || (currentIndex + increment < length && currentIndex!==0)) &&
+                    <div className='flechaD'>
+                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAdelante()}>
+                            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
+                        </Button>
+                    </div>                                }
+            </div>
+        )
     }
 }
