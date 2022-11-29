@@ -133,7 +133,7 @@
 .botonesPP{
     width:  auto;
     cursor: pointer  ;
-    background-color:  #91bae0  ;
+    background-color:  #8dd1ca  ;
     border-color:  black  ;
     border-style:  solid  ;
     border-width:  3px  ;
@@ -206,7 +206,9 @@
 
   .estilobotoncomenzar{
     width: 200px;
-    height: 80px
+    height: 80px;
+    color: #00897B !important;
+    border-color: #00897B !important;
   }
 
   .contenedorBoton{
@@ -268,7 +270,7 @@
   padding: 2em;
   cursor: pointer;
   text-align: center;
-  background-color: #91bae0;
+  background-color: #8dd1ca;
   border-width: 1px;
   border-color: black;
   border-style: solid;
@@ -287,6 +289,7 @@
 .botonesAlumnos:hover {
   background-color: #E2E2E2;
 }
+
 
 
 .atras {

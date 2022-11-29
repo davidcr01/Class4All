@@ -28,8 +28,7 @@
   }
   
   .botoncrear{
-    background-color: black;
-    color: white;
+    background-color: #b2dafa;
     border-width: 2px;
     border-color: black;
     border-style: solid;
@@ -60,7 +59,6 @@
 
 
 .usuario{
-    background-color: rgb(196, 196, 255);
     border-width: 1px;
     border-color: black;
     border-style: solid;
@@ -102,18 +100,18 @@
   }
   
   .botonuser-modificar{
-    background-color: rgb(164, 163, 250);
+    background-color: #b2dafa;
   }
 
   .botonuser-ver{
-    background-color: rgb(163, 250, 164);
+    background-color: #b2dafa;
   }
   .datosuser{
     font-weight: bold
   }
 
 .formuser {
-  background-color: rgb(196, 196, 255);
+  background-color: white;
   margin-left: 2%;
   margin-right: 2%;
   border-width: 1px;

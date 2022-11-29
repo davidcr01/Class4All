@@ -38,7 +38,7 @@
   
   .divfiltros{
     width: auto;
-    background-color: #E2E2E2; 
+    background-color: #90b4ce; 
     border-color: black; 
     border-style: solid; 
     display: grid; 
@@ -95,7 +95,7 @@
   
   .boton{
     cursor: pointer;
-    background-color: #c4c4ff;
+    background-color: #3da9fc;
     border-width: 1px;
     border-color: black;
     border-style: solid;
@@ -122,7 +122,7 @@
   .botonesPT {
     width: auto;
     cursor: pointer;
-    background-color: #91bae0;
+    background-color: #8dd1ca;
     border-color: black;
     border-style: solid;
     border-width: 3px;
@@ -183,7 +183,7 @@
   }
   
   .tarea {
-    background-color: rgb(196, 196, 255);
+    background-color: white;
     border-width: 1px;
     border-color: black;
     border-style: solid;
@@ -280,7 +280,7 @@
   right: 2% 
 };
 
-.boton-enviar {
+.boton-enviar{
   background-color: lightgreen;
   width: 35%;
   font-weight: bold;
@@ -347,7 +347,7 @@ Header {
 }
 
 .botonTareasReal {
-  background-color: rgb(196, 196, 255);
+  background-color: #b2dafa;
   border-width: 1px;
   border-color: black;
   border-style: solid;
@@ -356,10 +356,6 @@ Header {
   padding-top: 5px;
   padding-bottom: 10px;
   border-radius: 15px;
-}
-
-#as {
-  background-color: #70b67c
 }
 
 header{
@@ -444,7 +440,7 @@ header{
 .botonesGC {
   width: auto;
   cursor: pointer;
-  background-color: #91bae0;
+  background-color: #b2dafa;
   border-color: black;
   border-style: solid;
   border-width: 3px;
@@ -455,9 +451,21 @@ header{
   padding-top: 4vw;
   padding-bottom: 3vw;
   border-radius: 25px;
-  font-weight: bold
+  font-weight: bold;
 }
 
 .botonesGC:hover {
   background-color: #E2E2E2;
+}
+
+.color-alumno{
+  color: #00897B !important;
+}
+
+.boton-paginacion {
+  background-color: #00b09f !important;
+}
+
+.boton-paginacion:hover{
+  background-color: #007165 !important;
 }
