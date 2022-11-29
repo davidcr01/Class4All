@@ -39,7 +39,7 @@ const getFoto = (req, res) => {
                 return res.sendFile(path.resolve(urlFisica));
             }else{
                 
-               return res.sendFile(path.resolve("./public/fotos/materialdefault.jpg"));
+               return res.sendFile(path.resolve("./public/fotos/materialdefault.png"));
             }
         })
     });
