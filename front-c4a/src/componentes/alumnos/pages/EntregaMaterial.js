@@ -71,32 +71,38 @@ export const EntregaMaterial = () => {
         if(materiales.length > 0){
             return (
                 <>
-                 <Header titulo="Materiales" alumnos="si"/><div className='PaginaAgenda'></div>
+                 <Header titulo="Materiales" alumnos="si" url_anterior="/Agenda" />
                  <section className='pictogramasDireccionEntrega'>
-                    <figure>
+                    <figure id='pictogramaEntregarEn'>
                         <img src={"https://api.arasaac.org/api/pictograms/31758"} alt={"voy a"} />
+                        <p>VOY A</p>
                     </figure>
-                    <figure>
+                    <figure id='fotoProfeEntregaMaterial'>
                         <img src={"http://localhost:3900/api/usuarios/get-foto/"+ Profe._id} alt={"Clase de " + Profe.nombre} />
+                        <p>{"Clase de " + Profe.nombre}</p>
                     </figure>
                  </section>
 
 
                  <FlechasPaginacionGenerico currentIndex={currentMaterial} setCurrentIndex={setcurrentMaterial} length={materiales.length} increment={materialesIncrement} />
 
-                 <section>
-                    <figure>
+                 <section className='pictogramasMaterialesEntregar'>
+                    <figure id='cantidadMaterialEntregar'>
                         <img src={getImage(imagenesARASAAC['numeros'][materiales[currentMaterial].cantidad])} alt={"Material " + materiales[currentMaterial].idMaterial} />
                     </figure>
-                    <figure>
+                    <figure id='fotoMaterialEntregar'>
                         <img src={"http://localhost:3900/api/materials/obtenerfoto/"+ materiales[currentMaterial].material} alt={"XD"} />
                     </figure>
                  </section>
 
-                 <section>
-                    <Button variant="contained" onClick={e => recogidoMat()}>
+                 <section className='botonesRecogidaMaterial'>
+                    <Button className='aceptarMaterial' variant="contained" onClick={e => recogidoMat()}>
                         <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png' />
                     </Button>
+                    <Button className='rechazarMaterial' variant="contained" onClick={e => recogidoMat()}>
+                        <img src=' https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png' />
+                    </Button>
+                   
                  </section>
 
                 </>
@@ -104,11 +110,12 @@ export const EntregaMaterial = () => {
         }
         else{
             return(
-                <>
-                <Button variant="contained">
-                        Enviar 
+                <section>
+                    <Button variant="contained">
+                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Send-email.svg/750px-Send-email.svg.png' alt='Material ya recogido' />
+                        <p>ENVIAR</p> 
                     </Button>
-                </>
+                </section>
             )
         }
     }
