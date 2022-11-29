@@ -17,6 +17,7 @@ export const EntregaMaterial = () => {
     const [currentMaterial, setcurrentMaterial] = useState(0)//indice de la estructura de tareas
     const [cargando, setCargando] = useState(true);
     const [Profe , setProfe] = useState({});
+    const [cogerNombres , setcogerNombres] = useState(0);
 
     const materialesIncrement = 1;
     let nav = useNavigate();
@@ -28,7 +29,8 @@ export const EntregaMaterial = () => {
             let data = await res.json();
             setMateriales(data.tarea.entregamateriales.materiales);
             await rellenaProfe(data.tarea.entregamateriales.idProfesor);
-            setCargando(false);
+            
+            setcogerNombres(1);
         }
         catch (error) {
             console.log(error);
@@ -48,6 +50,28 @@ export const EntregaMaterial = () => {
             console.log(error);
             console.log("Error al rellenar profe");
         }
+    };
+
+    const rellenaNombreMats = async () => {
+        let url = 'http://localhost:3900/api/materials/lista-material';
+        try {
+            let res = await fetch(url);
+            let data = await res.json();
+           
+            materiales.map((m,i) => {
+                data.materials.map((mat) => {
+                    if(m.material === mat._id){
+                        materiales[i].nombre = mat.nombre;
+                    }
+                    
+                });
+            });
+        }
+        catch (error) {
+            console.log(error);
+            console.log("Error al rellenar nombre");
+        }
+        setCargando(false);
     };
 
     const recogidoMat = () => {
@@ -83,6 +107,13 @@ export const EntregaMaterial = () => {
         rellenarMateriales();
     }, []);
 
+    useEffect(() => {
+        if(cogerNombres === 1){
+            rellenaNombreMats();
+            
+        }
+    }, [cogerNombres]);
+
     if(cargando){
         return(
             <CargandoProgress/>
@@ -114,7 +145,7 @@ export const EntregaMaterial = () => {
                     </figure>
                     <figure id='fotoMaterialEntregar'>
                         <img src={"http://localhost:3900/api/materials/obtenerfoto/"+ materiales[currentMaterial].material} alt={"XD"} />
-                        <p>{materiales[currentMaterial].material}</p>
+                        <p>{materiales[currentMaterial].nombre.toUpperCase()}</p>
                     </figure>
                  </section>
 

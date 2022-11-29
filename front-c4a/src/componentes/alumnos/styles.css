@@ -333,6 +333,7 @@
   width: 12em;
   height: 10em;
   margin-left: 1em;
+  
 }
 
 #cantidadMaterialEntregar img, #fotoMaterialEntregar img{
@@ -344,6 +345,9 @@
   margin-top: 0.5em;
   font-size: 1em;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  
 }
 
 .botonesRecogidaMaterial{
