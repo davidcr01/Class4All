@@ -193,6 +193,22 @@ const getAlumnos = (req, res) => {
     });    
 }
 
+const getTodosAlumnos = (req, res) => {
+    Usuario.find({rol: "Alumno"}).exec((error, query) => {
+        if (error || query.length == 0 || !query) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No hay alumnos :("
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            alumnos: query.map((i) => {return {clase: i.clase, _id: i._id, nombre: i.nombre}})
+        });
+    });
+}
+
+
 
 const obtenerFoto = (req, res) => {
     let id = req.params.id;
@@ -227,5 +243,6 @@ module.exports = {
     getAulas,
     getAlumnos,
     loginAlumno,
-    obtenerFoto
+    obtenerFoto,
+    getTodosAlumnos
 }

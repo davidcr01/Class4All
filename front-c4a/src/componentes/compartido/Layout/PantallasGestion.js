@@ -14,6 +14,7 @@ const PantallasGestion = (props) => {
         {apartado: "Comandas", enlace: "/login-ok", rol: "Administrador"},
         {apartado: "Stock", enlace: "/login-ok", rol: "Administrador"},
         {apartado: "Chat", enlace: "/login-ok", rol: "Profesor"},
+        {apartado: "Pedir Material", enlace: "/entrega-material", rol: "Profesor"},
     ]
 
     

@@ -8,16 +8,16 @@ import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 // Vista: compartida (admins y profs)
 
 export const Tareas = (props) => {
-    const [tareas,SetTareas] =  useState([]);
-    const [usuarios, SetUsuarios] = useState([]);
-
+    const [tareas,setTareas] =  useState([]);
+    const [usuarios, setUsuarios] = useState([]);
+    const [needsRender, setNeedsRender] = useState(false);
     const conseguirTareas = async() =>{
         try {
             const url = "http://localhost:3900/api/tareas/lista-tareasDia";
 
             const res = await fetch(url)
             const data = await res.json();
-            SetTareas(data.tareas);
+            setTareas(data.tareas);
         } catch (error) {
             console.log(error);
         }
@@ -29,7 +29,7 @@ export const Tareas = (props) => {
 
             const res = await fetch(url)
             const data = await res.json();
-            SetUsuarios(data.usuarios);
+            setUsuarios(data.usuarios);
         } catch (error) {
             console.log(error);
         }
@@ -38,7 +38,7 @@ export const Tareas = (props) => {
     useEffect(() => {
         conseguirTareas();
         conseguirUsuarios();
-    }, []);
+    }, [needsRender]);
 
   return (
     <div>
@@ -50,7 +50,7 @@ export const Tareas = (props) => {
                     <TareaSinAsignar key={t._id} className="tarea" usuarios={usuarios} tarea={t} />
                 )}
                 {t.estado === props.tipo && t.estado === 'asignada' && (
-                    <TareaAsignada key={t._id} className="tarea" tarea={t} />
+                    <TareaAsignada key={t._id} className="tarea" tarea={t} setNeedsRender={setNeedsRender} needsRender={needsRender} />
                 )}
                 {t.estado === props.tipo && t.estado === 'completada' && (
                     <TareaRealizada key={t._id} className="tarea" tarea={t} />

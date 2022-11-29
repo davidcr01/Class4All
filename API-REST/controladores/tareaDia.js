@@ -2,6 +2,7 @@ const Tarea = require("../modelos/TareasDia");
 const Usuario = require("../modelos/Usuario");
 const fs = require('fs');
 const path = require('path');
+const { default: mongoose } = require("mongoose");
 
 const listaTareas = (req, res) => {
     let consulta = Tarea.find({}).exec((error, tareas) => {
@@ -381,7 +382,7 @@ const actualizarCantidades = (req, res) => {
 };
 
 
-const setrealizada = (req, res) => {
+const setRealizada = (req, res) => {
     let idTarea = req.params.idTarea;
 
     Tarea.findByIdAndUpdate(
@@ -404,9 +405,10 @@ const setrealizada = (req, res) => {
 
 };
 
-const setestadocompletada = (req, res) => {
+const setEstadoCompletada = (req, res) => {
 
-    let idTarea = req.params.idTarea;
+    let idTarea = req.body.idTarea;
+
     Tarea.findById
         (
             { _id: idTarea },
@@ -417,26 +419,25 @@ const setestadocompletada = (req, res) => {
                         mensaje: "La tarea no existe"
                     });
                 }
+                else{
+                    Tarea.findOneAndUpdate({_id: idTarea}, { $set: {estado: "completada"}}, (err, doc) => {
+                        if(err || !doc){
+                            return res.status(404).json({
+                                status: "error",
+                                mensaje: err
+                            });            
+                        }
+                        else{
+                            return res.status(200).json({
+                                status: "success",
+                        
+                                mensaje: "Todo se ha modificado correctamete",
+                            });            
+                        }
+                    })                    
+                }
             }
         );
-    Tarea.updateOne(
-        { _id: idTarea },
-        { $set: { estado: 'completada' } },
-        (error, tareaActualizada) => {
-            if (error || !tareaActualizada) {
-                return res.status(404).json({
-                    status: "error",
-                    mensaje: "La tarea no se ha actualizado"
-                });
-            }
-        }
-    );
-    return res.status(200).json({
-        status: "success",
-
-        mensaje: "Todo se ha modificado correctamete",
-    });
-
 };
 
 const crearTareaMaterial = (req, res) => {
@@ -529,6 +530,65 @@ const crearTareaMaterial = (req, res) => {
 
 }
 
+//Obtener tareas de tipo entregamaterial de un profesor concreto
+const getTareasEntregaMaterial = (req, res) => {
+    let idProfesor = req.params.idProfesor;
+    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor}, (error, tareas) => {
+        if (error || !tareas) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No hay tareas"
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            mensaje: "Tareas encontradas",
+            tareas: tareas
+        });
+    });
+}
+
+
+const completarClaseComanda = (req, res) => {
+    const aula = req.body.aula;
+    const idTarea = req.body.idTarea;
+
+    Tarea.findByIdAndUpdate(idTarea, {$pull: {aulasRestantes: aula}}, (err, out) => {
+        if(err || !out){
+            return res.status(404).json({
+                status: "error",
+                mensaje: "La tarea no ha sido actualizada"
+            });            
+        }
+
+        else{
+            return res.status(200).json({
+                status: "success",
+                mensaje: "Tareas actualizada",
+            });
+        }
+    });
+};
+
+const getAulasRestantes = (req, res) => {
+    const idTarea = req.params.idTarea;
+
+    Tarea.findById(idTarea, (err, out) => {
+        if(err || !out){
+            return res.status(404).json({
+                status: "error",
+                mensaje: "La tarea no existe"
+            })
+        }
+        else{
+            return res.status(200).json({
+                status: "success",
+                mensaje: "Tarea encontrada",
+                aulasRestantes: out.aulasRestantes
+            })
+        }
+    });
+}
 
 
 module.exports = {
@@ -541,9 +601,10 @@ module.exports = {
     obtenerTareasUsuario,
     obtenerFoto,
     actualizarCantidades,
-    setrealizada,
-    setestadocompletada,
-    crearTareaMaterial
-
-
+    setRealizada,
+    setEstadoCompletada,
+    crearTareaMaterial,
+    getTareasEntregaMaterial,
+    completarClaseComanda,
+    getAulasRestantes
 }
