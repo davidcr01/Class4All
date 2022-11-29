@@ -8,7 +8,7 @@ import imagenesARASAAC from "../../../img/imagenesARASAAC.json";
 // Componente para mostrar el login de los alumnos
 // Vista: compartido
 
-const Cantidades = (id) => {
+const Cantidades = (key, titulo) => {
     const [cantidad, setCantidad] = useState(0);
 
     let mas = require("../../../img/mas.png")
@@ -24,6 +24,7 @@ const Cantidades = (id) => {
 
     const {setCookie} = React.useContext(ContextoRol);
     const nav = useNavigate();
+    console.log(titulo)
 
     return  (
         <section className='cantidades'>

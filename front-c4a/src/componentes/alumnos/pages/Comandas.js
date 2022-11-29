@@ -70,6 +70,12 @@ export const Comandas = ({aula}) => {
     const menusVisibles = menus.slice(index, index + increment);
     const menusLength = (menus === undefined) ? 0 : menus.length+1;
 
+    const cantidades = {};
+
+    for (let i = 0; i < menusLength-1; i++) {
+      cantidades[menus[i].nombre] = 0;
+    }
+
     if (menusLength > 0)
     {
       const location = useLocation();
@@ -90,8 +96,11 @@ export const Comandas = ({aula}) => {
           <>
             <Header titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant}/>
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={menusLength} increment={increment} />
-            <Menus menus={menusVisibles} />
-
+            <div className="cuerpo">
+                <div className="recuadrosmenus">
+                  <Menus menus={menusVisibles} />
+                </div>
+            </div>
           </>
         );
       }
