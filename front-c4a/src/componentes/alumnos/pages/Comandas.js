@@ -21,6 +21,7 @@ export const Comandas = ({aula}) => {
   const [isSet, setIsSet] = useState(false);
   const [menus, setMenus] = useState([]);
   const [index, setIndex] = useState(0);
+  const [conteoCantidades,setConteoCantidades] = useState([]);
 
   useEffect(() => {
     isCookieSet().then((res) => {
@@ -49,6 +50,12 @@ export const Comandas = ({aula}) => {
 
         if (data.status === "success")
           setMenus(data.menus);
+        
+        for(let i = 0; i < menus.length; i++){
+          let datos = conteoCantidades;
+          datos.push(0);
+          setConteoCantidades(datos);
+        }
       })
     });
   }, []);
@@ -98,7 +105,7 @@ export const Comandas = ({aula}) => {
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={menusLength} increment={increment} />
             <div className="cuerpo">
                 <div className="recuadrosmenus">
-                  <Menus menus={menusVisibles} />
+                  <Menus menus={menusVisibles} cantidades={conteoCantidades} setCantidades={setConteoCantidades}  />
                 </div>
             </div>
           </>

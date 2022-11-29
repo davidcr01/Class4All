@@ -8,28 +8,26 @@ import imagenesARASAAC from "../../../img/imagenesARASAAC.json";
 // Componente para mostrar el login de los alumnos
 // Vista: compartido
 
-const Cantidades = (key, titulo) => {
-    const [cantidad, setCantidad] = useState(0);
+const Cantidades = ({cantidades,setCantidades,index}) => {
 
     let mas = require("../../../img/mas.png")
     let menos = require("../../../img/menos.png")
 
     const Incrementar = () => {
-        setCantidad(cantidad => Math.min(cantidad + 1, 10));
+        setCantidades(cantidad => Math.min(cantidad + 1, 10));
     };
 
     const Decrementar = () => {
-        setCantidad(cantidad => Math.max(cantidad - 1, 0));
+        setCantidades(cantidad => Math.max(cantidad - 1, 0));
     };
 
     const {setCookie} = React.useContext(ContextoRol);
     const nav = useNavigate();
-    console.log(titulo)
 
     return  (
         <section className='cantidades'>
             <img className='botonesMasMenos' src={menos} onClick={Decrementar}/>
-            <img className='imagenCantidad' src={getImage(imagenesARASAAC['numeros'][cantidad])}/>
+            <img className='imagenCantidad' src={getImage(imagenesARASAAC['numeros'][cantidades[index]])} />
             <img className='botonesMasMenos' src={mas} onClick={Incrementar}/>
         </section>
     )
