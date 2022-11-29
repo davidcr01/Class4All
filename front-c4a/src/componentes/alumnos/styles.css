@@ -22,6 +22,46 @@
     grid-auto-flow: column
 }
 
+.recuadrosmenus{
+  width:100%;
+  padding-top:15px;
+  padding-bottom:15px;
+  justify-content: center;
+  display: grid;
+  margin-right:auto;
+  margin-left:auto;
+  grid-template-columns: 25% 25%;
+  grid-template-rows:20vw 20vw;
+  grid-column-gap: 40px;
+  grid-row-gap: 15px;
+}
+
+.cantidades{
+  display: inline-flex;
+  align-items: center;
+    border-color:  black;
+    border-style:  solid;
+    border-width:  3px;
+    margin-bottom:  5px;
+    font-size:  2.5vw;
+    padding: 3vw 0;
+    border-radius:  35px;
+    font-weight:  bold;
+}
+
+.botonesMasMenos{
+  flex: 4;
+  width: 50%;
+  height: 50%;
+  cursor: pointer;
+}
+
+
+.imagenCantidad{
+  width: 85%;
+  height: 85%;
+}
+
 .recuadrosclases{
     width:100%;
     padding-top:10px;
@@ -182,7 +222,6 @@
   }
 
 
-
 .tarjetaAgendaespe{
   width: 25%;
   grid-template-columns: 43% 43%;
@@ -225,17 +264,15 @@
 }
 
 .botonParaAtras{
-  position: absolute;
+  flex: 0.7;
+  padding: 2em;
   cursor: pointer;
-  padding: 1% 0;
-  width: 6%;
-  left: 0;
-  top: 0;
   text-align: center;
   background-color: #91bae0;
   border-width: 1px;
   border-color: black;
   border-style: solid;
+  white-space: inherit;
 }
 
 .botonesClase:hover {
@@ -253,6 +290,6 @@
 
 
 .atras {
-  position: relative;
-  width: 60%
+  height: fit-content;
+  width: 5em;
 }
