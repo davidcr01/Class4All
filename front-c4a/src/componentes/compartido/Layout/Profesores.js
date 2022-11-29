@@ -33,7 +33,7 @@ const Profesores = (props) => {
             if (response !== undefined) {
                 //alert(sessionID);
                 cookies.set("loginCookie", { id: response.id, sessionID: response.sessionID, rol: response.rol }, { maxAge: 86400 });
-                setCookie('Administrador');
+                setCookie(response.rol);
                 nav("/");
             }
         });

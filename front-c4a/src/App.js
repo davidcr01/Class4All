@@ -7,6 +7,7 @@ import {RouterInicioSesion} from './routing/RouterInicioSesion.js';
 import {RouterAlumnos} from './routing/RouterAlumnos.js';
 import {RouterProfesores} from './routing/RouterProfesores.js';
 import Cookies from 'universal-cookie';
+import { isCookieSet } from './interfaces/cookies';
 
 function App() {
   const [cookie, setCookie] = useState(null);
@@ -14,28 +15,25 @@ function App() {
   const [error, setError] = useState(-1);
 
   const ChangeRol = () => {
-    
-    if(cookie === 'Administrador')
-      setRol('Administrador');
-    else{
-      if(cookie === 'Alumno')
-        setRol('Alumno');
-      else{
-        if(cookie === 'Profesor')
-          setRol('Profesor');
-        else{
-          setRol(null);
-        }
-        
-      }
+    switch(cookie){
+      case "Administrador":
+      case "Alumno":
+      case "Profesor":
+        setRol(cookie);
+        break;
+      default:
+        setRol(null);
+        break;
     }
-    
+
   };
 
   const getCookieActual = async () => {
     const cookies = new Cookies();
     let cookieActual = cookies.get('loginCookie')
-    if(cookieActual !== undefined){
+    let cookieSet = await isCookieSet();
+
+    if(cookieActual !== undefined && cookieSet){
       setCookie(cookieActual.rol);
     }
     else{
@@ -43,6 +41,7 @@ function App() {
       setCookie(null);
     }
   };
+  
   useEffect(() => {
     getCookieActual();
   }, []);
@@ -51,7 +50,9 @@ function App() {
     ChangeRol();
   }, [cookie]);
 
-
+  //useEffect debug
+  useEffect(() => {
+  }, [rol]);
 
   return (
     <div>
