@@ -9,7 +9,7 @@ import Profesores from '../../compartido/Layout/Profesores';
 export const SesionProfesores = () => {
   return (
     <>
-    <Header titulo="Inicio De Sesión"/>
+    <Header titulo="Inicio De Sesión" alumnos="principal-admins"/>
     <Profesores/>
     <Footer/>
   </>)

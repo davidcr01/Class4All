@@ -393,6 +393,18 @@ header{
   
 }
 
+.titulo_inicio_admins {
+  flex: 15;
+  height: 60px;
+  font-size: 50px;
+  margin-bottom: 20px;
+  margin-top: 0;
+  padding: 20px;
+  padding-left: 0px;
+  padding-right: 110px;
+  
+}
+
 .titulo_inicio_alumnos {
   flex: 15;
   height: 60px;

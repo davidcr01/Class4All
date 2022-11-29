@@ -36,6 +36,17 @@ const Header = (props) => {
         );
     }
 
+    //Inicio de sesion, seleccion de alumno
+    if (props.alumnos === "principal-admins") {
+        return (
+            <header>
+                <BotonParaAtras url={props.url_anterior}></BotonParaAtras>
+                <h1 className="titulo_inicio_admins color-alumno">{props.titulo}</h1>
+                <CerrarSesionBoton/>
+            </header>
+        );
+    }
+
     return (
         <header>
             <h1 className="titulo_admins">{props.titulo}</h1>
