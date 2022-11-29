@@ -41,7 +41,7 @@ export const EntregaMaterial = () => {
     else{
         return (
             <>
-             <Header titulo="Materiales" /><div className='PaginaAgenda'></div>
+             <Header titulo="Materiales" alumnos="si"/><div className='PaginaAgenda'></div>
              <section>
                 <h2>Pictogramas</h2>
              </section>

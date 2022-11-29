@@ -64,7 +64,7 @@ export const SesionAlumnos = (props) => {
       if (alumnosLength > 0)
         return (
           <>
-            <Header titulo="Inicio De Sesión" />
+            <Header titulo="Inicio De Sesión" alumnos="principal-alumnos" url_anterior="/"/>
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={alumnosLength} increment={increment} />
             <Alumnos alumnos={alumnosVisibles} />
           </>)
