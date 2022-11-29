@@ -110,9 +110,11 @@ export const EntregaMaterial = () => {
                  <section className='pictogramasMaterialesEntregar'>
                     <figure id='cantidadMaterialEntregar'>
                         <img src={getImage(imagenesARASAAC['numeros'][materiales[currentMaterial].cantidad])} alt={"Material " + materiales[currentMaterial].idMaterial} />
+                        
                     </figure>
                     <figure id='fotoMaterialEntregar'>
                         <img src={"http://localhost:3900/api/materials/obtenerfoto/"+ materiales[currentMaterial].material} alt={"XD"} />
+                        <p>{materiales[currentMaterial].material}</p>
                     </figure>
                  </section>
 

@@ -340,14 +340,20 @@
   height: 100%;
 }
 
+#cantidadMaterialEntregar p, #fotoMaterialEntregar p{
+  margin-top: 0.5em;
+  font-size: 1em;
+  font-weight: bold;
+}
+
 .botonesRecogidaMaterial{
   display: flex;
   justify-content: center;
-  margin-top: 2em;
+  margin-top: 3em;
 }
 .aceptarMaterial, .rechazarMaterial{
-  width: 10em;
-  height: 8em;
+  width: 9em;
+  height: 7em;
   margin-right: 4em !important;
   margin-left: 4em !important;
   cursor: pointer;
