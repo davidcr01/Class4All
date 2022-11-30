@@ -18,11 +18,11 @@ router.delete("/eliminar-tareaDia/:id" , TareaController.eliminarTarea);
 router.put("/asignar-tarea/:idTarea/:idAlumno" , TareaController.asignarTarea);
 router.put("/desasignar-tarea/:idTarea" , TareaController.desasignarTarea);
 router.put("/completar-tarea-alumno/:idTarea" , TareaController.setRealizada);
-router.put("/actualizar-cantidades/:idTarea" , TareaController.actualizarCantidades);
 
 // --------------------------- ARREGLADAS ---------------------------
 router.get("/aulas-restantes-comanda/:idTarea", TareaController.getAulasRestantes);
 router.post("/completar-tarea-profesor/" , TareaController.setEstadoCompletada);
 router.post("/completar-clase-comanda/", TareaController.completarClaseComanda);
+router.post("/actualizar-cantidades/:idTarea" , TareaController.actualizarCantidades);
 
 module.exports = router;

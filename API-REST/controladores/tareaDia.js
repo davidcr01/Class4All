@@ -2,7 +2,7 @@ const Tarea = require("../modelos/TareasDia");
 const Usuario = require("../modelos/Usuario");
 const fs = require('fs');
 const path = require('path');
-const { default: mongoose } = require("mongoose");
+const { default: mongoose, Mongoose } = require("mongoose");
 
 const listaTareas = (req, res) => {
     let consulta = Tarea.find({}).exec((error, tareas) => {
@@ -309,7 +309,11 @@ const obtenerFoto = (req, res) => {
 };
 
 
-
+/**
+ * Formato cantidades: [{menu: "ID menu", cantidad: "cantidad menu"}]
+ * @param {*} req 
+ * @param {*} res 
+ */
 const actualizarCantidades = (req, res) => {
     let idTarea = req.params.idTarea;
     let cantidades = req.body.cantidades;
@@ -329,22 +333,20 @@ const actualizarCantidades = (req, res) => {
             let salir = false;
             //actualizar cantidad de los menus
             for (let i = 0; i < cantidades.length; i++) {
-                for(let  j = 0; j < menus.length && !salir; j++){
-                    if(menus[j].menu == cantidades[i].menu){
+                for (let j = 0; j < menus.length && !salir; j++) {
+                    if (menus[j].menu.toString() === cantidades[i].menu) {
                         menus[j].cantidad = Number(menus[j].cantidad)
-                        menus[j].cantidad += Number(cantidades[i].cantidad);   
-                        salir = true;                     
+                        menus[j].cantidad += Number(cantidades[i].cantidad);
+                        salir = true;
                     }
                 }
 
-                if(salir == false){
+                if (!salir) {
                     menus.push(cantidades[i]);
                 }
-                    salir = false;
+                salir = false;
+            }
 
-               }
-
-            // console.log(menus);
             //actualizar la tarea
             Tarea.findByIdAndUpdate(
                 { _id: idTarea },
@@ -369,12 +371,6 @@ const actualizarCantidades = (req, res) => {
                     });
                 }
             );
-
-
-
-
-
-
         }
     );
 
@@ -419,22 +415,22 @@ const setEstadoCompletada = (req, res) => {
                         mensaje: "La tarea no existe"
                     });
                 }
-                else{
-                    Tarea.findOneAndUpdate({_id: idTarea}, { $set: {estado: "completada"}}, (err, doc) => {
-                        if(err || !doc){
+                else {
+                    Tarea.findOneAndUpdate({ _id: idTarea }, { $set: { estado: "completada" } }, (err, doc) => {
+                        if (err || !doc) {
                             return res.status(404).json({
                                 status: "error",
                                 mensaje: err
-                            });            
+                            });
                         }
-                        else{
+                        else {
                             return res.status(200).json({
                                 status: "success",
-                        
+
                                 mensaje: "Todo se ha modificado correctamete",
-                            });            
+                            });
                         }
-                    })                    
+                    })
                 }
             }
         );
@@ -533,7 +529,7 @@ const crearTareaMaterial = (req, res) => {
 //Obtener tareas de tipo entregamaterial de un profesor concreto
 const getTareasEntregaMaterial = (req, res) => {
     let idProfesor = req.params.idProfesor;
-    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor}, (error, tareas) => {
+    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor }, (error, tareas) => {
         if (error || !tareas) {
             return res.status(404).json({
                 status: "error",
@@ -553,15 +549,15 @@ const completarClaseComanda = (req, res) => {
     const aula = req.body.aula;
     const idTarea = req.body.idTarea;
 
-    Tarea.findByIdAndUpdate(idTarea, {$pull: {aulasRestantes: aula}}, (err, out) => {
-        if(err || !out){
+    Tarea.findByIdAndUpdate(idTarea, { $pull: { aulasRestantes: aula } }, (err, out) => {
+        if (err || !out) {
             return res.status(404).json({
                 status: "error",
                 mensaje: "La tarea no ha sido actualizada"
-            });            
+            });
         }
 
-        else{
+        else {
             return res.status(200).json({
                 status: "success",
                 mensaje: "Tareas actualizada",
@@ -574,17 +570,27 @@ const getAulasRestantes = (req, res) => {
     const idTarea = req.params.idTarea;
 
     Tarea.findById(idTarea, (err, out) => {
-        if(err || !out){
+        if (err || !out) {
             return res.status(404).json({
                 status: "error",
                 mensaje: "La tarea no existe"
             })
         }
-        else{
-            return res.status(200).json({
-                status: "success",
-                mensaje: "Tarea encontrada",
-                aulasRestantes: out.aulasRestantes
+        else {
+            Usuario.find({ rol: "Profesor", clase: { $in: out.aulasRestantes } }, (err, clases) => {
+                if (err || !clases) {
+                    return res.status(404).json({
+                        status: "error",
+                        mensaje: "No hay clases"
+                    })
+                }
+                else {
+                    return res.status(200).json({
+                        status: "success",
+                        mensaje: "Tarea encontrada",
+                        aulasRestantes: clases.map((i) => { return { clase: i.clase, id: i._id } })
+                    })
+                }
             })
         }
     });

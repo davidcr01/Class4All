@@ -3,7 +3,8 @@
  * Obtiene las aulas restantes para una tarea dada.
  * @pre La tarea debe ser del tipo comanda.
  * @param idTarea Identificador de la tarea.
- * @returns Array vacío en caso de no poder obtener aulas restantes. En otro caso el array con las aulas que quedan.
+ * @returns Array vacío en caso de no poder obtener aulas restantes. En otro caso el array con las aulas que quedan
+ * con el formato siguiente: [{id: "ID del profesor", clase: "Nombre de la clase"}, ...].
  */
 export const getAulasRestantes = async (idTarea) => {
     try {
@@ -48,5 +49,37 @@ export const setAulaCompletada = async (idTarea, aula) => {
     } catch (error) {
         console.log(error);
 
+        return false;
     }      
+}
+
+/**
+ * 
+ * @param idTarea Identificador de la tarea
+ * @param menu Menus que se han anotado, tienen el siguiente formato: [{menu: ID, cantidad: nro}]
+ * @returns true en caso de haberse modificado correctamente y false en otro caso.
+ */
+export const sendMenu = async (idTarea, menu) => {
+    //alert("mec: "+idTarea+" mec2: "+JSON.stringify(menu));
+
+    try {
+        const url = "http://localhost:3900/api/tareas/actualizar-cantidades/"+idTarea;
+
+        const res = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({cantidades: menu})
+        });
+
+        const data = await res.json();
+
+        return (data.status === "success")? true : false;
+    } catch (error) {
+        console.log(error);
+
+        return false;
+    }     
+    
 }

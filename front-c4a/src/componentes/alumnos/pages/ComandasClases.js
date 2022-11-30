@@ -7,6 +7,7 @@ import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 import { useParams } from "react-router-dom"
+import { getAulasRestantes } from '../../../interfaces/aulasRestantes';
 
 // Vista: compartida
 
@@ -24,6 +25,7 @@ export const ComandasClases = () => {
       setIsSet(res);
       setCargando(false);
 
+      /*
       const getAulas = async () => {
         try {
           //alert("cookie cookie: "+cookies.get("loginCookie"));
@@ -46,7 +48,15 @@ export const ComandasClases = () => {
 
         if (data.status === "success")
           setAulas(data.aulas);
-      })
+      })*/
+
+      getAulasRestantes(id).then((res) => {
+        setCargando(false);
+
+        //alert(JSON.stringify(res));
+
+        setAulas(res);
+      });
     });
   }, []);
 
@@ -55,14 +65,7 @@ export const ComandasClases = () => {
       <CargandoProgress />
     )
 
-  /* else if(cookies.get("loginCookie") !== undefined && isSet){
-    return (
-      <div>
-        <h1>SESION YA INICIADA</h1>
-      </div>
-    )
-  } */
-  else {
+  else if(cookies.get("loginCookie") !== undefined && isSet){
     const increment = 4;
     const aulasVisibles = aulas.slice(index, index + increment);
     const aulasLength = (aulas === undefined) ? 0 : aulas.length;
@@ -80,9 +83,16 @@ export const ComandasClases = () => {
       return (
         <>
           <Header titulo="Comandas" />
-          <h1>NO HAY CLASES EN EL SISTEMA</h1>
+          <h1>Tarea completada. Enhorabuena</h1>
         </>
       )
+  }
+  else{
+    return (
+      <>
+      <h1>NO TIENES PERMISO PARA ACCEDER A ESTA PAGINA</h1>
+      </>
+    )
   }
 
 };

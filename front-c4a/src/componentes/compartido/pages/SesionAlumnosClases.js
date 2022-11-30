@@ -42,7 +42,7 @@ export const SesionAlumnosClases = () => {
       getAulas().then((data) => {
         setCargando(false);
 
-        if (data.status === "success")
+        if (data !== undefined && data.status === "success")
           setAulas(data.aulas);
       })
     });
