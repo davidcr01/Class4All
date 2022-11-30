@@ -5,7 +5,7 @@ import { ListItem } from '@mui/material';
 
 // Vista: compartida (administradores y profesores)
 
-const MaterialPedido = ({profesosID, alumno, materiales}) => {
+const MaterialPedido = ({profesorID, alumno, materiales}) => {
 
  //   const [usuario, setUsuarios] = useState('');
     const [cargando, setCargando] = useState(true);
@@ -15,10 +15,30 @@ const MaterialPedido = ({profesosID, alumno, materiales}) => {
   //      getUser();
     }, []);
 
+
+    const fRecibido = (props) => {
+        const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + profesorID;
+
+        var requestOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({idTarea: props.tarea._id})           
+        }
+        fetch(url, requestOptions)
+            .then(res => res.json())
+            .then(data => {
+                if(data.status === "success"){
+                    props.setNeedsRender(!props.needsRender);
+                }
+            })
+            .catch(error => alert(error));
+    }
     
     const eliminarMateriales = (event) => {
         event.preventDefault();
-        const url = "http://localhost:3900/api/materiales/eliminar-peticion/" + profesosID;
+        const url = "http://localhost:3900/api/materiales/eliminar-peticion/" + profesorID;
 
         var requestOptions = {
             method: 'DELETE',
@@ -38,26 +58,11 @@ const MaterialPedido = ({profesosID, alumno, materiales}) => {
     }
 
 
-    //Da el alumno al que se ha asignado la tarea
-/*    const getUser = async () => {
-        try {
-            const url = "http://localhost:3900/api/usuarios/get-usuario/" + props.materiales.usuario
-            console.log(url);
-            const res = await fetch(url)
-            const data = await res.json();
-
-
-            setUsuarios(data.usuario.nombre);
-            setCargando(false);
-
-        } catch (error) {
-            console.log(error);
-
-        }
-    }
-
-*/
-
+    const realizadaState = "No";
+    //if (entregaMateriales.realizada) {
+    //    realizadaState = "Sí";
+    //}
+    
     if(cargando){
         return <CargandoProgress/>
     }else{
@@ -74,16 +79,19 @@ const MaterialPedido = ({profesosID, alumno, materiales}) => {
             <section className="materiales">
                 Alumno: {alumno}
                 {pedidos}   
-                Realizado: No
-                Recibido <input type="checkbox"></input>
+                Realizado: {realizadaState}
+
+                <button className = "boton-anadir" onClick={(fRecibido)}>Recibido</button>
                 <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/></button>
 
             </section>
         )
+
     }
 
 
 }
 
 export default MaterialPedido;
+
 

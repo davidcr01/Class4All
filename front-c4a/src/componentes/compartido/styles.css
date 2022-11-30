@@ -549,6 +549,8 @@ header{
   font-weight: bold;
   border-radius: 5px;
   padding: 5px;
+  margin-bottom: 5px;
+
   /*position: relative;
   top: 5px; bottom: 500px;*/
 }
