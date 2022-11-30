@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ContextoRol } from '../../../contexto/Roles';
-
 import { getImage } from '../../../interfaces/arasaac';
 import imagenesARASAAC from "../../../img/imagenesARASAAC.json";
-import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 
 // Componente para mostrar el login de los alumnos
 // Vista: compartido
@@ -29,11 +25,11 @@ const Cantidades = ({cantidades,setCantidades,index}) => {
     return  (
         <section className='cantidades'>
             <button className="boton-cantidad" onClick={decrementar}>
-                <img className='botonesMasMenos' src={menos} alt="Decrementar cantidad"/>
+                <img className='botones-mas-menos' src={menos} alt="Decrementar cantidad"/>
             </button>
-            <img className='imagenCantidad' src={getImage(imagenesARASAAC['numeros'][cantidades[index]])} alt={cantidades[index]} />
+            <img className='imagen-cantidad' src={getImage(imagenesARASAAC['numeros'][cantidades[index]])} alt={cantidades[index]} />
             <button className="boton-cantidad" onClick={incrementar}>
-                <img className='botonesMasMenos' src={mas} alt="Incrementar cantidad"/>
+                <img className='botones-mas-menos' src={mas} alt="Incrementar cantidad"/>
             </button>
         </section>
     )

@@ -55,7 +55,7 @@
   cursor: pointer;
 }
 
-.botonesMasMenos{
+.botones-mas-menos{
   flex: 4;
   /*width: 50%;
   height: 50%;*/
@@ -66,7 +66,7 @@
 }
 
 
-.imagenCantidad{
+.imagen-cantidad{
   width: 85%;
   height: 85%;
   object-fit: contain;
