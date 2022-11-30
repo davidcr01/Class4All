@@ -280,7 +280,7 @@
   right: 2% 
 };
 
-.boton-enviar button {
+.boton-enviar {
   background-color: lightgreen;
   width: 35%;
   font-weight: bold;
@@ -500,7 +500,23 @@ header{
 }
 
 .etiq {
-  margin-right: 2%;
+  margin-right: 5%;
+}
+
+.cajaCantidad {
+  background-color: #ffffff;
+  width: 10%;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.cajaMaterial {
+  background-color: #ffffff;
+  width: 12%;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .materialesPedidos{
@@ -521,4 +537,29 @@ header{
 
 .boton-cancelar{
   background-color: #b2dafa;
+  width: 10%;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.boton-anadir{
+  background-color: #b2dafa;
+  width: 10%;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px;
+  /*position: relative;
+  top: 5px; bottom: 500px;*/
+}
+
+.boton-confirmar{
+  background-color: #b2dafa;
+  width: 10%;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+  /*position: relative;
+  top: 40px; bottom: 5px;*/
 }

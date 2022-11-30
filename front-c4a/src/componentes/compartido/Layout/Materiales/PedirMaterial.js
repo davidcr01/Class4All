@@ -106,7 +106,7 @@ export const PedirMaterial = () => {
                     
                     <p> 
                         <label className='etiq' htmlFor="user">Alumno</label> 
-                        <select id="user" name="Alumno">
+                        <select className="cajaMaterial" id="user" name="Alumno">
                             {allUsuarios.map(u => { return (
                                 <option key={u._id} value={u._id}>{u.nombre}</option>
                             )})}
@@ -116,7 +116,7 @@ export const PedirMaterial = () => {
                         <article key={index} style={style}>
                             <p> 
                                 <label className='etiq' htmlFor="material">Material</label> 
-                                <select id="material" name="idMat" onChange={e => cambioForm(index, e)}>
+                                <select className = "cajaMaterial" id="material" name="idMat" onChange={e => cambioForm(index, e)}>
                                     <option value="err"   hidden></option>
                                     {allMateriales.map(u => { return (
                                         <option key={u._id}  value={u._id} selected={item.idMat === u._id}>{u.nombre}</option>
@@ -126,17 +126,17 @@ export const PedirMaterial = () => {
                             
                             <p>
                                 <label className="etiq" htmlFor="cantidad">Cantidad</label>
-                                <input type="text" id="cantidad" name='cantidad' value={item.cantidad ||""} onChange={e => cambioForm(index, e)}/>
+                                <input className = "cajaCantidad" type="text" id="cantidad" name='cantidad' value={item.cantidad ||""} onChange={e => cambioForm(index, e)}/>
                             </p>
                             <button className = "boton-cancelar" onClick={() => cancelar(index)}>Cancelar</button>
                         </article>
                     )})}                                    
                     
-                    <input type="submit" value="Confirmar"/>
+                    <input className="boton-confirmar" type="submit" value="Confirmar"/>
                 </form>
 
                 <article>
-                    <button className="boton-enviar" onClick={(fAñadir)}>Añadir</button>
+                    <button className = "boton-anadir" onClick={(fAñadir)}>Añadir</button>
                 </article>
             </section>
         )
