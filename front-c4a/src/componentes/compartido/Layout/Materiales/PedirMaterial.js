@@ -131,13 +131,13 @@ export const PedirMaterial = () => {
                             <button className = "boton-cancelar" onClick={() => cancelar(index)}>Cancelar</button>
                         </article>
                     )})}                                    
-                    
+                <article>
+                    <button className = "boton-anadir" onClick={(fAñadir)}>Añadir</button>
+                </article>  
                     <input className="boton-confirmar" type="submit" value="Confirmar"/>
                 </form>
 
-                <article>
-                    <button className = "boton-anadir" onClick={(fAñadir)}>Añadir</button>
-                </article>
+
             </section>
         )
     }
