@@ -7,12 +7,7 @@ import Cantidades from './Cantidades';
 // Componente para mostrar las comandas de los menús de los alumnos
 // Vista: alumnos
 
-const Menus = ({menus,cantidades,setCantidades}) => {
-
-    const {setCookie} = React.useContext(ContextoRol);
-
-    
-    const nav = useNavigate();
+const Menus = ({menus,cantidades,setCantidades,currentIndex}) => {
 
     if(menus !== undefined) {
         let menusJSX = [];
@@ -23,7 +18,7 @@ const Menus = ({menus,cantidades,setCantidades}) => {
                         <img className="foto" src={"http://localhost:3900/api/menus/obtenerfoto/"+menus[i]._id}/>
                         {menus[i].nombre}
                     </section>
-                    <Cantidades cantidades={cantidades} setCantidades={setCantidades} index={i}/>
+                    <Cantidades  cantidades={cantidades} setCantidades={setCantidades} index={currentIndex + i}/>
                 </>
                 
             )

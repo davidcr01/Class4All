@@ -21,13 +21,11 @@ export const Comandas = ({aula}) => {
   const [isSet, setIsSet] = useState(false);
   const [menus, setMenus] = useState([]);
   const [index, setIndex] = useState(0);
-  const [conteoCantidades,setConteoCantidades] = useState([]);
-  const [menusRecogidos, setMenusRecogidos] = useState(0);
+  const [conteoCantidades,setConteoCantidades] = useState([0,0,0,0,0,0]/* Array(menus.length).fill(0) */);
 
   useEffect(() => {
     isCookieSet().then((res) => {
       setIsSet(res);
-      setCargando(false);
 
       const getMenus = async () => {
         try {
@@ -47,23 +45,20 @@ export const Comandas = ({aula}) => {
       }
 
       getMenus().then((data) => {
-        setCargando(false);
+        
 
         if (data.status === "success")
           setMenus(data.menus);
         
-          setMenusRecogidos(1);
+          setCargando(false);
+        
       })
     });
   }, []);
 
-  useEffect(() => {
-    for(let i = 0; i < menus.length; i++){
-      let datos = conteoCantidades;
-      datos.push("0");
-      setConteoCantidades(datos);
-    }
-  }, [menusRecogidos]);
+
+
+  
 
   if (cargando)
     return (
@@ -82,11 +77,6 @@ export const Comandas = ({aula}) => {
     const menusVisibles = menus.slice(index, index + increment);
     const menusLength = (menus === undefined) ? 0 : menus.length+1;
 
-    const cantidades = {};
-
-    for (let i = 0; i < menusLength-1; i++) {
-      cantidades[menus[i].nombre] = 0;
-    }
 
     if (menusLength > 0)
     {
@@ -110,7 +100,7 @@ export const Comandas = ({aula}) => {
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={menusLength} increment={increment} />
             <div className="cuerpo">
                 <div className="recuadrosmenus">
-                  <Menus menus={menusVisibles} cantidades={conteoCantidades} setCantidades={setConteoCantidades}  />
+                  <Menus menus={menusVisibles} cantidades={conteoCantidades} setCantidades={setConteoCantidades} currentIndex={index} />
                 </div>
             </div>
           </>

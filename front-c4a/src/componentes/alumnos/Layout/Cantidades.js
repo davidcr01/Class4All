@@ -14,20 +14,29 @@ const Cantidades = ({cantidades,setCantidades,index}) => {
     let menos = require("../../../img/menos.png")
 
     const Incrementar = () => {
-        setCantidades(cantidad => Math.min(cantidad + 1, 10));
+        let antes =[...cantidades];
+        antes[index] = Math.min(antes[index] + 1, 10);
+        setCantidades(antes);
     };
 
     const Decrementar = () => {
-        setCantidades(cantidad => Math.max(cantidad - 1, 0));
+        let antes =[...cantidades];
+        antes[index] = Math.max(antes[index] - 1, 0);
+        setCantidades(antes);
     };
 
     const {setCookie} = React.useContext(ContextoRol);
     const nav = useNavigate();
 
+    console.log(cantidades);
+
+    //"numeros": {
+    //    "0": 6972,
+    // cantidades[0] -> undefined
     return  (
         <section className='cantidades'>
             <img className='botonesMasMenos' src={menos} onClick={Decrementar}/>
-            <img className='imagenCantidad' src={getImage(imagenesARASAAC['numeros'][cantidades[0]])} />
+            <img className='imagenCantidad' src={getImage(imagenesARASAAC['numeros'][cantidades[index]])} />
             <img className='botonesMasMenos' src={mas} onClick={Incrementar}/>
         </section>
     )
