@@ -76,7 +76,7 @@ const MaterialPedido = ({profesosID, alumno, materiales}) => {
                 {pedidos}   
                 Realizado: No
                 Recibido <input type="checkbox"></input>
-                <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/></button>
+                <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/></button>
 
             </section>
         )

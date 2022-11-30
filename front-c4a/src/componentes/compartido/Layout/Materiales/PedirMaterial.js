@@ -34,11 +34,11 @@ export const PedirMaterial = () => {
 
     const getAllUsuarios = async() =>{
         try {
-            const url = "http://localhost:3900/api/usuarios/lista-usuarios";
+            const url = "http://localhost:3900/api/usuarios/get-alumnos";
 
             const res = await fetch(url)
             const data = await res.json();
-            SetAllUsuarios(data.usuarios);
+            SetAllUsuarios(data.alumnos);
         } catch (error) {
             console.log(error);
         }
@@ -65,31 +65,6 @@ export const PedirMaterial = () => {
         backgroundColor: "#f5f5f5",
         margin: "10px",
     }
-
-
-/*
-    const asignarUsuario = (event) => {
-        event.preventDefault();
-
-        //get value from select
-        const idUsuario = document.getElementById("user").value;
-        
-        const url = "http://localhost:3900/api/materiales/pedir-materiales/" + idUsuario;
-
-        var requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: urlencoded            
-        }
-
-        fetch(url, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error));
-    }
-    */
 
     const confirmar = (event) => {
         
@@ -153,7 +128,7 @@ export const PedirMaterial = () => {
                                 <label className="etiq" htmlFor="cantidad">Cantidad</label>
                                 <input type="text" id="cantidad" name='cantidad' value={item.cantidad ||""} onChange={e => cambioForm(index, e)}/>
                             </p>
-                            <button onClick={() => cancelar(index)}>Cancelar</button>
+                            <button className = "boton-cancelar" onClick={() => cancelar(index)}>Cancelar</button>
                         </article>
                     )})}                                    
                     
@@ -161,7 +136,7 @@ export const PedirMaterial = () => {
                 </form>
 
                 <article>
-                    <button onClick={(fAñadir)}>Añadir</button>
+                    <button className="boton-enviar" onClick={(fAñadir)}>Añadir</button>
                 </article>
             </section>
         )

@@ -71,3 +71,13 @@ export const MuiBreadcrumbsCM = () => {
         </Breadcrumbs>
     </Box>
 }
+
+export const MuiBreadcrumbsPM = (props) => {
+    return <Box m={2} className="breadcrumbs">
+        <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
+            <Link underline="hover" color="inherit" href="/">Gestion del centro </Link>
+            <Link underline="hover" color="inherit" href="/gestion-tareas">Gestion de materiales </Link>
+            <Typography color="text.primary">{props.tipo}</Typography>
+        </Breadcrumbs>
+    </Box>
+}

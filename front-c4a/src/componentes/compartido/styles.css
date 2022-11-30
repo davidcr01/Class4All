@@ -280,7 +280,7 @@
   right: 2% 
 };
 
-.boton-enviar{
+.boton-enviar button {
   background-color: lightgreen;
   width: 35%;
   font-weight: bold;
@@ -515,10 +515,10 @@ header{
   text-align: center
 } 
 
-.botonEliminar{
+.boton-eliminar{
   background-color: rgb(255, 109, 109);
 }
 
-.botonCancelar{
+.boton-cancelar{
   background-color: #b2dafa;
 }
