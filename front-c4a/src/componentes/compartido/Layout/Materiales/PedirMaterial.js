@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
+import Cookies from 'universal-cookie';
+import { isCookieSet, loginUser } from '../../../../interfaces/cookies';
+import { ContextoRol } from '../../../../contexto/Roles';
+
 
 // Vista: compartida (administradores y profesores)
 
 export const PedirMaterial = () => {
-  
+    const cookies = new Cookies();
+
+    const [cookieSet, setCookieSet] = useState(false);
+
     const [cargando, setCargando] = useState(true);
+    const { setCookie } = React.useContext(ContextoRol);
 
     const [allMateriales, SetAllMateriales] =  useState([]);
     const [allUsuarios, SetAllUsuarios] = useState([]);
@@ -14,7 +22,9 @@ export const PedirMaterial = () => {
     const [datosForm, setdatosForm] = useState([/* { idMat: "", catidad: 0} */]);
 
     useEffect(() => {
-        
+        isCookieSet().then((res) => {
+            setCookieSet(res);
+        });
         getAllMateriales();
         getAllUsuarios();
         setCargando(false);
@@ -66,9 +76,41 @@ export const PedirMaterial = () => {
         margin: "10px",
     }
 
+    //Para obtener valor variables
+    const [usuarioAsignado, setUsuarioAsignado] = useState(0);
+    const [idProfesor, setIdProfesor] = useState(0);
+    const [materiales, setMateriales] = useState([]);
+
     const confirmar = (event) => {
+        setIdProfesor(cookies.get("loginCookie").id)
+        console.log(idProfesor);
+    //     event.preventDefault();
+    //     //peticion post con datos de formulario
+    //     let datosForm = {
+    //         idUsuario: event.target.idUsuario.value,
+    //         materiales: datosForm
+    //     }
         
-        event.preventDefault();
+
+    //     const url = "http://localhost:3900/api/materials/crear-tareaMaterial";
+
+    //     fetch(url, {
+    //         method: 'POST',
+    //         body: JSON.stringify(datosForm),
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     })
+    //     .then(res => res.json())
+    //     .then(data => {
+    //         console.log(data);
+    //     })
+    //     .catch(err => console.log(err));
+    // }
+
+
+        
+
 
         /* let formulario = event.target;
        
@@ -99,7 +141,7 @@ export const PedirMaterial = () => {
 
     if (cargando) {
         return <CargandoProgress/>
-    } else {
+    }else if (cookies.get("loginCookie") && cookieSet) {
         return (
             <section className = "peticion">
                 <form onSubmit={confirmar}>
