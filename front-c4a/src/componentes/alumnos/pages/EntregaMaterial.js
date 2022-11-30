@@ -9,15 +9,18 @@ import {getImage} from '../../../interfaces/arasaac'
 import imagenesARASAAC from "../../../img/imagenesARASAAC.json";
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import { isCookieSet } from '../../../interfaces/cookies';
+import Cookies from 'universal-cookie';
 
 export const EntregaMaterial = () => {
-
+    const cookies = new Cookies();
     const { id } = useParams();
     const [materiales, setMateriales] = useState([]);
     const [currentMaterial, setcurrentMaterial] = useState(0)//indice de la estructura de tareas
     const [cargando, setCargando] = useState(true);
     const [Profe , setProfe] = useState({});
     const [cogerNombres , setcogerNombres] = useState(0);
+    const [isSet, setIsSet] = useState(false);
 
     const materialesIncrement = 1;
     let nav = useNavigate();
@@ -104,7 +107,11 @@ export const EntregaMaterial = () => {
     };
 
     useEffect(() => {
-        rellenarMateriales();
+        isCookieSet().then((res) => {
+            setIsSet(res);
+
+            rellenarMateriales();
+        })
     }, []);
 
     useEffect(() => {
@@ -119,7 +126,7 @@ export const EntregaMaterial = () => {
             <CargandoProgress/>
         )
     }
-    else{
+    else if(cookies.get("loginCookie") !== undefined && isSet){
         if(materiales.length > 0){
             return (
                 <>

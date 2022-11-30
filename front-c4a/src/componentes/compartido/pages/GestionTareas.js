@@ -33,7 +33,7 @@ export const GestionTareas = () => {
   else {
     const cookies = new Cookies();
 
-    if (cookies.get("loginCookie") !== undefined && cookieSet /*&& isRoleRight()*/)
+    if (cookies.get("loginCookie") !== undefined && cookieSet)
       return (
         <>
         <Header titulo="Gestión de tareas" />

@@ -52,15 +52,7 @@ export const SesionAlumnosClases = () => {
     return (
       <CargandoProgress />
     )
-
-  /* else if(cookies.get("loginCookie") !== undefined && isSet){
-    return (
-      <div>
-        <h1>SESION YA INICIADA</h1>
-      </div>
-    )
-  } */
-  else {
+  else{
     const increment = 4;
     const aulasVisibles = aulas.slice(index, index + increment);
     const aulasLength = (aulas === undefined) ? 0 : aulas.length;

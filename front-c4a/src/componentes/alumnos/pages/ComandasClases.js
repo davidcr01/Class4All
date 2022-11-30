@@ -25,36 +25,8 @@ export const ComandasClases = () => {
       setIsSet(res);
       setCargando(false);
 
-      /*
-      const getAulas = async () => {
-        try {
-          //alert("cookie cookie: "+cookies.get("loginCookie"));
-          const url = "http://localhost:3900/api/usuarios/lista-aulas/";
-          console.log(url);
-          const res = await fetch(url)
-          const data = await res.json();
-
-          return data;
-
-        } catch (error) {
-          console.log(error);
-
-          return undefined;
-        }
-      }
-
-      getAulas().then((data) => {
-        setCargando(false);
-
-        if (data.status === "success")
-          setAulas(data.aulas);
-      })*/
-
       getAulasRestantes(id).then((res) => {
         setCargando(false);
-
-        //alert(JSON.stringify(res));
-
         setAulas(res);
       });
     });
