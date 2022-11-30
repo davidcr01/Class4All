@@ -80,26 +80,26 @@ export const Comandas = ({ aula }) => {
 
       if (index === menusLength - 1) {
         let menuEnvio = [];
-        for(let i=0; i<menus.length; i++){
-          menuEnvio.push({menu: menus[i]._id, cantidad: conteoCantidades[i]});
+        for (let i = 0; i < menus.length; i++) {
+          menuEnvio.push({ menu: menus[i]._id, cantidad: conteoCantidades[i] });
         }
 
         const sendListado = () => {
-          sendMenu(id, menuEnvio).then((data) =>{
-            if(data){
+          sendMenu(id, menuEnvio).then((data) => {
+            if (data) {
               setAulaCompletada(id, location.state.aula).then((res) => {
-                if(res){
+                if (res) {
                   nav(url_ant);
                 }
-                else{
+                else {
                   alert("Comanda enviada, pero ha habido un error en la clase");
                 }
               })
             }
-            else{
+            else {
               alert("No ha sido posible enviar la comanda");
             }
-          })        
+          })
         }
 
         return (

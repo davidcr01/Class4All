@@ -28,17 +28,7 @@ export const PaginaPrincipal = () => {
   else{
     const cookies = new Cookies();
 
-    const isRoleRight = () => {
-      let res = false;
-      const infoCookie = cookies.get("loginCookie");
-
-      if(infoCookie.rol === "Alumno")
-        res =true;
-
-      return res;
-    }
-
-    if(cookies.get("loginCookie") !== undefined && isSet && isRoleRight()){
+    if(cookies.get("loginCookie") !== undefined && isSet){
     return (
       <>
       <Header titulo="Página Principal" alumnos="si"/>
