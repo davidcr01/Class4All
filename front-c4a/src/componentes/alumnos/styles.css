@@ -23,14 +23,12 @@
 }
 
 .recuadrosmenus{
-  width:100%;
   padding-top:15px;
   padding-bottom:15px;
-  justify-content: center;
   display: grid;
-  margin-right:auto;
-  margin-left:auto;
-  grid-template-columns: 25% 25%;
+  margin-right: auto;
+  margin-left: auto;
+  grid-template-columns: 19em 19em;
   grid-template-rows:20vw 20vw;
   grid-column-gap: 40px;
   grid-row-gap: 15px;
