@@ -21,7 +21,7 @@ export const Comandas = ({aula}) => {
   const [isSet, setIsSet] = useState(false);
   const [menus, setMenus] = useState([]);
   const [index, setIndex] = useState(0);
-  const [conteoCantidades,setConteoCantidades] = useState([0,0,0,0,0,0]/* Array(menus.length).fill(0) */);
+  const [conteoCantidades,setConteoCantidades] = useState([]);
 
   useEffect(() => {
     isCookieSet().then((res) => {
@@ -45,10 +45,10 @@ export const Comandas = ({aula}) => {
       }
 
       getMenus().then((data) => {
-        
-
-        if (data.status === "success")
+        if (data.status === "success"){
           setMenus(data.menus);
+          setConteoCantidades(new Array(data.menus.length).fill(0));
+        }
         
           setCargando(false);
         
@@ -65,14 +65,7 @@ export const Comandas = ({aula}) => {
       <CargandoProgress />
     )
 
-  /* else if(cookies.get("loginCookie") !== undefined && isSet){
-    return (
-      <div>
-        <h1>SESION YA INICIADA</h1>
-      </div>
-    )
-  } */
-  else {
+  else if(cookies.get("loginCookie") !== undefined && isSet) {
     const increment = 2;
     const menusVisibles = menus.slice(index, index + increment);
     const menusLength = (menus === undefined) ? 0 : menus.length+1;
@@ -106,7 +99,6 @@ export const Comandas = ({aula}) => {
           </>
         );
       }
-
     }
     else
       return (
@@ -115,6 +107,13 @@ export const Comandas = ({aula}) => {
           <h1>NO HAY MENUS EN EL SISTEMA</h1>
         </>
       )
+  }
+  else{
+    return (
+      <>
+        <h1>NO TIENES PERMISO PARA ACCEDER</h1>
+      </>
+    )
   }
 
 };
