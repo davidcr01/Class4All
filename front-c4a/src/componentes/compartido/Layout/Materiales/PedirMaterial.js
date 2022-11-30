@@ -78,18 +78,36 @@ export const PedirMaterial = () => {
 
     //Para obtener valor variables
     const [usuarioAsignado, setUsuarioAsignado] = useState(0);
-    const [idProfesor, setIdProfesor] = useState(0);
-    const [materiales, setMateriales] = useState([]);
+    //const [idProfesor, setIdProfesor] = useState(0);
+    let idProfesor = 0;
+    const setIdProfesor = (valor) => idProfesor = valor;
 
     const confirmar = (event) => {
         setIdProfesor(cookies.get("loginCookie").id)
-        console.log(idProfesor);
-    //     event.preventDefault();
-    //     //peticion post con datos de formulario
-    //     let datosForm = {
-    //         idUsuario: event.target.idUsuario.value,
-    //         materiales: datosForm
-    //     }
+        event.preventDefault();
+        
+        //peticion post con datos de formulario
+        let datosForm = {
+            idUsuario: idProfesor,
+            materiales: []
+        }
+
+        console.log("idProfesor: " + datosForm.idProfesor);
+        
+        for(let i = 0; i < datosForm.materiales.length; i++){
+            datosForm.materiales.push({
+                idMaterial: datosForm.materiales[i]._id,
+                //Get value of component id=cantidad
+                cantidad: datosForm.materiales[i].cantidad
+            })
+
+            console.log("idMaterial: " + datosForm.materiales[i].idMaterial);
+            console.log("cantidad: " + datosForm.materiales[i].cantidad);
+
+        }
+
+
+
         
 
     //     const url = "http://localhost:3900/api/materials/crear-tareaMaterial";
@@ -109,32 +127,6 @@ export const PedirMaterial = () => {
     // }
 
 
-        
-
-
-        /* let formulario = event.target;
-       
-        let nuevoMaterial = {
-            material: formulario.material.value,
-            cantidad: formulario.material.value,
-        }
-
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("material", nuevoMaterial.material);
-        urlencoded.append("cantidad", nuevoMaterial.cantidad);
-
-        var requestOptions = {
-            method: 'POST',
-            body: urlencoded,
-            redirect: 'follow'         
-        }
-
-        const url = "http://localhost:3900/api/materiales/pedir-materiales/";
-
-        fetch(url, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error)); */
     }
 
     
@@ -144,7 +136,7 @@ export const PedirMaterial = () => {
     }else if (cookies.get("loginCookie") && cookieSet) {
         return (
             <section className = "peticion">
-                <form onSubmit={confirmar}>
+                <form onSubmit={(event) => event.preventDefault()}>
                     
                     <p> 
                         <label className='etiq' htmlFor="user">Alumno</label> 
@@ -176,7 +168,7 @@ export const PedirMaterial = () => {
                 <article>
                     <button className = "boton-anadir" onClick={(fAñadir)}>Añadir</button>
                 </article>  
-                    <input className="boton-confirmar" type="submit" value="Confirmar"/>
+                    <button className="boton-confirmar" value="Confirmar" onClick={confirmar}>Confirmar</button>
                 </form>
 
 
@@ -184,7 +176,3 @@ export const PedirMaterial = () => {
         )
     }
 }
-
-
-    
-
