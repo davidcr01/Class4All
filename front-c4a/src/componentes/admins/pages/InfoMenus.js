@@ -32,17 +32,7 @@ export const InfoMenus = () => {
   else {
     const cookies = new Cookies();
 
-    const isRoleRight = () => {
-      let res = false;
-      const infoCookie = cookies.get("loginCookie");
-
-      if(infoCookie.rol === "Administrador")
-        res =true;
-
-      return res;
-    }
-
-    if (cookies.get("loginCookie") !== undefined && cookieSet && isRoleRight())
+    if (cookies.get("loginCookie") !== undefined && cookieSet )
       return (
         <>
           <Header titulo="Información del Menú" />
