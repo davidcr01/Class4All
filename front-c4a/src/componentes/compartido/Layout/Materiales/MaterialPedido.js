@@ -5,7 +5,7 @@ import { ListItem } from '@mui/material';
 
 // Vista: compartida (administradores y profesores)
 
-const MaterialPedido = ({profesorID, alumno, materiales}) => {
+const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
 
  //   const [usuario, setUsuarios] = useState('');
     const [cargando, setCargando] = useState(true);
@@ -59,9 +59,9 @@ const MaterialPedido = ({profesorID, alumno, materiales}) => {
 
 
     const realizadaState = "No";
-    //if (entregaMateriales.realizada) {
-    //    realizadaState = "Sí";
-    //}
+    if (tareaID.realizada) {
+        realizadaState = "Sí";
+    }
     
     if(cargando){
         return <CargandoProgress/>

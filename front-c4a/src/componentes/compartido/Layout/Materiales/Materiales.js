@@ -31,6 +31,7 @@ export const Materiales = () => {
             
             if(materialesPedidos.tareas.length > 0){
                 SetPedido(1);
+                const tareaID=materialesPedidos.tareas[0];
             }
             else{
                 SetPedido(0);
@@ -53,6 +54,7 @@ export const Materiales = () => {
                     profesorID = {cookies.get('loginCookie').id} 
                     alumno ={materialesPedidos.usuarioAsignado} 
                     materiales={materialesPedidos.materiales}
+                    tareaID = {tareaID}
                 /> 
             </>
             }
