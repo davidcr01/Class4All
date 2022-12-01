@@ -19,7 +19,7 @@ export const PedirMaterial = () => {
     const [allMateriales, SetAllMateriales] =  useState([]);
     const [allUsuarios, SetAllUsuarios] = useState([]);
 
-    const [datosForm, setdatosForm] = useState([/* { idMat: "", catidad: 0} */]);
+    const [datosForm, setdatosForm] = useState([]);
 
     useEffect(() => {
         isCookieSet().then((res) => {
@@ -62,7 +62,7 @@ export const PedirMaterial = () => {
     }
 
     const fAñadir = () => {
-        setdatosForm([...datosForm, { idMat: "", cantidad: 0 }]);
+        setdatosForm([...datosForm, { material: "", cantidad: 0 }]);
     }
 
     const cancelar = (i) => {
@@ -86,48 +86,48 @@ export const PedirMaterial = () => {
         setIdProfesor(cookies.get("loginCookie").id)
         event.preventDefault();
         
+        let data = event.target;
+        console.log(data);
+
+        // pero madre mia willy que haces aqui compañero
+        
         //peticion post con datos de formulario
-        let datosForm = {
-            idUsuario: idProfesor,
-            materiales: []
+        let datos = {
+            usuarioAsignado: data.user.value,
+            entregamateriales: {
+                materiales: datosForm,
+                idProfesor: idProfesor
+            }
         }
 
-        console.log("idProfesor: " + datosForm.idProfesor);
-        
-        for(let i = 0; i < datosForm.materiales.length; i++){
-            datosForm.materiales.push({
-                idMaterial: datosForm.materiales[i]._id,
-                //Get value of component id=cantidad
-                cantidad: datosForm.materiales[i].cantidad
-            })
+        console.log("idProfesor: " + datos.entregamateriales.idProfesor);
+        console.log("idUsuario: " + datos.usuarioAsignado);
 
-            console.log("idMaterial: " + datosForm.materiales[i].idMaterial);
-            console.log("cantidad: " + datosForm.materiales[i].cantidad);
+        console.log("materiales : " + datos.entregamateriales.materiales);
+        for(let i = 0; i < datos.entregamateriales.materiales.length; i++){
+            console.log("idMaterial: " + datos.entregamateriales.materiales[i].material);
+            console.log("cantidad: " + datos.entregamateriales.materiales[i].cantidad);
 
         }
 
+        console.log(datos.entregamateriales);     
+        console.log(JSON.stringify(datos));
+         const url = "http://localhost:3900/api/tareas/crear-tareaMaterial";
 
+         fetch(url, {
+             method: 'POST',
+             body: datos,
+             headers: {
+                 'Content-Type': 'application/json'
+             }
+         })
+         .then(res => res.json())
+         .then(data => {
+             console.log(data);
+         })
+         .catch(err => console.log(err));
+     }
 
-        
-
-    //     const url = "http://localhost:3900/api/materials/crear-tareaMaterial";
-
-    //     fetch(url, {
-    //         method: 'POST',
-    //         body: JSON.stringify(datosForm),
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         console.log(data);
-    //     })
-    //     .catch(err => console.log(err));
-    // }
-
-
-    }
 
     
 
@@ -136,7 +136,7 @@ export const PedirMaterial = () => {
     }else if (cookies.get("loginCookie") && cookieSet) {
         return (
             <section className = "peticion">
-                <form onSubmit={(event) => event.preventDefault()}>
+                <form onSubmit={confirmar}>
                     
                     <p> 
                         <label className='etiq' htmlFor="user">Alumno</label> 
@@ -150,10 +150,10 @@ export const PedirMaterial = () => {
                         <article key={index} style={style}>
                             <p> 
                                 <label className='etiq' htmlFor="material">Material</label> 
-                                <select className = "cajaMaterial" id="material" name="idMat" onChange={e => cambioForm(index, e)}>
+                                <select className = "cajaMaterial" id="material" name="material" onChange={e => cambioForm(index, e)}>
                                     <option value="err"   hidden></option>
                                     {allMateriales.map(u => { return (
-                                        <option key={u._id}  value={u._id} selected={item.idMat === u._id}>{u.nombre}</option>
+                                        <option key={u._id}  value={u._id} selected={item.material === u._id}>{u.nombre}</option>
                                     )})}
                                 </select>
                             </p>
@@ -166,9 +166,9 @@ export const PedirMaterial = () => {
                         </article>
                     )})}                                    
                 <article>
-                    <button className = "boton-anadir" onClick={(fAñadir)}>Añadir</button>
+                    <button className = "boton-anadir" type="button" onClick={(fAñadir)}>Añadir</button>
                 </article>  
-                    <button className="boton-confirmar" value="Confirmar" onClick={confirmar}>Confirmar</button>
+                    <input className="boton-confirmar" type="submit" value="Confirmar"/>
                 </form>
 
 
