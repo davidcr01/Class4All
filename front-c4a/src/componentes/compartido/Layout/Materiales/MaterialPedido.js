@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { ListItem } from '@mui/material';
 
@@ -101,8 +102,14 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
                 if (mat.material === t._id) { return(
                     <ListItem key={mat._id}>
                         <article className="materialRecibido">
-                            <p>Material: {t.nombre}</p>
-                            <p>Cantidad: {mat.cantidad}</p>
+                            <p>
+                                <label className='negrita'>Material:</label> 
+                                <label>{t.nombre}</label>
+                            </p>
+                            <p>
+                                <label className='negrita'>Cantidad:</label> 
+                                <label>{mat.cantidad}</label>
+                            </p>
                         </article>
                     </ListItem>
                 )}
@@ -113,15 +120,17 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
             <section className="peticion">
                 
                 <p>
-                Alumno: {alumnoNombre.nombre}
+                    <label className='negrita'>Alumno:</label> 
+                    <label>{alumnoNombre.nombre}</label>
                 </p>
                 {pedidos}  
                 <p>
-                Realizado: {realizadaState}
+                    <label className='negrita'>Realizado:</label> 
+                    <label>{realizadaState}</label>
                 </p>
 
-                <button className = "boton-anadir" onClick={() => fRecibido()}>Recibido</button>
-                <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarMateriales()}/>Cancelar</button>
+                <button className = "boton-anadir"><DeleteIcon style={{cursor: "pointer"}} onClick={() => fRecibido()}/>Recibido</button>
+                <button className="boton-eliminar"><CheckBoxIcon style={{cursor: "pointer"}} onClick={() => eliminarMateriales()}/>Cancelar</button>
 
             </section>
         )
