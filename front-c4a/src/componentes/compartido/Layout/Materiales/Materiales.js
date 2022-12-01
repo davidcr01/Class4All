@@ -24,22 +24,19 @@ export const Materiales = () => {
     //PETICIÓN A LA BASE DE DATOS QUE PASANDO EL ID DEL PROFESOR DIGA SI HA HECHO PETICIÓN DE MATERIAL O NO
     //ESTO SE HACE CON LAS COOCKIES
     
-    const tareaID = null;
-
     const getPedido = async() => {
         try {
             const url = "http://localhost:3900/api/tareas/lista-tareasDia-prof/" + cookies.get('loginCookie').id;
             const res = await fetch(url);
             const pedido = await res.json();
-            
+            SetMaterialesPedidos(pedido.tareas[0]);
+
             if(pedido.tareas.length > 0){
                 SetPedido(1);
-                tareaID=materialesPedidos.tareas;
             }
             else{
                 SetPedido(0);
             }
-            SetMaterialesPedidos(pedido)
         } catch {
             //SetPedido(0);
         }
@@ -56,9 +53,9 @@ export const Materiales = () => {
                 <MuiBreadcrumbsPM tipo = "Material Pedido" />
                 <MaterialPedido className="materiales" 
                     profesorID = {cookies.get('loginCookie').id} 
-                    alumno ={materialesPedidos.tareas.usuarioAsignado} 
-                    materiales={materialesPedidos.tareas.entregamateriales.materiales}
-                    tareaID = {materialesPedidos.tareas._id}
+                    alumno ={materialesPedidos.usuarioAsignado} 
+                    materiales={materialesPedidos.entregamateriales.materiales}
+                    tareaID = {materialesPedidos._id}
 
                 /> 
             </>

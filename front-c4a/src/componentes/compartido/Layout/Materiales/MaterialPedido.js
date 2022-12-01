@@ -8,6 +8,39 @@ import { ListItem } from '@mui/material';
 const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
 
 
+    const [listaMateriales, SetListaMateriales] = useState([]);
+    const [alumnoNombre, SetAlumno] = useState([]);
+
+    useEffect(() => {
+        getListaMateriales();
+        getAlumno();
+    }, []);
+
+    const getListaMateriales = async () => {
+        try {
+            const url = "http://localhost:3900/api/materials/lista-material";
+
+            const res = await fetch(url)
+            const data = await res.json();
+            SetListaMateriales(data.materials);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getAlumno = async() =>{
+        try {
+            const url = "http://localhost:3900/api/usuarios/get-usuario"/ + alumno;
+
+            const res = await fetch(url)
+            const data = await res.json();
+            SetAlumno(data.usuario);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     const fRecibido = (props) => {
         const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + profesorID;
 
@@ -51,24 +84,41 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
 
 
     const realizadaState = "No";
-    //if (entregaMateriales.realizada) {
-    //    realizadaState = "Sí";
-    //}
+    if (tareaID.realizada) {
+        realizadaState = "Sí";
+    }
     
     
-    const pedidos = materiales.map(mat => 
-        <>
-            <article>
-                Material: {mat.material}
-                Cantidad: {mat.cantidad}
-            </article>
-        </>
-    );
+    /* const pedidos = materiales.map(mat => 
+        listaMateriales.map((t,key) => {
+            if (mat._id === t._id) { return(
+                <article key={key}>
+                    Material: {t.nombre}
+                    Cantidad: {mat.cantidad}
+                </article>
+            )}
+        }
+        )
+    ); */
     //Pedidos devolverá todos los materiales pedidos (para cada uno, el material, la cantidad, si está o no realizado y el checkbox)
     return (
         <section className="materiales">
-            Alumno: {alumno}
-            {pedidos}   
+            
+            Alumno: {alumnoNombre.nombre}
+            {
+                materiales.map(mat =>{
+                  listaMateriales.map((t,key) =>{
+                    if(mat._id === t._id){
+                        return(
+                            <article>
+                                Material: {t.nombre}
+                                Cantidad: {mat.cantidad}
+                            </article>
+                        )
+                    }
+                  })  
+                })
+            }  
             Realizado: {realizadaState}
 
             <button className = "boton-anadir" onClick={(fRecibido)}>Recibido</button>
