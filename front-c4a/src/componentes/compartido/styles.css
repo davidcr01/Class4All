@@ -533,6 +533,10 @@ header{
 
 .boton-eliminar{
   background-color: rgb(255, 109, 109);
+  width: 5%;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 10px;
 }
 
 .boton-cancelar{
@@ -565,3 +569,15 @@ header{
   /*position: relative;
   top: 40px; bottom: 5px;*/
 }
+/*
+.materialRecibido{
+       background-color: "#f5f5f5",
+        margin-left: 2%,
+        margin-right: 2%,
+        border-width: 1px,
+        border-color: black,
+        border-style: solid,
+        padding-left: 1%,
+        padding-top: 1%,
+        padding-bottom: 1%
+    }*/

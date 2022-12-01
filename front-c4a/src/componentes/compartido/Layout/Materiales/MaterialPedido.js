@@ -7,6 +7,7 @@ import { ListItem } from '@mui/material';
 
 const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
 
+    const [cargando, setCargando] = useState(true);
 
     const [listaMateriales, SetListaMateriales] = useState([]);
     const [alumnoNombre, SetAlumno] = useState([]);
@@ -14,6 +15,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
     useEffect(() => {
         getListaMateriales();
         getAlumno();
+        setCargando(false);
     }, []);
 
     const getListaMateriales = async () => {
@@ -30,7 +32,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
 
     const getAlumno = async() =>{
         try {
-            const url = "http://localhost:3900/api/usuarios/get-usuario"/ + alumno;
+            const url = "http://localhost:3900/api/usuarios/get-usuario/" + alumno;
 
             const res = await fetch(url)
             const data = await res.json();
@@ -41,28 +43,29 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
     }
 
 
-    const fRecibido = (props) => {
-        const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + profesorID;
+    const fRecibido = () => {
+        alert("todo guay");
+        /*const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + profesorID;
 
         var requestOptions = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({idTarea: props.tarea._id})           
+            body: JSON.stringify({idTarea: tareaID})           
         }
         fetch(url, requestOptions)
             .then(res => res.json())
             .then(data => {
                 if(data.status === "success"){
-                    props.setNeedsRender(!props.needsRender);
+                    props.setNeedsRender(!props.needsRender);//AQUI SERGIO :)
                 }
             })
-            .catch(error => alert(error));
+            .catch(error => alert(error));*/
     }
     
-    const eliminarMateriales = (event) => {
-        event.preventDefault();
+    const eliminarMateriales = () => {
+        //marcar como cancelada
         const url = "http://localhost:3900/api/materiales/eliminar-peticion/" + profesorID;
 
         var requestOptions = {
@@ -89,44 +92,40 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
     }
     
     
-    /* const pedidos = materiales.map(mat => 
-        listaMateriales.map((t,key) => {
-            if (mat._id === t._id) { return(
-                <article key={key}>
-                    Material: {t.nombre}
-                    Cantidad: {mat.cantidad}
-                </article>
-            )}
-        }
+    
+    if (cargando) {
+        return <CargandoProgress/>
+    } else {
+        const pedidos = materiales.map(mat => 
+            listaMateriales.map((t,key) => {
+                if (mat.material === t._id) { return(
+                    <ListItem key={mat._id}>
+                        <article className="materialRecibido">
+                            <p>Material: {t.nombre}</p>
+                            <p>Cantidad: {mat.cantidad}</p>
+                        </article>
+                    </ListItem>
+                )}
+            }
+            )
+        );
+        return (
+            <section className="peticion">
+                
+                <p>
+                Alumno: {alumnoNombre.nombre}
+                </p>
+                {pedidos}  
+                <p>
+                Realizado: {realizadaState}
+                </p>
+
+                <button className = "boton-anadir" onClick={() => fRecibido()}>Recibido</button>
+                <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarMateriales()}/>Cancelar</button>
+
+            </section>
         )
-    ); */
-    //Pedidos devolverá todos los materiales pedidos (para cada uno, el material, la cantidad, si está o no realizado y el checkbox)
-    return (
-        <section className="materiales">
-            
-            Alumno: {alumnoNombre.nombre}
-            {
-                materiales.map(mat =>{
-                  listaMateriales.map((t,key) =>{
-                    if(mat._id === t._id){
-                        return(
-                            <article>
-                                Material: {t.nombre}
-                                Cantidad: {mat.cantidad}
-                            </article>
-                        )
-                    }
-                  })  
-                })
-            }  
-            Realizado: {realizadaState}
-
-            <button className = "boton-anadir" onClick={(fRecibido)}>Recibido</button>
-            <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/></button>
-
-        </section>
-    )
-
+        }
 
 
 
