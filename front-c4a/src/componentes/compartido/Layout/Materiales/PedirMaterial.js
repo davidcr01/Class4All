@@ -7,7 +7,7 @@ import { isCookieSet, loginUser } from '../../../../interfaces/cookies';
 
 // Vista: compartida (administradores y profesores)
 
-export const PedirMaterial = (estado) => {
+export const PedirMaterial = (setCambio) => {
     const cookies = new Cookies();
 
     const [cookieSet, setCookieSet] = useState(false);
@@ -122,7 +122,7 @@ export const PedirMaterial = (estado) => {
          })
          .catch(err => console.log(err));
         
-         estado = 1;
+         setCambio(1);
    }
 
 
