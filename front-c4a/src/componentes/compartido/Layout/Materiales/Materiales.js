@@ -23,6 +23,9 @@ export const Materiales = () => {
 
     //PETICIÓN A LA BASE DE DATOS QUE PASANDO EL ID DEL PROFESOR DIGA SI HA HECHO PETICIÓN DE MATERIAL O NO
     //ESTO SE HACE CON LAS COOCKIES
+    
+    const tareaID = null;
+
     const getPedido = async() => {
         try {
             const url = "http://localhost:3900/api/tareas/lista-tareasDia-prof/" + cookies.get('loginCookie').id;
@@ -31,7 +34,7 @@ export const Materiales = () => {
             
             if(materialesPedidos.tareas.length > 0){
                 SetPedido(1);
-                const tareaID=materialesPedidos.tareas[0];
+                tareaID=materialesPedidos.tareas[0];
             }
             else{
                 SetPedido(0);
@@ -41,6 +44,7 @@ export const Materiales = () => {
             //SetPedido(0);
         }
     }
+    
 
     //Aquí que se haga como un if para comprobar si hay o no materialesPedidos, y si los hay que se haga
     //lo de MaterialPedido y si no lo del otro
