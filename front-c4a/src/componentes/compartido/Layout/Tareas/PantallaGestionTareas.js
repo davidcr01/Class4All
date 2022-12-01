@@ -7,9 +7,8 @@ import ListaTareas from './ListaTareas';
 
 const PantallaGestionTareas = (props)=> {
     return(
+    //CAMBIADO PARA QUE NO HAYA FILTROS EN LA GESTIÓN DE TAREAS
     <div className='PantallaGestionTareas'>
-        <BuscarFiltros/>
-
         <ListaTareas tipo={props.tipo} cambio={props.cambio} />
     </div>
     )

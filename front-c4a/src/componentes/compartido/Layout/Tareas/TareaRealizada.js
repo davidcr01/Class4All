@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
-import RadioGroupRating from '../CaritasRating';
+import RadioGroupRating from './CaritasRating';
 
 // Vista: compartida (admins y profs)
 
@@ -55,18 +55,14 @@ const TareaRealizada = (props) => {
         return <CargandoProgress/>
     } else {
         return (
+            //CAMBIADO PARA QUE EN VEZ DE LOS BOTONES DE BIEN/MAL APAREZCAN CARITAS
             <div className="tarea">
                 <div><label className='label-tareas'>Tarea:</label> {props.tarea.nombre}</div>
                 <div><label className='label-tareas'>Fecha:</label> {props.tarea.fecha}</div>
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> Si</div>
                 <div><label className='label-tareas'>Confirmar:</label> <input type="checkbox"></input></div>
-                <div>{RadioGroupRating}</div>
-                <div className="botonesTareasReal">
-                    <div className="botonTareasReal">BIEN</div>
-                    <div className="botonTareasReal">MAL</div>
-                    <div className="botonTareasReal">TARDE</div>
-                </div>
+                <div>{RadioGroupRating()}</div>
                 <form>
                     <textarea name="message" rows="5" cols="80">
                         Retroalimentación:

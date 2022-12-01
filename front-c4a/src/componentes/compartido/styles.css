@@ -333,11 +333,11 @@ Header {
   height: 98%;
 }
 
-
+/*CAMBIADO PARA QUE NO HAYA FILTROS EN LA GESTIÓN DE TAREAS*/
 .PantallaGestionTareas {
   justify-content: center;
   width: auto;
-  grid-template-columns: 22% 76%;
+  grid-template-columns: 95%;
   grid-column-gap: 20px;
   border-width: 2px;
   display: grid;
