@@ -529,7 +529,8 @@ const crearTareaMaterial = (req, res) => {
 //Obtener tareas de tipo entregamaterial de un profesor concreto
 const getTareasEntregaMaterial = (req, res) => {
     let idProfesor = req.params.idProfesor;
-    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor }, (error, tareas) => {
+    let estado = "asignada";
+    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor, "entregamateriales.estado": estado}, (error, tareas) => {
         if (error || !tareas) {
             return res.status(404).json({
                 status: "error",
@@ -596,6 +597,39 @@ const getAulasRestantes = (req, res) => {
     });
 }
 
+const setEstadoCancelada = () => {
+    let idTarea = req.body.idTarea;
+
+    Tarea.findById
+        (
+            { _id: idTarea },
+            (error, tarea) => {
+                if (error || !tarea) {
+                    return res.status(404).json({
+                        status: "error",
+                        mensaje: "La tarea no existe"
+                    });
+                }
+                else {
+                    Tarea.findOneAndUpdate({ _id: idTarea }, { $set: { estado: "cancelada" } }, (err, doc) => {
+                        if (err || !doc) {
+                            return res.status(404).json({
+                                status: "error",
+                                mensaje: err
+                            });
+                        }
+                        else {
+                            return res.status(200).json({
+                                status: "success",
+
+                                mensaje: "Todo se ha modificado correctamete",
+                            });
+                        }
+                    })
+                }
+            }
+        );    
+}
 
 module.exports = {
     listaTareas,
@@ -612,5 +646,6 @@ module.exports = {
     crearTareaMaterial,
     getTareasEntregaMaterial,
     completarClaseComanda,
-    getAulasRestantes
+    getAulasRestantes,
+    setEstadoCancelada
 }

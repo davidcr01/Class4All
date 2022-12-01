@@ -18,6 +18,7 @@ router.delete("/eliminar-tareaDia/:id" , TareaController.eliminarTarea);
 router.put("/asignar-tarea/:idTarea/:idAlumno" , TareaController.asignarTarea);
 router.put("/desasignar-tarea/:idTarea" , TareaController.desasignarTarea);
 router.put("/completar-tarea-alumno/:idTarea" , TareaController.setRealizada);
+router.put("/cancelar-tarea/:idTarea" , TareaController.setEstadoCancelada);
 
 // --------------------------- ARREGLADAS ---------------------------
 router.get("/aulas-restantes-comanda/:idTarea", TareaController.getAulasRestantes);
