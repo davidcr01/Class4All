@@ -1,20 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
+import Cookies from 'universal-cookie';
+import { isCookieSet, loginUser } from '../../../../interfaces/cookies';
+import { ContextoRol } from '../../../../contexto/Roles';
+
 
 // Vista: compartida (administradores y profesores)
 
-export const PedirMaterial = () => {
-  
+export const PedirMaterial = (estado) => {
+    const cookies = new Cookies();
+
+    const [cookieSet, setCookieSet] = useState(false);
+
     const [cargando, setCargando] = useState(true);
+    const { setCookie } = React.useContext(ContextoRol);
 
     const [allMateriales, SetAllMateriales] =  useState([]);
     const [allUsuarios, SetAllUsuarios] = useState([]);
 
-    const [datosForm, setdatosForm] = useState([/* { idMat: "", catidad: 0} */]);
+    const [datosForm, setdatosForm] = useState([]);
 
     useEffect(() => {
-        
+        isCookieSet().then((res) => {
+            setCookieSet(res);
+        });
         getAllMateriales();
         getAllUsuarios();
         setCargando(false);
@@ -52,7 +62,7 @@ export const PedirMaterial = () => {
     }
 
     const fAñadir = () => {
-        setdatosForm([...datosForm, { idMat: "", cantidad: 0 }]);
+        setdatosForm([...datosForm, { material: "", cantidad: 0 }]);
     }
 
     const cancelar = (i) => {
@@ -66,40 +76,63 @@ export const PedirMaterial = () => {
         margin: "10px",
     }
 
-    const confirmar = (event) => {
-        
-        event.preventDefault();
+    //Para obtener valor variables
+    const [usuarioAsignado, setUsuarioAsignado] = useState(0);
+    //const [idProfesor, setIdProfesor] = useState(0);
+    let idProfesor = 0;
+    const setIdProfesor = (valor) => idProfesor = valor;
 
-        /* let formulario = event.target;
-       
-        let nuevoMaterial = {
-            material: formulario.material.value,
-            cantidad: formulario.material.value,
+    const confirmar = (event) => {
+        event.preventDefault();
+        setIdProfesor(cookies.get("loginCookie").id)
+        
+        let data = event.target;
+        // pero madre mia willy que haces aqui compañero
+        
+        //peticion post con datos de formulario
+        let datos = {
+            usuarioAsignado: data.user.value,
+            entregamateriales: {
+                materiales: datosForm,
+                idProfesor: idProfesor
+            }
         }
 
+
         var urlencoded = new URLSearchParams();
-        urlencoded.append("material", nuevoMaterial.material);
-        urlencoded.append("cantidad", nuevoMaterial.cantidad);
+        urlencoded.append("usuarioAsignado", datos.usuarioAsignado.toString());
+        urlencoded.append("entregamateriales[idProfesor]", datos.entregamateriales.idProfesor.toString());
+
+
+        for(let i = 0; i < datos.entregamateriales.materiales.length; i++){
+            urlencoded.append("entregamateriales[materiales]["+i+"][material]", datos.entregamateriales.materiales[i].material.toString());
+            urlencoded.append("entregamateriales[materiales]["+i+"][cantidad]", datos.entregamateriales.materiales[i].cantidad.toString());
+        }
 
         var requestOptions = {
             method: 'POST',
             body: urlencoded,
-            redirect: 'follow'         
-        }
+            redirect: 'follow'
+        };
 
-        const url = "http://localhost:3900/api/materiales/pedir-materiales/";
+         const url = "http://localhost:3900/api/tareas/crear-tareaMaterial";
 
-        fetch(url, requestOptions)
-            .then(response => response.text())
-            .then(result => console.log(result))
-            .catch(error => console.log('error', error)); */
-    }
+         fetch(url, requestOptions)
+         .then(res => res.text())
+         .then(data => {
+             console.log(data);
+         })
+         .catch(err => console.log(err));
+        
+         estado = 1;
+   }
+
 
     
 
     if (cargando) {
         return <CargandoProgress/>
-    } else {
+    }else if (cookies.get("loginCookie") && cookieSet) {
         return (
             <section className = "peticion">
                 <form onSubmit={confirmar}>
@@ -116,10 +149,10 @@ export const PedirMaterial = () => {
                         <article key={index} style={style}>
                             <p> 
                                 <label className='etiq' htmlFor="material">Material</label> 
-                                <select className = "cajaMaterial" id="material" name="idMat" onChange={e => cambioForm(index, e)}>
+                                <select className = "cajaMaterial" id="material" name="material" onChange={e => cambioForm(index, e)}>
                                     <option value="err"   hidden></option>
                                     {allMateriales.map(u => { return (
-                                        <option key={u._id}  value={u._id} selected={item.idMat === u._id}>{u.nombre}</option>
+                                        <option key={u._id}  value={u._id} selected={item.material === u._id}>{u.nombre}</option>
                                     )})}
                                 </select>
                             </p>
@@ -132,7 +165,7 @@ export const PedirMaterial = () => {
                         </article>
                     )})}                                    
                 <article>
-                    <button className = "boton-anadir" onClick={(fAñadir)}>Añadir</button>
+                    <button className = "boton-anadir" type="button" onClick={(fAñadir)}>Añadir</button>
                 </article>  
                     <input className="boton-confirmar" type="submit" value="Confirmar"/>
                 </form>
@@ -142,7 +175,3 @@ export const PedirMaterial = () => {
         )
     }
 }
-
-
-    
-
