@@ -8,7 +8,7 @@ import { ContextoRol } from '../../../../contexto/Roles';
 
 // Vista: compartida (administradores y profesores)
 
-export const PedirMaterial = () => {
+export const PedirMaterial = (estado) => {
     const cookies = new Cookies();
 
     const [cookieSet, setCookieSet] = useState(false);
@@ -123,7 +123,9 @@ export const PedirMaterial = () => {
              console.log(data);
          })
          .catch(err => console.log(err));
-     }
+        
+         estado = 1;
+   }
 
 
     

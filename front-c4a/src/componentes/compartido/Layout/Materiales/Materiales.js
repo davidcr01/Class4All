@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useInsertionEffect, useState } from 'react';
 import Header from '../../Layout/Header.js';
 import Footer from '../../Layout/Footer.js';
 import { MuiBreadcrumbsPM } from '../../../muibreadcrumbs';
@@ -14,12 +14,18 @@ export const Materiales = () => {
 
     const [materialesPedidos, SetMaterialesPedidos] = useState([]);
     const [pedido, SetPedido] = useState(0);
+    const [cambio, setCambio] = useState(0);
 
     const cookies = new Cookies();
 
     useEffect(() => {
         getPedido();
+
     }, []);
+
+    useEffect(() => {
+        getPedido();
+    }, [cambio]);
 
     //PETICIÓN A LA BASE DE DATOS QUE PASANDO EL ID DEL PROFESOR DIGA SI HA HECHO PETICIÓN DE MATERIAL O NO
     //ESTO SE HACE CON LAS COOCKIES
@@ -59,7 +65,7 @@ export const Materiales = () => {
             {pedido === 0 && 
             <>
                 <MuiBreadcrumbsPM tipo ="Pedir Material"/>
-                <PedirMaterial />
+                <PedirMaterial estado={cambio}/>
             </>
             }
             <Footer />
