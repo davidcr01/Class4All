@@ -533,6 +533,10 @@ header{
 
 .boton-eliminar{
   background-color: rgb(255, 109, 109);
+  width: 5%;
+  border-radius: 5px;
+  padding: 5px;
+  margin-left: 10px;
 }
 
 .boton-cancelar{
@@ -545,8 +549,7 @@ header{
 
 .boton-anadir{
   background-color: #b2dafa;
-  width: 10%;
-  font-weight: bold;
+  width: 5%;
   border-radius: 5px;
   padding: 5px;
   margin-bottom: 5px;
@@ -564,4 +567,32 @@ header{
   margin-bottom: 5px;
   /*position: relative;
   top: 40px; bottom: 5px;*/
+}
+
+.valores{
+  background-color: "#f5f5f5";
+  border-color: black;
+  border-style: solid;
+  width: 10%;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
+  
+}
+
+.materialRecibido{
+  justify-content: center;
+  background-color: "#f5f5f5";
+  border-color: black;
+  border-style: solid;
+  border-radius: 5px;
+  width: 10cm;
+  padding-left: 1%;
+  padding-right: 1%;
+        
+}
+
+.negrita{
+  font-weight: bold;
+  margin-right: 5px;
 }
