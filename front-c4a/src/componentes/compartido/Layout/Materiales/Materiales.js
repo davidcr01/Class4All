@@ -62,6 +62,7 @@ export const Materiales = () => {
                     alumno ={materialesPedidos.usuarioAsignado} 
                     materiales={materialesPedidos.entregamateriales.materiales}
                     tareaID = {materialesPedidos._id}
+                    setCambio = {setCambio}
 
                 /> 
             </>
@@ -69,7 +70,7 @@ export const Materiales = () => {
             {pedido === 0 && 
             <>
                 <MuiBreadcrumbsPM tipo ="Pedir Material"/>
-                <PedirMaterial estado={cambio}/>
+                <PedirMaterial setCambio={setCambio}/>
             </>
             }
             <Footer />

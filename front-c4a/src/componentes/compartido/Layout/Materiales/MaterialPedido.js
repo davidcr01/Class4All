@@ -6,7 +6,7 @@ import { ListItem } from '@mui/material';
 
 // Vista: compartida (administradores y profesores)
 
-const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
+const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => {
 
     const [cargando, setCargando] = useState(true);
 
@@ -46,45 +46,35 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
 
     const fRecibido = () => {
         alert("todo guay");
-        /*const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + profesorID;
-
-        var requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({idTarea: tareaID})           
-        }
-        fetch(url, requestOptions)
+        const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + tareaID;
+        //hacer fetch a la url con put
+        fetch(url, {method: 'PUT'})
             .then(res => res.json())
             .then(data => {
                 if(data.status === "success"){
-                    props.setNeedsRender(!props.needsRender);//AQUI SERGIO :)
+                    setCambio(1);
                 }
             })
-            .catch(error => alert(error));*/
+            .catch(error => console.log(error));
+
+        
     }
     
     const eliminarMateriales = () => {
         //marcar como cancelada
-        const url = "http://localhost:3900/api/materiales/eliminar-peticion/" + profesorID;
-
-        var requestOptions = {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify()           
-        }
-
-        fetch(url, requestOptions)
+        const url = "http://localhost:3900/api/tareas/cancelar-tarea/" + tareaID;
+        //hacer fetch a la url con put
+        fetch(url, {method: 'PUT'})
             .then(res => res.json())
             .then(data => {
-                console.log(data);
-                window.location.reload();
+                if(data.status === "success"){
+                    setCambio(1);
+                }
             })
-            .catch(err => console.log(err));
+            .catch(error => console.log(error));
     }
+
+      
 
 
     const realizadaState = "No";
