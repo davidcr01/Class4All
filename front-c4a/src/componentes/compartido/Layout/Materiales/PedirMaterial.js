@@ -83,12 +83,10 @@ export const PedirMaterial = () => {
     const setIdProfesor = (valor) => idProfesor = valor;
 
     const confirmar = (event) => {
-        setIdProfesor(cookies.get("loginCookie").id)
         event.preventDefault();
+        setIdProfesor(cookies.get("loginCookie").id)
         
         let data = event.target;
-        console.log(data);
-
         // pero madre mia willy que haces aqui compañero
         
         //peticion post con datos de formulario
@@ -100,28 +98,27 @@ export const PedirMaterial = () => {
             }
         }
 
-        console.log("idProfesor: " + datos.entregamateriales.idProfesor);
-        console.log("idUsuario: " + datos.usuarioAsignado);
 
-        console.log("materiales : " + datos.entregamateriales.materiales);
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("usuarioAsignado", datos.usuarioAsignado.toString());
+        urlencoded.append("entregamateriales[idProfesor]", datos.entregamateriales.idProfesor.toString());
+
+
         for(let i = 0; i < datos.entregamateriales.materiales.length; i++){
-            console.log("idMaterial: " + datos.entregamateriales.materiales[i].material);
-            console.log("cantidad: " + datos.entregamateriales.materiales[i].cantidad);
-
+            urlencoded.append("entregamateriales[materiales]["+i+"][material]", datos.entregamateriales.materiales[i].material.toString());
+            urlencoded.append("entregamateriales[materiales]["+i+"][cantidad]", datos.entregamateriales.materiales[i].cantidad.toString());
         }
 
-        console.log(datos.entregamateriales);     
-        console.log(JSON.stringify(datos));
+        var requestOptions = {
+            method: 'POST',
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
          const url = "http://localhost:3900/api/tareas/crear-tareaMaterial";
 
-         fetch(url, {
-             method: 'POST',
-             body: datos,
-             headers: {
-                 'Content-Type': 'application/json'
-             }
-         })
-         .then(res => res.json())
+         fetch(url, requestOptions)
+         .then(res => res.text())
          .then(data => {
              console.log(data);
          })
