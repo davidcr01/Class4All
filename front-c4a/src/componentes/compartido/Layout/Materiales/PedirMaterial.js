@@ -3,7 +3,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import Cookies from 'universal-cookie';
 import { isCookieSet, loginUser } from '../../../../interfaces/cookies';
-import { ContextoRol } from '../../../../contexto/Roles';
 
 
 // Vista: compartida (administradores y profesores)
@@ -14,7 +13,6 @@ export const PedirMaterial = (estado) => {
     const [cookieSet, setCookieSet] = useState(false);
 
     const [cargando, setCargando] = useState(true);
-    const { setCookie } = React.useContext(ContextoRol);
 
     const [allMateriales, SetAllMateriales] =  useState([]);
     const [allUsuarios, SetAllUsuarios] = useState([]);
