@@ -7,14 +7,6 @@ import { ListItem } from '@mui/material';
 
 const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
 
- //   const [usuario, setUsuarios] = useState('');
-    const [cargando, setCargando] = useState(true);
-
-    useEffect(() => {
-        setCargando(true);
-  //      getUser();
-    }, []);
-
 
     const fRecibido = (props) => {
         const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + profesorID;
@@ -59,35 +51,33 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID}) => {
 
 
     const realizadaState = "No";
-    if (tareaID.realizada) {
-        realizadaState = "Sí";
-    }
+    //if (entregaMateriales.realizada) {
+    //    realizadaState = "Sí";
+    //}
     
-    if(cargando){
-        return <CargandoProgress/>
-    }else{
-        const pedidos = materiales.map(mat => 
-            <>
-                <article>
-                    Material: {mat.material.nombre}
-                    Cantidad: {mat.cantidad}
-                </article>
-            </>
-);
-        //Pedidos devolverá todos los materiales pedidos (para cada uno, el material, la cantidad, si está o no realizado y el checkbox)
-        return (
-            <section className="materiales">
-                Alumno: {alumno}
-                {pedidos}   
-                Realizado: {realizadaState}
+    
+    const pedidos = materiales.map(mat => 
+        <>
+            <article>
+                Material: {mat.material}
+                Cantidad: {mat.cantidad}
+            </article>
+        </>
+    );
+    //Pedidos devolverá todos los materiales pedidos (para cada uno, el material, la cantidad, si está o no realizado y el checkbox)
+    return (
+        <section className="materiales">
+            Alumno: {alumno}
+            {pedidos}   
+            Realizado: {realizadaState}
 
-                <button className = "boton-anadir" onClick={(fRecibido)}>Recibido</button>
-                <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/></button>
+            <button className = "boton-anadir" onClick={(fRecibido)}>Recibido</button>
+            <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/></button>
 
-            </section>
-        )
+        </section>
+    )
 
-    }
+
 
 
 }

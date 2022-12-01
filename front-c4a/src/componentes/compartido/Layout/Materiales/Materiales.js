@@ -30,16 +30,16 @@ export const Materiales = () => {
         try {
             const url = "http://localhost:3900/api/tareas/lista-tareasDia-prof/" + cookies.get('loginCookie').id;
             const res = await fetch(url);
-            const materialesPedidos = await res.json();
+            const pedido = await res.json();
             
-            if(materialesPedidos.tareas.length > 0){
+            if(pedido.tareas.length > 0){
                 SetPedido(1);
-                tareaID=materialesPedidos.tareas[0];
+                tareaID=materialesPedidos.tareas;
             }
             else{
                 SetPedido(0);
             }
-            SetMaterialesPedidos(materialesPedidos)
+            SetMaterialesPedidos(pedido)
         } catch {
             //SetPedido(0);
         }
@@ -56,9 +56,10 @@ export const Materiales = () => {
                 <MuiBreadcrumbsPM tipo = "Material Pedido" />
                 <MaterialPedido className="materiales" 
                     profesorID = {cookies.get('loginCookie').id} 
-                    alumno ={materialesPedidos.usuarioAsignado} 
-                    materiales={materialesPedidos.materiales}
-                    tareaID = {tareaID}
+                    alumno ={materialesPedidos.tareas.usuarioAsignado} 
+                    materiales={materialesPedidos.tareas.entregamateriales.materiales}
+                    tareaID = {materialesPedidos.tareas._id}
+
                 /> 
             </>
             }
