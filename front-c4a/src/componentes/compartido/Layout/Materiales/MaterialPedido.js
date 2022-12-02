@@ -12,11 +12,13 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
 
     const [listaMateriales, SetListaMateriales] = useState([]);
     const [alumnoNombre, SetAlumno] = useState([]);
+    const [tarea, setTarea] = useState([]);
 
     useEffect(() => {
         getListaMateriales();
         getAlumno();
         setCargando(false);
+        getTarea();
     }, []);
 
     const getListaMateriales = async () => {
@@ -31,13 +33,25 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
         }
     }
 
-    const getAlumno = async() =>{
+    const getAlumno = async() => {
         try {
             const url = "http://localhost:3900/api/usuarios/get-usuario/" + alumno;
 
             const res = await fetch(url)
             const data = await res.json();
             SetAlumno(data.usuario);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const getTarea = async() => {
+        try {
+            const url = "http://localhost:3900/api/tareas/get-tarea/" + tareaID;
+
+            const res = await fetch(url)
+            const data = await res.json();
+            setTarea(data.tarea);
         } catch (error) {
             console.log(error);
         }
@@ -72,16 +86,6 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
             })
             .catch(error => console.log(error));
     }
-
-      
-
-
-    const realizadaState = "No";
-    if (tareaID.realizada) {
-        realizadaState = "Sí";
-    }
-    
-    
     
     if (cargando) {
         return <CargandoProgress/>
@@ -115,7 +119,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
                 {pedidos}  
                 <p>
                     <label className='negrita'>Realizado:</label> 
-                    <label>{realizadaState}</label>
+                    <label>{tarea.realizada ? "SI" : "NO"}</label>
                 </p>
 
                 <button className = "boton-anadir"><CheckBoxIcon style={{cursor: "pointer"}} onClick={() => fRecibido()}/>Recibido</button>
