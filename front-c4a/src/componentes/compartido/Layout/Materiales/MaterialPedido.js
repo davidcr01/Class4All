@@ -45,7 +45,6 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
 
 
     const fRecibido = async() => {
-        alert("todo guay");
         const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + tareaID;
         //hacer fetch a la url con put
         fetch(url, {method: 'PUT'})
@@ -60,7 +59,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
         
     }
     
-    const eliminarMateriales = () => {
+    const eliminarMateriales = async() => {
         //marcar como cancelada
         const url = "http://localhost:3900/api/tareas/cancelar-tarea/" + tareaID;
         //hacer fetch a la url con put
