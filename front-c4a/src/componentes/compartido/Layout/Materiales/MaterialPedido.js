@@ -44,7 +44,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
     }
 
 
-    const fRecibido = () => {
+    const fRecibido = async() => {
         alert("todo guay");
         const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + tareaID;
         //hacer fetch a la url con put
@@ -119,8 +119,8 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
                     <label>{realizadaState}</label>
                 </p>
 
-                <button className = "boton-anadir"><DeleteIcon style={{cursor: "pointer"}} onClick={() => fRecibido()}/>Recibido</button>
-                <button className="boton-eliminar"><CheckBoxIcon style={{cursor: "pointer"}} onClick={() => eliminarMateriales()}/>Cancelar</button>
+                <button className = "boton-anadir"><CheckBoxIcon style={{cursor: "pointer"}} onClick={() => fRecibido()}/>Recibido</button>
+                <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarMateriales()}/>Cancelar</button>
 
             </section>
         )

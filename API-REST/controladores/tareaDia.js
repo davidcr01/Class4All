@@ -403,7 +403,7 @@ const setRealizada = (req, res) => {
 
 const setEstadoCompletada = (req, res) => {
 
-    let idTarea = req.body.idTarea;
+    let idTarea = req.params.idTarea;
 
     Tarea.findById
         (

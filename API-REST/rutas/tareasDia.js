@@ -22,7 +22,7 @@ router.put("/cancelar-tarea/:idTarea" , TareaController.setEstadoCancelada);
 
 // --------------------------- ARREGLADAS ---------------------------
 router.get("/aulas-restantes-comanda/:idTarea", TareaController.getAulasRestantes);
-router.post("/completar-tarea-profesor/" , TareaController.setEstadoCompletada);
+router.put("/completar-tarea-profesor/:idTarea" , TareaController.setEstadoCompletada);
 router.post("/completar-clase-comanda/", TareaController.completarClaseComanda);
 router.post("/actualizar-cantidades/:idTarea" , TareaController.actualizarCantidades);
 
