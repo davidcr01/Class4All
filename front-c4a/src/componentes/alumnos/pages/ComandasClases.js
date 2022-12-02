@@ -54,7 +54,7 @@ export const ComandasClases = () => {
     else
       return (
         <>
-          <Header titulo="Comandas" />
+          <Header titulo="Comandas" alumnos="si" url_anterior="/Agenda"/>
           <h1>Tarea completada. Enhorabuena</h1>
         </>
       )
