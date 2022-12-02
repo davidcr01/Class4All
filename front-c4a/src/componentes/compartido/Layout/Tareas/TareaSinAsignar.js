@@ -20,7 +20,7 @@ const TareaSinAsignar = (props) => {
 
         //get value from select
         const idUsuario = document.getElementById("user").value;
-         const url = "http://localhost:3900/api/tareas/asignar-tarea/" + props.tarea._id + "/" + idUsuario;
+         const url = "http://localhost:3900/api/tareas/asignar-tarea/" + props.tarea._id + "/" + event.target.Usuario.value;
 
         fetch(url, {
             method: 'PUT',

@@ -37,20 +37,21 @@ const FormularioNuevoUsuario = ()=> {
             nombre: datos.nombre.value,
             apellido1: datos.apellido1.value,
             apellido2: datos.apellido2.value,
-            email: datos.email.value,
             password: datos.password.value,
             rol: datos.rol.value,
         }
         if(usuario.rol == 1){
-            usuario.rol = 'Administrador'
+            usuario.rol = 'Administrador';
         }else if(usuario.rol == 2){
-            usuario.rol= 'Profesor'
-            usuario["clase"]= datos.clase.value
+            usuario.rol= 'Profesor';
+            usuario["clase"]= datos.clase.value;
+            usuario.email = datos.email.value;
         }
         else if(usuario.rol == 3){
-            usuario["preferencias"] =  datos.preferencias.value
-            usuario["clase"]= datos.clase.value
-            usuario.rol = 'Alumno'
+            //usuario["preferencias"] =  datos.preferencias.value;
+            usuario["clase"]= datos.clase.value;
+            usuario.rol = 'Alumno';
+            
         }
 
         var urlencoded = new URLSearchParams();
@@ -64,13 +65,15 @@ const FormularioNuevoUsuario = ()=> {
 
         if(usuario.rol == 'Profesor'){
             urlencoded.append("clase", usuario.clase);
+            urlencoded.append("correo", usuario.email);
         }
         if(usuario.rol == 'Alumno'){
-            urlencoded.append("preferencias", usuario.preferencias);
+            //urlencoded.append("preferencias", usuario.preferencias);
             urlencoded.append("clase", usuario.clase);
         }
         if(usuario.rol == 'Administrador'){
             urlencoded.append("clase","Todas");
+            urlencoded.append("correo", usuario.email);
         }
 
         var requestOptions = {
