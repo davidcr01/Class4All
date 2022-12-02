@@ -12,7 +12,7 @@ const ListaUsuarios = (props) => {
         return (
             <div className='ListaUsuarios'>
                 <button className="botoncrear" onClick={() => nav("/crear-usuario")}>Crear usuario</button>
-                <Usuarios/>
+                <Usuarios filtroalumnos={props.filtroalumnos} filtroprofesores={props.filtroprofesores} filtroadmins={props.filtroadmins}/>
             </div>
 
         )
