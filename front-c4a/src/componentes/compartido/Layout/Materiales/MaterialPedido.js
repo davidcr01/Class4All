@@ -12,11 +12,13 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
 
     const [listaMateriales, SetListaMateriales] = useState([]);
     const [alumnoNombre, SetAlumno] = useState([]);
+    const [tarea, setTarea] = useState([]);
 
     useEffect(() => {
         getListaMateriales();
         getAlumno();
         setCargando(false);
+        getTarea();
     }, []);
 
     const getListaMateriales = async () => {
@@ -31,7 +33,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
         }
     }
 
-    const getAlumno = async() =>{
+    const getAlumno = async() => {
         try {
             const url = "http://localhost:3900/api/usuarios/get-usuario/" + alumno;
 
@@ -43,9 +45,20 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
         }
     }
 
+    const getTarea = async() => {
+        try {
+            const url = "http://localhost:3900/api/tareas/get-tarea/" + tareaID;
 
-    const fRecibido = () => {
-        alert("todo guay");
+            const res = await fetch(url)
+            const data = await res.json();
+            setTarea(data.tarea);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    const fRecibido = async() => {
         const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + tareaID;
         //hacer fetch a la url con put
         fetch(url, {method: 'PUT'})
@@ -60,7 +73,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
         
     }
     
-    const eliminarMateriales = () => {
+    const eliminarMateriales = async() => {
         //marcar como cancelada
         const url = "http://localhost:3900/api/tareas/cancelar-tarea/" + tareaID;
         //hacer fetch a la url con put
@@ -73,16 +86,6 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
             })
             .catch(error => console.log(error));
     }
-
-      
-
-
-    const realizadaState = "No";
-    if (tareaID.realizada) {
-        realizadaState = "Sí";
-    }
-    
-    
     
     if (cargando) {
         return <CargandoProgress/>
@@ -116,11 +119,11 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
                 {pedidos}  
                 <p>
                     <label className='negrita'>Realizado:</label> 
-                    <label>{realizadaState}</label>
+                    <label>{tarea.realizada ? "SI" : "NO"}</label>
                 </p>
 
-                <button className = "boton-anadir"><DeleteIcon style={{cursor: "pointer"}} onClick={() => fRecibido()}/>Recibido</button>
-                <button className="boton-eliminar"><CheckBoxIcon style={{cursor: "pointer"}} onClick={() => eliminarMateriales()}/>Cancelar</button>
+                <button className = "boton-anadir"><CheckBoxIcon style={{cursor: "pointer"}} onClick={() => fRecibido()}/>Recibido</button>
+                <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarMateriales()}/>Cancelar</button>
 
             </section>
         )

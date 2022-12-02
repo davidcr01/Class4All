@@ -403,7 +403,7 @@ const setRealizada = (req, res) => {
 
 const setEstadoCompletada = (req, res) => {
 
-    let idTarea = req.body.idTarea;
+    let idTarea = req.params.idTarea;
 
     Tarea.findById
         (
@@ -530,7 +530,7 @@ const crearTareaMaterial = (req, res) => {
 const getTareasEntregaMaterial = (req, res) => {
     let idProfesor = req.params.idProfesor;
     let estado = "asignada";
-    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor, "entregamateriales.estado": estado}, (error, tareas) => {
+    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor, estado: estado}, (error, tareas) => {
         if (error || !tareas) {
             return res.status(404).json({
                 status: "error",
@@ -597,8 +597,8 @@ const getAulasRestantes = (req, res) => {
     });
 }
 
-const setEstadoCancelada = () => {
-    let idTarea = req.body.idTarea;
+const setEstadoCancelada = (req, res) => {
+    let idTarea = req.params.idTarea;
 
     Tarea.findById
         (
