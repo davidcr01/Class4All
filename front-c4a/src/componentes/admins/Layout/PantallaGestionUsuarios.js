@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../styles.css';
 import BuscarFiltros from '../../compartido/Layout/Tareas/BuscarFiltros';
 import ListaUsuarios from '../../admins/Layout/ListaUsuarios';
@@ -7,19 +7,33 @@ import {useState} from 'react'
 // Vista: admins
 
 const PantallaGestionUsuarios = () => {
-    const [filtro, setFiltro] = useState(0);
+    const [filtroalumnos, setFiltroAlumnos] = useState(true);
+    const [filtroadmins, setFiltroAdmins] = useState(true);
+    const [filtroprofesores, setFiltroProfesores] = useState(true);
 
-    const parentToChild = () => {
-
-    }
+    useEffect(() => {
+        console.log(filtroalumnos);
+        console.log(filtroadmins);
+        console.log(filtroprofesores);
+    } , [filtroalumnos, filtroadmins, filtroprofesores]);
 
     const childToParent = (i) => {
-        setFiltro(i);
+
+        if(i === 1){
+            setFiltroAlumnos(!filtroalumnos);
+        }
+        else if (i === 2){
+            setFiltroAdmins(!filtroadmins);
+        }
+        else if (i === 3){
+            setFiltroProfesores(!filtroprofesores);
+        }
+
     }
     return (
 
         <div className='PantallaGestionUsuarios'>
-            <BuscarFiltros childToParent={(n) => childToParent}/>
+            <BuscarFiltros childToParent={childToParent}/>
 
             <ListaUsuarios />
         </div>
