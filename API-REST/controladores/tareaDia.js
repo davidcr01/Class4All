@@ -530,7 +530,7 @@ const crearTareaMaterial = (req, res) => {
 const getTareasEntregaMaterial = (req, res) => {
     let idProfesor = req.params.idProfesor;
     let estado = "asignada";
-    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor, "entregamateriales.estado": estado}, (error, tareas) => {
+    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor, estado: estado}, (error, tareas) => {
         if (error || !tareas) {
             return res.status(404).json({
                 status: "error",
