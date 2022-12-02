@@ -597,7 +597,7 @@ const getAulasRestantes = (req, res) => {
     });
 }
 
-const setEstadoCancelada = () => {
+const setEstadoCancelada = (req, res) => {
     let idTarea = req.body.idTarea;
 
     Tarea.findById
