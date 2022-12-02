@@ -1,11 +1,13 @@
+import { useSlotProps } from '@mui/base';
 import React, { useEffect, useState } from 'react';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import Usuario from './Usuario.js';
 
 // Vista: admins
 
-export const Usuarios = () => {
+export const Usuarios = (props) => {
     const [usuarios, SetUsuarios] =  useState([]);
+    const [usuariosLista, SetUsuariosLista] =  useState([]);
 
     const conseguirUsuarios = async() =>{
         try {
@@ -17,7 +19,33 @@ export const Usuarios = () => {
         } catch (error) {
             console.log(error);
         }
+
+
+
+
+        //usuarios = usuariosLista;
+
     }
+
+    useEffect(() => {
+        let users = [];
+
+        if(props.filtroalumnos === true){
+            users = users.concat(usuarios.filter(usuario => usuario.rol === "alumno"));
+        }
+        if(props.filtroadmins === true){
+            users = users.concat(usuarios.filter(usuario => usuario.rol === "admin"));
+        }
+        if(props.filtroprofesores === true){
+            users = users.concat(usuarios.filter(usuario => usuario.rol === "profesor"));
+        }
+
+        console.log(users);
+
+
+        usuariosLista = users;
+    }, [props.filtroalumnos, props.filtroadmins, props.filtroprofesores]);
+
 
     useEffect(() => {
         conseguirUsuarios();

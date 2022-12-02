@@ -15,6 +15,7 @@ const PantallaGestionUsuarios = () => {
         console.log(filtroalumnos);
         console.log(filtroadmins);
         console.log(filtroprofesores);
+        
     } , [filtroalumnos, filtroadmins, filtroprofesores]);
 
     const childToParent = (i) => {
@@ -35,7 +36,7 @@ const PantallaGestionUsuarios = () => {
         <div className='PantallaGestionUsuarios'>
             <BuscarFiltros childToParent={childToParent}/>
 
-            <ListaUsuarios />
+            <ListaUsuarios filtroalumnos={filtroalumnos} filtroadmins={filtroadmins} filtroprofesores={filtroprofesores} />
         </div>
     )
 }
