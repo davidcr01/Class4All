@@ -160,8 +160,12 @@ const obtenerCookie = (req, res) => {
         });
 }
 
-const getAulas = (req, res) => {
-    Usuario.find({rol: "Profesor"}).exec((error, query) => {
+const getAulas = (callBack) =>{
+    Usuario.find({rol: "Profesor"}).exec(callBack);
+}
+
+const getAulasRuta = (req, res) => {
+    getAulas((error, query) => {
         if (error || query.length == 0 || !query) {
             return res.status(404).json({
                 status: "error",
@@ -170,9 +174,9 @@ const getAulas = (req, res) => {
         }
         return res.status(200).json({
             status: "success",
-            aulas: query.map((profesor) => {return {clase: profesor.clase, id: profesor._id}})
+            aulas: query.map((profesor) => { return { clase: profesor.clase, id: profesor._id } })
         });
-    });
+    })
 };
 
 
@@ -240,9 +244,10 @@ module.exports = {
     loginUsuario,
     obtenerCookie,
     logoutUsuario,
-    getAulas,
+    getAulasRuta,
     getAlumnos,
     loginAlumno,
     obtenerFoto,
-    getTodosAlumnos
+    getTodosAlumnos,
+    getAulas
 }

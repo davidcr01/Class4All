@@ -3,6 +3,7 @@ const Usuario = require("../modelos/Usuario");
 const fs = require('fs');
 const path = require('path');
 const { default: mongoose, Mongoose } = require("mongoose");
+const {getAulas} = require("./usuario");
 
 const listaTareas = (req, res) => {
     let consulta = Tarea.find({}).exec((error, tareas) => {
@@ -53,13 +54,7 @@ const obtenerTareasUsuario = (req, res) => {
 };
 
 
-
-//Funcionalidad solo para pruebas 
-const crearTarea = (req, res) => {
-
-    //Recoger parametros por post
-    let parametros = req.body;
-
+const crearTareaInterno = (req, res, parametros) => {
     //Crear objeto 
     const tarea = new Tarea(parametros);
 
@@ -79,7 +74,35 @@ const crearTarea = (req, res) => {
         });
 
     });
+}
 
+//Funcionalidad solo para pruebas 
+const crearTarea = (req, res) => {
+    //Recoger parametros por post
+    let parametros = req.body;
+    
+    if(parametros.tipo === "comanda"){
+        getAulas((err, query) =>{
+            if(err || !query){
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "Error inesperado"
+                });
+            } else {
+
+                parametros["aulasRestantes"] = query.map((profesor) => { return { clase: profesor.clase } });
+                parametros["menus"] = [];
+
+                crearTareaInterno(req, res, parametros);
+            }
+
+        });
+    } else {
+        console.log(parametros["aulasRestantes"]);
+        crearTareaInterno(req, res, parametros);
+    }
+
+    //console.log(clase)
 };
 
 const eliminarTarea = (req, res) => {

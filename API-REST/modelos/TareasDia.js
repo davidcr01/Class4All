@@ -93,10 +93,9 @@ const TareaSchema = Schema({
     },
 
     aulasRestantes: {
-        type: Array
+        type: Array,
+        required: false
     }
-
-
 });
 
 module.exports = model('Tarea', TareaSchema, 'tareas');
