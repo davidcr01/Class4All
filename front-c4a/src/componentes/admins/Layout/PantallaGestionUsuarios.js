@@ -19,7 +19,7 @@ const PantallaGestionUsuarios = () => {
     return (
 
         <div className='PantallaGestionUsuarios'>
-            <BuscarFiltros childToParent={childToParent}/>
+            <BuscarFiltros childToParent={(n) => childToParent}/>
 
             <ListaUsuarios />
         </div>

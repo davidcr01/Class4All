@@ -3,7 +3,7 @@ import '../../styles.css';
 
 // Componente para buscar filtros en la gestión de las tareas
 // Vista: compartido (admins y profes)
-const BuscarFiltros = ({childToParent(i)}) => {
+const BuscarFiltros = ({childToParent}) => {
     const data = 0;
 
     const aplicarFiltro = (n, e) => {
@@ -15,7 +15,7 @@ const BuscarFiltros = ({childToParent(i)}) => {
             childToParent(n);
         }
         else{
-            childToParent(0);
+            childToParent(n);
         }
         
 
