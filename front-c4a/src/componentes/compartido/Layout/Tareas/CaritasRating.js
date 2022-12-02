@@ -49,12 +49,11 @@ IconContainer.propTypes = {
 export default function RadioGroupRating() {
     return (
         <StyledRating
-            name="highlight-selected-only"
-            defaultValue={2}
+            name="caritas"
+            defaultValue={3}
             IconContainerComponent={IconContainer}
             getLabelText={(value) => customIcons[value].label}
             highlightSelectedOnly
         />
     );
 }
-

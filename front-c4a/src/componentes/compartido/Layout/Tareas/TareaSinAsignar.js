@@ -85,7 +85,7 @@ const TareaSinAsignar = (props) => {
                 </form>
 
                 </div>
-                <div className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></div>
+                <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></button>
             </div>)
     }
 }

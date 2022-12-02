@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 
 // Vista: compartida (admins y profs)
@@ -49,6 +50,28 @@ const TareaNoRealizada = (props) => {
         }
     }
 
+    //CREADO NUEVO PARA MANDAR LA CONFIRMACIÓN Y LA RETROALIMENTACIÓN ETC
+    //FALTA arreglar para que funcione de vd y además de confirmar que se ha realizado, se mande la retroalimentación
+    const confirmarTarea = () => {
+        const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + props.tarea._id;
+
+        fetch(url, {method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify()
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+               // window.location.reload();
+            })
+            .catch(err => console.log(err));
+    }
+
+    //QUITADA LA PARTE DE BIEN/MAL PORQUE NO TIENE SENTIDO
+    //CAMBIADO EL CHECKBOX DE CONFIRMAR POR UN BOTÓN
+    //ELIMINAR ES AHORA UN BOTÓN EN VEZ DE UN DIV
     if (cargando) {
         return <CargandoProgress/>
     } else {
@@ -58,18 +81,14 @@ const TareaNoRealizada = (props) => {
                 <div><label className='label-tareas'>Fecha:</label> {props.tarea.fecha}</div>
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> No</div>
-                <div>Confirmar: <input type="checkbox"></input></div>
-                <div className="botonesTareasReal">
-                    <div className="botonTareasReal">BIEN</div>
-                    <div className="botonTareasReal">MAL</div>
-                    <div className="botonTareasReal">TARDE</div>
-                </div>
+                
                 <form>
                     <textarea name="message" rows="5" cols="80">
                         Retroalimentación:
                     </textarea>
                 </form>
-                <div className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></div>
+                <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>
+                <button className="ConfirmarRealizada"><CheckBoxIcon style={{cursor: "pointer"}} onClick={() => confirmarTarea()}/></button>
 
 
             </div>)

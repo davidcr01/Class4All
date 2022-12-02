@@ -111,7 +111,7 @@ const TareaAsignada = (props) => {
                 {/*<div><label className='label-tareas'>Confirmar</label> <input type="checkbox"></input></div>*/}
                 <div><button id='confirmar-tarea' onClick={confirmarTarea}>Confirmar</button></div>
                 <form onSubmit={desasignarTarea}><input type="submit" value="Desasignar"/></form>
-                <div className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></div>
+                <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></button>
 
             </div>)
             }

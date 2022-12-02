@@ -10,6 +10,7 @@ const TareaRealizada = (props) => {
 
     const [nombre, setNombre] = useState('');
     const [cargando, setCargando] = useState(true);
+    const [datosForm, setdatosForm] = useState([]);
 
     useEffect(() => {
         setCargando(true);
@@ -36,8 +37,14 @@ const TareaRealizada = (props) => {
 
     //CREADO NUEVO PARA MANDAR LA CONFIRMACIÓN Y LA RETROALIMENTACIÓN ETC
     //FALTA arreglar para que funcione de vd y además de confirmar que se ha realizado, se mande la retroalimentación
-    const confirmarTarea = () => {
-        const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + props.tarea._id;
+    const confirmarTarea = (event) => {
+        event.preventDefault();
+        let datos = event.target;
+
+        console.log(datos.retroalimentacion);
+
+
+        /*const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + props.tarea._id;
 
         fetch(url, {method: 'PUT',
             headers: {
@@ -50,7 +57,7 @@ const TareaRealizada = (props) => {
                 console.log(data);
                // window.location.reload();
             })
-            .catch(err => console.log(err));
+            .catch(err => console.log(err));*/
     }
 
     const getUser = async () => {
@@ -65,7 +72,14 @@ const TareaRealizada = (props) => {
 
         } catch (error) {
             console.log(error);
+        }
+    }
 
+    
+    const funcRetroText = (e) => {
+        let datos = e.target;
+        if (datos.value.length < "Retroalimentación: ".length){
+            datos.value = "Retroalimentación: ";
         }
     }
 
@@ -76,19 +90,18 @@ const TareaRealizada = (props) => {
         return (
             //CAMBIADO PARA QUE EN VEZ DE LOS BOTONES DE BIEN/MAL APAREZCAN CARITAS
             //Siguiente Commit CAMBIADO BOTÓN DE CONFIRMAR (antes era un checkbox)
+            //Cambiada la retroalimentación para que no se borre
             <div className="tarea">
                 <div><label className='label-tareas'>Tarea:</label> {props.tarea.nombre}</div>
                 <div><label className='label-tareas'>Fecha:</label> {props.tarea.fecha}</div>
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> Si</div>
-                <div>{RadioGroupRating()}</div>
                 <form>
-                    <textarea name="message" rows="5" cols="80">
-                        Retroalimentación:
-                    </textarea>
+                    <div id="cara">{RadioGroupRating()}</div>
+                    <textarea className="recuadroRetro" id="retroalimentacion" name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
                 </form>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>
-                <button className="ConfirmarRealizada"><CheckBoxIcon style={{cursor: "pointer"}} onClick={() => confirmarTarea()}/></button>
+                <button className="ConfirmarRealizada"><CheckBoxIcon style={{cursor: "pointer"}} onClick={e => confirmarTarea(e)}/></button>
 
 
             </div>)

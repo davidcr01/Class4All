@@ -596,3 +596,16 @@ header{
   font-weight: bold;
   margin-right: 5px;
 }
+
+/*AÑADIDO PARA QUE EL BOTÓN TENGA MARGEN*/
+.Eliminar{
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
+
+}
+
+.recuadroRetro{
+  width: 10cm;
+
+}
