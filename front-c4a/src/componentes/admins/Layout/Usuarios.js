@@ -16,6 +16,8 @@ export const Usuarios = (props) => {
             const res = await fetch(url)
             const data = await res.json();
             SetUsuarios(data.usuarios);
+            SetUsuariosLista(data.usuarios);
+
         } catch (error) {
             console.log(error);
         }
@@ -31,30 +33,35 @@ export const Usuarios = (props) => {
         let users = [];
 
         if(props.filtroalumnos === true){
-            users = users.concat(usuarios.filter(usuario => usuario.rol === "alumno"));
+            users = users.concat(usuarios.filter(usuario => usuario.rol === "Alumno"));
         }
         if(props.filtroadmins === true){
-            users = users.concat(usuarios.filter(usuario => usuario.rol === "admin"));
+            console.log("Entro a profes");
+            users = users.concat(usuarios.filter(usuario => usuario.rol === "Administrador"));
         }
         if(props.filtroprofesores === true){
-            users = users.concat(usuarios.filter(usuario => usuario.rol === "profesor"));
+            users = users.concat(usuarios.filter(usuario => usuario.rol === "Profesor"));
         }
 
+
+
+        SetUsuariosLista(users);
         console.log(users);
 
-
-        usuariosLista = users;
     }, [props.filtroalumnos, props.filtroadmins, props.filtroprofesores]);
 
 
     useEffect(() => {
         conseguirUsuarios();
     }, []);
+    
+    if(usuariosLista.length !== 0){
 
   return (
     <div>
-        {usuarios != null && usuarios.length !== 0 ?
-        usuarios.map(t =>{
+        
+        {usuariosLista != null && usuariosLista.length !== 0 ?
+        usuariosLista.map(t =>{
             return(
                 <Usuario key={t._id} className="usuariolista" user={t}/ >
             );
@@ -64,6 +71,14 @@ export const Usuarios = (props) => {
         }
     </div>
   )
+    }
+    else{
+        return(
+            <div>
+                No hay usuarios que mostrar
+            </div>
+        )
+    }
 }
 
 
