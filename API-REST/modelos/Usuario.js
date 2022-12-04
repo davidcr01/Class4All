@@ -28,7 +28,6 @@ const UsuarioSchema = Schema({
     },
     clase:{ 
         type: String,
-        required: true
     },
 
     //ALUMNOS

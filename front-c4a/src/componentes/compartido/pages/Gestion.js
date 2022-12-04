@@ -36,7 +36,7 @@ export const Gestion = () => {
     if (cookies.get("loginCookie") !== undefined && cookieSet)
       return (
         <>
-          <Header titulo="Gestión del centro" />
+          <Header titulo="Gestión de la Aplicación" />
           <MuiBreadcrumbs />
           <PantallasGestion />
           <Footer />

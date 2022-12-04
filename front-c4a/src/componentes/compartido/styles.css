@@ -553,6 +553,7 @@ header{
   border-radius: 5px;
   padding: 5px;
   margin-bottom: 5px;
+  font-weight: bold;
 
   /*position: relative;
   top: 5px; bottom: 500px;*/
