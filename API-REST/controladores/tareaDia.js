@@ -69,7 +69,7 @@ const crearTareaInterno = (req, res, parametros) => {
         }
         return res.status(200).json({
             status: "success",
-            tarea: tareaGuardada,
+            //tarea: tareaGuardada,
             mensaje: "La tarea se ha guardado correctamente"
         });
 
@@ -80,6 +80,7 @@ const crearTareaInterno = (req, res, parametros) => {
 const crearTarea = (req, res) => {
     //Recoger parametros por post
     let parametros = req.body;
+    parametros["estado"] = "sinAsignar";        //Nos evitamos tener que ponerlo en la peticion
     
     if(parametros.tipo === "comanda"){
         getAulas((err, query) =>{
@@ -172,8 +173,8 @@ const asignarTarea = (req, res) => {
                     return res.status(200).json({
                         status: "success",
                         mensaje: "Todo se ha modificado bien",
-                        usuario: usuarioActualizado,
-                        tarea: tareaActualizada
+                        //usuario: usuarioActualizado,
+                        //tarea: tareaActualizada
                     });
                     //usuarioActualizado = usuarioActualizado;
                 });
