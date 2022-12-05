@@ -60,7 +60,6 @@ const crearTareaInterno = (req, res, parametros) => {
 
     //Guardar el objeto en la base de datos
     tarea.save((error, tareaGuardada) => {
-        console.log(tareaGuardada);
 
         if (error || !tareaGuardada) {
             return res.status(404).json({
@@ -134,8 +133,8 @@ const eliminarTarea = (req, res) => {
 
 const asignarTarea = (req, res) => {
     //recojo los datos
-    let idTarea = req.params.idTarea;
-    let idAlumno = req.params.idAlumno;
+    let idTarea = req.body.idTarea;
+    let idAlumno = req.body.idAlumno;
 
     //actualizar tarea
     Tarea.findByIdAndUpdate({ _id: idTarea },

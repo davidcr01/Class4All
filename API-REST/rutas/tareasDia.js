@@ -15,12 +15,12 @@ router.post("/crear-tareaMaterial", TareaController.crearTareaMaterial);
 router.delete("/eliminar-tareaDia/:id" , TareaController.eliminarTarea);
 
 // --------------------------- QUIZAS SEA NECESARIO ARREGLAR ---------------------------
-router.put("/asignar-tarea/:idTarea/:idAlumno" , TareaController.asignarTarea);
 router.put("/desasignar-tarea/:idTarea" , TareaController.desasignarTarea);
 router.put("/completar-tarea-alumno/:idTarea" , TareaController.setRealizada);
 router.put("/cancelar-tarea/:idTarea" , TareaController.setEstadoCancelada);
 
 // --------------------------- ARREGLADAS ---------------------------
+router.put("/asignar-tarea/" , TareaController.asignarTarea);
 router.get("/aulas-restantes-comanda/:idTarea", TareaController.getAulasRestantes);
 router.put("/completar-tarea-profesor/:idTarea" , TareaController.setEstadoCompletada);
 router.post("/completar-clase-comanda/", TareaController.completarClaseComanda);
