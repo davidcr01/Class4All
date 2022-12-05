@@ -151,6 +151,7 @@ export const EntregaMaterial = () => {
                         
                     </figure>
                     <figure id='fotoMaterialEntregar'>
+                        {}
                         <img src={"http://localhost:3900/api/materials/obtenerfoto/"+ materiales[currentMaterial].material} alt={"XD"} />
                         <p>{materiales[currentMaterial].nombre.toUpperCase()}</p>
                     </figure>
