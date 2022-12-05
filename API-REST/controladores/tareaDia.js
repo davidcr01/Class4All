@@ -3,6 +3,7 @@ const Usuario = require("../modelos/Usuario");
 const fs = require('fs');
 const path = require('path');
 const { default: mongoose, Mongoose } = require("mongoose");
+const {getAulas} = require("./usuario");
 
 const listaTareas = (req, res) => {
     let consulta = Tarea.find({}).exec((error, tareas) => {
@@ -53,19 +54,13 @@ const obtenerTareasUsuario = (req, res) => {
 };
 
 
-
-//Funcionalidad solo para pruebas 
-const crearTarea = (req, res) => {
-
-    //Recoger parametros por post
-    let parametros = req.body;
-
+const crearTareaInterno = (req, res, parametros) => {
     //Crear objeto 
     const tarea = new Tarea(parametros);
 
-
     //Guardar el objeto en la base de datos
     tarea.save((error, tareaGuardada) => {
+
         if (error || !tareaGuardada) {
             return res.status(404).json({
                 status: "error",
@@ -74,12 +69,41 @@ const crearTarea = (req, res) => {
         }
         return res.status(200).json({
             status: "success",
-            tarea: tareaGuardada,
+            //tarea: tareaGuardada,
             mensaje: "La tarea se ha guardado correctamente"
         });
 
     });
+}
 
+//Funcionalidad solo para pruebas 
+const crearTarea = (req, res) => {
+    //Recoger parametros por post
+    let parametros = req.body;
+    parametros["estado"] = "sinAsignar";        //Nos evitamos tener que ponerlo en la peticion
+    
+    if(parametros.tipo === "comanda"){
+        getAulas((err, query) =>{
+            if(err || !query){
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "Error inesperado"
+                });
+            } else {
+
+                parametros["aulasRestantes"] = query.map((profesor) => { return profesor.clase });
+                parametros["menus"] = [];
+
+                crearTareaInterno(req, res, parametros);
+            }
+
+        });
+    } else {
+        console.log(parametros["aulasRestantes"]);
+        crearTareaInterno(req, res, parametros);
+    }
+
+    //console.log(clase)
 };
 
 const eliminarTarea = (req, res) => {
@@ -110,8 +134,8 @@ const eliminarTarea = (req, res) => {
 
 const asignarTarea = (req, res) => {
     //recojo los datos
-    let idTarea = req.params.idTarea;
-    let idAlumno = req.params.idAlumno;
+    let idTarea = req.body.idTarea;
+    let idAlumno = req.body.idAlumno;
 
     //actualizar tarea
     Tarea.findByIdAndUpdate({ _id: idTarea },
@@ -149,8 +173,8 @@ const asignarTarea = (req, res) => {
                     return res.status(200).json({
                         status: "success",
                         mensaje: "Todo se ha modificado bien",
-                        usuario: usuarioActualizado,
-                        tarea: tareaActualizada
+                        //usuario: usuarioActualizado,
+                        //tarea: tareaActualizada
                     });
                     //usuarioActualizado = usuarioActualizado;
                 });

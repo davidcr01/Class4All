@@ -9,18 +9,18 @@ router.get("/lista-tareasDia-prof/:idProfesor", TareaController.getTareasEntrega
 router.get("/tareas-usuario/:idUsuario" , TareaController.obtenerTareasUsuario);
 router.get("/get-foto/:idTarea" , TareaController.obtenerFoto);
 
-router.post("/crear-tareaDia" , TareaController.crearTarea);
-router.post("/crear-tareaMaterial", TareaController.crearTareaMaterial);
 
 router.delete("/eliminar-tareaDia/:id" , TareaController.eliminarTarea);
 
 // --------------------------- QUIZAS SEA NECESARIO ARREGLAR ---------------------------
-router.put("/asignar-tarea/:idTarea/:idAlumno" , TareaController.asignarTarea);
 router.put("/desasignar-tarea/:idTarea" , TareaController.desasignarTarea);
 router.put("/completar-tarea-alumno/:idTarea" , TareaController.setRealizada);
 router.put("/cancelar-tarea/:idTarea" , TareaController.setEstadoCancelada);
 
 // --------------------------- ARREGLADAS ---------------------------
+router.post("/crear-tareaDia" , TareaController.crearTarea);
+router.post("/crear-tareaMaterial", TareaController.crearTareaMaterial);
+router.put("/asignar-tarea/" , TareaController.asignarTarea);
 router.get("/aulas-restantes-comanda/:idTarea", TareaController.getAulasRestantes);
 router.put("/completar-tarea-profesor/:idTarea" , TareaController.setEstadoCompletada);
 router.post("/completar-clase-comanda/", TareaController.completarClaseComanda);

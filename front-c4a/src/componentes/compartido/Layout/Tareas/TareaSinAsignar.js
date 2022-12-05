@@ -19,15 +19,16 @@ const TareaSinAsignar = (props) => {
         event.preventDefault();
 
         //get value from select
-        const idUsuario = document.getElementById("user").value;
-         const url = "http://localhost:3900/api/tareas/asignar-tarea/" + props.tarea._id + "/" + event.target.Usuario.value;
+        //const idUsuario = document.getElementById("user").value;
+         const url = "http://localhost:3900/api/tareas/asignar-tarea/";// + props.tarea._id + "/" + event.target.Usuario.value;
 
+         //alert(url);
         fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify()
+            body: JSON.stringify({idTarea: props.tarea._id, idAlumno: event.target.Usuario.value})
         })
             .then(res => res.json())
             .then(data => {

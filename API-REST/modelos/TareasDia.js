@@ -68,12 +68,16 @@ const TareaSchema = Schema({
 
 
     //Comandas
-    menus: [
-        {
-            menu: Schema.Types.ObjectId,
-            cantidad: Number,
-        }
-    ],
+    menus: {
+        type: [
+            {
+                menu: Schema.Types.ObjectId,
+                cantidad: Number,
+            }
+        ],
+        default: undefined,
+        required: false
+    },
 
     //Materiales
     entregamateriales: {
@@ -93,10 +97,10 @@ const TareaSchema = Schema({
     },
 
     aulasRestantes: {
-        type: Array
+        type: Array,
+        required: false,
+        default: undefined
     }
-
-
 });
 
 module.exports = model('Tarea', TareaSchema, 'tareas');

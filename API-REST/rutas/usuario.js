@@ -15,7 +15,7 @@ router.get("/cookie/:sessionID/:userID/:rol", UsuarioController.obtenerCookie);
 
 router.post("/classLogin/", UsuarioController.loginAlumno)
 
-router.get("/lista-aulas/", UsuarioController.getAulas);
+router.get("/lista-aulas/", UsuarioController.getAulasRuta);
 router.get("/get-alumnos-aula/:aula", UsuarioController.getAlumnos)
 router.get("/get-alumnos", UsuarioController.getTodosAlumnos)
 
