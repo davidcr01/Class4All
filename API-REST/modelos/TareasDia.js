@@ -68,12 +68,16 @@ const TareaSchema = Schema({
 
 
     //Comandas
-    menus: [
-        {
-            menu: Schema.Types.ObjectId,
-            cantidad: Number,
-        }
-    ],
+    menus: {
+        type: [
+            {
+                menu: Schema.Types.ObjectId,
+                cantidad: Number,
+            }
+        ],
+        default: undefined,
+        required: false
+    },
 
     //Materiales
     entregamateriales: {
@@ -94,7 +98,8 @@ const TareaSchema = Schema({
 
     aulasRestantes: {
         type: Array,
-        required: false
+        required: false,
+        default: undefined
     }
 });
 

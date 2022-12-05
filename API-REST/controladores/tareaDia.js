@@ -58,9 +58,10 @@ const crearTareaInterno = (req, res, parametros) => {
     //Crear objeto 
     const tarea = new Tarea(parametros);
 
-
     //Guardar el objeto en la base de datos
     tarea.save((error, tareaGuardada) => {
+        console.log(tareaGuardada);
+
         if (error || !tareaGuardada) {
             return res.status(404).json({
                 status: "error",
@@ -90,7 +91,7 @@ const crearTarea = (req, res) => {
                 });
             } else {
 
-                parametros["aulasRestantes"] = query.map((profesor) => { return { clase: profesor.clase } });
+                parametros["aulasRestantes"] = query.map((profesor) => { return profesor.clase });
                 parametros["menus"] = [];
 
                 crearTareaInterno(req, res, parametros);
