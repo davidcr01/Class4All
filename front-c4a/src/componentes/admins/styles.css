@@ -84,6 +84,7 @@
   }
   
   .botonuser{
+    cursor: pointer;
     background-color: rgb(196, 196, 255);
     border-width: 1px;
     border-color: black;
@@ -126,4 +127,8 @@
 .etiq {
   margin-right: 2%;
 
+}
+
+.hidden{
+  display: hidden;
 }

@@ -10,7 +10,7 @@ const crear = (req, res) => {
     //Recoger parametros por post
     let parametros = req.body;
     //Validar datos ?
-    console.log(parametros.nombre);
+    //console.log(parametros.nombre);
 
     //Crear objeto 
     const usuario = new Usuario(parametros);        //se asignan los parametros de manera automática si coinciden el nombre
@@ -92,6 +92,7 @@ const loginUsuario = (req, res) => {
 
         const usuarioData = {_id: usuario[0]._id, rol: usuario[0].rol}
 
+        console.log(cookies.getAll());
 
         return res.status(200).json({
             status: "success",
@@ -117,6 +118,8 @@ const loginAlumno = (req, res) => {
 
         const usuarioData = {_id: usuario._id, rol: usuario.rol}
 
+        console.log(cookies.getAll());
+
         return res.status(200).json({
             status: "success",
             usuario: usuarioData,
@@ -130,7 +133,7 @@ const logoutUsuario = (req, res) => {
     if(cookies.get("user"+req.body.id) !== undefined){
         cookies.remove("user"+req.body.id);
         
-      //  console.log(cookies.getAll());
+        console.log(cookies.getAll());
 
         return res.status(200).json({
             status: "success",
@@ -237,6 +240,25 @@ const obtenerFoto = (req, res) => {
     });    
 }
 
+const eliminarUsuario = (req, res) => {
+    let id = req.params.id;
+
+    Usuario.findByIdAndDelete(id, (err, query) => {
+        if(err || !query){
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No se ha eliminado el usuario"
+            })
+        }
+        else{
+            return res.status(200).json({
+                status: "success",
+                mensaje: "El usuario ha sido eliminado correctamente"
+            })
+        }
+    })
+}
+
 module.exports = {
     crear,
     listar,
@@ -249,5 +271,6 @@ module.exports = {
     loginAlumno,
     obtenerFoto,
     getTodosAlumnos,
-    getAulas
+    getAulas,
+    eliminarUsuario
 }
