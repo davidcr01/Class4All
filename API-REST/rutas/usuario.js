@@ -21,4 +21,6 @@ router.get("/get-alumnos", UsuarioController.getTodosAlumnos)
 
 router.get("/get-foto/:id", UsuarioController.obtenerFoto);
 
+router.delete("/delete-user/:id", UsuarioController.eliminarUsuario);
+
 module.exports = router;

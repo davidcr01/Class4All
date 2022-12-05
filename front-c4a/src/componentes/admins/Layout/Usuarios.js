@@ -6,8 +6,8 @@ import Usuario from './Usuario.js';
 // Vista: admins
 
 export const Usuarios = (props) => {
-    const [usuarios, SetUsuarios] =  useState([]);
-    const [usuariosLista, SetUsuariosLista] =  useState([]);
+    const [usuarios, setUsuarios] =  useState([]);
+    const [usuariosLista, setUsuariosLista] =  useState([]);
 
     const conseguirUsuarios = async() =>{
         try {
@@ -15,18 +15,12 @@ export const Usuarios = (props) => {
 
             const res = await fetch(url)
             const data = await res.json();
-            SetUsuarios(data.usuarios);
-            SetUsuariosLista(data.usuarios);
+            setUsuarios(data.usuarios);
+            setUsuariosLista(data.usuarios);
 
         } catch (error) {
             console.log(error);
         }
-
-
-
-
-        //usuarios = usuariosLista;
-
     }
 
     useEffect(() => {
@@ -45,7 +39,7 @@ export const Usuarios = (props) => {
 
 
 
-        SetUsuariosLista(users);
+        setUsuariosLista(users);
         console.log(users);
 
     }, [props.filtroalumnos, props.filtroadmins, props.filtroprofesores]);
