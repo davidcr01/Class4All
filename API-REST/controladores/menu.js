@@ -5,20 +5,12 @@ const multer = require('multer');
 const { Router } = require("express");
 const router = require("../rutas/menu");
 
-const DIR = '../public/fotos/';
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, DIR);
-    },
-    filename: (req, file, cb) => {
-        const fileName = file.originalname.toLowerCase().split(' ').join('-');
-        cb(null, uuidv4() + '-' + fileName)
-    }
-});
+
+
 
 const listar = (req, res) => {
 
-    let listaMenus = Menu.find({}).exec((error, menus) => {
+    Menu.find({}).exec((error, menus) => {
         if (error || !menus) {
             return res.status(404).json({
                 status: "error",
@@ -36,16 +28,6 @@ const crear = (req, res) => {
     const body = req.body;
     const menu = new Menu(body);
 
-    const upload = multer({
-        storage: storage,
-        limits: { fileSize: 1000000 },
-    }).single('foto');
-
-
-
-    upload(req, res, (err) => {
-        console.log("Request ---", req.body);
-
         menu.save((error, menuGuardado) => {
             if (error || !menuGuardado) {
                 return res.status(404).json({
@@ -60,7 +42,6 @@ const crear = (req, res) => {
 
             });
         });
-    });
 };
 
 
@@ -102,6 +83,10 @@ const getFoto = (req, res) => {
     });
 };
 
+const subirFoto = (req, res) => {
+   console.log(req.file);
+};
+
 
 
 module.exports = {
@@ -109,5 +94,5 @@ module.exports = {
     , crear
     , eliminar
     , getFoto
-
+    , subirFoto
 }
