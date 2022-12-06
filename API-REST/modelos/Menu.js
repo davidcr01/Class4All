@@ -8,6 +8,9 @@ const MenuSchema = Schema({
     },
     foto: {
         type: String,
+    },
+    alt: {
+        type: String,
     }
 
 });

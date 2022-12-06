@@ -8,6 +8,5 @@ router.post("/crear-menu/" , MenuController.crear);
 router.delete("/eliminar-menu/:id" , MenuController.eliminar);
 router.get("/obtenerfoto/:id" , MenuController.getFoto);
 
-
 module.exports = router;
 
