@@ -80,3 +80,13 @@ export const MuiBreadcrumbsPM = (props) => {
         </Breadcrumbs>
     </Box>
 }
+
+export const MuiBreadcrumbsFichaAlumno = () => {
+    return <Box m={2} className="breadcrumbs">
+        <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
+            <Link underline="hover" color="inherit" href="/">Gestion del centro </Link>
+            <Link underline="hover" color="inherit" href="/gestion-usuario">Gestion de usuarios </Link>
+            <Typography color="text.primary">Ficha Alumno</Typography>
+        </Breadcrumbs>
+    </Box>    
+}

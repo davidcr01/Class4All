@@ -597,3 +597,56 @@ header{
   font-weight: bold;
   margin-right: 5px;
 }
+
+.foto-perfil{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  box-shadow: 0px 6px 17px 2px rgba(0,0,0,0.64);
+  border-radius: 0.5rem;
+  border: solid 2px black;
+}
+
+.div-foto-perfil{
+  height: max-content;
+}
+
+#div-info-alumno{
+  /*border: solid 2px black;*/
+  padding: 3%;
+  display: grid;
+  grid-template-columns: 70% 20%;
+  border: solid 2px black;
+  justify-content: space-between;
+}
+
+#info-alumno-texto > div{
+  word-break: break-all;
+  border: solid 2px black;
+  text-align: left;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0px 6px 17px 2px rgba(0, 0, 0, 0.167);
+  padding-left: 1%;
+  background-color: rgb(255, 251, 238);
+}
+
+#info-alumno-texto{
+  border: solid 2px black;
+  display: grid;
+  gap: 10px;
+  padding: 2%;
+  border-radius: 0.5rem;
+  background-color: #90b4ce;  
+  box-shadow: 0px 6px 17px 2px rgba(0, 0, 0, 0.5);
+}
+
+.strong{
+  font-weight: bold;
+}
+
+.flex{
+  display: flex;
+  gap: 1%;
+  align-items: center;
+}
