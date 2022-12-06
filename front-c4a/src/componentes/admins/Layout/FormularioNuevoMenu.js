@@ -53,6 +53,26 @@ const FormularioNuevoMenu = ()=> {
         then(response => response.text()).
         then(result => console.log(result)).
         catch(error => console.log('error', error));
+
+
+
+        const formData = new FormData();
+        formData.append("img", datos.imagen.files[0]);
+
+        var requestOptions = {
+            method: 'POST',
+            body: formData,
+            redirect: 'follow',
+
+        };
+
+        fetch('http://localhost:3900/api/menus/subir-foto', requestOptions).
+        then(response => response.text()).
+        then(result => console.log(result)).
+        catch(error => console.log('error', error));
+
+        
+
     }
 
 
