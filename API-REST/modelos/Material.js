@@ -8,6 +8,9 @@ const MaterialSchema = Schema({
     },
     foto: {
         type: String,
+    },
+    alt: {
+        type: String,
     }
 
 });
