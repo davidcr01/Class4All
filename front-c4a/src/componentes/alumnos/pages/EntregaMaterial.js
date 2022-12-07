@@ -21,6 +21,7 @@ export const EntregaMaterial = () => {
     const [Profe , setProfe] = useState({});
     const [cogerNombres , setcogerNombres] = useState(0);
     const [isSet, setIsSet] = useState(false);
+    const [aula, setAula] = useState(null);
 
     const materialesIncrement = 1;
     let nav = useNavigate();
@@ -31,6 +32,8 @@ export const EntregaMaterial = () => {
             let res = await fetch(url);
             let data = await res.json();
             setMateriales(data.tarea.entregamateriales.materiales);
+            setAula(data.tarea.entregamateriales.aula);
+
             await rellenaProfe(data.tarea.entregamateriales.idProfesor);
             
             setcogerNombres(1);
@@ -54,6 +57,7 @@ export const EntregaMaterial = () => {
             console.log("Error al rellenar profe");
         }
     };
+    
 
     const rellenaNombreMats = async () => {
         let url = 'http://localhost:3900/api/materials/lista-material';
@@ -124,6 +128,11 @@ export const EntregaMaterial = () => {
         }
     }, [cogerNombres]);
 
+
+    useEffect(() => {
+        console.log(aula);
+    }, [aula]);
+
     if(cargando){
         return(
             <CargandoProgress/>
@@ -141,7 +150,7 @@ export const EntregaMaterial = () => {
                     </figure>
                     <figure id='fotoProfeEntregaMaterial'>
                         <img src={"http://localhost:3900/api/usuarios/get-foto/"+ Profe._id} alt={"Clase de " + Profe.nombre} />
-                        <p>{"Clase de " + Profe.nombre}</p>
+                        <p>{"Aula " + aula}</p>
                     </figure>
                  </section>
 
