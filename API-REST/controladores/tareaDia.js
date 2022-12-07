@@ -655,6 +655,23 @@ const setEstadoCancelada = (req, res) => {
         );    
 }
 
+const obtenerTareasUsuarioAsignadas = (req, res) => {
+    let idUsuario = req.params.idUsuario;
+    //encontrar todas las tareas para usuarioAsignado
+    let consulta = Tarea.find({ usuarioAsignado: idUsuario,estado: 'asignada', realizada: false }).exec((error, tareas) => {
+        if (error || !tareas) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No hay tareas"
+            });
+        }
+        return res.status(200).send({
+            status: "success",
+            tareas: tareas
+        });
+    });
+}
+
 module.exports = {
     listaTareas,
     crearTarea,
@@ -671,5 +688,6 @@ module.exports = {
     getTareasEntregaMaterial,
     completarClaseComanda,
     getAulasRestantes,
-    setEstadoCancelada
+    setEstadoCancelada,
+    obtenerTareasUsuarioAsignadas
 }
