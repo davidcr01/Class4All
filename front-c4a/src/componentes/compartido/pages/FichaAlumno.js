@@ -35,8 +35,9 @@ export const FichaAlumno = () => {
         <>
             <Header titulo="Ficha Alumno"/>
             <MuiBreadcrumbsFichaAlumno />
-                <div className='PantallaGestionUsuarios'>
-                    <BuscarFiltros childToParent={() => {}}/>
+                {/* <div className='PantallaGestionUsuarios'> */}
+                <div>
+                    {/* <BuscarFiltros childToParent={() => {}}/> */}
                     <ContenidoFichaAlumno alumno={location.state.alumno}/>
                 </div>
             <Footer />        
