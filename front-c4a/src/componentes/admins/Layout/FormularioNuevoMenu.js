@@ -39,7 +39,7 @@ const FormularioNuevoMenu = ()=> {
 
         var urlencoded = new URLSearchParams();
         urlencoded.append("nombre", menu.nombre);
-        urlencoded.append("imagen", menu.imagen);
+        urlencoded.append("foto", menu.imagen);
         urlencoded.append("alt", menu.alt);
 
         var requestOptions = {

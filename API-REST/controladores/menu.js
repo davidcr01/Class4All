@@ -28,6 +28,7 @@ const crear = (req, res) => {
     const body = req.body;
     const menu = new Menu(body);
 
+
         menu.save((error, menuGuardado) => {
             if (error || !menuGuardado) {
                 return res.status(404).json({
@@ -35,6 +36,9 @@ const crear = (req, res) => {
                     mensaje: "No se ha podido crear el menú"
                 });
             }
+            console.log("MG:\n");
+            console.log(menuGuardado);
+
             return res.status(200).json({
                 status: "success",
                 menu: menuGuardado,
@@ -47,6 +51,27 @@ const crear = (req, res) => {
 
 const eliminar = (req, res) => {
     let id = req.params.id;
+
+    Menu.findById(id, (error, menu) => {
+        if(error || !menu){
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No se ha podido encontrar el menú"
+            });
+        }
+        console.log("M:");
+        console.log(menu);
+        let foto = menu.foto;
+        let urlFisica = "./public/fotos/" + foto;
+        fs.unlink(urlFisica, (err) => {
+            if (error) {
+                throw err;
+                console.log("public/" + menu.foto + " no se ha podido eliminar");
+            }
+        })
+    });
+
+
     let menu = Menu.findByIdAndDelete(id, (error, menuEliminado) => {
         if (error || !menuEliminado) {
             return res.status(404).json({
@@ -59,6 +84,9 @@ const eliminar = (req, res) => {
             menu: menuEliminado
         });
     });
+
+
+
 };
 
 const getFoto = (req, res) => {
