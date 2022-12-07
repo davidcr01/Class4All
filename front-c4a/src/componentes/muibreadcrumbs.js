@@ -34,7 +34,7 @@ export const MuiBreadcrumbsCUS = () => {
     return <Box m={2} className="breadcrumbs">
         <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
             <Link underline="hover" color="inherit" href="/">Gestión del centro </Link>
-            <Link underline="hover" color="inherit" href="/gestion-usuario">Gestión de Usuario </Link>
+            <Link underline="hover" color="inherit" href="/gestion-usuarios">Gestión de Usuario </Link>
 
             <Typography color="text.primary">Crear Usuario</Typography>
         </Breadcrumbs>
