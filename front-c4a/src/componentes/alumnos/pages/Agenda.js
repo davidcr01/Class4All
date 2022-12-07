@@ -37,7 +37,7 @@ export const Agenda = () => {
 
     const rellenarAgenda = async () => {
         const cookies = new Cookies();
-        let url = 'http://localhost:3900/api/tareas/tareas-usuario/' + cookies.get('loginCookie').id/* +cookie */;
+        let url = 'http://localhost:3900/api/tareas/tareas-usuario-asignadas/' + cookies.get('loginCookie').id/* +cookie */;
         try {
             let res = await fetch(url);
             let data = await res.json();
