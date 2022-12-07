@@ -16,6 +16,7 @@ export const PedirMaterial = ({setCambio}) => {
 
     const [allMateriales, SetAllMateriales] =  useState([]);
     const [allUsuarios, SetAllUsuarios] = useState([]);
+    const [allAulas, setAllAulas] = useState([]);
 
     const [datosForm, setdatosForm] = useState([]);
 
@@ -25,6 +26,7 @@ export const PedirMaterial = ({setCambio}) => {
         });
         getAllMateriales();
         getAllUsuarios();
+        getAllAulas();
         setCargando(false);
     }, []);
 
@@ -39,6 +41,20 @@ export const PedirMaterial = ({setCambio}) => {
             console.log(error);
         }
     }
+
+    const getAllAulas = async() =>{
+        try {
+            const url = "http://localhost:3900/api/usuarios/lista-aulas";
+
+            const res = await fetch(url);
+            const data = await res.json();
+            setAllAulas(data.aulas);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
 
     const getAllUsuarios = async() =>{
         try {
@@ -161,7 +177,16 @@ export const PedirMaterial = ({setCambio}) => {
                             </p>
                             <button className = "boton-cancelar" onClick={() => cancelar(index)}>Cancelar</button>
                         </article>
-                    )})}                                    
+                    )})} 
+                    <p> 
+                        <label className='etiq' htmlFor="user">Aula</label> 
+                        <select className="cajaMaterial" id="aula" name="Aula">
+                            {allAulas.map(u => { return (
+                                <option key={u} value={u}>{u}</option>
+                            )})}
+                        </select>
+                    </p>
+
                 <article>
                     <button className = "boton-anadir" type="button" onClick={(fAñadir)}>Añadir</button>
                 </article>  
