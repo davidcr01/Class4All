@@ -103,7 +103,10 @@ export const EntregaMaterial = () => {
             console.log(error);
             console.log("Error al completar tarea");
         }
-        nav("/Agenda");
+        setTimeout(() => {
+            nav("/Agenda");
+          }, 100);
+        
     };
 
     useEffect(() => {

@@ -658,7 +658,7 @@ const setEstadoCancelada = (req, res) => {
 const obtenerTareasUsuarioAsignadas = (req, res) => {
     let idUsuario = req.params.idUsuario;
     //encontrar todas las tareas para usuarioAsignado
-    let consulta = Tarea.find({ usuarioAsignado: idUsuario,estado: 'asignada' }).exec((error, tareas) => {
+    let consulta = Tarea.find({ usuarioAsignado: idUsuario,estado: 'asignada', realizada: false }).exec((error, tareas) => {
         if (error || !tareas) {
             return res.status(404).json({
                 status: "error",
