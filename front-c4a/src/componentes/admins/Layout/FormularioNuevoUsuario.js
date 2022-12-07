@@ -13,37 +13,6 @@ const FormularioNuevoUsuario = ()=> {
         setValue(event.target.value);
     }
 
-    function eliminarEmail(){
-        document.getElementById("email").style.display = "none";
-        
-        var id = "email";
-        let labelBuscada;
-        let labels = document.getElementsByTagName("label");
-        for (let i = 0; i < labels.length; i++) {
-            if (labels[i].htmlFor === id) {
-                labelBuscada = labels[i];
-                break;
-            }   
-        }
-        labelBuscada.style.display = "none";
-
-    }
-    const mostrarEmail = () => {
-        document.getElementById("email").style.display = "inline";
-        var id = "email";
-        let labelBuscada;
-        let labels = document.getElementsByTagName("label");
-        for (let i = 0; i < labels.length; i++) {
-            if (labels[i].htmlFor === id) {
-                labelBuscada = labels[i];
-                break;
-            }   
-        }
-        labelBuscada.style.display = "inline";
-    };
-
-    
-
     const enviar = (event) => {
         event.preventDefault();
 
@@ -64,7 +33,7 @@ const FormularioNuevoUsuario = ()=> {
             usuario.email = datos.email.value;
         }
         else if(usuario.rol == 3){
-            //usuario["preferencias"] =  datos.preferencias.value;
+            usuario["preferencias"] =  datos.preferencias.value;
             usuario["clase"]= datos.clase.value;
             usuario.rol = 'Alumno';
             
@@ -74,7 +43,6 @@ const FormularioNuevoUsuario = ()=> {
         urlencoded.append("nombre", usuario.nombre);
         urlencoded.append("apellido1", usuario.apellido1);
         urlencoded.append("apellido2", usuario.apellido2);
-        // urlencoded.append("email", usuario.email);
         // urlencoded.append("password", usuario.password);
         urlencoded.append("foto", "./img/usuario.png");
         urlencoded.append("rol", usuario.rol);
@@ -84,7 +52,7 @@ const FormularioNuevoUsuario = ()=> {
             urlencoded.append("correo", usuario.email);
         }
         if(usuario.rol == 'Alumno'){
-            //urlencoded.append("preferencias", usuario.preferencias);
+            urlencoded.append("preferencias", usuario.preferencias);
             urlencoded.append("clase", usuario.clase);
         }
         if(usuario.rol == 'Administrador'){
@@ -97,8 +65,6 @@ const FormularioNuevoUsuario = ()=> {
             body: urlencoded,
             redirect: 'follow'
         };
-
-        console.log(urlencoded)
         fetch('http://localhost:3900/api/usuarios/crear-usuario', requestOptions).
         then(nav("/gestion-usuarios")).
         catch(error => console.log('error', error));
