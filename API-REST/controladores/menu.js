@@ -77,7 +77,7 @@ const getFoto = (req, res) => {
                 return res.sendFile(path.resolve(urlFisica));
             } else {
 
-                return res.sendFile(path.resolve("./public/fotos/menudefault.jpg"));
+                return res.sendFile(path.resolve("./public/fotos/menudefault.png"));
             }
         })
     });
