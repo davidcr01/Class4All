@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import '../styles.css';
+import { useNavigate } from 'react-router-dom';
 
 // Vista: admins
 
 const FormularioNuevoUsuario = ()=> {
 
     const [value, setValue] = useState(0);
-
+    let nav = useNavigate();
 
     const cambiar = (event) => {
         setValue(event.target.value);
@@ -84,8 +85,7 @@ const FormularioNuevoUsuario = ()=> {
 
         console.log(urlencoded)
         fetch('http://localhost:3900/api/usuarios/crear-usuario', requestOptions).
-        then(response => response.text()).
-        then(result => console.log(result)).
+        then(nav("/gestion-usuarios")).
         catch(error => console.log('error', error));
 
 
