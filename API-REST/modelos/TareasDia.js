@@ -88,7 +88,7 @@ const TareaSchema = Schema({
             }
         ],
         idProfesor: Schema.Types.ObjectId,
-        clase: String
+        aula: String
 
     },
 
