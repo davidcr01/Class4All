@@ -94,7 +94,7 @@ const FormularioNuevoMenu = ()=> {
                 {/* <p><label className="etiq" htmlFor="imagen">Imagen</label>
                 <input type="text" id="imagen"/>
                 </p> */}
-                <p><label className="etiq" htmlFor="imagen"></label>
+                <p><label className="etiq" htmlFor="imagen">Imagen del menú</label>
                 <input type="file" accept="image/*" id="imagen" onChange={onImageChange}/>
                 </p>
                 <img src={imageURLs[0]}/>

@@ -1,6 +1,19 @@
 const express = require('express');
+
+const multer = require('multer');
+
 const router = express.Router();
 
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'public/fotos');
+    },
+    filename: function (req, file, cb) {
+        console.log(file);
+        cb(null , file.originalname );
+    }
+});
+const upload = multer({ storage: storage })
 const UsuarioController = require('../controladores/usuario.js');
 
 
@@ -24,5 +37,7 @@ router.get("/get-foto/:id", UsuarioController.obtenerFoto);
 router.delete("/delete-user/:id", UsuarioController.eliminarUsuario);
 
 router.post("/modificar-tamaños/:id" , UsuarioController.modificarTamaño);
+
+router.post("/subir-foto/", upload.single('img'), UsuarioController.subirFoto);
 
 module.exports = router;

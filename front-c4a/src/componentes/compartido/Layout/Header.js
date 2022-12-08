@@ -6,6 +6,15 @@ import BotonParaAtras  from './BotonParaAtras'
 const Header = (props) => {
 
     if (props.alumnos === "si") {
+        if(!props.botonAtras)
+        return (
+            <header>
+                {/* <BotonParaAtras url={props.url_anterior}></BotonParaAtras> */}
+                <h1 className="titulo color-alumno">{props.titulo}</h1>
+                <CerrarSesionBoton/>
+            </header>
+        );
+
         return (
             <header>
                 <BotonParaAtras url={props.url_anterior}></BotonParaAtras>
