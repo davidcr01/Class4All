@@ -243,6 +243,26 @@ const obtenerFoto = (req, res) => {
 const eliminarUsuario = (req, res) => {
     let id = req.params.id;
 
+    //Encuentro el usuario y borro su foto
+    Usuario.findById(id, (error, usuario) => {
+        if(error || !usuario){
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No se ha podido encontrar el usuario"
+            });
+        }
+        
+        let foto = usuario.foto;
+        let urlFisica = "./public/fotos/" + foto;
+        fs.unlink(urlFisica, (err) => {
+            if (error) {
+                console.log("public/" + usuario.foto + " no se ha podido eliminar");
+                throw err;
+            }
+        })
+    });
+
+    //Borro el usuario  
     Usuario.findByIdAndDelete(id, (err, query) => {
         if(err || !query){
             return res.status(404).json({
@@ -259,6 +279,11 @@ const eliminarUsuario = (req, res) => {
     })
 }
 
+const subirFoto = (req, res) => {
+    console.log(req.file);
+ };
+ 
+
 module.exports = {
     crear,
     listar,
@@ -272,5 +297,6 @@ module.exports = {
     obtenerFoto,
     getTodosAlumnos,
     getAulas,
-    eliminarUsuario
+    eliminarUsuario,
+    subirFoto
 }

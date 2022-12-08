@@ -59,8 +59,7 @@ const eliminar = (req, res) => {
                 mensaje: "No se ha podido encontrar el menú"
             });
         }
-        console.log("M:");
-        console.log(menu);
+        
         let foto = menu.foto;
         let urlFisica = "./public/fotos/" + foto;
         fs.unlink(urlFisica, (err) => {
