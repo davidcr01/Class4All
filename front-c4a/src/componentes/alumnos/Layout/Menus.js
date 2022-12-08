@@ -18,12 +18,11 @@ const Menus = ({menus,/*cantidades,setCantidades,*/currentIndex, currentAula, al
                         <img className="foto" src={"http://localhost:3900/api/menus/obtenerfoto/"+menus[i]._id}/>
                         {menus[i].nombre}
                     </section>
-                    <Cantidades  /*cantidades={cantidades} setCantidades={setCantidades}*/ currentAula={currentAula} allMenus={allMenus} setAllMenus={setAllMenus} index={currentIndex + i}/>
+                    <Cantidades currentAula={currentAula} allMenus={allMenus} setAllMenus={setAllMenus} index={currentIndex + i}/>
                 </>
                 
             )
         }
-        //alert("menus: "+JSON.stringify(allMenus));
 
         return  (
             <div className='cuerpo'>
@@ -33,15 +32,6 @@ const Menus = ({menus,/*cantidades,setCantidades,*/currentIndex, currentAula, al
             </div>
         )
     }
-/*
-    else{
-        return (
-            <div>
-                <h1>NO HAY menus EN ESTA CLASE</h1>
-            </div>
-        )
-    }
-    */
 }
 
 export default Menus;

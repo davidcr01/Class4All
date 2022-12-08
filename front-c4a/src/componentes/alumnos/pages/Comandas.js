@@ -118,7 +118,6 @@ export const Comandas = ({ aula }) => {
         );
       }
       else {
-        //alert("cambio pag: "+JSON.stringify(menusTodasClases));
         return (
           <>
             <Header titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant} />

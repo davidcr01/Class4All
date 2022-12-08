@@ -7,7 +7,8 @@ import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 import { useLocation, useParams } from "react-router-dom"
-import { getAulasRestantes } from '../../../interfaces/aulasRestantes';
+import { getAulasRestantes, sendMenu } from '../../../interfaces/aulasRestantes';
+import Button from '@mui/material/Button';
 
 // Vista: compartida
 
@@ -20,12 +21,13 @@ export const ComandasClases = () => {
   const [isSet, setIsSet] = useState(false);
   const [aulas, setAulas] = useState([]);
   const [index, setIndex] = useState(0);
+  const [menusInfo, setMenusInfo] = useState([]);
 
-  let valorCantidadMenuAula = undefined;
-  let valorAulasCompletadas = undefined;
+  let valorCantidadMenuAula = [];   //si se ponen a undefined no van, npi la verdad
+  let valorAulasCompletadas = [];   //si se ponen a undefined no van, npi la verdad
 
   if(location.state !== null){
-    alert("fumop")
+    //alert("fumop")
     valorCantidadMenuAula = location.state.menus;
     valorAulasCompletadas = location.state.aulasCompletadas
   }
@@ -57,24 +59,19 @@ export const ComandasClases = () => {
         }
         setAulas(res);
 
-        if(location.state === null){
-          getMenus().then((menus) => {
-            //if(location.state === null){
-              alert("pero si entro aqui")
+        getMenus().then((menus) => {
+          if(location.state === null){
               setCantidadMenuAula(Array(res.length).fill().map(() => Array(menus.menus.length).fill(0)));
               setAulasCompletadas(Array(res.length).fill(false));
-              //}
+            }
+            setMenusInfo(menus.menus);
             });
 
-            setCargando(false);
-        }
+          setCargando(false);
       });
     });
   }, []);
 
-  useEffect(()=>{
-    alert("aulario: "+aulasCompletadas)
-  }, [aulasCompletadas])
 
   if (cargando)
     return (
@@ -84,14 +81,55 @@ export const ComandasClases = () => {
   else if(cookies.get("loginCookie") !== undefined && isSet){
     const increment = 4;
     const aulasVisibles = aulas.slice(index, index + increment);
-    const aulasLength = (aulas === undefined) ? 0 : aulas.length;
+    let aulasLength = (aulas === undefined) ? 0 : aulas.length;
+
+    if(aulasLength % increment === 0){
+      aulasLength++;
+    }
+    else if(aulasLength < increment === 0){
+      aulasLength = increment + 1;
+    }
+    else{
+      let i = 0;
+  
+      while(aulasLength > i*increment){
+        i++;
+      }
+
+      aulasLength = i*increment + 1;
+    }
 
     if (aulasLength > 0){
+      const sendComanda = () => {
+        let totalComandas = Array(aulasCompletadas.length).fill(0);
+
+        for(let i = 0 ; i < cantidadMenuAula[0].length; i++){
+          let aux=0;
+          for(let j = 0 ; j < cantidadMenuAula.length ; j++){
+            aux+=cantidadMenuAula[j][i];
+          }
+          totalComandas[i] = {menu: menusInfo[i]._id, cantidad: aux};
+        }
+
+        sendMenu(id, totalComandas);
+      }
       return (
         <>
           <Header titulo="Comandas" alumnos="si" url_anterior="/Agenda"/>
           <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulasLength} increment={increment} />
-          <ClasesComandas aulas={aulasVisibles} id={id} menus={cantidadMenuAula} setMenus={setCantidadMenuAula} aulasCompletadas={aulasCompletadas} setAulasCompletadas={setAulasCompletadas}/>
+
+          {(index !== aulasLength - 1 &&
+          <ClasesComandas baseIndex={index} aulas={aulasVisibles} id={id} menus={cantidadMenuAula} setMenus={setCantidadMenuAula} aulasCompletadas={aulasCompletadas} setAulasCompletadas={setAulasCompletadas} isSend={false}/>
+            )}
+
+
+          {(index === aulasLength - 1 &&
+          <ClasesComandas baseIndex={index} aulas={aulasVisibles} id={id} menus={cantidadMenuAula} setMenus={setCantidadMenuAula} aulasCompletadas={aulasCompletadas} setAulasCompletadas={setAulasCompletadas} isSend={true}/> &&
+          <section className='contenedorBoton'>
+              <Button variant="outlined" sx={{ fontSize: 35, borderRadius: 5 }} className='botonEnviarMenus' onClick={sendComanda}>Enviar</Button>
+            </section>          
+          )
+          }
         </>
       );
     }
