@@ -72,8 +72,26 @@ export const Comandas = ({ aula }) => {
   else if (cookies.get("loginCookie") !== undefined && isSet) {
     const increment = 2;
     const menusVisibles = menus.slice(index, index + increment);
-    const menusLength = (menus === undefined) ? 0 : menus.length + 1;
+    let menusLength = (menus === undefined) ? 0 : menus.length ;
 
+    //menusLength = (menusLength % increment === 0) ? menusLength+1 : menusLength + (menusLength % increment) + 1;
+
+    if(menusLength % increment === 0){
+      menusLength++;
+    }
+    else if(menusLength < increment === 0){
+      menusLength = increment + 1;
+    }
+    else{
+      let i = 0;
+  
+      while(menusLength > i*increment){
+        //console.log(menusLength + ">" + i*increment);
+        i++;
+      }
+
+      menusLength = i*increment + 1;
+    }
 
     if (menusLength > 0) {
       const location = useLocation();
@@ -85,6 +103,7 @@ export const Comandas = ({ aula }) => {
         }
 
         const sendListado = () => {
+          /*
           sendMenu(id, menuEnvio).then((data) => {
             if (data) {
               setAulaCompletada(id, location.state.aula).then((res) => {
@@ -100,6 +119,8 @@ export const Comandas = ({ aula }) => {
               alert("No ha sido posible enviar la comanda");
             }
           })
+          */
+         nav(url_ant);
         }
 
         return (
