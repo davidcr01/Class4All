@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 
 export const ComandasClases = () => {
 
-  const location =useLocation();
+  const location = useLocation();
   const { id } = useParams();
   const cookies = new Cookies();
   const [cargando, setCargando] = useState(true);
@@ -26,13 +26,13 @@ export const ComandasClases = () => {
   let valorCantidadMenuAula = [];   //si se ponen a undefined no van, npi la verdad
   let valorAulasCompletadas = [];   //si se ponen a undefined no van, npi la verdad
 
-  if(location.state !== null){
+  if (location.state !== null) {
     //alert("fumop")
     valorCantidadMenuAula = location.state.menus;
     valorAulasCompletadas = location.state.aulasCompletadas
   }
 
-  const [cantidadMenuAula, setCantidadMenuAula] = useState (valorCantidadMenuAula); //Filas: clase Columnas: Menu
+  const [cantidadMenuAula, setCantidadMenuAula] = useState(valorCantidadMenuAula); //Filas: clase Columnas: Menu
   const [aulasCompletadas, setAulasCompletadas] = useState(valorAulasCompletadas);  //true: enviada, pero se puede seguir cambiando / false: no enviado
 
   useEffect(() => {
@@ -48,26 +48,26 @@ export const ComandasClases = () => {
             console.log(url);
             const res = await fetch(url)
             const data = await res.json();
-  
+
             return data;
-  
+
           } catch (error) {
             console.log(error);
-  
+
             return undefined;
           }
         }
         setAulas(res);
 
         getMenus().then((menus) => {
-          if(location.state === null){
-              setCantidadMenuAula(Array(res.length).fill().map(() => Array(menus.menus.length).fill(0)));
-              setAulasCompletadas(Array(res.length).fill(false));
-            }
-            setMenusInfo(menus.menus);
-            });
+          if (location.state === null) {
+            setCantidadMenuAula(Array(res.length).fill().map(() => Array(menus.menus.length).fill(0)));
+            setAulasCompletadas(Array(res.length).fill(false));
+          }
+          setMenusInfo(menus.menus);
+        });
 
-          setCargando(false);
+        setCargando(false);
       });
     });
   }, []);
@@ -78,12 +78,12 @@ export const ComandasClases = () => {
       <CargandoProgress />
     )
 
-  else if(cookies.get("loginCookie") !== undefined && isSet){
+  else if (cookies.get("loginCookie") !== undefined && isSet) {
     const todasLasComandasRealizadas = () => {
       let realizadas = true;
 
-      for(let i=0; i<aulasCompletadas.length && realizadas; i++){
-        if(!aulasCompletadas[i])
+      for (let i = 0; i < aulasCompletadas.length && realizadas; i++) {
+        if (!aulasCompletadas[i])
           realizadas = false;
       }
 
@@ -94,34 +94,34 @@ export const ComandasClases = () => {
     const aulasVisibles = aulas.slice(index, index + increment);
     let aulasLength = (aulas === undefined) ? 0 : aulas.length;
 
-    if(todasLasComandasRealizadas()){
-    if(aulasLength % increment === 0){
-      aulasLength++;
-    }
-    else if(aulasLength < increment === 0){
-      aulasLength = increment + 1;
-    }
-    else{
-      let i = 0;
-  
-      while(aulasLength > i*increment){
-        i++;
+    if (todasLasComandasRealizadas()) {
+      if (aulasLength % increment === 0) {
+        aulasLength++;
       }
+      else if (aulasLength < increment === 0) {
+        aulasLength = increment + 1;
+      }
+      else {
+        let i = 0;
 
-      aulasLength = i*increment + 1;
+        while (aulasLength > i * increment) {
+          i++;
+        }
+
+        aulasLength = i * increment + 1;
+      }
     }
-  }
 
-    if (aulasLength > 0){
+    if (aulasLength > 0) {
       const sendComanda = () => {
         let totalComandas = Array(aulasCompletadas.length).fill(0);
 
-        for(let i = 0 ; i < cantidadMenuAula[0].length; i++){
-          let aux=0;
-          for(let j = 0 ; j < cantidadMenuAula.length ; j++){
-            aux+=cantidadMenuAula[j][i];
+        for (let i = 0; i < cantidadMenuAula[0].length; i++) {
+          let aux = 0;
+          for (let j = 0; j < cantidadMenuAula.length; j++) {
+            aux += cantidadMenuAula[j][i];
           }
-          totalComandas[i] = {menu: menusInfo[i]._id, cantidad: aux};
+          totalComandas[i] = { menu: menusInfo[i]._id, cantidad: aux };
         }
 
         sendMenu(id, totalComandas);
@@ -129,18 +129,18 @@ export const ComandasClases = () => {
 
       return (
         <>
-          <Header titulo="Comandas" alumnos="si" url_anterior="/Agenda"/>
+          <Header titulo="Comandas" alumnos="si" url_anterior="/Agenda" />
           <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulasLength} increment={increment} />
 
-          {(index !== aulasLength -1 &&
-          <ClasesComandas baseIndex={index} aulas={aulasVisibles} id={id} menus={cantidadMenuAula} setMenus={setCantidadMenuAula} aulasCompletadas={aulasCompletadas} setAulasCompletadas={setAulasCompletadas} isSend={todasLasComandasRealizadas()? true: false}/>
-    )}
+          {(index !== aulasLength - 1 &&
+            <ClasesComandas baseIndex={index} aulas={aulasVisibles} id={id} menus={cantidadMenuAula} setMenus={setCantidadMenuAula} aulasCompletadas={aulasCompletadas} setAulasCompletadas={setAulasCompletadas} isSend={todasLasComandasRealizadas() ? true : false} />
+          )}
 
 
           {(index === aulasLength - 1 && todasLasComandasRealizadas() &&
-          <section className='contenedorBoton'>
+            <section className='contenedorBoton'>
               <Button variant="outlined" sx={{ fontSize: 35, borderRadius: 5 }} className='botonEnviarMenus' onClick={sendComanda}>Enviar</Button>
-            </section>          
+            </section>
           )
           }
         </>
@@ -150,15 +150,15 @@ export const ComandasClases = () => {
     else
       return (
         <>
-          <Header titulo="Comandas" alumnos="si" url_anterior="/Agenda"/>
+          <Header titulo="Comandas" alumnos="si" url_anterior="/Agenda" />
           <h1>Tarea completada. Enhorabuena</h1>
         </>
       )
   }
-  else{
+  else {
     return (
       <>
-      <h1>NO TIENES PERMISO PARA ACCEDER A ESTA PAGINA</h1>
+        <h1>NO TIENES PERMISO PARA ACCEDER A ESTA PAGINA</h1>
       </>
     )
   }

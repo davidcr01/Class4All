@@ -73,25 +73,25 @@ export const Comandas = ({ aula }) => {
     //alert("menus toda la calse: "+menusTodasClases);
     const increment = 2;
     const menusVisibles = menus.slice(index, index + increment);
-    let menusLength = (menus === undefined) ? 0 : menus.length ;
+    let menusLength = (menus === undefined) ? 0 : menus.length;
 
     //menusLength = (menusLength % increment === 0) ? menusLength+1 : menusLength + (menusLength % increment) + 1;
 
-    if(menusLength % increment === 0){
+    if (menusLength % increment === 0) {
       menusLength++;
     }
-    else if(menusLength < increment === 0){
+    else if (menusLength < increment === 0) {
       menusLength = increment + 1;
     }
-    else{
+    else {
       let i = 0;
-  
-      while(menusLength > i*increment){
+
+      while (menusLength > i * increment) {
         //console.log(menusLength + ">" + i*increment);
         i++;
       }
 
-      menusLength = i*increment + 1;
+      menusLength = i * increment + 1;
     }
 
     //alert("menu: "+ JSON.stringify(location.state.menu) + " aula: "+JSON.stringify(location.state.nroAula))
@@ -104,12 +104,12 @@ export const Comandas = ({ aula }) => {
         const sendListado = () => {
           let aux = [...aulasCompletadas];
           aux[location.state.nroAula] = true;
-         nav(url_ant, {state: {menus: menusTodasClases, aulasCompletadas: aux}});
+          nav(url_ant, { state: { menus: menusTodasClases, aulasCompletadas: aux } });
         }
 
         return (
           <>
-            <Header titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant} />
+            <Header botonAtras={false} titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant} />
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={menusLength} increment={increment} />
             <section className='contenedorBoton'>
               <Button variant="outlined" sx={{ fontSize: 35, borderRadius: 5 }} className='botonEnviarMenus' onClick={sendListado}>Guardar</Button>
@@ -120,11 +120,11 @@ export const Comandas = ({ aula }) => {
       else {
         return (
           <>
-            <Header titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant} />
+            <Header botonAtras={false} titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant} />
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={menusLength} increment={increment} />
             <div className="cuerpo">
               <div className="recuadrosmenus">
-                <Menus menus={menusVisibles} /*cantidades={conteoCantidades} setCantidades={setConteoCantidades}*/currentAula={location.state.nroAula} allMenus={menusTodasClases} setAllMenus={setMenusTodasClases} currentIndex={index} />
+                <Menus menus={menusVisibles} /*cantidades={conteoCantidades} setCantidades={setConteoCantidades}*/ currentAula={location.state.nroAula} allMenus={menusTodasClases} setAllMenus={setMenusTodasClases} currentIndex={index} />
               </div>
             </div>
           </>
