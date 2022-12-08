@@ -79,10 +79,22 @@ export const ComandasClases = () => {
     )
 
   else if(cookies.get("loginCookie") !== undefined && isSet){
+    const todasLasComandasRealizadas = () => {
+      let realizadas = true;
+
+      for(let i=0; i<aulasCompletadas.length && realizadas; i++){
+        if(!aulasCompletadas[i])
+          realizadas = false;
+      }
+
+      return realizadas;
+    }
+
     const increment = 4;
     const aulasVisibles = aulas.slice(index, index + increment);
     let aulasLength = (aulas === undefined) ? 0 : aulas.length;
 
+    if(todasLasComandasRealizadas()){
     if(aulasLength % increment === 0){
       aulasLength++;
     }
@@ -98,6 +110,7 @@ export const ComandasClases = () => {
 
       aulasLength = i*increment + 1;
     }
+  }
 
     if (aulasLength > 0){
       const sendComanda = () => {
@@ -113,18 +126,18 @@ export const ComandasClases = () => {
 
         sendMenu(id, totalComandas);
       }
+
       return (
         <>
           <Header titulo="Comandas" alumnos="si" url_anterior="/Agenda"/>
           <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulasLength} increment={increment} />
 
-          {(index !== aulasLength - 1 &&
-          <ClasesComandas baseIndex={index} aulas={aulasVisibles} id={id} menus={cantidadMenuAula} setMenus={setCantidadMenuAula} aulasCompletadas={aulasCompletadas} setAulasCompletadas={setAulasCompletadas} isSend={false}/>
-            )}
+          {(index !== aulasLength -1 &&
+          <ClasesComandas baseIndex={index} aulas={aulasVisibles} id={id} menus={cantidadMenuAula} setMenus={setCantidadMenuAula} aulasCompletadas={aulasCompletadas} setAulasCompletadas={setAulasCompletadas} isSend={todasLasComandasRealizadas()? true: false}/>
+    )}
 
 
-          {(index === aulasLength - 1 &&
-          <ClasesComandas baseIndex={index} aulas={aulasVisibles} id={id} menus={cantidadMenuAula} setMenus={setCantidadMenuAula} aulasCompletadas={aulasCompletadas} setAulasCompletadas={setAulasCompletadas} isSend={true}/> &&
+          {(index === aulasLength - 1 && todasLasComandasRealizadas() &&
           <section className='contenedorBoton'>
               <Button variant="outlined" sx={{ fontSize: 35, borderRadius: 5 }} className='botonEnviarMenus' onClick={sendComanda}>Enviar</Button>
             </section>          
