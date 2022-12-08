@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../styles.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,10 +7,45 @@ import { useNavigate } from 'react-router-dom';
 const FormularioNuevoUsuario = ()=> {
 
     const [value, setValue] = useState(0);
+
+    const [images, setImages] = useState([]);
+    const [imageURLs, setImageURLs] = useState([]);
+
+    useEffect(() => {
+        if (images.length < 1) {
+            return;
+        }
+        const newImagesUrls  = [];
+        newImagesUrls.push(URL.createObjectURL(images[0]));
+        setImageURLs(newImagesUrls);
+    }, [images]);
+
+    const onImageChange = (event) => {
+        setImages(event.target.files);
+    }
+
+
     let nav = useNavigate();
 
     const cambiar = (event) => {
         setValue(event.target.value);
+    }
+
+    function eliminarEmail(){
+        if(document.getElementById("email") != null || document.getElementById("email") != undefined){
+            document.getElementById("email").remove();
+        
+        var id = "email";
+        let labelBuscada;
+        let labels = document.getElementsByTagName("label");
+        for (let i = 0; i < labels.length; i++) {
+            if (labels[i].htmlFor === id) {
+                labelBuscada = labels[i];
+                break;
+            }   
+        }
+        labelBuscada.remove();
+    }
     }
 
     const enviar = (event) => {
@@ -22,6 +57,7 @@ const FormularioNuevoUsuario = ()=> {
             nombre: datos.nombre.value,
             apellido1: datos.apellido1.value,
             apellido2: datos.apellido2.value,
+            imagen: datos.imagen.files[0].name,
             password: datos.password.value,
             rol: datos.rol.value,
         }
@@ -44,7 +80,7 @@ const FormularioNuevoUsuario = ()=> {
         urlencoded.append("apellido1", usuario.apellido1);
         urlencoded.append("apellido2", usuario.apellido2);
         // urlencoded.append("password", usuario.password);
-        urlencoded.append("foto", "./img/usuario.png");
+        urlencoded.append("foto", usuario.imagen);
         urlencoded.append("rol", usuario.rol);
 
         if(usuario.rol == 'Profesor'){
@@ -56,7 +92,6 @@ const FormularioNuevoUsuario = ()=> {
             urlencoded.append("clase", usuario.clase);
         }
         if(usuario.rol == 'Administrador'){
-            urlencoded.append("clase","Todas");
             urlencoded.append("correo", usuario.email);
         }
 
@@ -69,6 +104,20 @@ const FormularioNuevoUsuario = ()=> {
         then(nav("/gestion-usuarios")).
         catch(error => console.log('error', error));
 
+        const formData = new FormData();
+        formData.append("img", datos.imagen.files[0]);
+
+        var requestOptions = {
+            method: 'POST',
+            body: formData,
+            redirect: 'follow',
+
+        };
+
+        fetch('http://localhost:3900/api/menus/subir-foto', requestOptions).
+        then(response => response.text()).
+        then(result => console.log(result)).
+        catch(error => console.log('error', error));
 
 
      }
@@ -119,6 +168,11 @@ const FormularioNuevoUsuario = ()=> {
                     <input type="text" id="clase"></input></p>
                     )
                 }
+                <p><label className="etiq" htmlFor="imagen">Imagen de perfil</label>
+                <input type="file" accept="image/*" id="imagen" onChange={onImageChange}/>
+                </p>
+                <img src={imageURLs[0]}/>
+
                 </div>
                 <input type="submit" value="Enviar"/>
                 </form>
