@@ -36,6 +36,8 @@ router.get("/get-foto/:id", UsuarioController.obtenerFoto);
 
 router.delete("/delete-user/:id", UsuarioController.eliminarUsuario);
 
+router.post("/modificar-tamaños/:id" , UsuarioController.modificarTamaño);
+
 router.post("/subir-foto/", upload.single('img'), UsuarioController.subirFoto);
 
 module.exports = router;

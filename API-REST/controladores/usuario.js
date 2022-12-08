@@ -40,6 +40,34 @@ const crear = (req, res) => {
 
 }
 
+const modificarTamaño = (req, res) => {
+    
+    //Recoger id del alumno y tamaños
+    let id = req.params.id;
+    let tamañoLetra = rec.body.tamañoLetra;
+    let tamañoIconos = rec.body.tamañoIconos;
+
+    //obtener usuario concreto y modificar
+    Usuario.findByIdAndUpdate(
+        { _id: id },
+        { $set: { tamañoLetra: tamañoLetra,
+                  tamañoIconos: tamañoIconos} },
+        { lean: true, new: true },
+        (error, uasuarioActualizado) => {
+            if (error || !uasuarioActualizado) {
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "El usuario no se ha actualizado"
+                });
+            }
+            return res.status(200).json({
+                status: "success",
+                mensaje: "Todo se ha modificado correctamete",
+            });
+        }
+    );
+}
+
 
 const listar = (req, res) => {
 
@@ -298,5 +326,6 @@ module.exports = {
     getTodosAlumnos,
     getAulas,
     eliminarUsuario,
+    modificarTamaño,
     subirFoto
 }

@@ -88,7 +88,13 @@ const TareaSchema = Schema({
             }
         ],
         idProfesor: Schema.Types.ObjectId,
-        aula: String
+        aula: String,
+        
+        materialesnodisp: [
+            {
+                material: Schema.Types.ObjectId,
+            }
+        ],
 
     },
 

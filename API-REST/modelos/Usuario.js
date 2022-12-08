@@ -32,6 +32,8 @@ const UsuarioSchema = Schema({
 
     //ALUMNOS
     preferencias: Number,
+    tamañoLetra: Number,
+    tamañoIconos: Number,
     edad: Number,
     tareasAsignadas: [Schema.Types.ObjectId],  //Array de IDs
 
