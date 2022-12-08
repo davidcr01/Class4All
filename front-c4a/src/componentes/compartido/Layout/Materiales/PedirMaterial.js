@@ -137,13 +137,14 @@ export const PedirMaterial = ({setCambio}) => {
          const url = "http://localhost:3900/api/tareas/crear-tareaMaterial";
 
          fetch(url, requestOptions)
-         .then(res => res.text())
          .then(data => {
-             console.log(data);
-         })
+            if(data.status === "success"){
+                setCambio(2);
+            }
+        })
          .catch(err => console.log(err));
         
-         setCambio(1);
+         //setCambio(0);
    }
 
 
@@ -154,7 +155,7 @@ export const PedirMaterial = ({setCambio}) => {
     }else if (cookies.get("loginCookie") && cookieSet) {
         return (
             <section className = "peticion">
-                <form onSubmit={confirmar}>
+                <form onSubmit={() => confirmar}>
                     
                     <p> 
                         <label className='etiq' htmlFor="user">Alumno</label> 
@@ -193,9 +194,9 @@ export const PedirMaterial = ({setCambio}) => {
                     </p>
 
                 <article>
-                    <button className = "boton-anadir" type="button" onClick={(fAñadir)}>Añadir</button>
+                    <button className = "boton-anadir" type="button"  style={{cursor: "pointer"}} onClick={(fAñadir)}>Añadir</button>
                 </article>  
-                    <input className="boton-confirmar" type="submit" value="Confirmar"/>
+                    <input className="boton-confirmar" type="submit"  style={{cursor: "pointer"}} value="Confirmar"/>
                 </form>
 
 

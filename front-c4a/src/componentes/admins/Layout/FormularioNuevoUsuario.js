@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../styles.css';
+import { useNavigate } from 'react-router-dom';
 
 // Vista: admins
 
@@ -23,6 +24,8 @@ const FormularioNuevoUsuario = ()=> {
         setImages(event.target.files);
     }
 
+
+    let nav = useNavigate();
 
     const cambiar = (event) => {
         setValue(event.target.value);
@@ -66,7 +69,7 @@ const FormularioNuevoUsuario = ()=> {
             usuario.email = datos.email.value;
         }
         else if(usuario.rol == 3){
-            //usuario["preferencias"] =  datos.preferencias.value;
+            usuario["preferencias"] =  datos.preferencias.value;
             usuario["clase"]= datos.clase.value;
             usuario.rol = 'Alumno';
             
@@ -76,7 +79,6 @@ const FormularioNuevoUsuario = ()=> {
         urlencoded.append("nombre", usuario.nombre);
         urlencoded.append("apellido1", usuario.apellido1);
         urlencoded.append("apellido2", usuario.apellido2);
-        // urlencoded.append("email", usuario.email);
         // urlencoded.append("password", usuario.password);
         urlencoded.append("foto", usuario.imagen);
         urlencoded.append("rol", usuario.rol);
@@ -86,7 +88,7 @@ const FormularioNuevoUsuario = ()=> {
             urlencoded.append("correo", usuario.email);
         }
         if(usuario.rol == 'Alumno'){
-            //urlencoded.append("preferencias", usuario.preferencias);
+            urlencoded.append("preferencias", usuario.preferencias);
             urlencoded.append("clase", usuario.clase);
         }
         if(usuario.rol == 'Administrador'){
@@ -98,11 +100,8 @@ const FormularioNuevoUsuario = ()=> {
             body: urlencoded,
             redirect: 'follow'
         };
-
-        console.log(urlencoded)
         fetch('http://localhost:3900/api/usuarios/crear-usuario', requestOptions).
-        then(response => response.text()).
-        then(result => console.log(result)).
+        then(nav("/gestion-usuarios")).
         catch(error => console.log('error', error));
 
         const formData = new FormData();
@@ -132,21 +131,6 @@ const FormularioNuevoUsuario = ()=> {
             id="formulariocrear"
             onSubmit={enviar}>
             <div className="form-group">
-                <p><label className="etiq" htmlFor="nombre">Nombre</label>
-                <input type="text" id="nombre"/>
-                </p>
-                <p><label className="etiq" htmlFor="apellido1">Primer Apellido</label>
-                <input type="text" id="apellido1"/>
-                </p>
-                <p><label className="etiq" htmlFor="apellido2">Segundo Apellido</label>
-                <input type="text" id="apellido2"/>
-                </p>
-                <p><label className="etiq" htmlFor="email">Correo Electrónico</label>
-                <input type="text" id="email"/>
-                </p>
-                <p><label className="etiq" htmlFor="password">Contraseña</label>
-                <input type="password" id="password"/>
-                </p>
                 <p><label className="etiq" htmlFor="rol">Rol</label>
                 <select onChange={cambiar} defaultValue={0} id="rol">
                     <option value="0"  disabled>Elige un rol</option>
@@ -156,7 +140,25 @@ const FormularioNuevoUsuario = ()=> {
                     <option value="3">Alumno</option>
                 </select>
                 </p>
-                {(value == 3 && eliminarEmail() &&
+                <p><label className="etiq" htmlFor="nombre">Nombre</label>
+                <input type="text" id="nombre"/>
+                </p>
+                <p><label className="etiq" htmlFor="apellido1">Primer Apellido</label>
+                <input type="text" id="apellido1"/>
+                </p>
+                <p><label className="etiq" htmlFor="apellido2">Segundo Apellido</label>
+                <input type="text" id="apellido2"/>
+                </p>
+                
+                <p><label className="etiq" htmlFor="password">Contraseña</label>
+                <input type="password" id="password"/>
+                </p>
+                {(value == 1 || value == 2) &&(
+                    <p><label className="etiq" htmlFor="email">Correo Electrónico</label>
+                    <input type="text" id="email"/>
+                    </p>
+                )}
+                {(value == 3 &&
                     <p><label className="etiq" htmlFor="preferencias">Preferencias</label>
                     <input type="number" id="preferencias" min="0" max="10"></input></p>
                     )

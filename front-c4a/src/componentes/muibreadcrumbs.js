@@ -34,7 +34,7 @@ export const MuiBreadcrumbsCUS = () => {
     return <Box m={2} className="breadcrumbs">
         <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
             <Link underline="hover" color="inherit" href="/">Gestión del centro </Link>
-            <Link underline="hover" color="inherit" href="/gestion-usuario">Gestión de Usuario </Link>
+            <Link underline="hover" color="inherit" href="/gestion-usuarios">Gestión de Usuario </Link>
 
             <Typography color="text.primary">Crear Usuario</Typography>
         </Breadcrumbs>
@@ -79,4 +79,14 @@ export const MuiBreadcrumbsPM = (props) => {
             <Typography color="text.primary">{props.tipo}</Typography>
         </Breadcrumbs>
     </Box>
+}
+
+export const MuiBreadcrumbsFichaAlumno = () => {
+    return <Box m={2} className="breadcrumbs">
+        <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 
+            <Link underline="hover" color="inherit" href="/">Gestion del centro </Link>
+            <Link underline="hover" color="inherit" href="/gestion-usuarios">Gestion de usuarios </Link>
+            <Typography color="text.primary">Ficha Alumno</Typography>
+        </Breadcrumbs>
+    </Box>    
 }

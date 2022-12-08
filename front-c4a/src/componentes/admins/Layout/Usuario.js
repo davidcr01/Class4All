@@ -1,8 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // Vista: admins
 
 const Usuario = (props) => {
+    const nav = useNavigate();
 
     const eliminarUsuario = () => {
         let nombreCompleto = ""+props.user.nombre + " " + props.user.apellido1 + " " + props.user.apellido2;
@@ -27,13 +29,17 @@ const Usuario = (props) => {
         }
     }
 
+    const verFichaAlumno = (route) => {
+        nav("/ficha-user", {state: {alumno: route}});        
+    }
+
     return (
         <div className="usuario">
             <div className="datosuser">{props.user.nombre} {props.user.apellido1} {props.user.apellido2}</div>
             <div className="botonesuser">
                 <button className="botonuser botonuser-modificar">Modificar</button>
                 <button className="botonuser botonuser-eliminar" onClick={eliminarUsuario}>Eliminar</button>
-                <button className="botonuser botonuser-ver">Ver</button>
+                <button className="botonuser botonuser-ver" onClick={() => verFichaAlumno(props.user)}>Ver</button>
             </div>
         </div>
     )
