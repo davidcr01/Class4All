@@ -6,7 +6,7 @@ import Cookies from "universal-cookie";
 import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
-import { useLocation, useParams } from "react-router-dom"
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import { getAulasRestantes, sendMenu } from '../../../interfaces/aulasRestantes';
 import Button from '@mui/material/Button';
 
@@ -22,7 +22,7 @@ export const ComandasClases = () => {
   const [aulas, setAulas] = useState([]);
   const [index, setIndex] = useState(0);
   const [menusInfo, setMenusInfo] = useState([]);
-
+  const nav =useNavigate();
   let valorCantidadMenuAula = [];   //si se ponen a undefined no van, npi la verdad
   let valorAulasCompletadas = [];   //si se ponen a undefined no van, npi la verdad
 
@@ -125,6 +125,20 @@ export const ComandasClases = () => {
         }
 
         sendMenu(id, totalComandas);
+
+        const url = "http://localhost:3900/api/tareas/completar-tarea-alumno/"+id;
+        fetch(url, {
+          method: "PUT",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          //body: JSON.stringify({cantidades: menu})
+        }).then((data) => data.json())
+        .then((msg) => {
+          console.log(JSON.stringify(msg))
+          nav("/Agenda");
+        })
+        .catch((error) => console.error(error));
       }
 
       return (
