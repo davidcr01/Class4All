@@ -33,11 +33,15 @@ const Usuario = (props) => {
         nav("/ficha-user", {state: {alumno: route}});        
     }
 
+    const verModificarUsuario = (route) => {
+        nav("/modificar-usuario", {state: {alumno: route}});
+    }
+
     return (
         <div className="usuario">
             <div className="datosuser">{props.user.nombre} {props.user.apellido1} {props.user.apellido2}</div>
             <div className="botonesuser">
-                <button className="botonuser botonuser-modificar">Modificar</button>
+                <button className="botonuser botonuser-modificar" onClick={() => verModificarUsuario(props.user)}>Modificar</button>
                 <button className="botonuser botonuser-eliminar" onClick={eliminarUsuario}>Eliminar</button>
                 <button className="botonuser botonuser-ver" onClick={() => verFichaAlumno(props.user)}>Ver</button>
             </div>
