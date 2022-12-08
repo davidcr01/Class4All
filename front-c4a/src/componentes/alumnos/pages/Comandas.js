@@ -16,15 +16,27 @@ import { sendMenu, setAulaCompletada } from '../../../interfaces/aulasRestantes'
 export const Comandas = ({ aula }) => {
 
   const { id } = useParams();
+  const location = useLocation();
   const url_ant = `/comanda/${id}`;
   const cookies = new Cookies();
   const [cargando, setCargando] = useState(true);
   const [isSet, setIsSet] = useState(false);
   const [menus, setMenus] = useState([]);
   const [index, setIndex] = useState(0);
-  const [conteoCantidades, setConteoCantidades] = useState([]);
+  const [menusTodasClases, setMenusTodasClases] = useState(location.state.menus);
+  ////let setMenusTodasClases = location.state.setMenus;
+  //const [conteoCantidades, setConteoCantidades] = useState(menusTodasClases[location.state.nroAula]);
+  //let conteoCantidades = menusTodasClases[location.state.nroAula];
+  //const setConteoCantidades = (valor) => conteoCantidades = valor;
   const nav = useNavigate();
 
+  //alert(JSON.stringify(location))
+
+  /*
+  let initConteoCantidades = [];
+  if(location.state !== null)
+    initConteoCantidades = location.state
+  */
 
   useEffect(() => {
     isCookieSet().then((res) => {
@@ -51,7 +63,7 @@ export const Comandas = ({ aula }) => {
         if (data.status === "success") {
           //alert(JSON.stringify(data.menus[0]))
           setMenus(data.menus);
-          setConteoCantidades(new Array(data.menus.length).fill(0));
+          //setConteoCantidades(new Array(data.menus.length).fill(0));
         }
 
         setCargando(false);
@@ -70,6 +82,7 @@ export const Comandas = ({ aula }) => {
     )
 
   else if (cookies.get("loginCookie") !== undefined && isSet) {
+    //alert("menus toda la calse: "+menusTodasClases);
     const increment = 2;
     const menusVisibles = menus.slice(index, index + increment);
     let menusLength = (menus === undefined) ? 0 : menus.length ;
@@ -93,15 +106,18 @@ export const Comandas = ({ aula }) => {
       menusLength = i*increment + 1;
     }
 
+    //alert("menu: "+ JSON.stringify(location.state.menu) + " aula: "+JSON.stringify(location.state.nroAula))
+
+
     if (menusLength > 0) {
-      const location = useLocation();
+      //const location = useLocation();
 
       if (index === menusLength - 1) {
         let menuEnvio = [];
+        /*
         for (let i = 0; i < menus.length; i++) {
           menuEnvio.push({ menu: menus[i]._id, cantidad: conteoCantidades[i] });
-        }
-
+        }*/
         const sendListado = () => {
           /*
           sendMenu(id, menuEnvio).then((data) => {
@@ -120,7 +136,8 @@ export const Comandas = ({ aula }) => {
             }
           })
           */
-         nav(url_ant);
+         //alert("quien")
+         nav(url_ant, {state: {menus: menusTodasClases, aula: location.state.nroAula, aulaCompletada: true}});
         }
 
         return (
@@ -128,19 +145,20 @@ export const Comandas = ({ aula }) => {
             <Header titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant} />
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={menusLength} increment={increment} />
             <section className='contenedorBoton'>
-              <Button variant="outlined" sx={{ fontSize: 35, borderRadius: 5 }} className='botonEnviarMenus' onClick={sendListado}>Enviar</Button>
+              <Button variant="outlined" sx={{ fontSize: 35, borderRadius: 5 }} className='botonEnviarMenus' onClick={sendListado}>Guardar</Button>
             </section>
           </>
         );
       }
       else {
+        //alert("cambio pag: "+JSON.stringify(menusTodasClases));
         return (
           <>
             <Header titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant} />
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={menusLength} increment={increment} />
             <div className="cuerpo">
               <div className="recuadrosmenus">
-                <Menus menus={menusVisibles} cantidades={conteoCantidades} setCantidades={setConteoCantidades} currentIndex={index} />
+                <Menus menus={menusVisibles} /*cantidades={conteoCantidades} setCantidades={setConteoCantidades}*/currentAula={location.state.nroAula} allMenus={menusTodasClases} setAllMenus={setMenusTodasClases} currentIndex={index} />
               </div>
             </div>
           </>

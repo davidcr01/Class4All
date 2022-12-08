@@ -6,13 +6,14 @@ import Cookies from "universal-cookie";
 import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import { getAulasRestantes } from '../../../interfaces/aulasRestantes';
 
 // Vista: compartida
 
 export const ComandasClases = () => {
 
+  const location =useLocation();
   const { id } = useParams();
   const cookies = new Cookies();
   const [cargando, setCargando] = useState(true);
@@ -20,9 +21,17 @@ export const ComandasClases = () => {
   const [aulas, setAulas] = useState([]);
   const [index, setIndex] = useState(0);
 
-  const [cantidadMenuAula, setCantidadMenuAula] = useState (undefined); //Filas: clase Columnas: Menu
+  let valorCantidadMenuAula = undefined;
+
+  if(location.state!== null)
+    valorCantidadMenuAula = location.state.menus;
+
+  const [cantidadMenuAula, setCantidadMenuAula] = useState (valorCantidadMenuAula); //Filas: clase Columnas: Menu
+  //let cantidadMenuAula = undefined;
+
   const [aulasCompletadas, setAulasCompletadas] = useState(false);  //true: enviada, pero se puede seguir cambiando / false: no enviado
-  
+  //const location = useLocation();
+
   useEffect(() => {
     isCookieSet().then((res) => {
       setIsSet(res);
@@ -45,12 +54,18 @@ export const ComandasClases = () => {
             return undefined;
           }
         }
-        
-        getMenus().then((menus) => {
-          setCargando(false);
-          setAulas(res);
-          setCantidadMenuAula(Array(res.length).fill().map(() => Array(menus.menus.length).fill(0)))
-        });
+        setAulas(res);
+
+        if(location.state === null){
+          getMenus().then((menus) => {
+            setCargando(false);
+            //alert("entro en comandasclases");
+            if(location.state === null)
+              setCantidadMenuAula(Array(res.length).fill().map(() => Array(menus.menus.length).fill(0)))
+            //cantidadMenuAula = Array(res.length).fill().map(() => Array(menus.menus.length).fill(0))
+            //alert("despues en comandasclases: "+JSON.stringify(cantidadMenuAula));
+          });
+        }
       });
     });
   }, []);
@@ -66,14 +81,16 @@ export const ComandasClases = () => {
     const aulasVisibles = aulas.slice(index, index + increment);
     const aulasLength = (aulas === undefined) ? 0 : aulas.length;
 
-    if (aulasLength > 0)
+    if (aulasLength > 0){
+      //alert(JSON.stringify("aqui en comandasclases: "+ JSON.stringify(cantidadMenuAula)));
       return (
         <>
           <Header titulo="Comandas" alumnos="si" url_anterior="/Agenda"/>
           <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulasLength} increment={increment} />
-          <ClasesComandas aulas={aulasVisibles} id={id}/>
+          <ClasesComandas aulas={aulasVisibles} id={id} menus={cantidadMenuAula} setMenus={setCantidadMenuAula}/>
         </>
       );
+    }
 
     else
       return (
