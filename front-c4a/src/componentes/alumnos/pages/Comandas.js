@@ -24,19 +24,10 @@ export const Comandas = ({ aula }) => {
   const [menus, setMenus] = useState([]);
   const [index, setIndex] = useState(0);
   const [menusTodasClases, setMenusTodasClases] = useState(location.state.menus);
-  ////let setMenusTodasClases = location.state.setMenus;
-  //const [conteoCantidades, setConteoCantidades] = useState(menusTodasClases[location.state.nroAula]);
-  //let conteoCantidades = menusTodasClases[location.state.nroAula];
-  //const setConteoCantidades = (valor) => conteoCantidades = valor;
+  const [aulasCompletadas, setAulasCompletadas] = useState(location.state.aulasCompletadas);
+
+
   const nav = useNavigate();
-
-  //alert(JSON.stringify(location))
-
-  /*
-  let initConteoCantidades = [];
-  if(location.state !== null)
-    initConteoCantidades = location.state
-  */
 
   useEffect(() => {
     isCookieSet().then((res) => {
@@ -44,7 +35,6 @@ export const Comandas = ({ aula }) => {
 
       const getMenus = async () => {
         try {
-          //alert("cookie cookie: "+cookies.get("loginCookie"));
           const url = "http://localhost:3900/api/menus/lista-menu";
           console.log(url);
           const res = await fetch(url)
@@ -61,9 +51,7 @@ export const Comandas = ({ aula }) => {
 
       getMenus().then((data) => {
         if (data.status === "success") {
-          //alert(JSON.stringify(data.menus[0]))
           setMenus(data.menus);
-          //setConteoCantidades(new Array(data.menus.length).fill(0));
         }
 
         setCargando(false);
@@ -113,31 +101,10 @@ export const Comandas = ({ aula }) => {
       //const location = useLocation();
 
       if (index === menusLength - 1) {
-        let menuEnvio = [];
-        /*
-        for (let i = 0; i < menus.length; i++) {
-          menuEnvio.push({ menu: menus[i]._id, cantidad: conteoCantidades[i] });
-        }*/
         const sendListado = () => {
-          /*
-          sendMenu(id, menuEnvio).then((data) => {
-            if (data) {
-              setAulaCompletada(id, location.state.aula).then((res) => {
-                if (res) {
-                  nav(url_ant);
-                }
-                else {
-                  alert("Comanda enviada, pero ha habido un error en la clase");
-                }
-              })
-            }
-            else {
-              alert("No ha sido posible enviar la comanda");
-            }
-          })
-          */
-         //alert("quien")
-         nav(url_ant, {state: {menus: menusTodasClases, aula: location.state.nroAula, aulaCompletada: true}});
+          let aux = [...aulasCompletadas];
+          aux[location.state.nroAula] = true;
+         nav(url_ant, {state: {menus: menusTodasClases, aulasCompletadas: aux}});
         }
 
         return (

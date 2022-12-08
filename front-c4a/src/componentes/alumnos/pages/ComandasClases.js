@@ -22,15 +22,16 @@ export const ComandasClases = () => {
   const [index, setIndex] = useState(0);
 
   let valorCantidadMenuAula = undefined;
+  let valorAulasCompletadas = undefined;
 
-  if(location.state!== null)
+  if(location.state !== null){
+    alert("fumop")
     valorCantidadMenuAula = location.state.menus;
+    valorAulasCompletadas = location.state.aulasCompletadas
+  }
 
   const [cantidadMenuAula, setCantidadMenuAula] = useState (valorCantidadMenuAula); //Filas: clase Columnas: Menu
-  //let cantidadMenuAula = undefined;
-
-  const [aulasCompletadas, setAulasCompletadas] = useState(false);  //true: enviada, pero se puede seguir cambiando / false: no enviado
-  //const location = useLocation();
+  const [aulasCompletadas, setAulasCompletadas] = useState(valorAulasCompletadas);  //true: enviada, pero se puede seguir cambiando / false: no enviado
 
   useEffect(() => {
     isCookieSet().then((res) => {
@@ -58,17 +59,22 @@ export const ComandasClases = () => {
 
         if(location.state === null){
           getMenus().then((menus) => {
+            //if(location.state === null){
+              alert("pero si entro aqui")
+              setCantidadMenuAula(Array(res.length).fill().map(() => Array(menus.menus.length).fill(0)));
+              setAulasCompletadas(Array(res.length).fill(false));
+              //}
+            });
+
             setCargando(false);
-            //alert("entro en comandasclases");
-            if(location.state === null)
-              setCantidadMenuAula(Array(res.length).fill().map(() => Array(menus.menus.length).fill(0)))
-            //cantidadMenuAula = Array(res.length).fill().map(() => Array(menus.menus.length).fill(0))
-            //alert("despues en comandasclases: "+JSON.stringify(cantidadMenuAula));
-          });
         }
       });
     });
   }, []);
+
+  useEffect(()=>{
+    alert("aulario: "+aulasCompletadas)
+  }, [aulasCompletadas])
 
   if (cargando)
     return (
@@ -76,18 +82,16 @@ export const ComandasClases = () => {
     )
 
   else if(cookies.get("loginCookie") !== undefined && isSet){
-    //alert(JSON.stringify(cantidadMenuAula));
     const increment = 4;
     const aulasVisibles = aulas.slice(index, index + increment);
     const aulasLength = (aulas === undefined) ? 0 : aulas.length;
 
     if (aulasLength > 0){
-      //alert(JSON.stringify("aqui en comandasclases: "+ JSON.stringify(cantidadMenuAula)));
       return (
         <>
           <Header titulo="Comandas" alumnos="si" url_anterior="/Agenda"/>
           <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={aulasLength} increment={increment} />
-          <ClasesComandas aulas={aulasVisibles} id={id} menus={cantidadMenuAula} setMenus={setCantidadMenuAula}/>
+          <ClasesComandas aulas={aulasVisibles} id={id} menus={cantidadMenuAula} setMenus={setCantidadMenuAula} aulasCompletadas={aulasCompletadas} setAulasCompletadas={setAulasCompletadas}/>
         </>
       );
     }

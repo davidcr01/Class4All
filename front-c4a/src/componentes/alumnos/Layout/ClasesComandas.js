@@ -4,9 +4,9 @@ import {useNavigate} from 'react-router-dom';
 // Componente para mostrar las comandas de los alumnos
 // Vista: alumno
 
-const Clases = ({aulas, id, menus, setMenus}) => {
+const Clases = ({aulas, id, menus, setMenus, aulasCompletadas, setAulasCompletadas }) => {
 
-    //alert("menus en clasescomandas: "+JSON.stringify(menus));
+    alert("menus en clasescomandas: "+JSON.stringify(aulasCompletadas));
 
         if(aulas === undefined || aulas.length === 0){
             return (
@@ -18,14 +18,14 @@ const Clases = ({aulas, id, menus, setMenus}) => {
 
             const goToComandas = (aula, nroAula) => {
                 //alert("gotocomandas en clasescomandas: "+JSON.stringify(menus));
-                nav(`/comandas/${id}`, {state: {aula: aula, menus: menus, nroAula: nroAula}});
+                nav(`/comandas/${id}`, {state: {aula: aula, menus: menus, nroAula: nroAula, aulasCompletadas: aulasCompletadas}});
                 //nav(`/comandas/${id}`, {state: {mec: "mec"}});
             }
             let res = [];
 
             for(let i=0; i<aulas.length; i++){
                 res.push(
-                    <button key={aulas[i].clase} className="botonesClase" onClick={() => goToComandas(aulas[i].clase, i)}>
+                    <button key={aulas[i].clase} className={aulasCompletadas[i]? "botones-clase-completada" : "botonesClase"} onClick={() => goToComandas(aulas[i].clase, i)}>
                         <img className="foto" src={"http://localhost:3900/api/usuarios/get-foto/"+aulas[i].id}/>
                         {"Aula "+aulas[i].clase}
                     </button>
