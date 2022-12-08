@@ -129,6 +129,22 @@
     cursor:  pointer;
   }
 
+  .botones-clase-completada {
+    background-color: #6a6a6a;
+    width: auto;
+    border-color:  black;
+    border-style:  solid;
+    border-width:  3px;
+    display:  grid;
+    margin-bottom:  5px;
+    font-size:  2.5vw;
+    text-align: center;
+    padding: 3vw 0;
+    padding-bottom:5em;
+    border-radius:  35px;
+    font-weight:  bold;
+    cursor:  pointer;    
+  }
 
   .imagenUser{
     position: absolute;
