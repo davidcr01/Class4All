@@ -44,8 +44,8 @@ const modificarTamaño = (req, res) => {
     
     //Recoger id del alumno y tamaños
     let id = req.params.id;
-    let tamañoLetra = rec.body.tamañoLetra;
-    let tamañoIconos = rec.body.tamañoIconos;
+    let tamañoLetra = req.body.tamañoLetra;
+    let tamañoIconos = req.body.tamañoIconos;
 
     //obtener usuario concreto y modificar
     Usuario.findByIdAndUpdate(
