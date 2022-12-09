@@ -7,7 +7,8 @@ import RadioGroupRating from './CaritasRating';
 // Vista: compartida (admins y profs)
 
 const TareaRealizada = (props) => {
-
+    
+    const [valor, setValor] = useState(3);
     const [nombre, setNombre] = useState('');
     const [cargando, setCargando] = useState(true);
     const [datosForm, setdatosForm] = useState([]);
@@ -39,9 +40,13 @@ const TareaRealizada = (props) => {
     //FALTA arreglar para que funcione de vd y además de confirmar que se ha realizado, se mande la retroalimentación
     const confirmarTarea = (event) => {
         event.preventDefault();
-        let datos = event.target;
+        //let datos = event.target;
+        let datos = document;
+        //cuando subamos una foto del menu poner tambn un campo de texto para el texto alternativo tanto en la interfaz como en la base de datos
+        let ret = datos.getElementById("retroalimentacion").value;
+        let car = valor;
 
-        console.log(datos.retroalimentacion);
+        console.log(car);
 
 
         /*const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + props.tarea._id;
@@ -75,13 +80,14 @@ const TareaRealizada = (props) => {
         }
     }
 
-    
+    //PARA QUE NO SE BORRE LA PALABRA RETROALIMENTACIÓN
     const funcRetroText = (e) => {
         let datos = e.target;
         if (datos.value.length < "Retroalimentación: ".length){
             datos.value = "Retroalimentación: ";
         }
     }
+
 
 
     if (cargando) {
@@ -97,8 +103,12 @@ const TareaRealizada = (props) => {
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> Si</div>
                 <form>
-                    <div id="cara">{RadioGroupRating()}</div>
-                    <textarea className="recuadroRetro" id="retroalimentacion" name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
+                    <p>
+                        <RadioGroupRating valor={valor} setValor={setValor}/>
+                    </p>
+                    <p>
+                        <textarea className="recuadroRetro" id="retroalimentacion" name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
+                    </p>
                 </form>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>
                 <button className="ConfirmarRealizada"><CheckBoxIcon style={{cursor: "pointer"}} onClick={e => confirmarTarea(e)}/></button>

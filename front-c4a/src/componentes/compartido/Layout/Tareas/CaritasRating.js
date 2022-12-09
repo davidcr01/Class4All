@@ -46,14 +46,21 @@ IconContainer.propTypes = {
     value: PropTypes.number.isRequired,
 };
 
-export default function RadioGroupRating() {
+const RadioGroupRating = ({valor, setValor}) => {
     return (
+        <>
         <StyledRating
             name="caritas"
-            defaultValue={3}
+            defaultValue={valor}
             IconContainerComponent={IconContainer}
-            getLabelText={(value) => customIcons[value].label}
+            getLabelText={(value) => {return customIcons[value].label;}}
             highlightSelectedOnly
+            onChange={(e, newValue) =>{
+                setValor(newValue);
+            }}
         />
+        </>
     );
 }
+
+export default RadioGroupRating;
