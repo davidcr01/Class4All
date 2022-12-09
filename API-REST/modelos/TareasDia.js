@@ -90,6 +90,7 @@ const TareaSchema = Schema({
         idProfesor: Schema.Types.ObjectId,
         aula: String,
         
+        //cuando falta algún material se añade aquí
         materialesnodisp: [
             {
                 material: Schema.Types.ObjectId,

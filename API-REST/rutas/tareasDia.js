@@ -17,6 +17,7 @@ router.delete("/eliminar-tareaDia/:id" , TareaController.eliminarTarea);
 router.put("/desasignar-tarea/:idTarea" , TareaController.desasignarTarea);
 router.put("/completar-tarea-alumno/:idTarea" , TareaController.setRealizada);
 router.put("/cancelar-tarea/:idTarea" , TareaController.setEstadoCancelada);
+router.post("/falta-material/:idTarea" , TareaController.faltaMaterial);
 
 // --------------------------- ARREGLADAS ---------------------------
 router.post("/crear-tareaDia" , TareaController.crearTarea);
@@ -26,5 +27,6 @@ router.get("/aulas-restantes-comanda/:idTarea", TareaController.getAulasRestante
 router.put("/completar-tarea-profesor/:idTarea" , TareaController.setEstadoCompletada);
 router.post("/completar-clase-comanda/", TareaController.completarClaseComanda);
 router.post("/actualizar-cantidades/:idTarea" , TareaController.actualizarCantidades);
+
 
 module.exports = router;
