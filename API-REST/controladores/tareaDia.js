@@ -672,6 +672,34 @@ const obtenerTareasUsuarioAsignadas = (req, res) => {
     });
 }
 
+/**
+ * recibe un array de materiales que faltan: "materiales":[{"material": "id del material"},....]
+ * @param {*} req 
+ * @param {*} res 
+ */
+const faltaMaterial = (req, res) => {
+    let idTarea = req.params.idTarea;
+    let materiales = req.body.materiales;
+
+    Tarea.findByIdAndUpdate(
+        { _id: idTarea },
+        { $set: { "entregamateriales.materialesnodisp": materiales} },
+        { lean: true, new: true },
+        (error, tarea) => {
+            if (error || !tarea) {
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "No se ha añadido la falata de material"
+                });
+            }
+            return res.status(200).json({
+                status: "success",
+                mensaje: "Todo se ha modificado correctamete",
+            });
+        }
+    );
+};
+
 module.exports = {
     listaTareas,
     crearTarea,
@@ -689,5 +717,6 @@ module.exports = {
     completarClaseComanda,
     getAulasRestantes,
     setEstadoCancelada,
-    obtenerTareasUsuarioAsignadas
+    obtenerTareasUsuarioAsignadas,
+    faltaMaterial
 }
