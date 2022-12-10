@@ -1,3 +1,6 @@
+:root{
+  --tam-letra-mediana: 2.5vw;
+}
 
 .cuerpo{
     width: auto;
@@ -165,7 +168,7 @@
     border-width:  3px  ;
     display:  grid  ;
     margin-bottom:  5px  ;
-    font-size:  3.5vw  ;
+    font-size:  var(--tam-letra-mediana)  ;
     text-align: center  ;
     padding:  2vw 0  ;
     border-radius:  25px  ;
@@ -181,7 +184,7 @@
     display: grid;
     margin-right:auto;
     margin-left:auto;
-    grid-template-columns: 35% 35%;
+    grid-template-columns: 39% 39%;
     grid-template-rows:20vw 20vw;
     grid-column-gap: 40px;
     grid-row-gap: 15px

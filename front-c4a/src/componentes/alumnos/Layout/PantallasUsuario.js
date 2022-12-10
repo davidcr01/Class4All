@@ -7,10 +7,10 @@ const PantallasUsuario = (props) => {
     let botones=[];
 
     const informacion = [
-        {apartado: "Tareas", pictograma: require("../../../img/tareas.png"), enlace: "/Tareas"},
-        {apartado: "Chat", pictograma: require("../../../img/chat.png"), enlace: "/login-ok"},
-        {apartado: "Retroalimentación", pictograma: require("../../../img/retroalimentacion.png"), enlace: "/login-ok"},
-        {apartado: "Consentimiento", pictograma: require("../../../img/firmar.png"), enlace: "/login-ok"},
+        {apartado: "TAREAS", pictograma: require("../../../img/tareas.png"), enlace: "/Tareas"},
+        {apartado: "CHAT", pictograma: require("../../../img/chat.png"), enlace: "/login-ok"},
+        {apartado: "RETROALIMENTACION", pictograma: require("../../../img/retroalimentacion.png"), enlace: "/login-ok"},
+        {apartado: "CONSENTIMIENTO", pictograma: require("../../../img/firmar.png"), enlace: "/login-ok"},
     ]
 
 

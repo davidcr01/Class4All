@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import '../styles.css';
+import '../../alumnos/styles.css';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
@@ -34,6 +35,21 @@ const FormularioNuevoUsuario = ()=> {
     // }
 
 
+    function setTams (newTam){
+        console.log("nt:" +newTam);
+        let tammediano = 2.5;
+        if(newTam==1){
+            tammediano = 1.5;
+        }
+        else if(newTam==2){
+            tammediano = 2.5;
+        }
+        else{
+            tammediano = 3.5;
+        }
+        document.documentElement.style.setProperty('--tam-letra-mediana', tammediano + 'vw');
+    }
+
     const enviar = (event) => {
         event.preventDefault();
         let datos = event.target;
@@ -65,10 +81,19 @@ const FormularioNuevoUsuario = ()=> {
             body: urlencoded,
             redirect: 'follow'
         };
+        
+        let tam = getComputedStyle(document.documentElement).getPropertyValue('--tam-letra-mediana');
+        console.log(tam);
 
         fetch('http://localhost:3900/api/usuarios/modificar-tamanos/' + location.state.alumno._id, requestOptions).
-        then(nav("/gestion-usuarios")).
         catch(error => console.log('error', error));
+        
+        setTams(event.target.tamLetra.value);
+
+        tam = getComputedStyle(document.documentElement).getPropertyValue('--tam-letra-mediana');
+        console.log(tam);
+        nav("/gestion-usuarios")
+
 
         // const formData = new FormData();
         // formData.append("img", datos.imagen.files[0]);
@@ -142,21 +167,19 @@ const FormularioNuevoUsuario = ()=> {
                 <p><label className="etiq" htmlFor="tamLetra">Tamaño de letra</label>
                 <select defaultValue={0} id="tamLetra">
                     <option value="0"  disabled>Elige un tamaño</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="1">Pequeño</option>
+                    <option value="2">Mediano</option>
+                    <option value="3">Grande</option>
+
                 </select>
                 </p>
                 <p><label className="etiq" htmlFor="tamIco">Tamaño de icono</label>
                 <select defaultValue={0} id="tamIco">
                     <option value="0"  disabled>Elige un tamaño</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="1">Pequeño</option>
+                    <option value="2">Mediano</option>
+                    <option value="3">Grande</option>
+
                 </select>
                 </p>
                 </div>
