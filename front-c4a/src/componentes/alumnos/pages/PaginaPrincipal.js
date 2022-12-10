@@ -16,6 +16,7 @@ export const PaginaPrincipal = () => {
     isCookieSet().then((response) => {
       setCargando(false);
       setIsSet(response);
+      
     })
   }, []);
 

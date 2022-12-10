@@ -144,7 +144,7 @@ const loginAlumno = (req, res) => {
         const randID = Math.floor(Math.random() * 10000000);    //Mejorable
         cookies.set("user"+randID, {id: usuario._id, token: randID, rol: usuario.rol}, {path: "/", maxAge: 86400});
 
-        const usuarioData = {_id: usuario._id, rol: usuario.rol}
+        const usuarioData = {_id: usuario._id, rol: usuario.rol, tamañoLetra: usuario.tamañoLetra, tamañoIconos: usuario.tamañoIconos}
 
         console.log(cookies.getAll());
 
@@ -310,6 +310,24 @@ const eliminarUsuario = (req, res) => {
 const subirFoto = (req, res) => {
     console.log(req.file);
  };
+
+ const getTamaños = (req, res) => {
+    Usuario.findById(req.params.id).exec((error, usuario) => {
+        if (error || !usuario) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No hay tamaños :("
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            tamletra: usuario.tamañoLetra,
+            tamfoto: usuario.tamañoIconos
+        });
+    })
+
+ };
+
  
 
 module.exports = {
@@ -327,5 +345,6 @@ module.exports = {
     getAulas,
     eliminarUsuario,
     modificarTamaño,
+    getTamaños,
     subirFoto
 }

@@ -35,20 +35,7 @@ const FormularioNuevoUsuario = ()=> {
     // }
 
 
-    function setTams (newTam){
-        console.log("nt:" +newTam);
-        let tammediano = 2.5;
-        if(newTam==1){
-            tammediano = 1.5;
-        }
-        else if(newTam==2){
-            tammediano = 2.5;
-        }
-        else{
-            tammediano = 3.5;
-        }
-        document.documentElement.style.setProperty('--tam-letra-mediana', tammediano + 'vw');
-    }
+
 
     const enviar = (event) => {
         event.preventDefault();
@@ -82,18 +69,9 @@ const FormularioNuevoUsuario = ()=> {
             redirect: 'follow'
         };
         
-        let tam = getComputedStyle(document.documentElement).getPropertyValue('--tam-letra-mediana');
-        console.log(tam);
-
-        fetch('http://localhost:3900/api/usuarios/modificar-tamanos/' + location.state.alumno._id, requestOptions).
-        catch(error => console.log('error', error));
-        
-        setTams(event.target.tamLetra.value);
-
-        tam = getComputedStyle(document.documentElement).getPropertyValue('--tam-letra-mediana');
-        console.log(tam);
+        fetch('http://localhost:3900/api/usuarios/modificar-tamanos/' + location.state.alumno._id, requestOptions)
+        .catch(error => console.log('error', error));
         nav("/gestion-usuarios")
-
 
         // const formData = new FormData();
         // formData.append("img", datos.imagen.files[0]);
