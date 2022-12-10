@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "universal-cookie";
 import { loginAlumno } from '../../../interfaces/cookies';
-
+import setTams from '../../../interfaces/tamaños';
 import { ContextoRol } from '../../../contexto/Roles';
 
 // Componente para mostrar el login de los alumnos
@@ -14,20 +14,7 @@ const Alumnos = ({alumnos}) => {
 
     
     const nav = useNavigate();
-    function setTams (newTam){
-        console.log("nt:" + newTam);
-        let tammediano = 2.5;
-        if(newTam === 1){
-            tammediano = 1.5;
-        }
-        else if(newTam === 2){
-            tammediano = 2.5;
-        }
-        else{
-            tammediano = 3.5;
-        }
-        document.documentElement.style.setProperty('--tam-letra-mediana', tammediano + 'vw');
-    }
+
     
     if(alumnos !== undefined) {
         let alumnosJSX = []
