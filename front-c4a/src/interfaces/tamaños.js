@@ -6,6 +6,7 @@ function setTams(newTam) {
     let tammediano = 2.5;
     if (newTam === 1) {
         tammediano = 1.5;
+        
     }
     else if (newTam === 2) {
         tammediano = 2.5;

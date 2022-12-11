@@ -1,5 +1,7 @@
 :root{
+  --tam-letra-pequena: 1.5vw;
   --tam-letra-mediana: 2.5vw;
+  --tam-letra-grande: 4vw;
 }
 
 .cuerpo{
@@ -158,6 +160,25 @@
     right: 2%
   }
 
+  .botonesPT {
+    width: auto;
+    cursor: pointer;
+    background-color: #8dd1ca;
+    border-color: black;
+    border-style: solid;
+    border-width: 3px;
+    display: grid;
+    margin-bottom: 5px;
+    text-align: center;
+    padding: 3vw 0;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: var(--tam-letra-mediana);
+  }
+
+  .botonesPT p{
+    margin: 0;
+  }
 
 .botonesPP{
     width:  auto;
