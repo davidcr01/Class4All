@@ -22,13 +22,13 @@ const TareaSchema = Schema({
         type: Date,
         default: null
     },
-    fechaAcabadada: {
+    fechaAcabada: {
         type: Date,
         default: null
     },
     fechaLimite: {
-        type: String,
-        default: 'Hoy'
+        type: Date,
+        default: () => new Date()
     },
     foto: {
         type: String,
@@ -89,7 +89,7 @@ const TareaSchema = Schema({
         ],
         idProfesor: Schema.Types.ObjectId,
         aula: String,
-        
+
         //cuando falta algún material se añade aquí
         materialesnodisp: [
             {

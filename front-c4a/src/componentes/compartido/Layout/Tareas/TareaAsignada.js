@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
+import { showDate } from '../../../../interfaces/dates';
 
 // Vista: compartida (admins y profs)
 
@@ -105,7 +106,9 @@ const TareaAsignada = (props) => {
                 return (
                 <div className="tarea">
                 <div><label className='label-tareas'>Tarea:</label> {props.tarea.nombre}</div>
-                <div><label className='label-tareas'>Fecha:</label> {props.tarea.fechaAsignada}</div>
+                <div><label className='label-tareas'>Fecha Asignada:</label> {showDate(props.tarea.fechaAsignada)}</div>
+                <div><label className='label-tareas'>Fecha Límite:</label> {showDate(props.tarea.fechaLimite)}</div>
+                <div><label className='label-tareas'>Fecha Acabada:</label> {(props.tarea.fechaAcabada === null)? "Sin terminar": showDate(props.tarea.fechaAcabada)}</div>
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> No</div>
                 {/*<div><label className='label-tareas'>Confirmar</label> <input type="checkbox"></input></div>*/}

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
+import { showDate } from '../../../../interfaces/dates';
 
 // Vista: compartida (admins y profs)
 
@@ -74,8 +75,10 @@ const TareaSinAsignar = (props) => {
         return (
             <div className="tarea">
                 <div><label className='label-tareas'>Tarea:</label> {props.tarea.nombre}</div>
-                <div><label className='label-tareas'>Fecha:</label> {props.tarea.fechaAsignada}</div>
-                <div><label className='label-tareas'>Usuario:</label> <form onSubmit={asignarTarea}><select id="user" name="Usuario">
+                <div><label className='label-tareas'>Fecha límite:</label> {showDate(props.tarea.fechaLimite)}</div>
+                <div><form onSubmit={asignarTarea}>
+                    <label className='label-tareas'>Asignar a: </label>
+                    <select id="user" name="Usuario">
                     {usuarios.map(u => {
                         return (
                             <option value={u._id}>{u.nombre}</option>
