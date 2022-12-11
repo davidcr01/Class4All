@@ -1,5 +1,6 @@
 
 /**
+ * @deprecated
  * Obtiene las aulas restantes para una tarea dada.
  * @pre La tarea debe ser del tipo comanda.
  * @param idTarea Identificador de la tarea.
@@ -22,6 +23,7 @@ export const getAulasRestantes = async (idTarea) => {
 }
 
 /**
+ * @deprecated
  * Elimina una aula de las aulas pendientes que tiene un alumno para las comandas.
  * @pre La tarea debe ser del tipo comanda.
  * @param idTarea Identificador de la tarea

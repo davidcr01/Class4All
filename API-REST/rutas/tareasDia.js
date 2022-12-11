@@ -26,9 +26,9 @@ router.post("/add-retroalimentacion/:idTarea" , TareaController.addRetroalimenta
 router.post("/crear-tareaDia" , TareaController.crearTarea);
 router.post("/crear-tareaMaterial", TareaController.crearTareaMaterial);
 router.put("/asignar-tarea/" , TareaController.asignarTarea);
-router.get("/aulas-restantes-comanda/:idTarea", TareaController.getAulasRestantes);
+//router.get("/aulas-restantes-comanda/:idTarea", TareaController.getAulasRestantes);
+//router.post("/completar-clase-comanda/", TareaController.completarClaseComanda);
 router.put("/completar-tarea-profesor/:idTarea" , TareaController.setEstadoCompletada);
-router.post("/completar-clase-comanda/", TareaController.completarClaseComanda);
 router.post("/actualizar-cantidades/:idTarea" , TareaController.actualizarCantidades);
 
 

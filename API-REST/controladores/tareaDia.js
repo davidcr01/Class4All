@@ -569,7 +569,7 @@ const getTareasEntregaMaterial = (req, res) => {
     });
 }
 
-
+/*
 const completarClaseComanda = (req, res) => {
     const aula = req.body.aula;
     const idTarea = req.body.idTarea;
@@ -620,6 +620,7 @@ const getAulasRestantes = (req, res) => {
         }
     });
 }
+*/
 
 const setEstadoCancelada = (req, res) => {
     let idTarea = req.params.idTarea;
@@ -742,8 +743,8 @@ module.exports = {
     setEstadoCompletada,
     crearTareaMaterial,
     getTareasEntregaMaterial,
-    completarClaseComanda,
-    getAulasRestantes,
+    //completarClaseComanda,
+    //getAulasRestantes,
     setEstadoCancelada,
     obtenerTareasUsuarioAsignadas,
     faltaMaterial,

@@ -36,6 +36,6 @@ export const ContenidoFichaAlumno = ({alumno}) => {
             <div className="div-foto-perfil">
                 <img className="foto-perfil" src={"http://localhost:3900/api/usuarios/get-foto/"+alumno._id}/>
             </div>
-    </div>        
+        </div>
     )
 }
