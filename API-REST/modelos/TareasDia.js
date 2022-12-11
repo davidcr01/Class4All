@@ -66,6 +66,12 @@ const TareaSchema = Schema({
         default: null
     },
 
+    retroalimentacionTexto: {
+        type: String,
+        default: null
+    },
+
+
 
     //Comandas
     menus: {
