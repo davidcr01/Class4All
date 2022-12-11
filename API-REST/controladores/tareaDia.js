@@ -700,6 +700,34 @@ const faltaMaterial = (req, res) => {
     );
 };
 
+/**
+ * recibe la retroalimentación en formato texto
+ * @param {*} req 
+ * @param {*} res 
+ */
+const addRetroalimentacion = (req, res) => {
+    let idTarea = req.params.idTarea;
+    let retroalimentacion = req.body.retroalimentacion;
+
+    Tarea.findByIdAndUpdate(
+        { _id: idTarea },
+        { $set: { retroalimentacionTexto: retroalimentacion} },
+        { lean: true, new: true },
+        (error, tarea) => {
+            if (error || !tarea) {
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "No se ha añadido la retroalimentación"
+                });
+            }
+            return res.status(200).json({
+                status: "success",
+                mensaje: "Todo se ha modificado correctamete",
+            });
+        }
+    );
+};
+
 module.exports = {
     listaTareas,
     crearTarea,
@@ -718,5 +746,6 @@ module.exports = {
     getAulasRestantes,
     setEstadoCancelada,
     obtenerTareasUsuarioAsignadas,
-    faltaMaterial
+    faltaMaterial,
+    addRetroalimentacion
 }
