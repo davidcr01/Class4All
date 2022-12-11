@@ -234,6 +234,14 @@
 
   }
 
+  .titulotarea{
+    font-size: var(--tam-letra-mediana)
+  }
+
+  .fechatarea{
+    font-size: var(--tam-letra-pequena);
+  }
+
   .tareaAgenda{
     width: 100%;
     align-self: center;
