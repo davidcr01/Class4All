@@ -24,8 +24,9 @@ const Alumnos = ({alumnos}) => {
             loginAlumno(id).then((data) => {
                 if(data !== undefined){
                     cookies.set("loginCookie", {id: data.id, sessionID: data.sessionID, rol: data.rol}, {maxAge: 86400});
+                    cookies.set("tams", {tamañoLetra: data.tamañoLetra, tamañoIconos: data.tamañoIconos}, {maxAge: 86400})
                     setCookie('Alumno');
-
+                    
                     // let user = alumnos[i];
                      console.log(data);
 

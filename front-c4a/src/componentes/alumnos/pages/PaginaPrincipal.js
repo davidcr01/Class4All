@@ -20,8 +20,7 @@ export const PaginaPrincipal = () => {
     isCookieSet().then((response) => {
       setCargando(false);
       setIsSet(response);
-      console.log("RESPONSE: " + cookies.get("loginCookie"));
-      setTams(response.tamañoLetra)
+      // setTams(cookies.get("tams").tamañoLetra)
     })
   }, []);
 
