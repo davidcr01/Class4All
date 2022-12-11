@@ -17,7 +17,10 @@ router.delete("/eliminar-tareaDia/:id" , TareaController.eliminarTarea);
 router.put("/desasignar-tarea/:idTarea" , TareaController.desasignarTarea);
 router.put("/completar-tarea-alumno/:idTarea" , TareaController.setRealizada);
 router.put("/cancelar-tarea/:idTarea" , TareaController.setEstadoCancelada);
+
 router.post("/falta-material/:idTarea" , TareaController.faltaMaterial);
+router.post("/add-retroalimentacion/:idTarea" , TareaController.addRetroalimentacion);
+
 
 // --------------------------- ARREGLADAS ---------------------------
 router.post("/crear-tareaDia" , TareaController.crearTarea);
