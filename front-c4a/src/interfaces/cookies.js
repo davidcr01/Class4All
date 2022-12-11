@@ -119,7 +119,7 @@ export const loginUser = async (correo) => {
             //alert("server local: "+data.rol)
             //const resData = {id: data.usuario._id, sessionID: data.sessionID, rol: data.rol};
             //return data;//{id: data.usuario._id, sessionID: data.sessionID};
-            return {id: data.usuario._id, sessionID: data.sessionID, rol: data.usuario.rol};
+            return {id: data.usuario._id, sessionID: data.sessionID, rol: data.usuario.rol, tamañoLetra: data.usuario.tamañoLetra, tamañoIconos: data.usuario.tamañoIconos};
         }
         else
             return undefined;

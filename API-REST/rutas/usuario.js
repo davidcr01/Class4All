@@ -40,4 +40,5 @@ router.post("/modificar-tamanos/:id" , UsuarioController.modificarTamaño);
 
 router.post("/subir-foto/", upload.single('img'), UsuarioController.subirFoto);
 
+router.get("/get-tamanos/:id", UsuarioController.getTamaños);
 module.exports = router;
