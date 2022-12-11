@@ -1,5 +1,7 @@
+import { Button, Card, CardContent, Box } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import {styled} from "@mui/material/styles";
 
 // Vista: admins
 
@@ -37,7 +39,15 @@ const Usuario = (props) => {
         nav("/modificar-usuario", {state: {alumno: route}});
     }
 
+    const MiButton = styled(Button)({
+        width: "max-content",
+        margin: "0 auto 0 auto",
+    })
+
     return (
+        
+        <>
+        {/*
         <div className="usuario">
             <div className="datosuser">{props.user.nombre} {props.user.apellido1} {props.user.apellido2}</div>
             <div className="botonesuser">
@@ -46,6 +56,23 @@ const Usuario = (props) => {
                 <button className="botonuser botonuser-ver" onClick={() => verFichaAlumno(props.user)}>Ver</button>
             </div>
         </div>
+    */}
+
+
+<Box sx={{boxShadow:7, width: "93%", margin: "25px auto 25px auto", backgroundColor: "transparent", borderRadius: "4px"}}>   
+    <Card variant='outlined' sx={{display: "flex", justifyContent: "space-between"}} raised>
+        <CardContent sx={{display: "flex", alignItems: "center"}}>
+        {props.user.nombre} {props.user.apellido1} {props.user.apellido2}
+        </CardContent>
+        <CardContent sx={{display: "flex", gap: "5px", alignItems: "center"}}>
+            <MiButton variant='contained' onClick={() => verModificarUsuario(props.user)}>Modificar</MiButton>
+            <MiButton variant='contained' color='error' onClick={eliminarUsuario}>Eliminar</MiButton>
+            <MiButton variant='contained' onClick={() => verFichaAlumno(props.user)}>Ver</MiButton>
+        </CardContent>
+    </Card>
+    </Box>
+    </>
+
     )
 
 }
