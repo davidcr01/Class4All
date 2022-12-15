@@ -4,7 +4,8 @@ import '../styles.css'
 import Header from '../../compartido/Layout/Header';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
-
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
 import {getImage, getBestSearch} from '../../../interfaces/arasaac'
 import imagenesARASAAC from "../../../img/imagenesARASAAC.json";
 import Button from '@mui/material/Button';
@@ -40,7 +41,7 @@ export const EntregaMaterial = () => {
                     matRef[i].idNro = nro[0]._id;
                 }
                 else {
-                    matRef[i].idNro = imagenesARASAAC['numeros'][materiales[currentMaterial].cantidad];
+                    matRef[i].idNro = imagenesARASAAC['numeros'][matRef[i].cantidad];
                 }
             }
             
@@ -61,7 +62,7 @@ export const EntregaMaterial = () => {
         try {
             let res = await fetch(url);
             let data = await res.json();
-            //setProfe(data.usuario);
+
             return data.usuario;
         }
         catch (error) {
@@ -136,7 +137,7 @@ export const EntregaMaterial = () => {
     
                         let index = -1;
                         index = aulas.find((item/*, i*/) => {
-                            console.log(item, profe);
+                            console.log(usuario, idProfe);
                             if(item.id === usuario._id){
                                 return item;
                             }
@@ -204,13 +205,13 @@ export const EntregaMaterial = () => {
                  </section>
 
                  <section className='botonesRecogidaMaterial'>
-                    <Button className='aceptarMaterial' variant="contained" onClick={e => recogidoMat()}>
-                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png' alt="Marcar como completada"/>
+                    <Button color="error" className='rechazarMaterial' variant="contained" onClick={recogidoMat}>
+                        <CloseIcon className='fuente-flecha'/>
                     </Button>
-                    <Button className='rechazarMaterial' variant="contained" onClick={e => recogidoMat()}>
-                        <img src=' https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png' />
+
+                    <Button className='aceptarMaterial boton-paginacion' variant="contained" onClick={recogidoMat}>
+                        <DoneIcon className='fuente-flecha'/>
                     </Button>
-                   
                  </section>
 
                 </>
