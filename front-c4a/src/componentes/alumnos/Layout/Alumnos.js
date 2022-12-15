@@ -12,9 +12,7 @@ const Alumnos = ({alumnos}) => {
 
     const {setCookie} = React.useContext(ContextoRol);
 
-    
     const nav = useNavigate();
-
     
     if(alumnos !== undefined) {
         let alumnosJSX = []
@@ -30,9 +28,6 @@ const Alumnos = ({alumnos}) => {
                     // let user = alumnos[i];
                      console.log(data);
 
-
-
-
                     let tam = getComputedStyle(document.documentElement).getPropertyValue('--tam-letra-mediana');
                     console.log(tam);
 
@@ -41,13 +36,7 @@ const Alumnos = ({alumnos}) => {
                     console.log(tam);
                     nav('/');
                 }
-                
-
-
-                //nav("/pagina-principal");
             });                    
-
-                    
         }
 
         for(let i=0; i<alumnos.length; i++){
@@ -67,15 +56,6 @@ const Alumnos = ({alumnos}) => {
             </div>
         )
     }
-/*
-    else{
-        return (
-            <div>
-                <h1>NO HAY ALUMNOS EN ESTA CLASE</h1>
-            </div>
-        )
-    }
-    */
 }
 
 export default Alumnos;

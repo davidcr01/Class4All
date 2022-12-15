@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import {styled} from "@mui/material/styles";
 
 // Vista: admins
+// Componente que representa cada item de la lista de usuarios. Se 
+// puede acceder directamente a su ficha, borrardo y modificación
 
 const Usuario = (props) => {
     const nav = useNavigate();

@@ -8,6 +8,7 @@ import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 
 // Vista: compartida
+// Página de inicio de sesión que muestra las clases del sistema
 
 export const SesionAlumnosClases = () => {
 

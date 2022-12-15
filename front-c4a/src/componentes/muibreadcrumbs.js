@@ -2,6 +2,8 @@ import {Box, Breadcrumbs, Link, Typography } from '@mui/material'
 import React from 'react'
 // import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
+// Migas de pan. Se definen las necesarias
+
 export const MuiBreadcrumbs = () => {
     return <Box m={2} className="breadcrumbs">
         <Breadcrumbs aria-label="breadcrumb"/*  separator={<NavigateNextIcon fontSize='small'></NavigateNextIcon>}*/> 

@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+// Rutas asociadas a los materiales
+
 const MaterialController = require('../controladores/material.js');
 
 router.get("/lista-material" , MaterialController.listar);

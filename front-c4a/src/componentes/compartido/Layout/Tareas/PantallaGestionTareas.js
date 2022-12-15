@@ -4,6 +4,7 @@ import BuscarFiltros from './BuscarFiltros';
 import ListaTareas from './ListaTareas';
 
 // Vista: compartido (profs y admins)
+// Componente para mostrar la lista de las tareas
 
 const PantallaGestionTareas = (props)=> {
     return(

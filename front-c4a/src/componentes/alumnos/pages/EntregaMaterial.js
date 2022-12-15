@@ -12,6 +12,8 @@ import { useNavigate } from 'react-router-dom';
 import { isCookieSet } from '../../../interfaces/cookies';
 import Cookies from 'universal-cookie';
 
+// Componente para mostrar la tarea de entrega de material
+
 export const EntregaMaterial = () => {
     const cookies = new Cookies();
     const { id } = useParams();
@@ -26,6 +28,7 @@ export const EntregaMaterial = () => {
     const materialesIncrement = 1;
     let nav = useNavigate();
 
+    // Rellena el vector con los materiales solicitados (ids de los materiales)
     const rellenarMateriales = async () => {
         let url = 'http://localhost:3900/api/tareas/get-tarea/' + id;
         try {
@@ -45,6 +48,7 @@ export const EntregaMaterial = () => {
 
     };
 
+    // Rellena la info del profe que ha pedido la tarea
     const rellenaProfe = async (id) => {
         let url = 'http://localhost:3900/api/usuarios/get-usuario/' + id;
         try {
@@ -58,7 +62,7 @@ export const EntregaMaterial = () => {
         }
     };
     
-
+    // Rellena los nombres de los materiales pedidos (fotos y nombres)
     const rellenaNombreMats = async () => {
         let url = 'http://localhost:3900/api/materials/lista-material';
         try {
@@ -81,6 +85,7 @@ export const EntregaMaterial = () => {
         setCargando(false);
     };
 
+    // Actualiza el material recogido de la lista
     const recogidoMat = () => {
         let nuevosDatos = [...materiales];
         nuevosDatos.splice(currentMaterial, 1);
@@ -90,6 +95,8 @@ export const EntregaMaterial = () => {
         }
 
     };
+
+    // Marcar la tarea como completada
     const tareaCompletada = () => {
         let url = 'http://localhost:3900/api/tareas/completar-tarea-alumno/' + id;
         try {
@@ -138,6 +145,8 @@ export const EntregaMaterial = () => {
             <CargandoProgress/>
         )
     }
+    // Devuelve el HTML asociado a la página de la entrega de material, incluyendo pictogramas
+    // e intrucciones intuitivas
     else if(cookies.get("loginCookie") !== undefined && isSet){
         if(materiales.length > 0){
             return (
@@ -182,6 +191,7 @@ export const EntregaMaterial = () => {
                 </>
             )
         }
+        // Cuando se recogen todos los materiales, mostrar el botón enviar
         else{
             return(
                 <>

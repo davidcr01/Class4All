@@ -5,6 +5,7 @@ import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { ListItem } from '@mui/material';
 
 // Vista: compartida (administradores y profesores)
+// Componente para cargar distintas partes de la información del pedido
 
 const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => {
 

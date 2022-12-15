@@ -9,6 +9,8 @@ import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 
 // Vista: admin
+// Componente asociado a la página para gestionar los usuarios. Contiene
+// entre otras cosas el componente de la gestión de los usuarios.
 
 export const GestionUsuarios = () => {
   const [cargando, setCargando] = useState();

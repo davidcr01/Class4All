@@ -7,7 +7,7 @@ const router = require("../rutas/menu");
 
 
 
-
+// Obtiene todos los menús de BBDD
 const listar = (req, res) => {
 
     Menu.find({}).exec((error, menus) => {
@@ -24,6 +24,7 @@ const listar = (req, res) => {
     });
 };
 
+// Función para crear un menú, info se encuentra en el cuerpo de la petición
 const crear = (req, res) => {
     const body = req.body;
     const menu = new Menu(body);
@@ -36,8 +37,6 @@ const crear = (req, res) => {
                     mensaje: "No se ha podido crear el menú"
                 });
             }
-            console.log("MG:\n");
-            console.log(menuGuardado);
 
             return res.status(200).json({
                 status: "success",
@@ -48,10 +47,11 @@ const crear = (req, res) => {
         });
 };
 
-
+// Elimina un menú de la BBDD asociado a su ID y su foto
 const eliminar = (req, res) => {
     let id = req.params.id;
 
+    // Este bloque sirve para eliminar la foto del menú
     Menu.findById(id, (error, menu) => {
         if(error || !menu){
             return res.status(404).json({
@@ -63,14 +63,13 @@ const eliminar = (req, res) => {
         let foto = menu.foto;
         let urlFisica = "./public/fotos/" + foto;
         fs.unlink(urlFisica, (err) => {
-            if (error) {
+            if (err) {
                 throw err;
-                console.log("public/" + menu.foto + " no se ha podido eliminar");
             }
         })
     });
 
-
+    // Este bloque elimina el menú de la BBDD
     let menu = Menu.findByIdAndDelete(id, (error, menuEliminado) => {
         if (error || !menuEliminado) {
             return res.status(404).json({
@@ -88,6 +87,7 @@ const eliminar = (req, res) => {
 
 };
 
+// Obtiene la foto del menú asociado a su ID
 const getFoto = (req, res) => {
     let id = req.params.id;
     Menu.findById(id, (error, menu) => {
@@ -110,6 +110,7 @@ const getFoto = (req, res) => {
     });
 };
 
+// FUNCION NO IMPLEMENTADA
 const subirFoto = (req, res) => {
    console.log(req.file);
 };

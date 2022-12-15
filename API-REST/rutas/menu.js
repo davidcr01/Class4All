@@ -15,6 +15,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage })
 
+// Rutas asociadas a los menús
+
 const MenuController = require('../controladores/menu.js');
 
 router.get("/lista-menu" , MenuController.listar);
