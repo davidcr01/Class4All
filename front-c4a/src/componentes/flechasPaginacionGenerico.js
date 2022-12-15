@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '@mui/material/Button';
 import "./compartido/styles.css";
-import {ArrowBack, ArrowForward, Scale} from "@mui/icons-material";
+import {ArrowBack, ArrowForward} from "@mui/icons-material";
 
 export const FlechasPaginacionGenerico = ({ currentIndex, setCurrentIndex, length, increment }) => {
     //Cutre, hay que arreglarlo
@@ -24,14 +24,14 @@ export const FlechasPaginacionGenerico = ({ currentIndex, setCurrentIndex, lengt
             <div className='flechaAgenda'>
                 { (currentIndex + increment >= length || (currentIndex + increment < length && currentIndex!==0)) &&
                     <div className='flechaI'>
-                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAtras()}>
+                        <Button className="boton-paginacion" variant="contained" onClick={paginaAtras}>
                         <ArrowBack className='fuente-flecha'/>
                         </Button>
                     </div>}
 
                     { (currentIndex === 0 || (currentIndex + increment < length && currentIndex!==0)) &&
                     <div className='flechaD'>
-                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAdelante()}>
+                        <Button className="boton-paginacion" variant="contained" onClick={paginaAdelante}>
                         <ArrowForward className='fuente-flecha'/>
                         </Button>
                     </div>                                }
