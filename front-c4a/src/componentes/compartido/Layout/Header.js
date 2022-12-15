@@ -6,7 +6,7 @@ import BotonParaAtras  from './BotonParaAtras'
 const Header = (props) => {
 
     if (props.alumnos === "si") {
-        if(!props.botonAtras)
+        if(!props.botonAtras && props.botonAtras !== undefined)
         return (
             <header>
                 {/* <BotonParaAtras url={props.url_anterior}></BotonParaAtras> */}

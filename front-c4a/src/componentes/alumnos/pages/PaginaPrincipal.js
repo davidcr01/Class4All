@@ -35,7 +35,7 @@ export const PaginaPrincipal = () => {
     if(cookies.get("loginCookie") !== undefined && isSet){
     return (
       <>
-      <Header titulo="Página Principal" alumnos="si"/>
+      <Header titulo="Página Principal" alumnos="si" botonAtras={false}/>
       <PantallasUsuario/>
     </>)
     }
