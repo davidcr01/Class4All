@@ -1,5 +1,8 @@
 import React from "react";
 
+// Componente para la ficha del alumno. Se le pasa como parámetro el objeto "alumno"
+
+
 export const ContenidoFichaAlumno = ({alumno}) => {
     return (
         <div id="div-info-alumno">

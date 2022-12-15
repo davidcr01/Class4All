@@ -5,7 +5,7 @@ const path = require('path');
 
 const cookies = new Cookies();
 
-
+// Obtiene todos los materiales de BBDD
 const listar = (req, res) => {
 
     let listaMaterial = Material.find({}).exec((error, materials) => {
@@ -23,6 +23,7 @@ const listar = (req, res) => {
 };
 
 
+// Obtiene foto del mençu asociado con su ID
 const getFoto = (req, res) => {
     let id = req.params.id;
     Material.findById(id, (error, material) => {

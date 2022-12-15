@@ -1,14 +1,14 @@
-import React, { useEffect, useInsertionEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../Layout/Header.js';
 import Footer from '../../Layout/Footer.js';
 import { MuiBreadcrumbsPM } from '../../../muibreadcrumbs';
 import {PedirMaterial} from './PedirMaterial';
 import MaterialPedido from './MaterialPedido';
-import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
-import { getListSubheaderUtilityClass } from '@mui/material';
 import Cookies from 'universal-cookie';
 
 // Vista: compartida (administradores y profesores)
+// Componente padre para pedir materiales, dentro se renderiza
+// la información del pedido o su formulario para pedirlo
 
 export const Materiales = () => {
 
@@ -26,10 +26,8 @@ export const Materiales = () => {
     useEffect(() => {
         getPedido();
     }, [cambio]);
-
-    //PETICIÓN A LA BASE DE DATOS QUE PASANDO EL ID DEL PROFESOR DIGA SI HA HECHO PETICIÓN DE MATERIAL O NO
-    //ESTO SE HACE CON LAS COOCKIES
     
+    // Obtiene si el profesor ya ha hecho un pedido
     const getPedido = async() => {
         try {
             const url = "http://localhost:3900/api/tareas/lista-tareasDia-prof/" + cookies.get('loginCookie').id;

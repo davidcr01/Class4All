@@ -4,6 +4,8 @@ import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { showDate } from '../../../../interfaces/dates';
 
 // Vista: compartida (admins y profs)
+// Idem que TareaAsginada pero para Realizada
+
 
 const TareaRealizada = (props) => {
 

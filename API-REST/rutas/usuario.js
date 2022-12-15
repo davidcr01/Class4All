@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 const UsuarioController = require('../controladores/usuario.js');
 
-
+// Rutas asociadas a los usuarios
 router.post("/crear-usuario" , UsuarioController.crear);
 router.get("/lista-usuarios", UsuarioController.listar);
 router.get("/get-usuario/:id", UsuarioController.obtenerUsuarioId);

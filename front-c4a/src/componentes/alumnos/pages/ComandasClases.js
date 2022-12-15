@@ -11,6 +11,8 @@ import { getAulas, getAulasRestantes, sendMenu } from '../../../interfaces/aulas
 import Button from '@mui/material/Button';
 
 // Vista: compartida
+// Componente para mostrar todas las comandas de la tarea comandas.
+// Gestiona la funcionalidad de marcar las clases como completadas
 
 export const ComandasClases = () => {
 

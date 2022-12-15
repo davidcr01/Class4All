@@ -3,6 +3,7 @@ import Tareas from './Tareas.js';
 import '../../styles.css';
 
 // Vista: profesores y admins
+// Componente para mostrar la lista de todas las tareas y sus categorías
 
 const ListaTareas = (props) => {
 /*
@@ -18,6 +19,9 @@ const ListaTareas = (props) => {
     const setA = (val) => {A = val}
     const setR = (val) => {R = val}
     const setNR = (val) => {NR = val}
+
+    // Las siguientes funciones son cambios en los estilos cuando
+    // se seleccionan las diferentes categorías
 
     function seleccionSinAs() {
         //getelementbyid

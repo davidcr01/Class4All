@@ -9,6 +9,8 @@ import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 
 // Vista: admin
+// Componente asociado a la página para modificar los usuarios. Contiene
+// entre otras cosas el componente de la modificación del usuario.
 
 export const ModificarUsuario = () => {
   const [cargando, setCargando] = useState();

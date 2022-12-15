@@ -8,7 +8,7 @@ import { MiTF } from '../../muiCustomComponents';
 // Vista: compatido entre profesores y admins
 
 // Inicio sesión de profesores y adminsitradores
-//Hace falta comprobar si ya existe
+// Hace falta comprobar si ya existe
 
 const Profesores = (props) => {
 

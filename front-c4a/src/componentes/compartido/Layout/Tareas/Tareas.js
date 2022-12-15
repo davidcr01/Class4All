@@ -6,6 +6,7 @@ import TareaNoRealizada from './TareaNoRealizada';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 
 // Vista: compartida (admins y profs)
+// Componente para mostrar el menú de las tareas
 
 export const Tareas = (props) => {
     const [tareas,setTareas] =  useState([]);
@@ -23,6 +24,7 @@ export const Tareas = (props) => {
         }
     }
 
+    // Obtiene todos los usuarios
     const conseguirUsuarios = async() =>{
         try {
             const url = "http://localhost:3900/api/usuarios/lista-usuarios";
@@ -40,6 +42,7 @@ export const Tareas = (props) => {
         conseguirUsuarios();
     }, [needsRender]);
 
+// Devuele las categorías de las tareas
   return (
     <div>
         {tareas != null && tareas.length !== 0 ?

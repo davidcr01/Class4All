@@ -11,6 +11,8 @@ import Cookies from "universal-cookie";
 import CargandoProgress from "../Layout/CargandoProgress";
 import { useLocation } from "react-router-dom";
 
+// Página para cargar la ficha técnica del alumno. Usa el comoponente ContenidoFichaAlumno
+
 export const FichaAlumno = () => {
     const [isSet, setIsSet] = useState(false);
     const [cargando, setCargando] = useState(true);

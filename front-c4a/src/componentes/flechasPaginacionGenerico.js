@@ -19,50 +19,6 @@ export const FlechasPaginacionGenerico = ({ currentIndex, setCurrentIndex, lengt
         }
     }
 
-/*
-    if (length > increment) {
-        if (currentIndex === 0)
-            return (
-                <div className='flechaAgenda'>
-                    <div className='flechaD'>
-                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAdelante()}>
-                            <ArrowForward className='fuente-flecha'/>
-                        </Button>
-                    </div>
-                </div>
-            )
-
-        else if (currentIndex + increment >= length)
-            return (
-                <div className='flechaAgenda'>
-                    <div className='flechaI'>
-                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAtras()}>
-                            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
-                        </Button>
-
-                    </div>
-                </div>
-            )
-
-        else
-            return (
-                <div className='flechaAgenda'>
-                    <div className='flechaI'>
-                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAtras()}>
-                            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
-                        </Button>
-                    </div>
-
-                    <div className='flechaD'>
-                        <Button className="boton-paginacion" variant="contained" onClick={e => paginaAdelante()}>
-                            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Flecha_tesela.svg/1200px-Flecha_tesela.svg.png' />
-                        </Button>
-                    </div>
-                </div>
-            )
-    }
-    */
-
     if(length>increment){
         return (
             <div className='flechaAgenda'>

@@ -2,6 +2,7 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 
 // Vista: alumnos
+// Componente para mostrar los submenús de las tareas de los alumnos
 
 const PantallaTareas = (props) => {
     let botones=[];

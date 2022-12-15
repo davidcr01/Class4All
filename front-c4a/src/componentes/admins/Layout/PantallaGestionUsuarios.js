@@ -5,6 +5,7 @@ import ListaUsuarios from '../../admins/Layout/ListaUsuarios';
 import {useState} from 'react'
 
 // Vista: admins
+// Componente que contiene los filtros y la lista de los usuarios
 
 const PantallaGestionUsuarios = () => {
     const [filtroalumnos, setFiltroAlumnos] = useState(true);

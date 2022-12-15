@@ -5,6 +5,7 @@ import '../../styles.css';
 
 // Componente para buscar filtros en la gestión de las tareas
 // Vista: compartido (admins y profes)
+
 const BuscarFiltros = ({ childToParent }) => {
     const data = 0;
 
@@ -13,9 +14,6 @@ const BuscarFiltros = ({ childToParent }) => {
         childToParent(n);
 
     }
-
-
-
     return (
         <div className="divfiltros">
             <div className="div-filtros-buscar">
