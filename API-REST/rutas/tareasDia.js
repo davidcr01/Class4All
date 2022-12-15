@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+// Rutas asociadas a las tareas
 const TareaController = require('../controladores/tareaDia.js');
 
 router.get("/lista-tareasDia" , TareaController.listaTareas);

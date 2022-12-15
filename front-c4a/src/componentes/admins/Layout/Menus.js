@@ -4,6 +4,8 @@ import Menu from './Menu.js';
 
 // Vista: admins
 
+// Componente que contiene la lista de todos los menús
+// Hace uso del componente Menu.js
 export const Menus = () => {
     const [menus, SetMenus] =  useState([]);
 

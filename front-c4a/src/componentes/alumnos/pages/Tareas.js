@@ -7,6 +7,7 @@ import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 
 // Vista: alumno
+// Página para mostrar el submenú de las tareas del alumno: se muestran la Agenda y las Realizadas
 
 export const Tareas = () => {
   const [cargando, setCargando] = useState();

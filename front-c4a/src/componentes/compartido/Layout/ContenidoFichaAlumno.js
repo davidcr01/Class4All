@@ -1,5 +1,8 @@
 import React from "react";
 
+// Componente para la ficha del alumno. Se le pasa como parámetro el objeto "alumno"
+
+
 export const ContenidoFichaAlumno = ({alumno}) => {
     return (
         <div id="div-info-alumno">
@@ -9,7 +12,7 @@ export const ContenidoFichaAlumno = ({alumno}) => {
                 </div>
 
                 <div className="flex">
-                    <div className="strong flex">Edad: </div> <div className="flex">57 años</div>
+                    <div className="strong flex">Edad: </div> <div className="flex">13 años</div>
                 </div>
                 
                 <div className="flex">
@@ -17,15 +20,15 @@ export const ContenidoFichaAlumno = ({alumno}) => {
                 </div>
 
                 <div className="flex">
-                    <div className="flex strong">Tipo de inicio de sesión: </div> <div className="flex">WIP</div>
+                    <div className="flex strong">Tipo de inicio de sesión: </div> <div className="flex">Mediano</div>
                 </div>
 
                 <div className="flex">
-                    <div className="flex strong">Menú asignado: </div>WIP (quizas ni se implemente)
+                    <div className="flex strong">Menú asignado: </div>Ninguno
                 </div>
 
                 <div className="flex">
-                    <div className="flex strong">Retroalimentación: </div><div className="flex">????</div>
+                    <div className="flex strong">Retroalimentación: </div><div className="flex">Excelente</div>
                 </div>
 
                 <div className="flex">

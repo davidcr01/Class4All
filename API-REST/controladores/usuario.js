@@ -40,6 +40,7 @@ const crear = (req, res) => {
 
 }
 
+// Modifica el tamaño de las letras y los iconos asociado al id de un usuario
 const modificarTamaño = (req, res) => {
     
     //Recoger id del alumno y tamaños
@@ -68,7 +69,7 @@ const modificarTamaño = (req, res) => {
     );
 }
 
-
+// Lista usuarios
 const listar = (req, res) => {
 
     let listaUser = Usuario.find({}).exec((error, usuarios) => {
@@ -115,6 +116,7 @@ const loginUsuario = (req, res) => {
             });
         }
 
+        // Asigna un número aleatorio en la cookie
         const randID = Math.floor(Math.random() * 10000000);    //Mejorable
         cookies.set("user"+randID, {id: usuario[0]._id, token: randID, rol: usuario[0].rol}, {path: "/", maxAge: 86400});
 
@@ -156,6 +158,7 @@ const loginAlumno = (req, res) => {
     });
 }
 
+// Elimina el cookie asociada al usuario
 const logoutUsuario = (req, res) => {
    
     if(cookies.get("user"+req.body.id) !== undefined){
@@ -211,6 +214,7 @@ const getAulasRuta = (req, res) => {
 };
 
 
+// Obtiene alumnos por aula
 const getAlumnos = (req, res) => {
     let aula = req.params.aula;
 
@@ -243,8 +247,7 @@ const getTodosAlumnos = (req, res) => {
     });
 }
 
-
-
+// Obtiene la foto asociada al usuario
 const obtenerFoto = (req, res) => {
     let id = req.params.id;
 
@@ -268,6 +271,7 @@ const obtenerFoto = (req, res) => {
     });    
 }
 
+// Elimina un usuario asociado a su ID
 const eliminarUsuario = (req, res) => {
     let id = req.params.id;
 
@@ -307,10 +311,12 @@ const eliminarUsuario = (req, res) => {
     })
 }
 
+// FUNCION NO IMPLEMENTADA
 const subirFoto = (req, res) => {
     console.log(req.file);
  };
 
+ // Obtiene los tamaños creados en la BBDD (peq, med, grande)
  const getTamaños = (req, res) => {
     Usuario.findById(req.params.id).exec((error, usuario) => {
         if (error || !usuario) {

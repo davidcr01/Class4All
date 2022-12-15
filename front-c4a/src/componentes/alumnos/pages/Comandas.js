@@ -12,6 +12,7 @@ import { useParams } from 'react-router-dom';
 import { sendMenu, setAulaCompletada } from '../../../interfaces/aulasRestantes';
 
 // Vista: compartida
+// Página para mostrar la gestión de las comandas
 
 export const Comandas = ({ aula }) => {
 
@@ -70,7 +71,7 @@ export const Comandas = ({ aula }) => {
     )
 
   else if (cookies.get("loginCookie") !== undefined && isSet) {
-    //alert("menus toda la calse: "+menusTodasClases);
+    // Se muestran los menús de 2 en dos, y sus respectivas cantidades (en total 4 componentes en pantalla)
     const increment = 2;
     const menusVisibles = menus.slice(index, index + increment);
     let menusLength = (menus === undefined) ? 0 : menus.length;
@@ -87,19 +88,15 @@ export const Comandas = ({ aula }) => {
       let i = 0;
 
       while (menusLength > i * increment) {
-        //console.log(menusLength + ">" + i*increment);
         i++;
       }
 
       menusLength = i * increment + 1;
     }
 
-    //alert("menu: "+ JSON.stringify(location.state.menu) + " aula: "+JSON.stringify(location.state.nroAula))
-
-
     if (menusLength > 0) {
-      //const location = useLocation();
 
+      // Si estamos en la última página, mostrar el botoón de enviar
       if (index === menusLength - 1) {
         const sendListado = () => {
           let aux = [...aulasCompletadas];
@@ -117,6 +114,7 @@ export const Comandas = ({ aula }) => {
           </>
         );
       }
+      // Si no, mostrar las cantidades y los mneús.
       else {
         return (
           <>

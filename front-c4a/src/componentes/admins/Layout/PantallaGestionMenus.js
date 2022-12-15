@@ -5,6 +5,7 @@ import ListaMenus from './ListaMenus';
 
 // Vista: admins
 
+// Componente que contiene los filtros y la lista de los menús
 const PantallaGestionMenus = ()=> {
     return(
     <div className='PantallaGestionUsuarios'>

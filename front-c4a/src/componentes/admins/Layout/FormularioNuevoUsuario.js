@@ -3,7 +3,7 @@ import '../styles.css';
 import { useNavigate } from 'react-router-dom';
 
 // Vista: admins
-
+// Componente asociado al formulario de nuevo usuario
 const FormularioNuevoUsuario = ()=> {
 
     const [value, setValue] = useState(0);
@@ -24,13 +24,13 @@ const FormularioNuevoUsuario = ()=> {
         setImages(event.target.files);
     }
 
-
     let nav = useNavigate();
 
     const cambiar = (event) => {
         setValue(event.target.value);
     }
 
+    // Elimina el email del formulario
     function eliminarEmail(){
         if(document.getElementById("email") != null || document.getElementById("email") != undefined){
             document.getElementById("email").remove();
@@ -48,6 +48,8 @@ const FormularioNuevoUsuario = ()=> {
     }
     }
 
+    // Obtenemos los datos del usuario y creamos el objeto del menú para guardarlo
+    // en la BBDD
     const enviar = (event) => {
         event.preventDefault();
 
@@ -100,6 +102,7 @@ const FormularioNuevoUsuario = ()=> {
             body: urlencoded,
             redirect: 'follow'
         };
+        // Petición a la API
         fetch('http://localhost:3900/api/usuarios/crear-usuario', requestOptions).
         then(nav("/gestion-usuarios")).
         catch(error => console.log('error', error));
@@ -114,6 +117,7 @@ const FormularioNuevoUsuario = ()=> {
 
         };
 
+        // Petición a la API 
         fetch('http://localhost:3900/api/menus/subir-foto', requestOptions).
         then(response => response.text()).
         then(result => console.log(result)).

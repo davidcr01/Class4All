@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 
 // Vista: compartida entre profs y admins
+// Componente para el menú principal de los administradores y los profesores
 
 const PantallasGestion = (props) => {
     const nav = useNavigate();

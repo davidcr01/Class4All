@@ -6,6 +6,8 @@ import { isCookieSet, loginUser } from '../../../../interfaces/cookies';
 
 
 // Vista: compartida (administradores y profesores)
+// Componente para pedir material. Necesita obtener todos los materiales,
+// aulas, alumnos, etc
 
 export const PedirMaterial = ({setCambio}) => {
     const cookies = new Cookies();
@@ -30,6 +32,7 @@ export const PedirMaterial = ({setCambio}) => {
         setCargando(false);
     }, []);
 
+    // Pide la lista de todos los materiales
     const getAllMateriales = async() =>{
         try {
             const url = "http://localhost:3900/api/materials/lista-material";
@@ -42,6 +45,7 @@ export const PedirMaterial = ({setCambio}) => {
         }
     }
 
+    // Pide la lista de todas las aulas
     const getAllAulas = async() =>{
         try {
             const url = "http://localhost:3900/api/usuarios/lista-aulas";
@@ -55,8 +59,7 @@ export const PedirMaterial = ({setCambio}) => {
         }
     }
 
-
-
+    // Pide la lista de todos los usuarios
     const getAllUsuarios = async() =>{
         try {
             const url = "http://localhost:3900/api/usuarios/get-alumnos";
@@ -102,7 +105,6 @@ export const PedirMaterial = ({setCambio}) => {
         setIdProfesor(cookies.get("loginCookie").id)
         
         let data = event.target;
-        // pero madre mia willy que haces aqui compañero
         
         //peticion post con datos de formulario
         let datos = {

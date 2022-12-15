@@ -4,6 +4,7 @@ import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { showDate } from '../../../../interfaces/dates';
 
 // Vista: compartida (admins y profs)
+// Componente para gestionar cada tarea: eliminar, desasignar, ver su infomarción
 
 const TareaAsignada = (props) => {
 
