@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { isCookieSet } from '../../../interfaces/cookies';
 import Cookies from 'universal-cookie';
+import { getAulas } from '../../../interfaces/aulasRestantes';
 
 export const EntregaMaterial = () => {
     const cookies = new Cookies();
@@ -18,7 +19,7 @@ export const EntregaMaterial = () => {
     const [materiales, setMateriales] = useState([]);
     const [currentMaterial, setcurrentMaterial] = useState(0)//indice de la estructura de tareas
     const [cargando, setCargando] = useState(true);
-    const [Profe , setProfe] = useState({});
+    const [profe , setProfe] = useState({});
     const [cogerNombres , setcogerNombres] = useState(0);
     const [isSet, setIsSet] = useState(false);
     const [aula, setAula] = useState(null);
@@ -32,11 +33,13 @@ export const EntregaMaterial = () => {
             let res = await fetch(url);
             let data = await res.json();
             setMateriales(data.tarea.entregamateriales.materiales);
-            setAula(data.tarea.entregamateriales.aula);
+            //setAula(data.tarea.entregamateriales.aula);
 
-            await rellenaProfe(data.tarea.entregamateriales.idProfesor);
-            
+            //await rellenaProfe(data.tarea.entregamateriales.idProfesor);
+
             setcogerNombres(1);
+
+            return data.tarea.entregamateriales.idProfesor;
         }
         catch (error) {
             console.log(error);
@@ -50,7 +53,8 @@ export const EntregaMaterial = () => {
         try {
             let res = await fetch(url);
             let data = await res.json();
-            setProfe(data.usuario);
+            //setProfe(data.usuario);
+            return data.usuario;
         }
         catch (error) {
             console.log(error);
@@ -117,10 +121,30 @@ export const EntregaMaterial = () => {
         isCookieSet().then((res) => {
             setIsSet(res);
 
-            rellenarMateriales();
+            rellenarMateriales().then((idProfe) =>{
+                rellenaProfe(idProfe).then((usuario) =>{
+                    getAulas().then((aulas) => {
+                        //console.log(aulas, usuario);
+    
+                        let index = -1;
+                        index = aulas.find((item/*, i*/) => {
+                            console.log(item, profe);
+                            if(item.id === usuario._id){
+                                return item;
+                            }
+                        })
+    
+                        setAula(index.clase);
+                        setProfe(usuario);
+                    })
+                })
+            });
         })
     }, []);
 
+    useEffect(() => {
+        console.log(profe);
+    }, [profe])
     useEffect(() => {
         if(cogerNombres === 1){
             rellenaNombreMats();
@@ -136,9 +160,10 @@ export const EntregaMaterial = () => {
     if(cargando){
         return(
             <CargandoProgress/>
-        )
-    }
+            )
+        }
     else if(cookies.get("loginCookie") !== undefined && isSet){
+        alert(JSON.stringify(materiales));
         if(materiales.length > 0){
             return (
                 <>
@@ -149,7 +174,7 @@ export const EntregaMaterial = () => {
                         <p>VOY A</p>
                     </figure>
                     <figure id='fotoProfeEntregaMaterial'>
-                        <img src={"http://localhost:3900/api/usuarios/get-foto/"+ Profe._id} alt={"Clase de " + Profe.nombre} />
+                        <img src={"http://localhost:3900/api/usuarios/get-foto/"+ profe._id} alt={"Clase de " + profe.nombre} />
                         <p>{"Aula " + aula}</p>
                     </figure>
                  </section>
