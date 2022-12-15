@@ -1,7 +1,11 @@
 :root{
-  --tam-letra-pequena: 1.5vw;
+  --tam-letra-pequena: 1.75vw;
   --tam-letra-mediana: 2.5vw;
-  --tam-letra-grande: 4vw;
+  --tam-letra-grande: 3vw;
+  --tam-icono-pequeno: 2.5vw;
+  --tam-icono-mediano: 3vw;
+  --tam-icono-grande: 3.5vw;
+  
 }
 
 .cuerpo{
@@ -242,7 +246,7 @@
     font-size: var(--tam-letra-pequena);
   }
 
-  .tareaAgenda{
+*  .tareaAgenda{
     width: 100%;
     align-self: center;
   }
@@ -356,31 +360,34 @@
 }
 
 .pictogramasDireccionEntrega{
-  margin-top: 3em;
+  margin-top: 1em;
   display: flex;
   justify-content: center;
   border-width: 1px;
   border-color: black;
   border-style: solid;
-  padding-top: 1em;
-  margin-left: 16em;
-  margin-right:16em;
+  padding-top: 2em;
+  margin-left: 2em;
+  margin-right:2em;
+  font-size: var(--tam-letra-grande);
 
 }
 .pictogramasMaterialesEntregar{
   display: flex;
   justify-content: center;
+  font-size: var(--tam-letra-grande);
   
 }
 
 #pictogramaEntregarEn, #fotoProfeEntregaMaterial{
-  width: 14em;
-  height: 12em;
+  width: 26em;
+  height: 8em;
   margin-right: 1em;
   align-items: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  
   margin-right: 4em;
   margin-left: 4em ;
 }
@@ -391,15 +398,18 @@
 }
 
 #pictogramaEntregarEn p, #fotoProfeEntregaMaterial p{
+  
   margin-top: 0.5em;
   font-size: 1.5em;
   font-weight: bold;
+  
 }
 
 #cantidadMaterialEntregar, #fotoMaterialEntregar{
   width: 12em;
   height: 10em;
   margin-left: 1em;
+  
   
 }
 
@@ -421,6 +431,7 @@
   display: flex;
   justify-content: center;
   margin-top: 3em;
+  
 }
 .aceptarMaterial, .rechazarMaterial{
   width: 9em;

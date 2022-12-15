@@ -134,3 +134,11 @@
 .hidden{
   display: hidden;
 }
+
+.noUsuarios{
+  margin-top: 2em;
+  color: tomato;
+  font-size: 1.5em;
+  font-weight: bold;
+
+}

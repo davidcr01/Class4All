@@ -68,7 +68,7 @@ export const Usuarios = (props) => {
     }
     else{
         return(
-            <div>
+            <div className="noUsuarios">
                 No hay usuarios que mostrar
             </div>
         )
