@@ -5,14 +5,11 @@ const Usuario = require("../modelos/Usuario");
 const request = require('supertest');
 
 
-beforeEach((done) => {
-    //conexionTest();
-    mongoose.connect("mongodb+srv://test:test@c4a-test.97v4qpm.mongodb.net/?retryWrites=true&w=majority", () => done());
-    
-    //done();
+beforeAll((done) => {
+    mongoose.connect("mongodb+srv://test:test@c4a-test.97v4qpm.mongodb.net/?retryWrites=true&w=majority", done);
 });
 
-afterEach((done) => {
+afterAll((done) => {
     Tarea.deleteMany({}).then(() => done());
     Usuario.deleteMany({}).then(() => done());
     mongoose.connection.close();
@@ -25,12 +22,12 @@ const app = crearServidor();
 describe('Test de tareas', () => {
     
     
-    test('Deberíalistar todas las tareas', async () => {
+    test('Debería listar todas las tareas', async () => {
         await request(app).get('/api/tareas/lista-tareasDia').expect(200);
     });
 
 
-    test('Debería elimiar una tarea existente', async () => {
+    test('Debería eliminar una tarea existente', async () => {
         let tareaEliminar = await Tarea.create({
             estado: "sinAsignar",
             nombre: "nombre",
