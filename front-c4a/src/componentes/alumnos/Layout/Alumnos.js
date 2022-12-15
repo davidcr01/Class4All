@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from "universal-cookie";
 import { loginAlumno } from '../../../interfaces/cookies';
-import setTams from '../../../interfaces/tamaños';
+import {setTamsIconos, setTamsLetra} from '../../../interfaces/tamaños';
 import { ContextoRol } from '../../../contexto/Roles';
 
 // Componente para mostrar el login de los alumnos
@@ -24,21 +24,11 @@ const Alumnos = ({alumnos}) => {
             loginAlumno(id).then((data) => {
                 if(data !== undefined){
                     cookies.set("loginCookie", {id: data.id, sessionID: data.sessionID, rol: data.rol}, {maxAge: 86400});
-                    cookies.set("tams", {tamañoLetra: data.tamañoLetra, tamañoIconos: data.tamañoIconos}, {maxAge: 86400})
                     setCookie('Alumno');
-                    
-                    // let user = alumnos[i];
-                     console.log(data);
+                
 
-
-
-
-                    let tam = getComputedStyle(document.documentElement).getPropertyValue('--tam-letra-mediana');
-                    console.log(tam);
-
-                    setTams(data.tamañoLetra);
-                    tam = getComputedStyle(document.documentElement).getPropertyValue('--tam-letra-mediana');
-                    console.log(tam);
+                    setTamsLetra(data.tamañoLetra);
+                    setTamsIconos(data.tamañoIconos);
                     nav('/');
                 }
                 

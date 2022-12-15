@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-function setTamsLetra(newTam) {
+export const setTamsLetra = (newTam) => {
     console.log("nt:" + newTam);
     let tammediano = 2.5, tampequeño = 1.75, tamgrande = 3;
     if (newTam === 1) {
@@ -25,27 +25,19 @@ function setTamsLetra(newTam) {
 }
 
 
-function setTamsIconos(newTam) {
+export const setTamsIconos = (newTam) =>  {
     console.log("nt:" + newTam);
-    let tammediano = 2.5, tampequeño = 1.75, tamgrande = 3;
+    let tam = 4;
     if (newTam === 1) {
-        tammediano = 1.5;
-        tampequeño = 1;
-        tamgrande = 2;
+        tam = 3;
     }
     else if (newTam === 2) {
-        tammediano = 2.5;
-        tampequeño = 1.75;
-        tamgrande = 3
+        tam = 5.5;
     }
     else {
-        tammediano = 3.5;
-        tampequeño = 2.5;
-        tamgrande = 4;
+        tam = 6;
     }
-    document.documentElement.style.setProperty('--tam-icono-mediano', tammediano + 'vw');
-    document.documentElement.style.setProperty('--tam-icono-pequeno', tampequeño + 'vw');
-    document.documentElement.style.setProperty('--tam-icono-grande', tamgrande + 'vw');
+    document.documentElement.style.setProperty('--tam-icono', tam + 'em');
 }
 
 
