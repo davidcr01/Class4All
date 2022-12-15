@@ -5,7 +5,7 @@ import Header from '../../compartido/Layout/Header';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 
-import {getImage} from '../../../interfaces/arasaac'
+import {getImage, getBestSearch} from '../../../interfaces/arasaac'
 import imagenesARASAAC from "../../../img/imagenesARASAAC.json";
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
@@ -32,11 +32,19 @@ export const EntregaMaterial = () => {
         try {
             let res = await fetch(url);
             let data = await res.json();
+            
+            let matRef = data.tarea.entregamateriales.materiales;
+            for(let i = 0; i< matRef.length; i++){
+                if(matRef[i].cantidad > 10){
+                    const nro = await getBestSearch(matRef[i].cantidad);
+                    matRef[i].idNro = nro[0]._id;
+                }
+                else {
+                    matRef[i].idNro = imagenesARASAAC['numeros'][materiales[currentMaterial].cantidad];
+                }
+            }
+            
             setMateriales(data.tarea.entregamateriales.materiales);
-            //setAula(data.tarea.entregamateriales.aula);
-
-            //await rellenaProfe(data.tarea.entregamateriales.idProfesor);
-
             setcogerNombres(1);
 
             return data.tarea.entregamateriales.idProfesor;
@@ -163,7 +171,8 @@ export const EntregaMaterial = () => {
             )
         }
     else if(cookies.get("loginCookie") !== undefined && isSet){
-        alert(JSON.stringify(materiales));
+        //console.log(getBestSearch(materiales[currentMaterial].cantidad).then((res) => console.log(res)));
+        console.log(materiales);
         if(materiales.length > 0){
             return (
                 <>
@@ -184,19 +193,19 @@ export const EntregaMaterial = () => {
 
                  <section className='pictogramasMaterialesEntregar'>
                     <figure id='cantidadMaterialEntregar'>
-                        <img src={getImage(imagenesARASAAC['numeros'][materiales[currentMaterial].cantidad])} alt={"Material " + materiales[currentMaterial].idMaterial} />
+                        <img src={getImage(materiales[currentMaterial].idNro)} alt={materiales[currentMaterial].cantidad} />
                         
                     </figure>
                     <figure id='fotoMaterialEntregar'>
                         {}
-                        <img src={"http://localhost:3900/api/materials/obtenerfoto/"+ materiales[currentMaterial].material} alt={"XD"} />
+                        <img src={"http://localhost:3900/api/materials/obtenerfoto/"+ materiales[currentMaterial].material} alt={materiales[currentMaterial].nombre} />
                         <p>{materiales[currentMaterial].nombre.toUpperCase()}</p>
                     </figure>
                  </section>
 
                  <section className='botonesRecogidaMaterial'>
                     <Button className='aceptarMaterial' variant="contained" onClick={e => recogidoMat()}>
-                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png' />
+                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png' alt="Marcar como completada"/>
                     </Button>
                     <Button className='rechazarMaterial' variant="contained" onClick={e => recogidoMat()}>
                         <img src=' https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png' />
