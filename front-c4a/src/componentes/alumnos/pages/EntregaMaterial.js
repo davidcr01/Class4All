@@ -108,6 +108,31 @@ export const EntregaMaterial = () => {
         }
 
     };
+    const faltaMat = async () => {
+        let url ='http://localhost:3900/api/tareas/falta-material/' + materiales[currentMaterial].material;
+        try{
+            await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "estado": "falta"
+                })
+            });
+        }
+        catch (error) {
+            console.log(error);
+            console.log("Error al rellenar falta material");
+        }
+
+        let nuevosDatos = [...materiales];
+        nuevosDatos.splice(currentMaterial, 1);
+        setMateriales(nuevosDatos);
+        if (currentMaterial > 0) {
+            setcurrentMaterial(currentMaterial - 1);
+        }
+    };
 
     // Marcar la tarea como completada
     const tareaCompletada = () => {
@@ -218,7 +243,7 @@ export const EntregaMaterial = () => {
                         <CloseIcon className='fuente-flecha'/>
                     </Button>
 
-                    <Button className='aceptarMaterial boton-paginacion' variant="contained" onClick={recogidoMat}>
+                    <Button className='aceptarMaterial boton-paginacion' variant="contained" onClick={faltaMat}>
                         <DoneIcon className='fuente-flecha'/>
                     </Button>
                  </section>
