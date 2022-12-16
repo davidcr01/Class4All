@@ -102,14 +102,14 @@ export const Agenda = () => {
                                             image={'http://localhost:3900/api/tareas/get-foto/' + tareas[currentTarea]._id}
                                             alt={tareas[currentTarea].nombre} />
                                         <CardContent>
-                                            <h1>{tareas[currentTarea].nombre}</h1>
+                                            <h1 className='titulotarea'>{tareas[currentTarea].nombre}</h1>
                                         </CardContent>
                                     </Card>
                                 </div>
 
 
                                 {/*va con un calendario estático de Material UI y es la fecha limite */}
-                                <h2>Fecha Límite: {tareas[currentTarea].fechaLimite}</h2>
+                                <h2 className='fechatarea'>Fecha Límite: {tareas[currentTarea].fechaLimite}</h2>
 
 
                             </div>

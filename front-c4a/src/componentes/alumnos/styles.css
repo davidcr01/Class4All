@@ -1,7 +1,9 @@
 :root{
-  --tam-letra-pequena: 1.5vw;
+  --tam-letra-pequena: 1.75vw;
   --tam-letra-mediana: 2.5vw;
-  --tam-letra-grande: 4vw;
+  --tam-letra-grande: 3vw;
+  --tam-icono: 4;
+  
 }
 
 .cuerpo{
@@ -234,7 +236,15 @@
 
   }
 
-  .tareaAgenda{
+  .titulotarea{
+    font-size: var(--tam-letra-mediana)
+  }
+
+  .fechatarea{
+    font-size: var(--tam-letra-pequena);
+  }
+
+*  .tareaAgenda{
     width: 100%;
     align-self: center;
   }
@@ -340,66 +350,81 @@
   background-color: #E2E2E2;
 }
 
-
-
 .atras {
   height: fit-content;
   width: 5em;
 }
 
 .pictogramasDireccionEntrega{
-  margin-top: 3em;
+  margin-top: 1em;
   display: flex;
   justify-content: center;
   border-width: 1px;
   border-color: black;
   border-style: solid;
-  padding-top: 1em;
-  margin-left: 16em;
-  margin-right:16em;
-
+  margin-left: 4em;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  margin-right: 4em;
+  font-size: var(--tam-letra-grande);
+  width: auto;
 }
 .pictogramasMaterialesEntregar{
   display: flex;
+  padding-top: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-left:2em;
+  margin-right:2em;
   justify-content: center;
+  font-size: var(--tam-letra-grande);
   
 }
 
 #pictogramaEntregarEn, #fotoProfeEntregaMaterial{
-  width: 14em;
-  height: 12em;
-  margin-right: 1em;
   align-items: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-right: 4em;
-  margin-left: 4em ;
+  margin-bottom: 0em;
+  margin-top: 1em
 }
+
+#pictogramaEntregarEn{
+  margin-left: 1em ;
+  margin-right: 0;
+
+}
+
+#fotoProfesorEntregaMaterial{
+  margin-right: 1em;
+  margin-left: 0;
+}
+
+
 #pictogramaEntregarEn img,#fotoProfeEntregaMaterial img {
-  width: 100%;
-  height: 100%;
+
   flex-grow: 1;
   object-fit: contain;
 }
 
 #pictogramaEntregarEn p, #fotoProfeEntregaMaterial p{
-  margin-top: 0.5em;
+  
+  margin-top: 0;
+  padding-top: 0;
   font-size: 1.5em;
   font-weight: bold;
-}
-
-#cantidadMaterialEntregar, #fotoMaterialEntregar{
-  width: 12em;
-  height: 10em;
-  margin-left: 1em;
   
 }
 
-#cantidadMaterialEntregar img, #fotoMaterialEntregar img{
-  width: 100%;
-  height: 100%;
+#cantidadMaterialEntregar, #fotoMaterialEntregar{
+
+  margin-left: 1em;
+  
+  
 }
+
 
 #cantidadMaterialEntregar p, #fotoMaterialEntregar p{
   margin-top: 0.5em;
@@ -414,6 +439,7 @@
   display: flex;
   justify-content: center;
   margin-top: 3em;
+  
 }
 .aceptarMaterial, .rechazarMaterial{
   width: 9em;
@@ -450,4 +476,10 @@
   margin-top: 0.2em;
   font-size: 3.5em;
   font-weight: bold;
+}
+
+.imgPictoEntrega{
+  object-fit: contain;
+  width: var(--tam-icono);
+  height: var(--tam-icono);
 }

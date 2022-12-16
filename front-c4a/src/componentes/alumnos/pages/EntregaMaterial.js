@@ -189,26 +189,29 @@ export const EntregaMaterial = () => {
                  <Header titulo="Materiales" alumnos="si" url_anterior="/Agenda" />
                  <section className='pictogramasDireccionEntrega'>
                     <figure id='pictogramaEntregarEn'>
-                        <img src={"https://api.arasaac.org/api/pictograms/31758"} alt={"voy a"} />
+                        <img className="imgPictoEntrega" src={"https://api.arasaac.org/api/pictograms/31758"} alt={"voy a"} />
                         <p>VOY A</p>
                     </figure>
                     <figure id='fotoProfeEntregaMaterial'>
-                        <img src={"http://localhost:3900/api/usuarios/get-foto/"+ profe._id} alt={"Clase de " + profe.nombre} />
+                        <img className="imgPictoEntrega" src={"http://localhost:3900/api/usuarios/get-foto/"+ Profe._id} alt={"Clase de " + Profe.nombre} />
+
                         <p>{"Aula " + aula}</p>
                     </figure>
                  </section>
 
 
-                 <FlechasPaginacionGenerico currentIndex={currentMaterial} setCurrentIndex={setcurrentMaterial} length={materiales.length} increment={materialesIncrement} />
+                 <FlechasPaginacionGenerico className="flechase" currentIndex={currentMaterial} setCurrentIndex={setcurrentMaterial} length={materiales.length} increment={materialesIncrement} />
 
                  <section className='pictogramasMaterialesEntregar'>
                     <figure id='cantidadMaterialEntregar'>
-                        <img src={getImage(materiales[currentMaterial].idNro)} alt={materiales[currentMaterial].cantidad} />
+                        <img className="imgPictoEntrega" src={getImage(imagenesARASAAC['numeros'][materiales[currentMaterial].cantidad])} alt={"Material " + materiales[currentMaterial].idMaterial} />
+
                         
                     </figure>
                     <figure id='fotoMaterialEntregar'>
                         {}
-                        <img src={"http://localhost:3900/api/materials/obtenerfoto/"+ materiales[currentMaterial].material} alt={materiales[currentMaterial].nombre} />
+                        <img className="imgPictoEntrega" src={"http://localhost:3900/api/materials/obtenerfoto/"+ materiales[currentMaterial].material} alt={"XD"} />
+
                         <p>{materiales[currentMaterial].nombre.toUpperCase()}</p>
                     </figure>
                  </section>

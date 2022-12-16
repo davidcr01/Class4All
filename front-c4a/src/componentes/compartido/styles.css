@@ -121,6 +121,8 @@
   }
 
 
+
+
   
   .imgspantalla{
     width:100%;
@@ -286,6 +288,7 @@ Header {
   width: 100%;
   height: auto;
   rotate: 180deg;
+
 }
 
 .flechaD img {
@@ -296,17 +299,17 @@ Header {
 
 .flechaI {
   position: absolute;
-  width: 12%;
-  left: 7%;
-  top: 50%;
+  width: 5em;
+  left: 1em;
+  top: 40%;
   transform: translateY(-50%);
 }
 
 .flechaD {
   position: absolute;
-  width: 12%;
-  right: 7%;
-  top: 50%;
+  width: 5em;
+  right: 3em;
+  top: 40%;
   transform: translateY(-50%);
 }
 
