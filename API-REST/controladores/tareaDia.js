@@ -631,7 +631,7 @@ const faltaMaterial = (req, res) => {
 
     Tarea.findByIdAndUpdate(
         { _id: idTarea },
-        { $set: { "entregamateriales.materialesnodisp": materiales} },
+        { $push: { "entregamateriales.materialesnodisp": materiales} },
         { lean: true, new: true },
         (error, tarea) => {
             if (error || !tarea) {
@@ -655,11 +655,14 @@ const faltaMaterial = (req, res) => {
  */
 const addRetroalimentacion = (req, res) => {
     let idTarea = req.params.idTarea;
-    let retroalimentacion = req.body.retroalimentacion;
+    let retroalimentacionTexto = req.body.retroalimentacionTexto;
+    let retroalimentacionNumero = req.body.retroalimentacionNumero;
+
 
     Tarea.findByIdAndUpdate(
         { _id: idTarea },
-        { $set: { retroalimentacionTexto: retroalimentacion} },
+        { $set: { retroalimentacionTexto: retroalimentacionTexto,
+                   retroalimentacionNumero: retroalimentacionNumero} },
         { lean: true, new: true },
         (error, tarea) => {
             if (error || !tarea) {
