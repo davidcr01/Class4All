@@ -73,6 +73,11 @@ const TareaSchema = Schema({
         default: null
     },
 
+    retroalimentacionNumero: {
+        type: Number,
+        default: null
+    },
+
 
 
     //Comandas
