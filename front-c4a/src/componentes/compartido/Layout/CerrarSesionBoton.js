@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import {isCookieSet, logoutServer} from "../../../interfaces/cookies";
 import {ContextoRol} from "../../../contexto/Roles";
 
-//Componente para div de cerrar sesion
+// Componente para div de cerrar sesion. Elimina la cookie asociada a la sesión
 // Vista: compartido
 
 const CerrarSesionBoton = () => { 

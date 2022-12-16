@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Vista: admins
-
+// Componente que representa cada item de la lista de menús,
+// contiene los botones de eliminar, modificar, etc.
 const Menu = (props) => {
     const nav = useNavigate();
 
@@ -23,6 +24,8 @@ const Menu = (props) => {
                 window.location.reload();
             })
             .catch(err => console.log(err));
+
+        
     }
 
     return (

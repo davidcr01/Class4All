@@ -6,8 +6,10 @@ import { isCookieSet, loginUser } from '../../../../interfaces/cookies';
 
 
 // Vista: compartida (administradores y profesores)
+// Componente para pedir material. Necesita obtener todos los materiales,
+// aulas, alumnos, etc
 
-export const PedirMaterial = (setCambio) => {
+export const PedirMaterial = ({setCambio}) => {
     const cookies = new Cookies();
 
     const [cookieSet, setCookieSet] = useState(false);
@@ -16,6 +18,7 @@ export const PedirMaterial = (setCambio) => {
 
     const [allMateriales, SetAllMateriales] =  useState([]);
     const [allUsuarios, SetAllUsuarios] = useState([]);
+    const [allAulas, SetAllAulas] = useState([]);
 
     const [datosForm, setdatosForm] = useState([]);
 
@@ -25,9 +28,11 @@ export const PedirMaterial = (setCambio) => {
         });
         getAllMateriales();
         getAllUsuarios();
+        getAllAulas();
         setCargando(false);
     }, []);
 
+    // Pide la lista de todos los materiales
     const getAllMateriales = async() =>{
         try {
             const url = "http://localhost:3900/api/materials/lista-material";
@@ -40,6 +45,21 @@ export const PedirMaterial = (setCambio) => {
         }
     }
 
+    // Pide la lista de todas las aulas
+    const getAllAulas = async() =>{
+        try {
+            const url = "http://localhost:3900/api/usuarios/lista-aulas";
+            
+            const res = await fetch(url);
+            const data = await res.json();
+            console.log(data.aulas);
+            SetAllAulas(data.aulas);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // Pide la lista de todos los usuarios
     const getAllUsuarios = async() =>{
         try {
             const url = "http://localhost:3900/api/usuarios/get-alumnos";
@@ -85,21 +105,24 @@ export const PedirMaterial = (setCambio) => {
         setIdProfesor(cookies.get("loginCookie").id)
         
         let data = event.target;
-        // pero madre mia willy que haces aqui compañero
         
         //peticion post con datos de formulario
         let datos = {
             usuarioAsignado: data.user.value,
             entregamateriales: {
                 materiales: datosForm,
-                idProfesor: idProfesor
-            }
+                idProfesor: idProfesor,
+                aula: data.aula.value
+            },
         }
+
+        console.log(datos);
 
 
         var urlencoded = new URLSearchParams();
         urlencoded.append("usuarioAsignado", datos.usuarioAsignado.toString());
         urlencoded.append("entregamateriales[idProfesor]", datos.entregamateriales.idProfesor.toString());
+        urlencoded.append("entregamateriales[aula]", datos.entregamateriales.aula);
 
 
         for(let i = 0; i < datos.entregamateriales.materiales.length; i++){
@@ -116,13 +139,14 @@ export const PedirMaterial = (setCambio) => {
          const url = "http://localhost:3900/api/tareas/crear-tareaMaterial";
 
          fetch(url, requestOptions)
-         .then(res => res.text())
          .then(data => {
-             console.log(data);
-         })
+            if(data.status === "success"){
+                setCambio(2);
+            }
+        })
          .catch(err => console.log(err));
         
-         setCambio(1);
+         //setCambio(0);
    }
 
 
@@ -133,7 +157,7 @@ export const PedirMaterial = (setCambio) => {
     }else if (cookies.get("loginCookie") && cookieSet) {
         return (
             <section className = "peticion">
-                <form onSubmit={confirmar}>
+                <form onSubmit={() => confirmar}>
                     
                     <p> 
                         <label className='etiq' htmlFor="user">Alumno</label> 
@@ -161,11 +185,20 @@ export const PedirMaterial = (setCambio) => {
                             </p>
                             <button className = "boton-cancelar" onClick={() => cancelar(index)}>Cancelar</button>
                         </article>
-                    )})}                                    
+                    )})} 
+                    <p> 
+                        <label className='etiq' htmlFor="user">Aula</label> 
+                        <select className="cajaAula" id="aula" name="Aula">
+                            {allAulas.map(u => { return (
+                                <option key={u.id} value={u.clase}>{u.clase}</option>
+                            )})}
+                        </select>
+                    </p>
+
                 <article>
-                    <button className = "boton-anadir" type="button" onClick={(fAñadir)}>Añadir</button>
+                    <button className = "boton-anadir" type="button"  style={{cursor: "pointer"}} onClick={(fAñadir)}>Añadir</button>
                 </article>  
-                    <input className="boton-confirmar" type="submit" value="Confirmar"/>
+                    <input className="boton-confirmar" type="submit"  style={{cursor: "pointer"}} value="Confirmar"/>
                 </form>
 
 

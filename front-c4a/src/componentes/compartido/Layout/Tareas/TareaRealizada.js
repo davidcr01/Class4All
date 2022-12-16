@@ -3,8 +3,11 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import RadioGroupRating from './CaritasRating';
+import { showDate } from '../../../../interfaces/dates';
 
 // Vista: compartida (admins y profs)
+// Idem que TareaAsginada pero para Realizada
+
 
 const TareaRealizada = (props) => {
     
@@ -114,7 +117,8 @@ const TareaRealizada = (props) => {
             //Cambiada la retroalimentación para que no se borre
             <div className="tarea">
                 <div><label className='label-tareas'>Tarea:</label> {props.tarea.nombre}</div>
-                <div><label className='label-tareas'>Fecha:</label> {props.tarea.fecha}</div>
+                <div><label className='label-tareas'>Fecha Asignada:</label> {showDate(props.tarea.fechaAsignada)}</div>
+                <div><label className='label-tareas'>Fecha Acabada:</label> {showDate(props.tarea.fechaAcabada)}</div>
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> Si</div>
                 <form>

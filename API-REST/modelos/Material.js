@@ -1,5 +1,6 @@
 const {Schema, model} = require('mongoose');
 
+// Campos de Material y su tipo
 const MaterialSchema = Schema({
 
     nombre: {
@@ -7,6 +8,9 @@ const MaterialSchema = Schema({
         required: true
     },
     foto: {
+        type: String,
+    },
+    alt: {
         type: String,
     }
 

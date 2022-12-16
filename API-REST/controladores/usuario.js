@@ -10,7 +10,7 @@ const crear = (req, res) => {
     //Recoger parametros por post
     let parametros = req.body;
     //Validar datos ?
-    console.log(parametros.nombre);
+    //console.log(parametros.nombre);
 
     //Crear objeto 
     const usuario = new Usuario(parametros);        //se asignan los parametros de manera automática si coinciden el nombre
@@ -40,7 +40,36 @@ const crear = (req, res) => {
 
 }
 
+// Modifica el tamaño de las letras y los iconos asociado al id de un usuario
+const modificarTamaño = (req, res) => {
+    
+    //Recoger id del alumno y tamaños
+    let id = req.params.id;
+    let tamañoLetra = req.body.tamañoLetra;
+    let tamañoIconos = req.body.tamañoIconos;
 
+    //obtener usuario concreto y modificar
+    Usuario.findByIdAndUpdate(
+        { _id: id },
+        { $set: { tamañoLetra: tamañoLetra,
+                  tamañoIconos: tamañoIconos} },
+        { lean: true, new: true },
+        (error, uasuarioActualizado) => {
+            if (error || !uasuarioActualizado) {
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "El usuario no se ha actualizado"
+                });
+            }
+            return res.status(200).json({
+                status: "success",
+                mensaje: "Todo se ha modificado correctamete",
+            });
+        }
+    );
+}
+
+// Lista usuarios
 const listar = (req, res) => {
 
     let listaUser = Usuario.find({}).exec((error, usuarios) => {
@@ -87,11 +116,13 @@ const loginUsuario = (req, res) => {
             });
         }
 
+        // Asigna un número aleatorio en la cookie
         const randID = Math.floor(Math.random() * 10000000);    //Mejorable
         cookies.set("user"+randID, {id: usuario[0]._id, token: randID, rol: usuario[0].rol}, {path: "/", maxAge: 86400});
 
         const usuarioData = {_id: usuario[0]._id, rol: usuario[0].rol}
 
+        console.log(cookies.getAll());
 
         return res.status(200).json({
             status: "success",
@@ -115,7 +146,9 @@ const loginAlumno = (req, res) => {
         const randID = Math.floor(Math.random() * 10000000);    //Mejorable
         cookies.set("user"+randID, {id: usuario._id, token: randID, rol: usuario.rol}, {path: "/", maxAge: 86400});
 
-        const usuarioData = {_id: usuario._id, rol: usuario.rol}
+        const usuarioData = {_id: usuario._id, rol: usuario.rol, tamañoLetra: usuario.tamañoLetra, tamañoIconos: usuario.tamañoIconos}
+
+        console.log(cookies.getAll());
 
         return res.status(200).json({
             status: "success",
@@ -125,12 +158,13 @@ const loginAlumno = (req, res) => {
     });
 }
 
+// Elimina el cookie asociada al usuario
 const logoutUsuario = (req, res) => {
    
     if(cookies.get("user"+req.body.id) !== undefined){
         cookies.remove("user"+req.body.id);
         
-      //  console.log(cookies.getAll());
+        console.log(cookies.getAll());
 
         return res.status(200).json({
             status: "success",
@@ -160,8 +194,12 @@ const obtenerCookie = (req, res) => {
         });
 }
 
-const getAulas = (req, res) => {
-    Usuario.find({rol: "Profesor"}).exec((error, query) => {
+const getAulas = (callBack) =>{
+    Usuario.find({rol: "Profesor"}).exec(callBack);
+}
+
+const getAulasRuta = (req, res) => {
+    getAulas((error, query) => {
         if (error || query.length == 0 || !query) {
             return res.status(404).json({
                 status: "error",
@@ -170,12 +208,13 @@ const getAulas = (req, res) => {
         }
         return res.status(200).json({
             status: "success",
-            aulas: query.map((profesor) => {return {clase: profesor.clase, id: profesor._id}})
+            aulas: query.map((profesor) => { return { clase: profesor.clase, id: profesor._id } })
         });
-    });
+    })
 };
 
 
+// Obtiene alumnos por aula
 const getAlumnos = (req, res) => {
     let aula = req.params.aula;
 
@@ -208,8 +247,7 @@ const getTodosAlumnos = (req, res) => {
     });
 }
 
-
-
+// Obtiene la foto asociada al usuario
 const obtenerFoto = (req, res) => {
     let id = req.params.id;
 
@@ -233,6 +271,71 @@ const obtenerFoto = (req, res) => {
     });    
 }
 
+// Elimina un usuario asociado a su ID
+const eliminarUsuario = (req, res) => {
+    let id = req.params.id;
+
+    //Encuentro el usuario y borro su foto
+    Usuario.findById(id, (error, usuario) => {
+        if(error || !usuario){
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No se ha podido encontrar el usuario"
+            });
+        }
+        
+        let foto = usuario.foto;
+        let urlFisica = "./public/fotos/" + foto;
+        fs.unlink(urlFisica, (err) => {
+            if (error) {
+                console.log("public/" + usuario.foto + " no se ha podido eliminar");
+                throw err;
+            }
+        })
+    });
+
+    //Borro el usuario  
+    Usuario.findByIdAndDelete(id, (err, query) => {
+        if(err || !query){
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No se ha eliminado el usuario"
+            })
+        }
+        else{
+            return res.status(200).json({
+                status: "success",
+                mensaje: "El usuario ha sido eliminado correctamente"
+            })
+        }
+    })
+}
+
+// FUNCION NO IMPLEMENTADA
+const subirFoto = (req, res) => {
+    console.log(req.file);
+ };
+
+ // Obtiene los tamaños creados en la BBDD (peq, med, grande)
+ const getTamaños = (req, res) => {
+    Usuario.findById(req.params.id).exec((error, usuario) => {
+        if (error || !usuario) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No hay tamaños :("
+            });
+        }
+        return res.status(200).json({
+            status: "success",
+            tamletra: usuario.tamañoLetra,
+            tamfoto: usuario.tamañoIconos
+        });
+    })
+
+ };
+
+ 
+
 module.exports = {
     crear,
     listar,
@@ -240,9 +343,14 @@ module.exports = {
     loginUsuario,
     obtenerCookie,
     logoutUsuario,
-    getAulas,
+    getAulasRuta,
     getAlumnos,
     loginAlumno,
     obtenerFoto,
-    getTodosAlumnos
+    getTodosAlumnos,
+    getAulas,
+    eliminarUsuario,
+    modificarTamaño,
+    getTamaños,
+    subirFoto
 }

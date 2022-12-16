@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 
+// Campos de Tareas y su tipo
+
 const TareaSchema = Schema({
     estado: {
         type: String,
@@ -22,13 +24,13 @@ const TareaSchema = Schema({
         type: Date,
         default: null
     },
-    fechaAcabadada: {
+    fechaAcabada: {
         type: Date,
         default: null
     },
     fechaLimite: {
-        type: String,
-        default: 'Hoy'
+        type: Date,
+        default: () => new Date()
     },
     foto: {
         type: String,
@@ -66,14 +68,29 @@ const TareaSchema = Schema({
         default: null
     },
 
+    retroalimentacionTexto: {
+        type: String,
+        default: null
+    },
+
+    retroalimentacionNumero: {
+        type: Number,
+        default: null
+    },
+
+
 
     //Comandas
-    menus: [
-        {
-            menu: Schema.Types.ObjectId,
-            cantidad: Number,
-        }
-    ],
+    menus: {
+        type: [
+            {
+                menu: Schema.Types.ObjectId,
+                cantidad: Number,
+            }
+        ],
+        default: undefined,
+        required: false
+    },
 
     //Materiales
     entregamateriales: {
@@ -84,6 +101,14 @@ const TareaSchema = Schema({
             }
         ],
         idProfesor: Schema.Types.ObjectId,
+        aula: String,
+
+        //cuando falta algún material se añade aquí
+        materialesnodisp: [
+            {
+                material: Schema.Types.ObjectId,
+            }
+        ],
 
     },
 
@@ -93,10 +118,10 @@ const TareaSchema = Schema({
     },
 
     aulasRestantes: {
-        type: Array
+        type: Array,
+        required: false,
+        default: undefined
     }
-
-
 });
 
 module.exports = model('Tarea', TareaSchema, 'tareas');

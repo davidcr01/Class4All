@@ -9,6 +9,8 @@ import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 
 // Vista: admin
+// Componente asociado a la página para crear Menú. Contiene
+// entre otras cosas el componente del formulario de Nuevo menú.
 
 export const CreacionMenu = () => {
   const [cargando, setCargando] = useState();

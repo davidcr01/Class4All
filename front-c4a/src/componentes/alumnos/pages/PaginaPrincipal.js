@@ -2,13 +2,17 @@ import '../styles.css'
 import React, { useEffect, useState } from 'react'
 import Header from '../../compartido/Layout/Header';
 import PantallasUsuario from '../../alumnos/Layout/PantallasUsuario';
-import { isCookieSet } from '../../../interfaces/cookies';
+import { getCookie, isCookieSet } from '../../../interfaces/cookies';
 import Cookies from 'universal-cookie';
+import setTams from '../../../interfaces/tamaños';
+
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 
 // Vista: alumno
 
 export const PaginaPrincipal = () => {
+  const cookies = new Cookies();
+
   const [cargando, setCargando] = useState(true);
   const [isSet, setIsSet] = useState(false);
 
@@ -16,6 +20,7 @@ export const PaginaPrincipal = () => {
     isCookieSet().then((response) => {
       setCargando(false);
       setIsSet(response);
+      // setTams(cookies.get("tams").tamañoLetra)
     })
   }, []);
 
@@ -26,12 +31,11 @@ export const PaginaPrincipal = () => {
   );
 
   else{
-    const cookies = new Cookies();
 
     if(cookies.get("loginCookie") !== undefined && isSet){
     return (
       <>
-      <Header titulo="Página Principal" alumnos="si"/>
+      <Header titulo="Página Principal" alumnos="si" botonAtras={false}/>
       <PantallasUsuario/>
     </>)
     }

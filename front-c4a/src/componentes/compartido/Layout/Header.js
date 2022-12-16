@@ -3,9 +3,25 @@ import CerrarSesionBoton from './CerrarSesionBoton';
 import '../styles.css';
 import BotonParaAtras  from './BotonParaAtras'
 
+// Se sostienen varios tipos de headers. El header contiene el botón hacia atrás
+// - Header para los alumnos
+// - Header para la página principal
+// - Header para la página principal para los alumnos
+// - Header para la página principal para los administradores
+
+
 const Header = (props) => {
 
     if (props.alumnos === "si") {
+        if(!props.botonAtras && props.botonAtras !== undefined)
+        return (
+            <header>
+                {/* <BotonParaAtras url={props.url_anterior}></BotonParaAtras> */}
+                <h1 className="titulo color-alumno">{props.titulo}</h1>
+                <CerrarSesionBoton/>
+            </header>
+        );
+
         return (
             <header>
                 <BotonParaAtras url={props.url_anterior}></BotonParaAtras>

@@ -12,19 +12,23 @@ import { useParams } from 'react-router-dom';
 import { sendMenu, setAulaCompletada } from '../../../interfaces/aulasRestantes';
 
 // Vista: compartida
+// Página para mostrar la gestión de las comandas
 
 export const Comandas = ({ aula }) => {
 
   const { id } = useParams();
+  const location = useLocation();
   const url_ant = `/comanda/${id}`;
   const cookies = new Cookies();
   const [cargando, setCargando] = useState(true);
   const [isSet, setIsSet] = useState(false);
   const [menus, setMenus] = useState([]);
   const [index, setIndex] = useState(0);
-  const [conteoCantidades, setConteoCantidades] = useState([]);
-  const nav = useNavigate();
+  const [menusTodasClases, setMenusTodasClases] = useState(location.state.menus);
+  const [aulasCompletadas, setAulasCompletadas] = useState(location.state.aulasCompletadas);
 
+
+  const nav = useNavigate();
 
   useEffect(() => {
     isCookieSet().then((res) => {
@@ -32,7 +36,6 @@ export const Comandas = ({ aula }) => {
 
       const getMenus = async () => {
         try {
-          //alert("cookie cookie: "+cookies.get("loginCookie"));
           const url = "http://localhost:3900/api/menus/lista-menu";
           console.log(url);
           const res = await fetch(url)
@@ -49,9 +52,7 @@ export const Comandas = ({ aula }) => {
 
       getMenus().then((data) => {
         if (data.status === "success") {
-          //alert(JSON.stringify(data.menus[0]))
           setMenus(data.menus);
-          setConteoCantidades(new Array(data.menus.length).fill(0));
         }
 
         setCargando(false);
@@ -70,56 +71,58 @@ export const Comandas = ({ aula }) => {
     )
 
   else if (cookies.get("loginCookie") !== undefined && isSet) {
+    // Se muestran los menús de 2 en dos, y sus respectivas cantidades (en total 4 componentes en pantalla)
     const increment = 2;
     const menusVisibles = menus.slice(index, index + increment);
-    const menusLength = (menus === undefined) ? 0 : menus.length + 1;
+    let menusLength = (menus === undefined) ? 0 : menus.length;
 
+    //menusLength = (menusLength % increment === 0) ? menusLength+1 : menusLength + (menusLength % increment) + 1;
+
+    if (menusLength % increment === 0) {
+      menusLength++;
+    }
+    else if (menusLength < increment === 0) {
+      menusLength = increment + 1;
+    }
+    else {
+      let i = 0;
+
+      while (menusLength > i * increment) {
+        i++;
+      }
+
+      menusLength = i * increment + 1;
+    }
 
     if (menusLength > 0) {
-      const location = useLocation();
 
+      // Si estamos en la última página, mostrar el botoón de enviar
       if (index === menusLength - 1) {
-        let menuEnvio = [];
-        for (let i = 0; i < menus.length; i++) {
-          menuEnvio.push({ menu: menus[i]._id, cantidad: conteoCantidades[i] });
-        }
-
         const sendListado = () => {
-          sendMenu(id, menuEnvio).then((data) => {
-            if (data) {
-              setAulaCompletada(id, location.state.aula).then((res) => {
-                if (res) {
-                  nav(url_ant);
-                }
-                else {
-                  alert("Comanda enviada, pero ha habido un error en la clase");
-                }
-              })
-            }
-            else {
-              alert("No ha sido posible enviar la comanda");
-            }
-          })
+          let aux = [...aulasCompletadas];
+          aux[location.state.nroAula] = true;
+          nav(url_ant, { state: { menus: menusTodasClases, aulasCompletadas: aux } });
         }
 
         return (
           <>
-            <Header titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant} />
+            <Header botonAtras={false} titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant} />
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={menusLength} increment={increment} />
             <section className='contenedorBoton'>
-              <Button variant="outlined" sx={{ fontSize: 35, borderRadius: 5 }} className='botonEnviarMenus' onClick={sendListado}>Enviar</Button>
+              <Button variant="outlined" sx={{ fontSize: 35, borderRadius: 5 }} className='botonEnviarMenus' onClick={sendListado}>Guardar</Button>
             </section>
           </>
         );
       }
+      // Si no, mostrar las cantidades y los mneús.
       else {
         return (
           <>
-            <Header titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant} />
+            <Header botonAtras={false} titulo={"Comandas clase " + location.state.aula} alumnos="si" url_anterior={url_ant} />
             <FlechasPaginacionGenerico currentIndex={index} setCurrentIndex={setIndex} length={menusLength} increment={increment} />
             <div className="cuerpo">
               <div className="recuadrosmenus">
-                <Menus menus={menusVisibles} cantidades={conteoCantidades} setCantidades={setConteoCantidades} currentIndex={index} />
+                <Menus menus={menusVisibles} /*cantidades={conteoCantidades} setCantidades={setConteoCantidades}*/ currentAula={location.state.nroAula} allMenus={menusTodasClases} setAllMenus={setMenusTodasClases} currentIndex={index} />
               </div>
             </div>
           </>

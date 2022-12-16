@@ -2,10 +2,11 @@ import React from 'react';
 import {useNavigate} from 'react-router-dom';
 
 // Vista: alumnos
+// Componente para mostrar los submenús de las tareas de los alumnos
 
 const PantallaTareas = (props) => {
     let botones=[];
-    let apartados = ["Agenda", "Tareas Realizadas"]
+    let apartados = ["AGENDA", "TAREAS REALIZADAS"]
     let pictogramas = [ require("../../../../img/agenda.png"), require("../../../../img/realizado.png")]
     let enlaces = ["/Agenda", "/TareasRealizadas"]
 

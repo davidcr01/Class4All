@@ -3,6 +3,7 @@ const {Schema, model} = require('mongoose');
 // El esquema define la estructura de los documentos de la colección
 // El modelo es la clase que se utiliza para crear documentos de la colección
 
+// Campos de Usuario y su tipo
 
 const UsuarioSchema = Schema({
     nombre: {
@@ -28,11 +29,12 @@ const UsuarioSchema = Schema({
     },
     clase:{ 
         type: String,
-        required: true
     },
 
     //ALUMNOS
     preferencias: Number,
+    tamañoLetra: Number,
+    tamañoIconos: Number,
     edad: Number,
     tareasAsignadas: [Schema.Types.ObjectId],  //Array de IDs
 

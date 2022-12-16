@@ -7,7 +7,7 @@ import Cantidades from './Cantidades';
 // Componente para mostrar las comandas de los menús de los alumnos
 // Vista: alumnos
 
-const Menus = ({menus,cantidades,setCantidades,currentIndex}) => {
+const Menus = ({menus,/*cantidades,setCantidades,*/currentIndex, currentAula, allMenus, setAllMenus}) => {
 
     if(menus !== undefined) {
         let menusJSX = [];
@@ -18,7 +18,7 @@ const Menus = ({menus,cantidades,setCantidades,currentIndex}) => {
                         <img className="foto" src={"http://localhost:3900/api/menus/obtenerfoto/"+menus[i]._id}/>
                         {menus[i].nombre}
                     </section>
-                    <Cantidades  cantidades={cantidades} setCantidades={setCantidades} index={currentIndex + i}/>
+                    <Cantidades currentAula={currentAula} allMenus={allMenus} setAllMenus={setAllMenus} index={currentIndex + i}/>
                 </>
                 
             )
@@ -32,15 +32,6 @@ const Menus = ({menus,cantidades,setCantidades,currentIndex}) => {
             </div>
         )
     }
-/*
-    else{
-        return (
-            <div>
-                <h1>NO HAY menus EN ESTA CLASE</h1>
-            </div>
-        )
-    }
-    */
 }
 
 export default Menus;

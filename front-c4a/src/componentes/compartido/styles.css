@@ -1,6 +1,5 @@
 .checkbox{
     display: inline-block;
-  
     text-align: center;
     font-size: 18px;
     border-width: 1px;
@@ -17,6 +16,10 @@
     width: 90%;
     margin-left: auto;
     margin-right:auto;
+    border: solid 1px black;
+    padding-left: 20px;
+    border-radius: 5px;
+    background-color: white;
     /* border-width: 1px;
     border-color: rgb(255, 0, 0);
     border-style: solid; */
@@ -58,16 +61,14 @@
     border-color: rgb(245, 139, 0);
     border-style: solid; */
   }
-  
-  
-  .divfiltrosinline{
-    align-content: center;
+
+  .div-filtros-buscar{
+    display: flex;
+    flex-flow: column;
+    gap: 12px;
+    width: 93%;
     margin-left: auto;
-    margin-right:auto;
-    /* border-width:3px;
-    border-color: rgb(25, 0, 255);
-    border-style: solid; */
-    width:93%;
+    margin-right: auto;
   }
 
   .buscarlabel{
@@ -119,26 +120,9 @@
     text-align: center; 
   }
 
-  .botonesPT {
-    width: auto;
-    cursor: pointer;
-    background-color: #8dd1ca;
-    border-color: black;
-    border-style: solid;
-    border-width: 3px;
-    display: grid;
-    margin-bottom: 5px;
-    font-size: 4vw;
-    text-align: center;
-    padding: 3vw 0;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 2.5em;
-  }
 
-  .botonesPT p{
-    margin: 0;
-  }
+
+
   
   .imgspantalla{
     width:100%;
@@ -183,6 +167,8 @@
   }
   
   .tarea {
+    display: grid;
+    gap: 10px;
     background-color: white;
     border-width: 1px;
     border-color: black;
@@ -247,7 +233,7 @@
 
 .formregistro{
   width: 50%;
-  background-color: #91bae0;
+  background-color: #d0e9ff;
   border-color: black;
   border-style: solid;
   border-width: 3px;
@@ -302,6 +288,7 @@ Header {
   width: 100%;
   height: auto;
   rotate: 180deg;
+
 }
 
 .flechaD img {
@@ -312,17 +299,17 @@ Header {
 
 .flechaI {
   position: absolute;
-  width: 12%;
-  left: 7%;
-  top: 50%;
+  width: 5em;
+  left: 1em;
+  top: 40%;
   transform: translateY(-50%);
 }
 
 .flechaD {
   position: absolute;
-  width: 12%;
-  right: 7%;
-  top: 50%;
+  width: 5em;
+  right: 3em;
+  top: 40%;
   transform: translateY(-50%);
 }
 
@@ -553,6 +540,7 @@ header{
   border-radius: 5px;
   padding: 5px;
   margin-bottom: 5px;
+  font-weight: bold;
 
   /*position: relative;
   top: 5px; bottom: 500px;*/
@@ -607,5 +595,57 @@ header{
 
 .recuadroRetro{
   width: 10cm;
+}
 
+.foto-perfil{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  box-shadow: 0px 6px 17px 2px rgba(0,0,0,0.64);
+  border-radius: 0.5rem;
+  border: solid 2px black;
+}
+
+.div-foto-perfil{
+  height: max-content;
+}
+
+#div-info-alumno{
+  /*border: solid 2px black;*/
+  padding: 3%;
+  display: grid;
+  grid-template-columns: 70% 20%;
+  border: solid 2px black;
+  justify-content: space-between;
+}
+
+#info-alumno-texto > div{
+  word-break: break-all;
+  border: solid 2px black;
+  text-align: left;
+  font-size: medium;
+  border-radius: 0.5rem;
+  box-shadow: 0px 6px 17px 2px rgba(0, 0, 0, 0.167);
+  padding-left: 1%;
+  background-color: rgb(255, 251, 238);
+}
+
+#info-alumno-texto{
+  border: solid 2px black;
+  display: grid;
+  gap: 10px;
+  padding: 2%;
+  border-radius: 0.5rem;
+  background-color: #90b4ce;  
+  box-shadow: 0px 6px 17px 2px rgba(0, 0, 0, 0.5);
+}
+
+.strong{
+  font-weight: bold;
+}
+
+.flex{
+  display: flex;
+  gap: 1%;
+  align-items: center;
 }

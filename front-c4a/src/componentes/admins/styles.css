@@ -1,3 +1,4 @@
+
 .formuser{
     background-color: rgb(196, 196, 255);
     margin-left: 2%;
@@ -14,6 +15,7 @@
 .etiq{
     margin-right: 2%;
   }
+
 
 
 .ListaUsuarios{
@@ -84,6 +86,7 @@
   }
   
   .botonuser{
+    cursor: pointer;
     background-color: rgb(196, 196, 255);
     border-width: 1px;
     border-color: black;
@@ -125,5 +128,17 @@
 
 .etiq {
   margin-right: 2%;
+
+}
+
+.hidden{
+  display: hidden;
+}
+
+.noUsuarios{
+  margin-top: 2em;
+  color: tomato;
+  font-size: 1.5em;
+  font-weight: bold;
 
 }

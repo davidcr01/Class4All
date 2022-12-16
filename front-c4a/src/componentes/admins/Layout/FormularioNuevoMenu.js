@@ -1,35 +1,32 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import '../styles.css';
 
 // Vista: admins
-
+// Componente asociado al formulario para crear un menú
 const FormularioNuevoMenu = ()=> {
 
-    const [value, setValue] = useState(0);
 
+    const [images, setImages] = useState([]);
+    const [imageURLs, setImageURLs] = useState([]);
 
-    const cambiar = (event) => {
-        setValue(event.target.value);
-    }
-
-    function eliminarEmail(){
-        document.getElementById("email").remove();
-        
-        var id = "email";
-        let labelBuscada;
-        let labels = document.getElementsByTagName("label");
-        for (let i = 0; i < labels.length; i++) {
-            if (labels[i].htmlFor === id) {
-                labelBuscada = labels[i];
-                break;
-            }   
+    useEffect(() => {
+        if (images.length < 1) {
+            return;
         }
-        labelBuscada.remove();
+        const newImagesUrls  = [];
+        newImagesUrls.push(URL.createObjectURL(images[0]));
+        setImageURLs(newImagesUrls);
+    }, [images]);
 
+    const onImageChange = (event) => {
+        setImages(event.target.files);
     }
+
+
 
     
-
+    // Obtenemos los datos del menú y creamos el objeto del menú para guardarlo
+    // en la BBDD
     const enviar = (event) => {
         event.preventDefault();
 
@@ -37,12 +34,14 @@ const FormularioNuevoMenu = ()=> {
 
         let menu = {
             nombre: datos.nombre.value,
-            imagen: datos.imagen.value,
+            imagen: datos.imagen.files[0].name,
+            alt: datos.alt.value
         }
 
         var urlencoded = new URLSearchParams();
         urlencoded.append("nombre", menu.nombre);
-        urlencoded.append("imagen", menu.imagen);
+        urlencoded.append("foto", menu.imagen);
+        urlencoded.append("alt", menu.alt);
 
         var requestOptions = {
             method: 'POST',
@@ -55,11 +54,30 @@ const FormularioNuevoMenu = ()=> {
         then(response => response.text()).
         then(result => console.log(result)).
         catch(error => console.log('error', error));
+
+
+
+        const formData = new FormData();
+        formData.append("img", datos.imagen.files[0]);
+
+        var requestOptions = {
+            method: 'POST',
+            body: formData,
+            redirect: 'follow',
+
+        };
+
+        // Petición a la API
+        fetch('http://localhost:3900/api/menus/subir-foto', requestOptions).
+        then(response => response.text()).
+        then(result => console.log(result)).
+        catch(error => console.log('error', error));
+
+        
+
     }
 
-
-
-
+    // HTML del formuario
     return(
     <div className="formuser">
         <form
@@ -69,8 +87,15 @@ const FormularioNuevoMenu = ()=> {
                 <p><label className="etiq" htmlFor="nombre">Nombre</label>
                 <input type="text" id="nombre"/>
                 </p>
-                <p><label className="etiq" htmlFor="imagen">Imagen</label>
+                {/* <p><label className="etiq" htmlFor="imagen">Imagen</label>
                 <input type="text" id="imagen"/>
+                </p> */}
+                <p><label className="etiq" htmlFor="imagen">Imagen del menú</label>
+                <input type="file" accept="image/*" id="imagen" onChange={onImageChange}/>
+                </p>
+                <img src={imageURLs[0]}/>
+                <p><label className="etiq" htmlFor="alt">Texto Alternativo</label>
+                <input type="text" id="alt"/>
                 </p>
             </div>
             <input type="submit" value="Enviar"/>

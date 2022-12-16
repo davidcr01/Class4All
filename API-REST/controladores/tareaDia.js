@@ -3,7 +3,9 @@ const Usuario = require("../modelos/Usuario");
 const fs = require('fs');
 const path = require('path');
 const { default: mongoose, Mongoose } = require("mongoose");
+const {getAulas} = require("./usuario");
 
+// Obtiene todas las tareas guardadas en la BBDD
 const listaTareas = (req, res) => {
     let consulta = Tarea.find({}).exec((error, tareas) => {
         if (error || !tareas) {
@@ -19,6 +21,7 @@ const listaTareas = (req, res) => {
     });
 };
 
+// Obtiene una tarea de la BBDD asociado a su ID
 const obtenerTarea = (req, res) => {
     let idTarea = req.params.idTarea;
     let consulta = Tarea.findById(idTarea).exec((error, tarea) => {
@@ -35,6 +38,7 @@ const obtenerTarea = (req, res) => {
     });
 };
 
+// Obtiene las tareas del usuario asociado al ID del usuario
 const obtenerTareasUsuario = (req, res) => {
     let idUsuario = req.params.idUsuario;
     //encontrar todas las tareas para usuarioAsignado
@@ -52,20 +56,14 @@ const obtenerTareasUsuario = (req, res) => {
     });
 };
 
-
-
-//Funcionalidad solo para pruebas 
-const crearTarea = (req, res) => {
-
-    //Recoger parametros por post
-    let parametros = req.body;
-
+// Crea una tarea y la guarda en la BBDD
+const crearTareaInterno = (req, res, parametros) => {
     //Crear objeto 
     const tarea = new Tarea(parametros);
 
-
     //Guardar el objeto en la base de datos
     tarea.save((error, tareaGuardada) => {
+
         if (error || !tareaGuardada) {
             return res.status(404).json({
                 status: "error",
@@ -74,12 +72,41 @@ const crearTarea = (req, res) => {
         }
         return res.status(200).json({
             status: "success",
-            tarea: tareaGuardada,
+            //tarea: tareaGuardada,
             mensaje: "La tarea se ha guardado correctamente"
         });
 
     });
+}
 
+//Funcionalidad solo para pruebas 
+const crearTarea = (req, res) => {
+    //Recoger parametros por post
+    let parametros = req.body;
+    parametros["estado"] = "sinAsignar";        //Nos evitamos tener que ponerlo en la peticion
+    
+    if(parametros.tipo === "comanda"){
+        getAulas((err, query) =>{
+            if(err || !query){
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "Error inesperado"
+                });
+            } else {
+
+                parametros["aulasRestantes"] = query.map((profesor) => { return profesor.clase });
+                parametros["menus"] = [];
+
+                crearTareaInterno(req, res, parametros);
+            }
+
+        });
+    } else {
+        console.log(parametros["aulasRestantes"]);
+        crearTareaInterno(req, res, parametros);
+    }
+
+    //console.log(clase)
 };
 
 const eliminarTarea = (req, res) => {
@@ -108,10 +135,12 @@ const eliminarTarea = (req, res) => {
 
 };
 
+// Se asigna a un alumno asociado con idAlumno una tarea asociada a idTarea
+// El alumno y la tarea deben existir en la BBDD
 const asignarTarea = (req, res) => {
     //recojo los datos
-    let idTarea = req.params.idTarea;
-    let idAlumno = req.params.idAlumno;
+    let idTarea = req.body.idTarea;
+    let idAlumno = req.body.idAlumno;
 
     //actualizar tarea
     Tarea.findByIdAndUpdate({ _id: idTarea },
@@ -149,8 +178,8 @@ const asignarTarea = (req, res) => {
                     return res.status(200).json({
                         status: "success",
                         mensaje: "Todo se ha modificado bien",
-                        usuario: usuarioActualizado,
-                        tarea: tareaActualizada
+                        //usuario: usuarioActualizado,
+                        //tarea: tareaActualizada
                     });
                     //usuarioActualizado = usuarioActualizado;
                 });
@@ -162,7 +191,8 @@ const asignarTarea = (req, res) => {
 
 };
 
-
+// Se desasigna a un alumno asociado con idAlumno una tarea asociada a idTarea
+// El alumno y la tarea deben existir en la BBDD
 const desasignarTarea = (req, res) => {
     let idTarea = req.params.idTarea;
 
@@ -221,55 +251,6 @@ const desasignarTarea = (req, res) => {
 
     });
 
-    /* Tarea.findById({_id : idTarea}, (error, tarea) => {
-        if (error || !tarea) {
-            return res.status(404).json({
-                status: "error",
-                mensaje: "La tarea no existe"
-            });
-        }
-        
-        //obtener id del usuario
-        let idAlumno = tarea.usuarioAsignado.toString();
-        
-        //Actualizar datos
-        Tarea.updateOne({_id : idTarea},
-            {$set:{
-                estado : 'sinAsignar',
-                usuarioAsignado : null,
-                fechaAsignada : null
-                }
-            },
-            (error, tareaActualizada) => {
-                if (error || !tareaActualizada) {
-                    return res.status(404).json({
-                    status: "error",
-                    mensaje: "La tarea no se ha actualizado"
-                    });
-                }
-            });
-            
-        Usuario.updateOne({_id : idAlumno},
-            {$pull:{                                //Saca un elemento de un array
-                tareasAsignadas : idTarea
-                }
-            },
-            {new: true},                            //Para que devuelva el objeto actualizado
-            (error, usuarioActualizado) => {
-                if (error || !usuarioActualizado) {
-                    return res.status(404).json({
-                    status: "error",
-                    mensaje: "El usuario no se ha actualizado"
-                    });
-                }
-                return res.status(200).json({
-                    status: "success",
-                        mensaje: "Todo se ha modificado correctamete",
-                });
-            });
-                
-    }); */
-
 };
 
 const obtenerFoto = (req, res) => {
@@ -285,26 +266,12 @@ const obtenerFoto = (req, res) => {
         let urlFisica = "./public/fotos/" + foto;
         fs.stat(urlFisica, (error, existe) => {
             if (existe) {
-                /* return res.status(200).json({
-                    status: "success",
-                        mensaje: "Todo se ha modificado correctamete",
-                        ulr : urlFisica
-                        //usuario : usuarioActualizado,
-                        //tarea : tareaActualizada
-                }); */
                 return res.sendFile(path.resolve(urlFisica));
             } else {
 
                 return res.sendFile(path.resolve("./public/fotos/default.jpg"));
             }
         })
-        /* return res.status(200).json({
-            status: "success",
-                mensaje: "Todo se ha modificado correctamete",
-                ulr : urlFisica
-                //usuario : usuarioActualizado,
-                //tarea : tareaActualizada
-        }); */
     });
 };
 
@@ -377,7 +344,7 @@ const actualizarCantidades = (req, res) => {
 
 };
 
-
+// Marca una tarea asociada con idTarea como realizada
 const setRealizada = (req, res) => {
     let idTarea = req.params.idTarea;
 
@@ -401,9 +368,10 @@ const setRealizada = (req, res) => {
 
 };
 
+// Marca una tarea asociada con idTarea como completada
 const setEstadoCompletada = (req, res) => {
 
-    let idTarea = req.body.idTarea;
+    let idTarea = req.params.idTarea;
 
     Tarea.findById
         (
@@ -436,6 +404,7 @@ const setEstadoCompletada = (req, res) => {
         );
 };
 
+// Guarda una tarea de entrega material pasada como cuerpo de la petición en la BBDD
 const crearTareaMaterial = (req, res) => {
 
     //Recoger parametros por post
@@ -530,7 +499,7 @@ const crearTareaMaterial = (req, res) => {
 const getTareasEntregaMaterial = (req, res) => {
     let idProfesor = req.params.idProfesor;
     let estado = "asignada";
-    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor, "entregamateriales.estado": estado}, (error, tareas) => {
+    Tarea.find({ tipo: 'entregaMateriales', "entregamateriales.idProfesor": idProfesor, estado: estado}, (error, tareas) => {
         if (error || !tareas) {
             return res.status(404).json({
                 status: "error",
@@ -545,7 +514,7 @@ const getTareasEntregaMaterial = (req, res) => {
     });
 }
 
-
+/*
 const completarClaseComanda = (req, res) => {
     const aula = req.body.aula;
     const idTarea = req.body.idTarea;
@@ -596,9 +565,11 @@ const getAulasRestantes = (req, res) => {
         }
     });
 }
+*/
 
-const setEstadoCancelada = () => {
-    let idTarea = req.body.idTarea;
+// Marca una tarea asociada con idTarea como cancelada
+const setEstadoCancelada = (req, res) => {
+    let idTarea = req.params.idTarea;
 
     Tarea.findById
         (
@@ -631,6 +602,83 @@ const setEstadoCancelada = () => {
         );    
 }
 
+// Auto descriptiva
+const obtenerTareasUsuarioAsignadas = (req, res) => {
+    let idUsuario = req.params.idUsuario;
+    //encontrar todas las tareas para usuarioAsignado
+    let consulta = Tarea.find({ usuarioAsignado: idUsuario,estado: 'asignada', realizada: false }).exec((error, tareas) => {
+        if (error || !tareas) {
+            return res.status(404).json({
+                status: "error",
+                mensaje: "No hay tareas"
+            });
+        }
+        return res.status(200).send({
+            status: "success",
+            tareas: tareas
+        });
+    });
+}
+
+/**
+ * recibe un array de materiales que faltan: "materiales":[{"material": "id del material"},....]
+ * @param {*} req 
+ * @param {*} res 
+ */
+const faltaMaterial = (req, res) => {
+    let idTarea = req.params.idTarea;
+    let materiales = req.body.materiales;
+
+    Tarea.findByIdAndUpdate(
+        { _id: idTarea },
+        { $push: { "entregamateriales.materialesnodisp": materiales} },
+        { lean: true, new: true },
+        (error, tarea) => {
+            if (error || !tarea) {
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "No se ha añadido la falata de material"
+                });
+            }
+            return res.status(200).json({
+                status: "success",
+                mensaje: "Todo se ha modificado correctamete",
+            });
+        }
+    );
+};
+
+/**
+ * recibe la retroalimentación en formato texto
+ * @param {*} req 
+ * @param {*} res 
+ */
+const addRetroalimentacion = (req, res) => {
+    let idTarea = req.params.idTarea;
+    let retroalimentacionTexto = req.body.retroalimentacionTexto;
+    let retroalimentacionNumero = req.body.retroalimentacionNumero;
+
+
+    Tarea.findByIdAndUpdate(
+        { _id: idTarea },
+        { $set: { retroalimentacionTexto: retroalimentacionTexto,
+                   retroalimentacionNumero: retroalimentacionNumero} },
+        { lean: true, new: true },
+        (error, tarea) => {
+            if (error || !tarea) {
+                return res.status(404).json({
+                    status: "error",
+                    mensaje: "No se ha añadido la retroalimentación"
+                });
+            }
+            return res.status(200).json({
+                status: "success",
+                mensaje: "Todo se ha modificado correctamete",
+            });
+        }
+    );
+};
+
 module.exports = {
     listaTareas,
     crearTarea,
@@ -645,7 +693,10 @@ module.exports = {
     setEstadoCompletada,
     crearTareaMaterial,
     getTareasEntregaMaterial,
-    completarClaseComanda,
-    getAulasRestantes,
-    setEstadoCancelada
+    //completarClaseComanda,
+    //getAulasRestantes,
+    setEstadoCancelada,
+    obtenerTareasUsuarioAsignadas,
+    faltaMaterial,
+    addRetroalimentacion
 }

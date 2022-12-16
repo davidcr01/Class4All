@@ -1,5 +1,6 @@
 const {Schema, model} = require('mongoose');
 
+// Campos de Menu y su tipo
 const MenuSchema = Schema({
 
     nombre: {
@@ -7,6 +8,9 @@ const MenuSchema = Schema({
         required: true
     },
     foto: {
+        type: String,
+    },
+    alt: {
         type: String,
     }
 
