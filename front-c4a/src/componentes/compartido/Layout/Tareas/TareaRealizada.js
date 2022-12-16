@@ -8,7 +8,7 @@ import RadioGroupRating from './CaritasRating';
 
 const TareaRealizada = (props) => {
     
-    const [valor, setValor] = useState(3);
+    const [valor, setValor] = useState(3);  //Para las caritas
     const [nombre, setNombre] = useState('');
     const [cargando, setCargando] = useState(true);
     const [datosForm, setdatosForm] = useState([]);
@@ -42,28 +42,44 @@ const TareaRealizada = (props) => {
         event.preventDefault();
         //let datos = event.target;
         let datos = document;
-        //cuando subamos una foto del menu poner tambn un campo de texto para el texto alternativo tanto en la interfaz como en la base de datos
-        let ret = datos.getElementById("retroalimentacion").value;
-        let car = valor;
+        let ret = datos.getElementById("retroalimentacion").value;  //retroalimentación texto
+        let car = valor;                                            //valor correspondiente a las caritas
 
-        console.log(car);
+        const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + props.tarea._id;
 
-
-        /*const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + props.tarea._id;
-
-        fetch(url, {method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify()
-        })
+        fetch(url, {method: 'PUT'})
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-               // window.location.reload();
             })
-            .catch(err => console.log(err));*/
+            .catch(err => console.log(err));
     }
+
+    const enviarRetroalimentacion = (event) => {
+        event.preventDefault();
+        let datos = document;
+        let retroalimentacionTexto = datos.getElementById("retroalimentacion").value;
+        let retroalimentacionNumero = valor;
+
+        const url = "http://localhost:3900/api/tareas/add-retroalimentacion/" + props.tarea._id;
+
+        fetch(url, {method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: 
+                JSON.stringify({retroalimentacionTexto, retroalimentacionNumero})
+        }).then(res => res.json)
+        .catch(err => console.log(err));
+    }
+
+    
+
+    const confirmaciones = (event) => {
+        enviarRetroalimentacion(event);
+        confirmarTarea(event);
+    }
+
 
     const getUser = async () => {
         try {
@@ -79,7 +95,7 @@ const TareaRealizada = (props) => {
             console.log(error);
         }
     }
-
+  
     //PARA QUE NO SE BORRE LA PALABRA RETROALIMENTACIÓN
     const funcRetroText = (e) => {
         let datos = e.target;
@@ -87,7 +103,6 @@ const TareaRealizada = (props) => {
             datos.value = "Retroalimentación: ";
         }
     }
-
 
 
     if (cargando) {
@@ -111,7 +126,7 @@ const TareaRealizada = (props) => {
                     </p>
                 </form>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>
-                <button className="ConfirmarRealizada"><CheckBoxIcon style={{cursor: "pointer"}} onClick={e => confirmarTarea(e)}/></button>
+                <button className="ConfirmarRealizada"><CheckBoxIcon style={{cursor: "pointer"}} onClick={e => confirmaciones(e)}/></button>
 
 
             </div>)
