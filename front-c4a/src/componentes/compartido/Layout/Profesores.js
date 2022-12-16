@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import { isCookieSet, loginUser } from '../../../interfaces/cookies';
 import { ContextoRol } from '../../../contexto/Roles';
-import { TextField } from '@mui/material';
+import { Button } from '@mui/material';
 import { MiTF } from '../../muiCustomComponents';
 // Vista: compatido entre profesores y admins
 
@@ -91,6 +91,7 @@ const Profesores = (props) => {
 
 
                 <p>¿Ha olvidado su contraseña?</p>
+                {/*
                 <input className='boton-enviar' type="submit" value="Entrar" style={{
                     width: "20%",
                     height: "2em",
@@ -98,6 +99,9 @@ const Profesores = (props) => {
                     borderColor: "black",
                     fontWeight: "bold"}}>
                 </input>
+                */}
+
+                <Button variant="contained" type="submit">Enviar</Button>
             </form>
         </div>
     );
