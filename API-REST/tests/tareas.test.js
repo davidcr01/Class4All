@@ -64,9 +64,10 @@ describe('Test de tareas', () => {
             instruccionTexto: "test",
         });
 
-        //idTarea = tareaTest._id;
 
-        await request(app).put('/api/tareas/asignar-tarea/'+ tareaTest._id+'/'+user._id).expect(200).then(async (response) => {
+        await request(app).put('/api/tareas/asignar-tarea/'/*+ tareaTest._id+'/'+user._id*/)
+        .send({idTarea: tareaTest._id, idAlumno: user._id})
+        .expect(200).then(async (response) => {
             expect(response.body.status).toBe('success');
             tareaTest = await Tarea.findById(tareaTest._id);
             
@@ -97,7 +98,9 @@ describe('Test de tareas', () => {
 
         //idTarea = tareaTest._id;
 
-        await request(app).put('/api/tareas/asignar-tarea/'+ tareaTest._id+'/'+user._id).expect(200);
+        await request(app).put('/api/tareas/asignar-tarea/')
+        .send({idTarea: tareaTest._id, idAlumno: user._id})
+        .expect(200);
 
         await request(app).put('/api/tareas/desasignar-tarea/'+ tareaTest._id).expect(200).then(async (response) => {
             expect(response.body.status).toBe('success');
@@ -160,8 +163,10 @@ describe('Test de tareas', () => {
             instruccionTexto: "test"
         });
 
-        await request(app).put('/api/tareas/asignar-tarea/'+ tareaTest._id+'/'+user._id).expect(200);
-
+        await request(app).put('/api/tareas/asignar-tarea/')
+        .send({idTarea: tareaTest._id, idAlumno: user._id})
+        .expect(200);
+        
         await request(app).get('/api/tareas/tareas-usuario/'+ user._id).expect(200).then(async (response) => {
             expect(response.body.status).toBe('success');
             expect(response.body.tareas[0].nombre).toBe("test");
