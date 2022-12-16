@@ -193,7 +193,7 @@ export const EntregaMaterial = () => {
                         <p>VOY A</p>
                     </figure>
                     <figure id='fotoProfeEntregaMaterial'>
-                        <img className="imgPictoEntrega" src={"http://localhost:3900/api/usuarios/get-foto/"+ Profe._id} alt={"Clase de " + Profe.nombre} />
+                        <img className="imgPictoEntrega" src={"http://localhost:3900/api/usuarios/get-foto/"+ profe._id} alt={"Clase de " + profe.nombre} />
 
                         <p>{"Aula " + aula}</p>
                     </figure>
@@ -204,7 +204,7 @@ export const EntregaMaterial = () => {
 
                  <section className='pictogramasMaterialesEntregar'>
                     <figure id='cantidadMaterialEntregar'>
-                        <img className="imgPictoEntrega" src={getImage(imagenesARASAAC['numeros'][materiales[currentMaterial].cantidad])} alt={"Material " + materiales[currentMaterial].idMaterial} />
+                        <img className="imgPictoEntrega" src={getImage(materiales[currentMaterial].idNro)} alt={"Material " + materiales[currentMaterial].idMaterial} />
 
                         
                     </figure>
