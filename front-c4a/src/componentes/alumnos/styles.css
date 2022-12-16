@@ -2,8 +2,7 @@
   --tam-letra-pequena: 1.75vw;
   --tam-letra-mediana: 2.5vw;
   --tam-letra-grande: 3vw;
-  --tam-icono: 4em;
-  
+  --tam-icono-a: 4.5em;
 }
 
 .cuerpo{
@@ -36,7 +35,7 @@
   margin-right: auto;
   margin-left: auto;
   grid-template-columns: 19em 19em;
-  grid-template-rows:20vw 20vw;
+  grid-template-rows:23vw 23vw;
   grid-column-gap: 40px;
   grid-row-gap: 15px;
 }
@@ -95,6 +94,7 @@
 
 .botonesAlumnos{
     width: auto;
+    height: auto;
     background-color:  hsl(174, 38%, 79%) ;
     border-color:  black;
     border-style:  solid;
@@ -107,6 +107,34 @@
     border-radius:  35px;
     font-weight:  bold;
     cursor:  pointer;
+    padding-bottom: 1em;
+  }
+
+  .botonesComandas{
+    width: auto;
+    height: auto;
+    background-color:  hsl(174, 38%, 79%) ;
+    border-color:  black;
+    border-style:  solid;
+    border-width:  3px;
+    display:  grid;
+    font-size:  2.5vw;
+    margin-bottom:  5px;
+    text-align: center;
+    padding: 3vw 0;
+    border-radius:  35px;
+    font-weight:  bold;
+    cursor:  pointer;
+    padding-bottom: 1em;
+    padding-top: 1em;
+  }
+
+
+  .textoComanda{
+    font-size:  var(--tam-letra-mediana);
+    margin-top: 0;
+    margin-bottom: 0;
+
   }
 
   .foto{
@@ -116,6 +144,16 @@
     margin-left: auto;
     margin-right: auto;
     border-radius: 50%;
+}
+
+
+.imgMenu{
+  width: var(--tam-icono-a);
+  height: var(--tam-icono-a);
+  
+  margin-left: auto;
+  margin-right: auto;
+  
 }
 
 
@@ -208,14 +246,14 @@
     margin-right:auto;
     margin-left:auto;
     grid-template-columns: 39% 39%;
-    grid-template-rows:20vw 20vw;
+    grid-template-rows: auto auto;
     grid-column-gap: 40px;
     grid-row-gap: 15px
   }
 
 
 .imgpantalla{
-    width: 30%;
+    width: var(--tam-icono-a);
     height: auto;
     display: block;
     margin-left: auto;
@@ -438,7 +476,8 @@
 .botonesRecogidaMaterial{
   display: flex;
   justify-content: center;
-  margin-top: 3em;
+  margin-top: 2em;
+  margin-bottom: 2em;
   
 }
 .aceptarMaterial, .rechazarMaterial{
@@ -480,6 +519,6 @@
 
 .imgPictoEntrega{
   object-fit: contain;
-  width: var(--tam-icono);
-  height: var(--tam-icono);
+  width: var(--tam-icono-a);
+  height: var(--tam-icono-a);
 }
