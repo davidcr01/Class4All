@@ -12,6 +12,7 @@ import Header from '../../compartido/Layout/Header';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { useNavigate } from 'react-router-dom';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
+import { showDate } from '../../../interfaces/dates';
 
 // Página para mostrar la agenda del alumno. En este momento el alumno
 // puede acceder a una tarea de entrega material, tarea de comanda y tareas diarias
@@ -109,7 +110,7 @@ export const Agenda = () => {
 
 
                                 {/*va con un calendario estático de Material UI y es la fecha limite */}
-                                <h2 className='fechatarea'>Fecha Límite: {tareas[currentTarea].fechaLimite}</h2>
+                                <h2 className='fechatarea'>Fecha Límite: {showDate(tareas[currentTarea].fechaLimite)}</h2>
 
 
                             </div>
