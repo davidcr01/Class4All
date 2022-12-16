@@ -104,6 +104,11 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
                                 <label className='negrita'>Cantidad:</label> 
                                 <label>{mat.cantidad}</label>
                             </p>
+                            <section className="texto-falta-material">
+                                <p>
+                                    <h4>Falta este material</h4>
+                                </p>
+                            </section>
                         </article>
                     </ListItem>
                 )}
