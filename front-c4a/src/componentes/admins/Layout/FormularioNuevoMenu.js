@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import '../styles.css';
 
 // Vista: admins
-
+// Componente asociado al formulario para crear un menú
 const FormularioNuevoMenu = ()=> {
 
 
@@ -25,7 +25,8 @@ const FormularioNuevoMenu = ()=> {
 
 
     
-
+    // Obtenemos los datos del menú y creamos el objeto del menú para guardarlo
+    // en la BBDD
     const enviar = (event) => {
         event.preventDefault();
 
@@ -66,6 +67,7 @@ const FormularioNuevoMenu = ()=> {
 
         };
 
+        // Petición a la API
         fetch('http://localhost:3900/api/menus/subir-foto', requestOptions).
         then(response => response.text()).
         then(result => console.log(result)).
@@ -75,13 +77,7 @@ const FormularioNuevoMenu = ()=> {
 
     }
 
-
-
-
-
-
-
-
+    // HTML del formuario
     return(
     <div className="formuser">
         <form

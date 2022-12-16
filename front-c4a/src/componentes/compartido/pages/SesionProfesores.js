@@ -5,6 +5,7 @@ import Footer from '../../compartido/Layout/Footer.js';
 import Profesores from '../../compartido/Layout/Profesores';
 
 // Vista: compartida profs y admins
+// Página para el inicio de sesión de admins y profes
 
 export const SesionProfesores = () => {
   return (

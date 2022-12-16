@@ -406,6 +406,7 @@
 #pictogramaEntregarEn img,#fotoProfeEntregaMaterial img {
 
   flex-grow: 1;
+  object-fit: contain;
 }
 
 #pictogramaEntregarEn p, #fotoProfeEntregaMaterial p{

@@ -23,6 +23,27 @@ export const getAulasRestantes = async (idTarea) => {
 }
 
 /**
+ * 
+ * @returns Obtiene todas las aulas que hay en el sistema.
+ */
+export const getAulas = async () => {
+    try {
+        const url = "http://localhost:3900/api/usuarios/lista-aulas/";
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if(data.status === "error")
+            return [];
+        else
+            return data.aulas;
+    } catch(error) {
+        console.log(error);
+
+        return [];
+    }
+}
+
+/**
  * @deprecated
  * Elimina una aula de las aulas pendientes que tiene un alumno para las comandas.
  * @pre La tarea debe ser del tipo comanda.

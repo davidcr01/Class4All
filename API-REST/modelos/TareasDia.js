@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 
+// Campos de Tareas y su tipo
+
 const TareaSchema = Schema({
     estado: {
         type: String,
@@ -68,6 +70,11 @@ const TareaSchema = Schema({
 
     retroalimentacionTexto: {
         type: String,
+        default: null
+    },
+
+    retroalimentacionNumero: {
+        type: Number,
         default: null
     },
 

@@ -7,10 +7,12 @@ import { isCookieSet } from '../../../interfaces/cookies';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 import { useLocation, useNavigate, useParams } from "react-router-dom"
-import { getAulasRestantes, sendMenu } from '../../../interfaces/aulasRestantes';
+import { getAulas, getAulasRestantes, sendMenu } from '../../../interfaces/aulasRestantes';
 import Button from '@mui/material/Button';
 
 // Vista: compartida
+// Componente para mostrar todas las comandas de la tarea comandas.
+// Gestiona la funcionalidad de marcar las clases como completadas
 
 export const ComandasClases = () => {
 
@@ -40,7 +42,7 @@ export const ComandasClases = () => {
       setIsSet(res);
       setCargando(false);
 
-      getAulasRestantes(id).then((res) => {
+      getAulas(id).then((res) => {
         const getMenus = async () => {
           try {
             //alert("cookie cookie: "+cookies.get("loginCookie"));

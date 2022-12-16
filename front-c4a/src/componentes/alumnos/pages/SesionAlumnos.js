@@ -9,6 +9,8 @@ import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 
 // Vista: alumnos
+// Página para mostrar los alumnos una vez se accede a una clase, es decir, muestra
+// los alumnos asociados a una clase
 
 export const SesionAlumnos = (props) => {
   const location = useLocation(); //Obtengo la clase elegida de la anterior pagina

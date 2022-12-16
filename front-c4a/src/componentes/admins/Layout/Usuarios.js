@@ -4,6 +4,8 @@ import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import Usuario from './Usuario.js';
 
 // Vista: admins
+// Componente asociado a la lsita de todos los usuarios. Hace uso del
+// componente Usuario.js
 
 export const Usuarios = (props) => {
     const [usuarios, setUsuarios] =  useState([]);

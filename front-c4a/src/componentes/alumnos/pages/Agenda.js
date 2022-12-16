@@ -13,6 +13,9 @@ import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { useNavigate } from 'react-router-dom';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
 
+// Página para mostrar la agenda del alumno. En este momento el alumno
+// puede acceder a una tarea de entrega material, tarea de comanda y tareas diarias
+
 export const Agenda = () => {
 
     const [currentTarea, setCurrentTarea] = useState(0)//indice de la estructura de tareas
@@ -35,6 +38,7 @@ export const Agenda = () => {
         }
     }
 
+    // Rellena el componente con las tareas obtenidas
     const rellenarAgenda = async () => {
         const cookies = new Cookies();
         let url = 'http://localhost:3900/api/tareas/tareas-usuario-asignadas/' + cookies.get('loginCookie').id/* +cookie */;
@@ -70,6 +74,8 @@ export const Agenda = () => {
         )
     }
 
+    // Las tareas están paginadas con los componentes FlechasPaginaciónGenerico y con
+    // más material UI de React (CardMedia, Card, etc)
     else {
         const cookies = new Cookies();
 

@@ -4,13 +4,17 @@ import '../styles.css'
 import Header from '../../compartido/Layout/Header';
 import CargandoProgress from '../../compartido/Layout/CargandoProgress';
 import { FlechasPaginacionGenerico } from '../../flechasPaginacionGenerico';
-
-import {getImage} from '../../../interfaces/arasaac'
+import DoneIcon from '@mui/icons-material/Done';
+import CloseIcon from '@mui/icons-material/Close';
+import {getImage, getBestSearch} from '../../../interfaces/arasaac'
 import imagenesARASAAC from "../../../img/imagenesARASAAC.json";
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
 import { isCookieSet } from '../../../interfaces/cookies';
 import Cookies from 'universal-cookie';
+import { getAulas } from '../../../interfaces/aulasRestantes';
+
+// Componente para mostrar la tarea de entrega de material
 
 export const EntregaMaterial = () => {
     const cookies = new Cookies();
@@ -18,7 +22,7 @@ export const EntregaMaterial = () => {
     const [materiales, setMateriales] = useState([]);
     const [currentMaterial, setcurrentMaterial] = useState(0)//indice de la estructura de tareas
     const [cargando, setCargando] = useState(true);
-    const [Profe , setProfe] = useState({});
+    const [profe , setProfe] = useState({});
     const [cogerNombres , setcogerNombres] = useState(0);
     const [isSet, setIsSet] = useState(false);
     const [aula, setAula] = useState(null);
@@ -26,17 +30,28 @@ export const EntregaMaterial = () => {
     const materialesIncrement = 1;
     let nav = useNavigate();
 
+    // Rellena el vector con los materiales solicitados (ids de los materiales)
     const rellenarMateriales = async () => {
         let url = 'http://localhost:3900/api/tareas/get-tarea/' + id;
         try {
             let res = await fetch(url);
             let data = await res.json();
-            setMateriales(data.tarea.entregamateriales.materiales);
-            setAula(data.tarea.entregamateriales.aula);
-
-            await rellenaProfe(data.tarea.entregamateriales.idProfesor);
             
+            let matRef = data.tarea.entregamateriales.materiales;
+            for(let i = 0; i< matRef.length; i++){
+                if(matRef[i].cantidad > 10){
+                    const nro = await getBestSearch(matRef[i].cantidad);
+                    matRef[i].idNro = nro[0]._id;
+                }
+                else {
+                    matRef[i].idNro = imagenesARASAAC['numeros'][matRef[i].cantidad];
+                }
+            }
+            
+            setMateriales(data.tarea.entregamateriales.materiales);
             setcogerNombres(1);
+
+            return data.tarea.entregamateriales.idProfesor;
         }
         catch (error) {
             console.log(error);
@@ -45,12 +60,14 @@ export const EntregaMaterial = () => {
 
     };
 
+    // Rellena la info del profe que ha pedido la tarea
     const rellenaProfe = async (id) => {
         let url = 'http://localhost:3900/api/usuarios/get-usuario/' + id;
         try {
             let res = await fetch(url);
             let data = await res.json();
-            setProfe(data.usuario);
+
+            return data.usuario;
         }
         catch (error) {
             console.log(error);
@@ -58,7 +75,7 @@ export const EntregaMaterial = () => {
         }
     };
     
-
+    // Rellena los nombres de los materiales pedidos (fotos y nombres)
     const rellenaNombreMats = async () => {
         let url = 'http://localhost:3900/api/materials/lista-material';
         try {
@@ -81,6 +98,7 @@ export const EntregaMaterial = () => {
         setCargando(false);
     };
 
+    // Actualiza el material recogido de la lista
     const recogidoMat = () => {
         let nuevosDatos = [...materiales];
         nuevosDatos.splice(currentMaterial, 1);
@@ -90,6 +108,8 @@ export const EntregaMaterial = () => {
         }
 
     };
+
+    // Marcar la tarea como completada
     const tareaCompletada = () => {
         let url = 'http://localhost:3900/api/tareas/completar-tarea-alumno/' + id;
         try {
@@ -117,10 +137,30 @@ export const EntregaMaterial = () => {
         isCookieSet().then((res) => {
             setIsSet(res);
 
-            rellenarMateriales();
+            rellenarMateriales().then((idProfe) =>{
+                rellenaProfe(idProfe).then((usuario) =>{
+                    getAulas().then((aulas) => {
+                        //console.log(aulas, usuario);
+    
+                        let index = -1;
+                        index = aulas.find((item/*, i*/) => {
+                            console.log(usuario, idProfe);
+                            if(item.id === usuario._id){
+                                return item;
+                            }
+                        })
+    
+                        setAula(index.clase);
+                        setProfe(usuario);
+                    })
+                })
+            });
         })
     }, []);
 
+    useEffect(() => {
+        console.log(profe);
+    }, [profe])
     useEffect(() => {
         if(cogerNombres === 1){
             rellenaNombreMats();
@@ -138,7 +178,11 @@ export const EntregaMaterial = () => {
             <CargandoProgress/>
         )
     }
+    // Devuelve el HTML asociado a la página de la entrega de material, incluyendo pictogramas
+    // e intrucciones intuitivas
     else if(cookies.get("loginCookie") !== undefined && isSet){
+        //console.log(getBestSearch(materiales[currentMaterial].cantidad).then((res) => console.log(res)));
+        console.log(materiales);
         if(materiales.length > 0){
             return (
                 <>
@@ -150,6 +194,7 @@ export const EntregaMaterial = () => {
                     </figure>
                     <figure id='fotoProfeEntregaMaterial'>
                         <img className="imgPictoEntrega" src={"http://localhost:3900/api/usuarios/get-foto/"+ Profe._id} alt={"Clase de " + Profe.nombre} />
+
                         <p>{"Aula " + aula}</p>
                     </figure>
                  </section>
@@ -160,28 +205,31 @@ export const EntregaMaterial = () => {
                  <section className='pictogramasMaterialesEntregar'>
                     <figure id='cantidadMaterialEntregar'>
                         <img className="imgPictoEntrega" src={getImage(imagenesARASAAC['numeros'][materiales[currentMaterial].cantidad])} alt={"Material " + materiales[currentMaterial].idMaterial} />
+
                         
                     </figure>
                     <figure id='fotoMaterialEntregar'>
                         {}
                         <img className="imgPictoEntrega" src={"http://localhost:3900/api/materials/obtenerfoto/"+ materiales[currentMaterial].material} alt={"XD"} />
+
                         <p>{materiales[currentMaterial].nombre.toUpperCase()}</p>
                     </figure>
                  </section>
 
                  <section className='botonesRecogidaMaterial'>
-                    <Button className='aceptarMaterial' variant="contained" onClick={e => recogidoMat()}>
-                        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png' />
+                    <Button color="error" className='rechazarMaterial' variant="contained" onClick={recogidoMat}>
+                        <CloseIcon className='fuente-flecha'/>
                     </Button>
-                    <Button className='rechazarMaterial' variant="contained" onClick={e => recogidoMat()}>
-                        <img src=' https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Red_x.svg/1024px-Red_x.svg.png' />
+
+                    <Button className='aceptarMaterial boton-paginacion' variant="contained" onClick={recogidoMat}>
+                        <DoneIcon className='fuente-flecha'/>
                     </Button>
-                   
                  </section>
 
                 </>
             )
         }
+        // Cuando se recogen todos los materiales, mostrar el botón enviar
         else{
             return(
                 <>

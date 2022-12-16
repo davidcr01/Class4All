@@ -12,7 +12,8 @@ import {useNavigate} from 'react-router-dom';
 
 
 // Vista: alumno
-
+// Página para mostrar los componentes de las tareas específicas
+// Contiene las intrucciones y botones asociados (ACTUALMENTE SIN IMPLEMENTAR)
 
 export const TareaEspecifica = () => {
 
