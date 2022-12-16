@@ -155,7 +155,7 @@ export const EntregaMaterial = () => {
                  </section>
 
 
-                 <FlechasPaginacionGenerico currentIndex={currentMaterial} setCurrentIndex={setcurrentMaterial} length={materiales.length} increment={materialesIncrement} />
+                 <FlechasPaginacionGenerico className="flechase" currentIndex={currentMaterial} setCurrentIndex={setcurrentMaterial} length={materiales.length} increment={materialesIncrement} />
 
                  <section className='pictogramasMaterialesEntregar'>
                     <figure id='cantidadMaterialEntregar'>

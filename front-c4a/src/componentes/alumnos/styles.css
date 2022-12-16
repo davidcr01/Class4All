@@ -350,8 +350,6 @@
   background-color: #E2E2E2;
 }
 
-
-
 .atras {
   height: fit-content;
   width: 5em;
@@ -364,19 +362,19 @@
   border-width: 1px;
   border-color: black;
   border-style: solid;
-  padding-top: 2em;
-  margin-left: 2em;
+  margin-left: 4em;
   padding-top: 0;
   padding-bottom: 0;
-  margin-right:2em;
+  padding-left: 0;
+  margin-right: 4em;
   font-size: var(--tam-letra-grande);
-
+  width: auto;
 }
 .pictogramasMaterialesEntregar{
   display: flex;
   padding-top: 0;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
   margin-left:2em;
   margin-right:2em;
   justify-content: center;
@@ -385,16 +383,26 @@
 }
 
 #pictogramaEntregarEn, #fotoProfeEntregaMaterial{
-
-  margin-right: 1em;
   align-items: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  margin-bottom: 0;
-  margin-right: 2.5em;
-  margin-left: 2.5em ;
+  margin-bottom: 0em;
+  margin-top: 1em
 }
+
+#pictogramaEntregarEn{
+  margin-left: 1em ;
+  margin-right: 0;
+
+}
+
+#fotoProfesorEntregaMaterial{
+  margin-right: 1em;
+  margin-left: 0;
+}
+
+
 #pictogramaEntregarEn img,#fotoProfeEntregaMaterial img {
 
   flex-grow: 1;
