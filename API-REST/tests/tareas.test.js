@@ -5,14 +5,11 @@ const Usuario = require("../modelos/Usuario");
 const request = require('supertest');
 
 
-beforeEach((done) => {
-    //conexionTest();
-    mongoose.connect("mongodb+srv://test:test@c4a-test.97v4qpm.mongodb.net/?retryWrites=true&w=majority", () => done());
-    
-    //done();
+beforeAll((done) => {
+    mongoose.connect("mongodb+srv://test:test@c4a-test.97v4qpm.mongodb.net/?retryWrites=true&w=majority", done);
 });
 
-afterEach((done) => {
+afterAll((done) => {
     Tarea.deleteMany({}).then(() => done());
     Usuario.deleteMany({}).then(() => done());
     mongoose.connection.close();
@@ -25,12 +22,12 @@ const app = crearServidor();
 describe('Test de tareas', () => {
     
     
-    test('Deberíalistar todas las tareas', async () => {
+    test('Debería listar todas las tareas', async () => {
         await request(app).get('/api/tareas/lista-tareasDia').expect(200);
     });
 
 
-    test('Debería elimiar una tarea existente', async () => {
+    test('Debería eliminar una tarea existente', async () => {
         let tareaEliminar = await Tarea.create({
             estado: "sinAsignar",
             nombre: "nombre",
@@ -67,9 +64,10 @@ describe('Test de tareas', () => {
             instruccionTexto: "test",
         });
 
-        //idTarea = tareaTest._id;
 
-        await request(app).put('/api/tareas/asignar-tarea/'+ tareaTest._id+'/'+user._id).expect(200).then(async (response) => {
+        await request(app).put('/api/tareas/asignar-tarea/'/*+ tareaTest._id+'/'+user._id*/)
+        .send({idTarea: tareaTest._id, idAlumno: user._id})
+        .expect(200).then(async (response) => {
             expect(response.body.status).toBe('success');
             tareaTest = await Tarea.findById(tareaTest._id);
             
@@ -100,7 +98,9 @@ describe('Test de tareas', () => {
 
         //idTarea = tareaTest._id;
 
-        await request(app).put('/api/tareas/asignar-tarea/'+ tareaTest._id+'/'+user._id).expect(200);
+        await request(app).put('/api/tareas/asignar-tarea/')
+        .send({idTarea: tareaTest._id, idAlumno: user._id})
+        .expect(200);
 
         await request(app).put('/api/tareas/desasignar-tarea/'+ tareaTest._id).expect(200).then(async (response) => {
             expect(response.body.status).toBe('success');
@@ -163,8 +163,10 @@ describe('Test de tareas', () => {
             instruccionTexto: "test"
         });
 
-        await request(app).put('/api/tareas/asignar-tarea/'+ tareaTest._id+'/'+user._id).expect(200);
-
+        await request(app).put('/api/tareas/asignar-tarea/')
+        .send({idTarea: tareaTest._id, idAlumno: user._id})
+        .expect(200);
+        
         await request(app).get('/api/tareas/tareas-usuario/'+ user._id).expect(200).then(async (response) => {
             expect(response.body.status).toBe('success');
             expect(response.body.tareas[0].nombre).toBe("test");

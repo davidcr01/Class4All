@@ -4,13 +4,11 @@ const {conexionTest} = require('../basedatos/conexionTests');
 const Usuario = require("../modelos/Usuario");
 const request = require('supertest');
 
-beforeEach((done) => {
-    //conexionTest();
-    //done();
-    mongoose.connect("mongodb+srv://test:test@c4a-test.97v4qpm.mongodb.net/?retryWrites=true&w=majority",()=>done());
+beforeAll((done) => {
+    mongoose.connect("mongodb+srv://test:test@c4a-test.97v4qpm.mongodb.net/?retryWrites=true&w=majority",done);
 });
 
-afterEach((done) => {
+afterAll((done) => {
     Usuario.deleteMany({}).then(() => done());
     mongoose.connection.close();
     mongoose.disconnect();
