@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from '@mui/material';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { showDate } from '../../../../interfaces/dates';
 
@@ -60,15 +61,16 @@ const TareaRealizada = (props) => {
             <div className="tarea">
                 <div><label className='label-tareas'>Tarea:</label> {props.tarea.nombre}</div>
                 <div><label className='label-tareas'>Fecha Asignada:</label> {showDate(props.tarea.fechaAsignada)}</div>
-                <div><label className='label-tareas'>Fecha Acabada:</label> {showDate(props.tarea.fechaAcabada)}</div>
+                <div><label className='label-tareas'>Fecha Finalización:</label> {showDate(props.tarea.fechaAcabada)}</div>
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> Si</div>
                 <div><label className='label-tareas'>Confirmar:</label> <input type="checkbox"></input></div>
                 <div className="botonesTareasReal">
-                    <div className="botonTareasReal">BIEN</div>
-                    <div className="botonTareasReal">MAL</div>
-                    <div className="botonTareasReal">TARDE</div>
+                    <Button variant='contained' color='success'>BIEN</Button>
+                    <Button variant='contained' style={{backgroundColor: "orange",}}>TARDE</Button>
+                    <Button variant='contained' color='error' >MAL</Button>
                 </div>
+
                 <form>
                     <textarea name="message" rows="5" cols="80">
                         Retroalimentación:

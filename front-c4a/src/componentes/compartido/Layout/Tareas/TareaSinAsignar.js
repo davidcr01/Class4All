@@ -1,6 +1,8 @@
 
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import SendIcon from '@mui/icons-material/Send';
+import { Button } from '@mui/material';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { showDate } from '../../../../interfaces/dates';
 
@@ -79,14 +81,14 @@ const TareaSinAsignar = (props) => {
                 <div><label className='label-tareas'>Fecha límite:</label> {showDate(props.tarea.fechaLimite)}</div>
                 <div><form onSubmit={asignarTarea}>
                     <label className='label-tareas'>Asignar a: </label>
-                    <select id="user" name="Usuario">
+                    <select id="user" name="Usuario" style={{fontSize: "1em"}}>
                     {usuarios.map(u => {
                         return (
                             <option value={u._id}>{u.nombre}</option>
                         )
                     })}
-                </select>
-                    <input type="submit" value="Asignar" />
+                    </select>
+                    <Button style={{marginLeft: "0.5em"}} variant='contained' type='submit' endIcon={<SendIcon />}>Asignar</Button>
                 </form>
 
                 </div>
