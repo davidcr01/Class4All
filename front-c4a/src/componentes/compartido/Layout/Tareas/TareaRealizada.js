@@ -76,13 +76,10 @@ const TareaRealizada = (props) => {
         .catch(err => console.log(err));
     }
 
-    
-
     const confirmaciones = (event) => {
         enviarRetroalimentacion(event);
         confirmarTarea(event);
     }
-
 
     const getUser = async () => {
         try {
@@ -131,8 +128,6 @@ const TareaRealizada = (props) => {
                 </form>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>
                 <button className="ConfirmarRealizada"><CheckBoxIcon style={{cursor: "pointer"}} onClick={e => confirmaciones(e)}/></button>
-
-
             </div>)
     }
 

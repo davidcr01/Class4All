@@ -52,6 +52,7 @@ const RadioGroupRating = ({valor, setValor}) => {
         <StyledRating
             name="caritas"
             defaultValue={valor}
+            size="large"
             IconContainerComponent={IconContainer}
             getLabelText={(value) => {return customIcons[value].label;}}
             highlightSelectedOnly
