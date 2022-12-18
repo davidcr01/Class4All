@@ -27,7 +27,6 @@ const FormularioNuevoUsuario = ()=> {
     // }
 
     const location = useLocation();
-
     let nav = useNavigate();
 
     // const cambiar = (event) => {
@@ -39,7 +38,6 @@ const FormularioNuevoUsuario = ()=> {
 
     const enviar = (event) => {
         event.preventDefault();
-        let datos = event.target;
 
         var urlencoded = new URLSearchParams();
         urlencoded.append("tamañoLetra", event.target.tamLetra.value);
@@ -143,7 +141,7 @@ const FormularioNuevoUsuario = ()=> {
                 <img src={imageURLs[0]}/> */}
 
                 <p><label className="etiq" htmlFor="tamLetra">Tamaño de letra</label>
-                <select defaultValue={0} id="tamLetra">
+                <select defaultValue={location.state.alumno.tamañoLetra} id="tamLetra">
                     <option value="0"  disabled>Elige un tamaño</option>
                     <option value="1">Pequeño</option>
                     <option value="2">Mediano</option>
@@ -152,7 +150,7 @@ const FormularioNuevoUsuario = ()=> {
                 </select>
                 </p>
                 <p><label className="etiq" htmlFor="tamIco">Tamaño de icono</label>
-                <select defaultValue={0} id="tamIco">
+                <select defaultValue={location.state.alumno.tamañoIconos} id="tamIco">
                     <option value="0"  disabled>Elige un tamaño</option>
                     <option value="1">Pequeño</option>
                     <option value="2">Mediano</option>
