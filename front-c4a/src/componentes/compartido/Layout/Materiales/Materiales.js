@@ -61,6 +61,7 @@ export const Materiales = () => {
                     materiales={materialesPedidos.entregamateriales.materiales}
                     tareaID = {materialesPedidos._id}
                     setCambio = {setCambio}
+                    faltan = {materialesPedidos.entregamateriales.materialesnodisp}
 
                 /> 
             </>
