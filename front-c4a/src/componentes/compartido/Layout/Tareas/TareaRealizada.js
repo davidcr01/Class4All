@@ -44,11 +44,7 @@ const TareaRealizada = (props) => {
     //FALTA arreglar para que funcione de vd y además de confirmar que se ha realizado, se mande la retroalimentación
     const confirmarTarea = (event) => {
         event.preventDefault();
-        //let datos = event.target;
-        let datos = document;
-        let ret = datos.getElementById("retroalimentacion").value;  //retroalimentación texto
-        let car = valor;                                            //valor correspondiente a las caritas
-
+        
         const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + props.tarea._id;
 
         fetch(url, {method: 'PUT'})
@@ -62,8 +58,11 @@ const TareaRealizada = (props) => {
     const enviarRetroalimentacion = (event) => {
         event.preventDefault();
         let datos = document;
-        let retroalimentacionTexto = datos.getElementById("retroalimentacion").value;
+        //console.log(datos.getElementById("retroalimentacion-"+ props.tarea._id).value);
+        let retroalimentacionTexto = datos.getElementById("retroalimentacion-" + props.tarea._id).value;
         let retroalimentacionNumero = valor;
+        //console.log(retroalimentacionNumero);
+        //console.log(retroalimentacionTexto);
 
         const url = "http://localhost:3900/api/tareas/add-retroalimentacion/" + props.tarea._id;
 

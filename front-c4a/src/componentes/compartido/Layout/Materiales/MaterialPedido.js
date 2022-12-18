@@ -82,7 +82,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
     const enviarRetroalimentacion = (event) => {
         event.preventDefault();
         let datos = document;
-        let retroalimentacionTexto = datos.getElementById("retroalimentacion").value;
+        let retroalimentacionTexto = datos.getElementById("retroalimentacion-"+tareaID).value;
         let retroalimentacionNumero = valor;
 
         const url = "http://localhost:3900/api/tareas/add-retroalimentacion/" + tareaID;
@@ -96,6 +96,8 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
         }).then(res => res.json)
         .catch(err => console.log(err));
     }
+
+    
 
     const confirmaciones = (event) => {
         enviarRetroalimentacion(event);

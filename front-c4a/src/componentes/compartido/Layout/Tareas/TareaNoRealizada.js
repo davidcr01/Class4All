@@ -4,14 +4,12 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { Button } from '@mui/material';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { showDate } from '../../../../interfaces/dates';
-import RadioGroupRating from './CaritasRating';
 
 // Vista: compartida (admins y profs)
 // Idem que TareaAsginada pero para NoRealizada
 
 const TareaNoRealizada = (props) => {
 
-    const [valor, setValor] = useState(3);  //Para las caritas
 
     const [nombre, setNombre] = useState('');
     const [cargando, setCargando] = useState(true);
@@ -110,9 +108,6 @@ const TareaNoRealizada = (props) => {
                 </form>
                 **/}
                 <form>
-                    <p>
-                        <RadioGroupRating valor={props.tarea.retroalimentacionNumero} setValor={setValor}/>
-                    </p>
                     <p>
                         <textarea className="recuadroRetro" id={"retroalimentacion-"+props.tarea._id} name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
                     </p>
