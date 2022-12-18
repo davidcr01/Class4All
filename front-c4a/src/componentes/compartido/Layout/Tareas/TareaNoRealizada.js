@@ -10,7 +10,6 @@ import { showDate } from '../../../../interfaces/dates';
 
 const TareaNoRealizada = (props) => {
 
-
     const [nombre, setNombre] = useState('');
     const [cargando, setCargando] = useState(true);
 
@@ -73,6 +72,31 @@ const TareaNoRealizada = (props) => {
             .catch(err => console.log(err));
     }
 
+    const enviarRetroalimentacion = (event) => {
+        event.preventDefault();
+        let datos = document;
+        //console.log(datos.getElementById("retroalimentacion-"+ props.tarea._id).value);
+        let retroalimentacionTexto = datos.getElementById("retroalimentacion-" + props.tarea._id).value;
+        //console.log(retroalimentacionNumero);
+        //console.log(retroalimentacionTexto);
+
+        const url = "http://localhost:3900/api/tareas/add-retroalimentacion/" + props.tarea._id;
+
+        fetch(url, {method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: 
+                JSON.stringify({retroalimentacionTexto})
+        }).then(res => res.json)
+        .catch(err => console.log(err));
+    }
+
+    const confirmaciones = (event) => {
+        enviarRetroalimentacion(event);
+        confirmarTarea();
+    }
+
     const funcRetroText = (e) => {
         let datos = e.target;
         if (datos.value.length < "Retroalimentación: ".length){
@@ -113,7 +137,7 @@ const TareaNoRealizada = (props) => {
                     </p>
                 </form>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>
-                <button className="ConfirmarRealizada"><CheckBoxIcon style={{cursor: "pointer"}} onClick={() => confirmarTarea()}/></button>
+                <button className="ConfirmarRealizada"><CheckBoxIcon style={{cursor: "pointer"}} onClick={e => confirmaciones(e)}/></button>
 
 
             </div>)
