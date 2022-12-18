@@ -14,9 +14,9 @@ const Menus = ({menus,/*cantidades,setCantidades,*/currentIndex, currentAula, al
         for(let i=0; i<menus.length; i++){
             menusJSX.push(
                 <>
-                    <section className="botonesAlumnos">
-                        <img className="foto" src={"http://localhost:3900/api/menus/obtenerfoto/"+menus[i]._id}/>
-                        {menus[i].nombre}
+                    <section className="botonesComandas">
+                        <img className="imgMenu" src={"http://localhost:3900/api/menus/obtenerfoto/"+menus[i]._id}/>
+                        <p className="textoComanda">{menus[i].nombre.toUpperCase()}</p>
                     </section>
                     <Cantidades currentAula={currentAula} allMenus={allMenus} setAllMenus={setAllMenus} index={currentIndex + i}/>
                 </>

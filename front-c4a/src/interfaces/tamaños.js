@@ -27,17 +27,22 @@ export const setTamsLetra = (newTam) => {
 
 export const setTamsIconos = (newTam) =>  {
     console.log("nt:" + newTam);
-    let tam = 4;
+    let tam = 4.5, tam2 = 3.5;
     if (newTam === 1) {
         tam = 3;
+        tam2 = 4;
     }
     else if (newTam === 2) {
-        tam = 5.5;
+        tam = 4.5;
+        tam2 = 4.75;
     }
     else {
         tam = 6;
+        tam2 = 5.25;
     }
-    document.documentElement.style.setProperty('--tam-icono', tam + 'em');
+    document.documentElement.style.setProperty('--tam-icono-a', tam + 'em');
+    document.documentElement.style.setProperty('--tam-icono-b', tam2 + 'em');
+
 }
 
 
