@@ -42,8 +42,8 @@ const Usuario = (props) => {
     }
 
     const MiButton = styled(Button)({
-        width: "max-content",
-        margin: "0 auto 0 auto",
+        width: "fit-content",
+        marginLeft: '10px',
     })
 
     return (

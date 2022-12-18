@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from '@mui/material';
+import {styled} from "@mui/material/styles";
 import DeleteIcon from '@mui/icons-material/Delete';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { showDate } from '../../../../interfaces/dates';
 
-// Vista: compartida (admins y profs)
+// Vista: compartida (adins y profs)
 // Componente para gestionar cada tarea: eliminar, desasignar, ver su infomarción
 
 const TareaAsignada = (props) => {
 
     const [nombre, setNombre] = useState('');
     const [cargando, setCargando] = useState(true);
+
+    const MiButton = styled(Button)({
+        width: "max-content",
+        margin: "0 auto 0 auto",
+    })
 
     useEffect(() => {
         getUser();
@@ -78,12 +85,13 @@ const TareaAsignada = (props) => {
 
                 const confirmarTarea = () => {
                     let decision = window.confirm("¿Está seguro de que desea confirmar la tarea como REALIZADA?");
+                    let idTarea = props.tarea._id;
 
                     if(decision){
-                        const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/"
+                        const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/"+idTarea;
 
                         fetch(url,{
-                            method: "POST",
+                            method: "PUT",
                             headers: {
                                 "Content-Type": "application/json"
                             },
@@ -109,13 +117,13 @@ const TareaAsignada = (props) => {
                 <div><label className='label-tareas'>Tarea:</label> {props.tarea.nombre}</div>
                 <div><label className='label-tareas'>Fecha Asignada:</label> {showDate(props.tarea.fechaAsignada)}</div>
                 <div><label className='label-tareas'>Fecha Límite:</label> {showDate(props.tarea.fechaLimite)}</div>
-                <div><label className='label-tareas'>Fecha Acabada:</label> {(props.tarea.fechaAcabada === null)? "Sin terminar": showDate(props.tarea.fechaAcabada)}</div>
+                <div><label className='label-tareas'>Fecha Finalización:</label> {(props.tarea.fechaAcabada === null)? "Sin terminar": showDate(props.tarea.fechaAcabada)}</div>
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> No</div>
                 {/*<div><label className='label-tareas'>Confirmar</label> <input type="checkbox"></input></div>*/}
-                <div><button id='confirmar-tarea' onClick={confirmarTarea}>Confirmar</button></div>
-                <form onSubmit={desasignarTarea}><input type="submit" value="Desasignar"/></form>
-                <div className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></div>
+                    <MiButton variant='contained' onClick={desasignarTarea}>Desasignar</MiButton>
+                    <MiButton variant='contained' color='success' onClick={confirmarTarea}>Confirmar</MiButton>      
+                    <div className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarTarea}/></div>
 
             </div>)
             }

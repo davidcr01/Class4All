@@ -9,8 +9,6 @@ const PantallaInfoMenus = ()=> {
     return(
     <div className='PantallaGestionUsuarios'>
         <BuscarFiltros/>
-
-        
     </div>
     )
     }
