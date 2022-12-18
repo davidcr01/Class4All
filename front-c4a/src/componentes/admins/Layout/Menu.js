@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 // Vista: admins
 // Componente que representa cada item de la lista de menús,
@@ -32,14 +34,9 @@ const Menu = (props) => {
         <div className="usuario">
             <div className="datosuser">{props.menu.nombre} {props.menu.apellido1} {props.menu.apellido2}</div>
             <div className="botonesuser">
-                <div className="botonuser botonuser-modificar">Modificar</div>
-                    <button className="botonuser botonuser-eliminar" onClick={eliminarMenu}>
-                        Eliminar
-                    </button>
-                    <button className="botonuser botonuser-ver" onClick={() => nav("/info-menus")}>
-                        {"ver"}
-                    </button>
-                
+                <Button variant='contained'>Modificar</Button>
+                <Button variant='contained' color='error' onClick={eliminarMenu} startIcon={<DeleteIcon />}>Eliminar</Button>
+                <Button variant='contained' onClick={() => nav("/info-menus")}>Ver</Button>
             </div>
         </div>
     )

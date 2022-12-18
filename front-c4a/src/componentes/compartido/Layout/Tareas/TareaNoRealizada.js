@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import { Button } from '@mui/material';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { showDate } from '../../../../interfaces/dates';
 
@@ -83,7 +84,12 @@ const TareaNoRealizada = (props) => {
                 <div><label className='label-tareas'>Fecha Límite:</label> {showDate(props.tarea.fechaLimite)}</div>
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> No</div>
-                
+                <div>Confirmar: <input type="checkbox"></input></div>
+                <div className="botonesTareasReal">
+                    <Button variant='contained' color='success'>BIEN</Button>
+                    <Button variant='contained' style={{backgroundColor: "orange",}}>TARDE</Button>
+                    <Button variant='contained' color='error' >MAL</Button>
+                </div>
                 <form>
                     <textarea name="message" rows="5" cols="80">
                         Retroalimentación:
