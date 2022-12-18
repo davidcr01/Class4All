@@ -75,10 +75,7 @@ const TareaNoRealizada = (props) => {
     const enviarRetroalimentacion = (event) => {
         event.preventDefault();
         let datos = document;
-        //console.log(datos.getElementById("retroalimentacion-"+ props.tarea._id).value);
         let retroalimentacionTexto = datos.getElementById("retroalimentacion-" + props.tarea._id).value;
-        //console.log(retroalimentacionNumero);
-        //console.log(retroalimentacionTexto);
 
         const url = "http://localhost:3900/api/tareas/add-retroalimentacion/" + props.tarea._id;
 
@@ -133,7 +130,7 @@ const TareaNoRealizada = (props) => {
                 **/}
                 <form>
                     <p>
-                        <textarea className="recuadroRetro" id={"retroalimentacion-"+props.tarea._id} name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
+                        <textarea className="recuadroRetro" id={"retroalimentacion-"+props.tarea._id} name='retro' onChange={e => funcRetroText(e)}>{"Retroalimentación:" + props.tarea.retroalimentacionTexto }</textarea>
                     </p>
                 </form>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>
