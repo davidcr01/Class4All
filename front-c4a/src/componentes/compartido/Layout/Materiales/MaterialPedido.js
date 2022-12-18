@@ -3,11 +3,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { ListItem } from '@mui/material';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 // Vista: compartida (administradores y profesores)
 // Componente para cargar distintas partes de la información del pedido
 
-const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => {
+const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,faltan}) => {
 
     const [cargando, setCargando] = useState(true);
 
@@ -104,6 +105,14 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
                                 <label className='negrita'>Cantidad:</label> 
                                 <label>{mat.cantidad}</label>
                             </p>
+                            {faltan.includes(mat._id) &&
+                            <section className="texto-falta-material">
+                                <p>
+                                    <WarningAmberIcon className='icono-warning' sx={{float:'left'}} fontSize="large" color="error"></WarningAmberIcon>
+                                    <h4>Falta este material</h4>
+                                </p>
+                            </section>
+                            }
                         </article>
                     </ListItem>
                 )}

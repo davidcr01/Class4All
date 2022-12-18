@@ -628,6 +628,21 @@ header{
   background-color: #90b4ce;  
   box-shadow: 0px 6px 17px 2px rgba(0, 0, 0, 0.5);
 }
+.texto-falta-material{
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #ff0000;
+}
+.texto-falta-material h4{
+  margin-left: 0.7em;
+  float:left;
+  width: 70%;
+  margin-top: 0%;
+}
+icono-warning{
+  float:right;
+  margin:0%;
+}
 
 .strong{
   font-weight: bold;
