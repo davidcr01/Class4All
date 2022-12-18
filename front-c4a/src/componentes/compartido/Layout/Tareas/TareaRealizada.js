@@ -40,6 +40,21 @@ const TareaRealizada = (props) => {
             .catch(err => console.log(err));
     }
 
+    const getUser = async () => {
+        try {
+            const url = "http://localhost:3900/api/usuarios/get-usuario/" + props.tarea.usuarioAsignado
+            const res = await fetch(url)
+            const data = await res.json();
+
+
+            setNombre(data.usuario.nombre);
+            setCargando(false);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     //CREADO NUEVO PARA MANDAR LA CONFIRMACIÓN Y LA RETROALIMENTACIÓN ETC
     //FALTA arreglar para que funcione de vd y además de confirmar que se ha realizado, se mande la retroalimentación
     const confirmarTarea = (event) => {
@@ -79,21 +94,6 @@ const TareaRealizada = (props) => {
         enviarRetroalimentacion(event);
         confirmarTarea(event);
         //console.log(props.tarea.retroalimentacionTexto);
-    }
-
-    const getUser = async () => {
-        try {
-            const url = "http://localhost:3900/api/usuarios/get-usuario/" + props.tarea.usuarioAsignado
-            const res = await fetch(url)
-            const data = await res.json();
-
-
-            setNombre(data.usuario.nombre);
-            setCargando(false);
-
-        } catch (error) {
-            console.log(error);
-        }
     }
   
     //PARA QUE NO SE BORRE LA PALABRA RETROALIMENTACIÓN

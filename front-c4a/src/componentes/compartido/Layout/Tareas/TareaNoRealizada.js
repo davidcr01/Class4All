@@ -71,9 +71,8 @@ const TareaNoRealizada = (props) => {
     const enviarRetroalimentacion = (event) => {
         event.preventDefault();
         let datos = document;
-        //console.log(datos.getElementById("retroalimentacion-"+ props.tarea._id).value);
         let retroalimentacionTexto = datos.getElementById("retroalimentacion-" + props.tarea._id).value;
-        //console.log(retroalimentacionNumero);
+        let retroalimentacionNumero = 0;
 
         const url = "http://localhost:3900/api/tareas/add-retroalimentacion/" + props.tarea._id;
 
@@ -82,7 +81,7 @@ const TareaNoRealizada = (props) => {
                 'Content-Type': 'application/json'
             }, 
             body: 
-                JSON.stringify({retroalimentacionTexto})
+                JSON.stringify({retroalimentacionTexto, retroalimentacionNumero})
         }).then(res => res.json)
         .catch(err => console.log(err));
     }
