@@ -55,19 +55,15 @@ const TareaNoRealizada = (props) => {
 
     //CREADO NUEVO PARA MANDAR LA CONFIRMACIÓN Y LA RETROALIMENTACIÓN ETC
     //FALTA arreglar para que funcione de vd y además de confirmar que se ha realizado, se mande la retroalimentación
-    const confirmarTarea = () => {
+    const confirmarTarea = (event) => {
+        event.preventDefault();
+        
         const url = "http://localhost:3900/api/tareas/completar-tarea-profesor/" + props.tarea._id;
 
-        fetch(url, {method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify()
-        })
+        fetch(url, {method: 'PUT'})
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-               // window.location.reload();
             })
             .catch(err => console.log(err));
     }
@@ -75,7 +71,9 @@ const TareaNoRealizada = (props) => {
     const enviarRetroalimentacion = (event) => {
         event.preventDefault();
         let datos = document;
+        //console.log(datos.getElementById("retroalimentacion-"+ props.tarea._id).value);
         let retroalimentacionTexto = datos.getElementById("retroalimentacion-" + props.tarea._id).value;
+        //console.log(retroalimentacionNumero);
 
         const url = "http://localhost:3900/api/tareas/add-retroalimentacion/" + props.tarea._id;
 
@@ -88,10 +86,12 @@ const TareaNoRealizada = (props) => {
         }).then(res => res.json)
         .catch(err => console.log(err));
     }
+   
 
     const confirmaciones = (event) => {
         enviarRetroalimentacion(event);
-        confirmarTarea();
+        confirmarTarea(event);
+        console.log(props.tarea.retroalimentacionTexto);
     }
 
     const funcRetroText = (e) => {
@@ -99,6 +99,12 @@ const TareaNoRealizada = (props) => {
         if (datos.value.length < "Retroalimentación: ".length){
             datos.value = "Retroalimentación: ";
         }
+    }
+
+    const textoRetro = () => {
+        if (props.tarea.retroalimentacionTexto === null){
+            return "Retroalimentación: ";
+        } else return props.tarea.retroalimentacionTexto;
     }
 
 
@@ -130,7 +136,7 @@ const TareaNoRealizada = (props) => {
                 **/}
                 <form>
                     <p>
-                        <textarea className="recuadroRetro" id={"retroalimentacion-"+props.tarea._id} name='retro' onChange={e => funcRetroText(e)}>{"Retroalimentación:" + props.tarea.retroalimentacionTexto }</textarea>
+                        <textarea className="recuadroRetro" id={"retroalimentacion-"+props.tarea._id} name='retro' onChange={e => funcRetroText(e)}>{textoRetro()}</textarea>
                     </p>
                 </form>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>

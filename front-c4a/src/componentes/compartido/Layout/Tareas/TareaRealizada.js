@@ -62,7 +62,6 @@ const TareaRealizada = (props) => {
         let retroalimentacionTexto = datos.getElementById("retroalimentacion-" + props.tarea._id).value;
         let retroalimentacionNumero = valor;
         //console.log(retroalimentacionNumero);
-        //console.log(retroalimentacionTexto);
 
         const url = "http://localhost:3900/api/tareas/add-retroalimentacion/" + props.tarea._id;
 
@@ -79,6 +78,7 @@ const TareaRealizada = (props) => {
     const confirmaciones = (event) => {
         enviarRetroalimentacion(event);
         confirmarTarea(event);
+        //console.log(props.tarea.retroalimentacionTexto);
     }
 
     const getUser = async () => {
@@ -104,6 +104,11 @@ const TareaRealizada = (props) => {
         }
     }
 
+    const textoRetro = () => {
+        if (props.tarea.retroalimentacionTexto === null){
+            return "Retroalimentación: ";
+        } else return props.tarea.retroalimentacionTexto;
+    }
 
     if (cargando) {
         return <CargandoProgress/>
@@ -131,7 +136,7 @@ const TareaRealizada = (props) => {
                         <RadioGroupRating valor={props.tarea.retroalimentacionNumero} setValor={setValor}/>
                     </p>
                     <p>
-                        <textarea className="recuadroRetro" id={"retroalimentacion-"+props.tarea._id} name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
+                        <textarea className="recuadroRetro" id={"retroalimentacion-"+props.tarea._id} name='retro' onChange={e => funcRetroText(e)}>{textoRetro() }</textarea>
                     </p>
                 </form>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>

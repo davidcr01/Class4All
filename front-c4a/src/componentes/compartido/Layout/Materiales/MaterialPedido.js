@@ -111,6 +111,12 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
             datos.value = "Retroalimentación: ";
         }
     }
+
+    const textoRetro = () => {
+        if (getTarea().retroalimentacionTexto === null){
+            return "Retroalimentación: ";
+        } else return getTarea().retroalimentacionTexto;
+    }
     
     const eliminarMateriales = async() => {
         //marcar como cancelada
@@ -174,7 +180,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
                         <RadioGroupRating valor={getTarea().retroalimentacionNumero} setValor={setValor}/>
                     </p>
                     <p>
-                        <textarea className="recuadroRetro" id={"retroalimentacion-"+tareaID} name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
+                        <textarea className="recuadroRetro" id={"retroalimentacion-"+tareaID} name='retro' onChange={e => funcRetroText(e)}>{textoRetro()} </textarea>
                     </p>
                 </form>
 
