@@ -107,7 +107,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio}) => 
                             </p>
                             <section className="texto-falta-material">
                                 <p>
-                                    <WarningAmberIcon fontSize="large" color="error"></WarningAmberIcon>
+                                    <WarningAmberIcon className='icono-warning' sx={{float:'left'}} fontSize="large" color="error"></WarningAmberIcon>
                                     <h4>Falta este material</h4>
                                 </p>
                             </section>

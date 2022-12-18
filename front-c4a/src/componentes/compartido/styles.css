@@ -629,6 +629,16 @@ header{
   font-weight: bold;
   color: #ff0000;
 }
+.texto-falta-material h4{
+  margin-left: 0.7em;
+  float:left;
+  width: 70%;
+  margin-top: 0%;
+}
+icono-warning{
+  float:right;
+  margin:0%;
+}
 
 .strong{
   font-weight: bold;
