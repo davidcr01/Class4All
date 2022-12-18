@@ -120,7 +120,7 @@ const TareaRealizada = (props) => {
                 <div><label className='label-tareas'>Realizado:</label> Si</div>
                 <form>
                     <p>
-                        <RadioGroupRating valor={valor} setValor={setValor}/>
+                        <RadioGroupRating valor={props.tarea.retroalimentacionNumero} setValor={setValor}/>
                     </p>
                     <p>
                         <textarea className="recuadroRetro" id="retroalimentacion" name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
