@@ -4,6 +4,8 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { ListItem } from '@mui/material';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
+import RadioGroupRating from '../Tareas/CaritasRating';
+
 
 // Vista: compartida (administradores y profesores)
 // Componente para cargar distintas partes de la información del pedido
@@ -15,6 +17,8 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
     const [listaMateriales, SetListaMateriales] = useState([]);
     const [alumnoNombre, SetAlumno] = useState([]);
     const [tarea, setTarea] = useState([]);
+
+    const [valor, setValor] = useState(3);  //Para las caritas
 
     useEffect(() => {
         getListaMateriales();
@@ -74,6 +78,37 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
 
         
     }
+
+    const enviarRetroalimentacion = (event) => {
+        event.preventDefault();
+        let datos = document;
+        let retroalimentacionTexto = datos.getElementById("retroalimentacion").value;
+        let retroalimentacionNumero = valor;
+
+        const url = "http://localhost:3900/api/tareas/add-retroalimentacion/" + tareaID;
+
+        fetch(url, {method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: 
+                JSON.stringify({retroalimentacionTexto, retroalimentacionNumero})
+        }).then(res => res.json)
+        .catch(err => console.log(err));
+    }
+
+    const confirmaciones = (event) => {
+        enviarRetroalimentacion(event);
+        fRecibido();
+    }
+
+     //PARA QUE NO SE BORRE LA PALABRA RETROALIMENTACIÓN
+     const funcRetroText = (e) => {
+        let datos = e.target;
+        if (datos.value.length < "Retroalimentación: ".length){
+            datos.value = "Retroalimentación: ";
+        }
+    }
     
     const eliminarMateriales = async() => {
         //marcar como cancelada
@@ -132,7 +167,16 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
                     <label>{tarea.realizada ? "SI" : "NO"}</label>
                 </p>
 
-                <button className = "boton-anadir"><CheckBoxIcon style={{cursor: "pointer"}} onClick={() => fRecibido()}/>Recibido</button>
+                <form>
+                    <p>
+                        <RadioGroupRating valor={getTarea().retroalimentacionNumero} setValor={setValor}/>
+                    </p>
+                    <p>
+                        <textarea className="recuadroRetro" id={"retroalimentacion-"+tareaID} name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
+                    </p>
+                </form>
+
+                <button className = "boton-anadir"><CheckBoxIcon style={{cursor: "pointer"}} onClick={e => confirmaciones(e)}/>Recibido</button>
                 <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarMateriales()}/>Cancelar</button>
 
             </section>

@@ -4,11 +4,14 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { Button } from '@mui/material';
 import CargandoProgress from '../../../compartido/Layout/CargandoProgress';
 import { showDate } from '../../../../interfaces/dates';
+import RadioGroupRating from './CaritasRating';
 
 // Vista: compartida (admins y profs)
 // Idem que TareaAsginada pero para NoRealizada
 
 const TareaNoRealizada = (props) => {
+
+    const [valor, setValor] = useState(3);  //Para las caritas
 
     const [nombre, setNombre] = useState('');
     const [cargando, setCargando] = useState(true);
@@ -72,6 +75,14 @@ const TareaNoRealizada = (props) => {
             .catch(err => console.log(err));
     }
 
+    const funcRetroText = (e) => {
+        let datos = e.target;
+        if (datos.value.length < "Retroalimentación: ".length){
+            datos.value = "Retroalimentación: ";
+        }
+    }
+
+
     //QUITADA LA PARTE DE BIEN/MAL PORQUE NO TIENE SENTIDO
     //CAMBIADO EL CHECKBOX DE CONFIRMAR POR UN BOTÓN
     //ELIMINAR ES AHORA UN BOTÓN EN VEZ DE UN DIV
@@ -84,16 +95,27 @@ const TareaNoRealizada = (props) => {
                 <div><label className='label-tareas'>Fecha Límite:</label> {showDate(props.tarea.fechaLimite)}</div>
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> No</div>
+                {/**
                 <div>Confirmar: <input type="checkbox"></input></div>
                 <div className="botonesTareasReal">
                     <Button variant='contained' color='success'>BIEN</Button>
                     <Button variant='contained' style={{backgroundColor: "orange",}}>TARDE</Button>
                     <Button variant='contained' color='error' >MAL</Button>
                 </div>
+                
                 <form>
                     <textarea name="message" rows="5" cols="80">
                         Retroalimentación:
                     </textarea>
+                </form>
+                **/}
+                <form>
+                    <p>
+                        <RadioGroupRating valor={props.tarea.retroalimentacionNumero} setValor={setValor}/>
+                    </p>
+                    <p>
+                        <textarea className="recuadroRetro" id={"retroalimentacion-"+props.tarea._id} name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
+                    </p>
                 </form>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>
                 <button className="ConfirmarRealizada"><CheckBoxIcon style={{cursor: "pointer"}} onClick={() => confirmarTarea()}/></button>

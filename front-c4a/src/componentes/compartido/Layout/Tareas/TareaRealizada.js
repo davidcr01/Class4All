@@ -119,18 +119,20 @@ const TareaRealizada = (props) => {
                 <div><label className='label-tareas'>Fecha Finalización:</label> {showDate(props.tarea.fechaAcabada)}</div>
                 <div><label className='label-tareas'>Usuario:</label> {nombre}</div>
                 <div><label className='label-tareas'>Realizado:</label> Si</div>
+                {/**
                 <div><label className='label-tareas'>Confirmar:</label> <input type="checkbox"></input></div>
                 <div className="botonesTareasReal">
                     <Button variant='contained' color='success'>BIEN</Button>
                     <Button variant='contained' style={{backgroundColor: "orange",}}>TARDE</Button>
                     <Button variant='contained' color='error' >MAL</Button>
                 </div>
+                **/}
                 <form>
                     <p>
                         <RadioGroupRating valor={props.tarea.retroalimentacionNumero} setValor={setValor}/>
                     </p>
                     <p>
-                        <textarea className="recuadroRetro" id="retroalimentacion" name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
+                        <textarea className="recuadroRetro" id={"retroalimentacion-"+props.tarea._id} name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
                     </p>
                 </form>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>
