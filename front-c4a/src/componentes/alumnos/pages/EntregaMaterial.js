@@ -109,17 +109,20 @@ export const EntregaMaterial = () => {
 
     };
     const faltaMat = async () => {
-        let url ='http://localhost:3900/api/tareas/falta-material/' + materiales[currentMaterial].material;
+        let url ='http://localhost:3900/api/tareas/falta-material/' + id;
+
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("materiales[material]", materiales[currentMaterial].material);
+
+        var requestOptions = {
+          method: 'POST',
+          body: urlencoded,
+          redirect: 'follow'
+        };
+        //try catch de la url
         try{
-            await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    "estado": "falta"
-                })
-            });
+            await fetch(url, requestOptions).then(response => response.text())
+            .then(result => console.log(result));
         }
         catch (error) {
             console.log(error);
@@ -207,7 +210,7 @@ export const EntregaMaterial = () => {
     // e intrucciones intuitivas
     else if(cookies.get("loginCookie") !== undefined && isSet){
         //console.log(getBestSearch(materiales[currentMaterial].cantidad).then((res) => console.log(res)));
-        console.log(materiales);
+        
         if(materiales.length > 0){
             return (
                 <>
@@ -242,11 +245,11 @@ export const EntregaMaterial = () => {
                  </section>
 
                  <section className='botonesRecogidaMaterial'>
-                    <Button color="error" className='rechazarMaterial' variant="contained" onClick={recogidoMat}>
+                    <Button color="error" className='rechazarMaterial' variant="contained" onClick={faltaMat}>
                         <CloseIcon className='fuente-flecha'/>
                     </Button>
 
-                    <Button className='aceptarMaterial boton-paginacion' variant="contained" onClick={faltaMat}>
+                    <Button className='aceptarMaterial boton-paginacion' variant="contained" onClick={recogidoMat}>
                         <DoneIcon className='fuente-flecha'/>
                     </Button>
                  </section>

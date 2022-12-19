@@ -112,7 +112,7 @@ export const PedirMaterial = ({setCambio}) => {
             entregamateriales: {
                 materiales: datosForm,
                 idProfesor: idProfesor,
-                aula: data.aula.value
+                aula: data.Aula.value
             },
         }
 
