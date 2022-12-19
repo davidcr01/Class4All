@@ -138,7 +138,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
         const pedidos = materiales.map(mat => 
             listaMateriales.map((t,key) => {
                 if (mat.material === t._id) { return(
-                    <ListItem key={mat._id}>
+                    <ListItem key={mat.material}>
                         <article className="materialRecibido">
                             <p>
                                 <label className='negrita'>Material:</label> 
@@ -148,14 +148,19 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
                                 <label className='negrita'>Cantidad:</label> 
                                 <label>{mat.cantidad}</label>
                             </p>
-                            {faltan.includes(mat._id) &&
-                            <section className="texto-falta-material">
-                                <p>
-                                    <WarningAmberIcon className='icono-warning' sx={{float:'left'}} fontSize="large" color="error"></WarningAmberIcon>
-                                    <h4>Falta este material</h4>
-                                </p>
-                            </section>
-                            }
+                            {faltan.map((f, key) => {
+                                if(f.material === mat.material ){
+                                    return(
+                                        <section className="texto-falta-material" key={key}>
+                                            <p>
+                                                <WarningAmberIcon className='icono-warning' sx={{float:'left'}} fontSize="large" color="error"></WarningAmberIcon>
+                                                <h4>Falta este material</h4>
+                                            </p>
+                                        </section>
+                                    )
+                                }
+                                
+                            })}
                         </article>
                     </ListItem>
                 )}
@@ -180,7 +185,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
                         <RadioGroupRating valor={getTarea().retroalimentacionNumero} setValor={setValor}/>
                     </p>
                     <p>
-                        <textarea className="recuadroRetro" id={"retroalimentacion-"+tareaID} name='retro' onChange={e => funcRetroText(e)}>{textoRetro()} </textarea>
+                        {/* <textarea className="recuadroRetro" id={"retroalimentacion-"+tareaID} name='retro' onChange={e => funcRetroText(e)}>{textoRetro()} </textarea> */}
                     </p>
                 </form>
 
