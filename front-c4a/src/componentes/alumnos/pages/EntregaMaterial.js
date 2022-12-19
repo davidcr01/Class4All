@@ -121,8 +121,7 @@ export const EntregaMaterial = () => {
         };
         //try catch de la url
         try{
-            await fetch(url, requestOptions).then(response => response.text())
-            .then(result => console.log(result));
+            await fetch(url, requestOptions);
         }
         catch (error) {
             console.log(error);
