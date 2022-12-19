@@ -13,6 +13,8 @@ const TareaNoRealizada = (props) => {
     const [nombre, setNombre] = useState('');
     const [cargando, setCargando] = useState(true);
 
+    const [valor, setValor] = useState(3);  //Para las caritas
+
     useEffect(() => {
         setCargando(true);
         getUser();
@@ -53,8 +55,6 @@ const TareaNoRealizada = (props) => {
         }
     }
 
-    //CREADO NUEVO PARA MANDAR LA CONFIRMACIÓN Y LA RETROALIMENTACIÓN ETC
-    //FALTA arreglar para que funcione de vd y además de confirmar que se ha realizado, se mande la retroalimentación
     const confirmarTarea = (event) => {
         event.preventDefault();
         
@@ -71,8 +71,10 @@ const TareaNoRealizada = (props) => {
     const enviarRetroalimentacion = (event) => {
         event.preventDefault();
         let datos = document;
+        //console.log(datos.getElementById("retroalimentacion-"+ props.tarea._id).value);
         let retroalimentacionTexto = datos.getElementById("retroalimentacion-" + props.tarea._id).value;
-        let retroalimentacionNumero = 0;
+        let retroalimentacionNumero = valor;
+        //console.log(retroalimentacionNumero);
 
         const url = "http://localhost:3900/api/tareas/add-retroalimentacion/" + props.tarea._id;
 
@@ -85,12 +87,13 @@ const TareaNoRealizada = (props) => {
         }).then(res => res.json)
         .catch(err => console.log(err));
     }
-   
 
     const confirmaciones = (event) => {
         enviarRetroalimentacion(event);
-        confirmarTarea(event);
-        console.log(props.tarea.retroalimentacionTexto);
+        //confirmarTarea(event);
+        window.location.reload();  
+
+        //console.log(props.tarea.retroalimentacionTexto);
     }
 
     const funcRetroText = (e) => {
@@ -135,12 +138,11 @@ const TareaNoRealizada = (props) => {
                 **/}
                 <form>
                     <p>
-                        <textarea className="recuadroRetro" id={"retroalimentacion-"+props.tarea._id} name='retro' onChange={e => funcRetroText(e)}>{textoRetro()}</textarea>
+                        <textarea className="recuadroRetro" id={"retroalimentacion-"+props.tarea._id} name='retro' onChange={e => funcRetroText(e)}>{textoRetro() }</textarea>
                     </p>
                 </form>
                 <button className="Eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarTarea()}/></button>
                 <button className="ConfirmarRealizada"><CheckBoxIcon style={{cursor: "pointer"}} onClick={e => confirmaciones(e)}/></button>
-
 
             </div>)
     }

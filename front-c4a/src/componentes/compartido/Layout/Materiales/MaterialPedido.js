@@ -102,6 +102,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
     const confirmaciones = (event) => {
         enviarRetroalimentacion(event);
         fRecibido();
+        window.location.reload();  
     }
 
      //PARA QUE NO SE BORRE LA PALABRA RETROALIMENTACIÓN
@@ -110,12 +111,6 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
         if (datos.value.length < "Retroalimentación: ".length){
             datos.value = "Retroalimentación: ";
         }
-    }
-
-    const textoRetro = () => {
-        if (getTarea().retroalimentacionTexto === null){
-            return "Retroalimentación: ";
-        } else return getTarea().retroalimentacionTexto;
     }
     
     const eliminarMateriales = async() => {
@@ -185,7 +180,8 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
                         <RadioGroupRating valor={getTarea().retroalimentacionNumero} setValor={setValor}/>
                     </p>
                     <p>
-                        {/* <textarea className="recuadroRetro" id={"retroalimentacion-"+tareaID} name='retro' onChange={e => funcRetroText(e)}>{textoRetro()} </textarea> */}
+                        <textarea className="recuadroRetro" id={"retroalimentacion-"+tareaID} name='retro' onChange={e => funcRetroText(e)}>Retroalimentación: </textarea>
+                        {/**<textarea className="recuadroRetro" id={"retroalimentacion-"+tareaID} name='retro' onChange={e => funcRetroText(e)}>{textoRetro()} </textarea> **/}
                     </p>
                 </form>
 

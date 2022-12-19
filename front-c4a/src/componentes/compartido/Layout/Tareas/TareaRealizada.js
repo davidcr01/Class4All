@@ -93,6 +93,7 @@ const TareaRealizada = (props) => {
     const confirmaciones = (event) => {
         enviarRetroalimentacion(event);
         confirmarTarea(event);
+        window.location.reload();  
         //console.log(props.tarea.retroalimentacionTexto);
     }
   
