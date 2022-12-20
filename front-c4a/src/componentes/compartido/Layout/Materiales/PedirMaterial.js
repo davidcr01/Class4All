@@ -157,7 +157,7 @@ export const PedirMaterial = ({setCambio}) => {
     }else if (cookies.get("loginCookie") && cookieSet) {
         return (
             <section className = "peticion">
-                <form onSubmit={() => confirmar}>
+                <form onSubmit={confirmar}>
                     
                     <p> 
                         <label className='etiq' htmlFor="user">Alumno</label> 
