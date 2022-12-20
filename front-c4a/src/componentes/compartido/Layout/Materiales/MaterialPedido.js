@@ -85,6 +85,9 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
         let retroalimentacionTexto = datos.getElementById("retroalimentacion-"+tareaID).value;
         let retroalimentacionNumero = valor;
 
+        console.log(retroalimentacionNumero);
+        console.log(retroalimentacionTexto);
+
         const url = "http://localhost:3900/api/tareas/add-retroalimentacion/" + tareaID;
 
         fetch(url, {method: 'POST',
@@ -102,7 +105,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
     const confirmaciones = (event) => {
         enviarRetroalimentacion(event);
         fRecibido();
-        window.location.reload();  
+        //window.location.reload();  
     }
 
      //PARA QUE NO SE BORRE LA PALABRA RETROALIMENTACIÓN
@@ -186,7 +189,7 @@ const MaterialPedido = ({profesorID, alumno, materiales, tareaID,setCambio,falta
                 </form>
 
                 <button className = "boton-anadir"><CheckBoxIcon style={{cursor: "pointer"}} onClick={e => confirmaciones(e)}/>Recibido</button>
-                <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={() => eliminarMateriales()}/>Cancelar</button>
+                <button className="boton-eliminar"><DeleteIcon style={{cursor: "pointer"}} onClick={eliminarMateriales}/>Cancelar</button>
 
             </section>
         )
