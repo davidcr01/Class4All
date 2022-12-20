@@ -116,9 +116,6 @@ export const PedirMaterial = ({setCambio}) => {
             },
         }
 
-        console.log(datos);
-
-
         var urlencoded = new URLSearchParams();
         urlencoded.append("usuarioAsignado", datos.usuarioAsignado.toString());
         urlencoded.append("entregamateriales[idProfesor]", datos.entregamateriales.idProfesor.toString());
@@ -145,6 +142,7 @@ export const PedirMaterial = ({setCambio}) => {
             }
         })
          .catch(err => console.log(err));
+         window.location.reload();
         
          //setCambio(0);
    }
